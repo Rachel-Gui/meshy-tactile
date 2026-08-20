@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070a12" />
+    <title>Tactile Field — 3D Sensor Monitor</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark"><span></span><span></span><span></span></div>
+          <div>
+            <div class="eyebrow">TACTILE FIELD</div>
+            <h1>3D Sensor Monitor</h1>
+          </div>
+        </div>
+        <div class="topbar-metrics">
+          <div class="metric"><span>MODEL</span><strong id="model-status">Loading</strong></div>
+          <div class="metric"><span>POINTS</span><strong id="point-count">—</strong></div>
+          <div class="metric"><span>PEAK</span><strong id="peak-value">0%</strong></div>
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
+            <span id="theme-icon">☀</span><b id="theme-label">Light</b>
+          </button>
+          <div class="connection-pill" id="connection-pill">
+            <i></i><span id="connection-text">Connecting</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="viewport-wrap">
+          <div id="viewport"></div>
+          <div class="viewport-gradient"></div>
+          <div class="model-loading" id="model-loading">
+            <div class="spinner"></div>
+            <span>Preparing 3D heat field</span>
+          </div>
+          <div class="selected-card" id="selected-card">
+            <span>SENSOR</span>
+            <strong id="selected-index">A01 · 01</strong>
+            <div><b id="selected-value">0%</b><small id="selected-voltage">0.000 V</small></div>
+          </div>
+          <div class="hint">拖动旋转 · 滚轮缩放 · 右键平移 · 点击传感器查看数据</div>
+        </section>
+
+        <aside class="control-panel">
+          <section class="panel-section source-section">
+            <div class="section-heading">
+              <div><span>INPUT</span><h2>Data source</h2></div>
+              <button class="quiet-button" id="calibrate-button">Zero</button>
+            </div>
+            <div class="segmented" id="source-control">
+              <button class="active" data-mode="simulation">Simulation</button>
+              <button data-mode="serial">Live sensor</button>
+            </div>
+            <select id="port-select" aria-label="Serial port">
+              <option value="">Auto-detect USB serial</option>
+            </select>
+            <p class="source-message" id="source-message">Animated 96-point test data</p>
+          </section>
+
+          <section class="panel-section model-section">
+            <div class="section-heading">
+              <div><span>GRASSHOPPER</span><h2>Model geometry</h2></div>
+              <button class="quiet-button" id="reload-model">Reload</button>
+            </div>
+            <div class="model-facts">
+              <div><span>Length</span><strong id="model-length">—</strong></div>
+              <div><span>Diameter</span><strong id="model-diameter">—</strong></div>
+              <div><span>Strips</span><strong>24</strong></div>
+            </div>
+            <p class="source-message" id="model-message">Edit sliders in Grasshopper, then reload the live mesh.</p>
+          </section>
+
+          <section class="panel-section">
+            <div class="section-heading">
+              <div><span>FIELD</span><h2>Heatmap</h2></div>
+              <button class="quiet-button" id="reset-heatmap">Reset</button>
+            </div>
+
+            <label class="range-control">
+              <span>Spread radius <output id="radius-output">25</output></span>
+              <input id="radius" type="range" min="4" max="70" step="1" value="25" />
+            </label>
+            <label class="range-control">
+              <span>Gain <output id="gain-output">1.00×</output></span>
+              <input id="gain" type="range" min="0.2" max="3" step="0.05" value="1" />
+            </label>
+            <label class="range-control">
+              <span>Threshold <output id="threshold-output">0%</output></span>
+              <input id="threshold" type="range" min="0" max="0.8" step="0.01" value="0" />
+            </label>
+            <label class="range-control">
+              <span>Opacity <output id="opacity-output">100%</output></span>
+              <input id="opacity" type="range" min="0.2" max="1" step="0.05" value="1" />
+            </label>
+
+            <label class="select-control">
+              <span>Color palette</span>
+              <select id="palette">
+                <option value="thermal">Thermal blue → red</option>
+                <option value="plasma">Plasma violet → yellow</option>
+                <option value="mono">Ice cyan</option>
+              </select>
+            </label>
+
+            <div class="toggle-row">
+              <label><input id="show-sensors" type="checkbox" /><span></span>Sensor points</label>
+              <label><input id="show-grid" type="checkbox" checked /><span></span>Ground grid</label>
+            </div>
+          </section>
+
+          <section class="panel-section matrix-section">
+            <div class="section-heading">
+              <div><span>12 × 8</span><h2>Sensor matrix</h2></div>
+              <strong id="frame-rate">0 Hz</strong>
+            </div>
+            <div class="matrix-labels"><span>A strips</span><span>offset 1 → 8</span></div>
+            <div class="sensor-matrix" id="sensor-matrix"></div>
+          </section>
+        </aside>
+      </main>
+
+      <footer class="footerbar">
+        <div class="legend-wrap">
+          <span>LOW</span><div class="legend" id="legend"></div><span>HIGH</span>
+        </div>
+        <div class="footer-data">
+          <span>96 mapped intersections</span>
+          <span id="frame-sequence">Frame 0000</span>
+          <span id="model-meta">— vertices</span>
+        </div>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
