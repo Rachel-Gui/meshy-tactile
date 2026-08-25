@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import csv
 from collections import deque
 from contextlib import asynccontextmanager
 import math
@@ -34,11 +35,21 @@ COLUMNS = 8
 SENSOR_COUNT = ROWS * COLUMNS
 VREF = 3.3
 PHYSICAL_PIN_MAP = (1, 3, 5, 7, 2, 4, 6, 8, 10, 12, 14, 16)
+PLAYBACK_DIR = ROOT.parent / "tactile_data_for_colleague_20260819"
+PLAYBACK_DATASETS = {
+    "tactile_96points_20260817_194852": PLAYBACK_DIR / "tactile_96points_20260817_194852.csv",
+    "tactile_96points_20260817_200426": PLAYBACK_DIR / "tactile_96points_20260817_200426.csv",
+}
+PLAYBACK_LABELS = {
+    "tactile_96points_20260817_194852": "August 17, 19:48",
+    "tactile_96points_20260817_200426": "August 17, 20:04",
+}
 
 
 class ModeRequest(BaseModel):
-    mode: Literal["simulation", "serial"]
+    mode: Literal["simulation", "playback", "serial"]
     port: str | None = None
+    dataset: str | None = None
 
 
 class SharedState:
@@ -46,6 +57,7 @@ class SharedState:
         self.lock = threading.Lock()
         self.mode = "simulation"
         self.requested_port: str | None = None
+        self.requested_dataset: str | None = None
         self.connected = True
         self.port: str | None = None
         self.error: str | None = None
@@ -69,23 +81,63 @@ class SharedState:
                 "rawVolts": list(self.raw_volts),
             }
 
-    def set_mode(self, mode: str, port: str | None):
+    def set_mode(self, mode: str, port: str | None, dataset: str | None):
         with self.lock:
             self.mode = mode
             self.requested_port = port
-            self.connected = mode == "simulation"
+            self.requested_dataset = dataset
+            self.connected = mode in {"simulation", "playback"}
             self.port = None
             self.error = None
 
     def request_calibration(self):
         with self.lock:
             self.calibrate_requested = True
+            self.values = [0.0] * SENSOR_COUNT
+            self.raw_volts = [0.0] * SENSOR_COUNT
+            self.sequence += 1
+            self.updated_at = time.time()
 
 
 def available_ports():
     if list_ports is None:
         return []
     return [item.device for item in list_ports.comports()]
+
+
+def load_playback_frames(dataset: str):
+    path = PLAYBACK_DATASETS.get(dataset)
+    if path is None or not path.exists():
+        raise RuntimeError("Playback dataset was not found")
+
+    frames = []
+    current_values = [None] * SENSOR_COUNT
+    current_volts = [None] * SENSOR_COUNT
+
+    with path.open(newline="", encoding="utf-8") as handle:
+        for row in csv.DictReader(handle):
+            try:
+                index = int(row["scan_index"]) - 1
+                value = float(row["signal_0_to_1"])
+                voltage = float(row["raw_voltage_v"])
+            except (KeyError, TypeError, ValueError):
+                continue
+
+            if not 0 <= index < SENSOR_COUNT:
+                continue
+            if index == 0 and any(item is not None for item in current_values):
+                if all(item is not None for item in current_values):
+                    frames.append((current_values, current_volts))
+                current_values = [None] * SENSOR_COUNT
+                current_volts = [None] * SENSOR_COUNT
+            current_values[index] = value
+            current_volts[index] = voltage
+
+    if all(item is not None for item in current_values):
+        frames.append((current_values, current_volts))
+    if not frames:
+        raise RuntimeError("Playback dataset contains no complete 96-point frames")
+    return frames
 
 
 def choose_port(requested: str | None):
@@ -231,6 +283,17 @@ class SensorEngine(threading.Thread):
             self.state.error = None
             self.state.updated_at = time.time()
 
+    def update_playback(self, frames, frame_index):
+        values, voltages = frames[frame_index % len(frames)]
+        with self.state.lock:
+            self.state.values = list(values)
+            self.state.raw_volts = list(voltages)
+            self.state.sequence += 1
+            self.state.connected = True
+            self.state.port = self.state.requested_dataset
+            self.state.error = None
+            self.state.updated_at = time.time()
+
     def connect_serial(self, requested_port: str | None):
         if serial is None:
             raise RuntimeError("pyserial is not installed")
@@ -277,11 +340,14 @@ class SensorEngine(threading.Thread):
     def run(self):
         simulation_start = time.monotonic()
         last_mode = None
+        playback_frames = None
+        playback_index = 0
 
         while not self.stop_event.is_set():
             with self.state.lock:
                 mode = self.state.mode
                 requested_port = self.state.requested_port
+                requested_dataset = self.state.requested_dataset
                 calibrate = self.state.calibrate_requested
 
             if calibrate and mode == "simulation":
@@ -291,11 +357,28 @@ class SensorEngine(threading.Thread):
             if mode != last_mode:
                 self.close_serial()
                 simulation_start = time.monotonic()
+                playback_frames = None
+                playback_index = 0
                 last_mode = mode
 
             if mode == "simulation":
                 self.update_simulation(simulation_start)
                 self.stop_event.wait(1.0 / 15.0)
+                continue
+
+            if mode == "playback":
+                try:
+                    if playback_frames is None:
+                        playback_frames = load_playback_frames(requested_dataset)
+                    self.update_playback(playback_frames, playback_index)
+                    playback_index = (playback_index + 1) % len(playback_frames)
+                    self.stop_event.wait(1.0 / 15.0)
+                except Exception as error:
+                    with self.state.lock:
+                        self.state.connected = False
+                        self.state.error = str(error)
+                        self.state.updated_at = time.time()
+                    self.stop_event.wait(2.0)
                 continue
 
             try:
@@ -347,12 +430,52 @@ async def ports():
     return {"ports": available_ports()}
 
 
+@app.get("/api/playback-datasets")
+async def playback_datasets():
+    return {
+        "datasets": [
+            {"id": dataset_id, "label": PLAYBACK_LABELS[dataset_id]}
+            for dataset_id in PLAYBACK_DATASETS
+        ]
+    }
+
+
+@app.get("/api/playback-preview/{dataset}")
+async def playback_preview(dataset: str):
+    path = PLAYBACK_DATASETS.get(dataset)
+    if path is None or not path.exists():
+        raise HTTPException(status_code=404, detail="Playback dataset was not found")
+
+    rows = []
+    total_rows = 0
+    with path.open(newline="", encoding="utf-8") as handle:
+        for row in csv.DictReader(handle):
+            total_rows += 1
+            if len(rows) < 5:
+                rows.append({
+                    "scanIndex": row.get("scan_index"),
+                    "sensor": f"R{row.get('sensor_row')} · P{row.get('point_in_row')}",
+                    "voltage": row.get("raw_voltage_v"),
+                    "signal": row.get("signal_0_to_1"),
+                })
+
+    return {
+        "id": dataset,
+        "label": PLAYBACK_LABELS[dataset],
+        "rows": total_rows,
+        "frames": total_rows // SENSOR_COUNT,
+        "sample": rows,
+    }
+
+
 @app.post("/api/mode")
 async def set_mode(request: ModeRequest):
     if request.mode == "serial" and serial is None:
         raise HTTPException(status_code=500, detail="pyserial is not installed")
-    state.set_mode(request.mode, request.port)
-    return {"ok": True, "mode": request.mode, "port": request.port}
+    if request.mode == "playback" and request.dataset not in PLAYBACK_DATASETS:
+        raise HTTPException(status_code=400, detail="Choose a playback dataset")
+    state.set_mode(request.mode, request.port, request.dataset)
+    return {"ok": True, "mode": request.mode, "port": request.port, "dataset": request.dataset}
 
 
 @app.post("/api/calibrate")

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,17 +9,9 @@
   <body>
     <div id="app">
       <header class="topbar">
-        <div class="brand">
-          <div class="brand-mark"><span></span><span></span><span></span></div>
-          <div>
-            <div class="eyebrow">TACTILE FIELD</div>
-            <h1>3D Sensor Monitor</h1>
-          </div>
-        </div>
         <div class="topbar-metrics">
           <div class="metric"><span>MODEL</span><strong id="model-status">Loading</strong></div>
           <div class="metric"><span>POINTS</span><strong id="point-count">—</strong></div>
-          <div class="metric"><span>PEAK</span><strong id="peak-value">0%</strong></div>
           <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
             <span id="theme-icon">☀</span><b id="theme-label">Light</b>
           </button>
@@ -41,8 +33,9 @@
             <span>SENSOR</span>
             <strong id="selected-index">A01 · 01</strong>
             <div><b id="selected-value">0%</b><small id="selected-voltage">0.000 V</small></div>
+            <small id="selected-angle">Strip angle —</small>
           </div>
-          <div class="hint">拖动旋转 · 滚轮缩放 · 右键平移 · 点击传感器查看数据</div>
+          <div class="hint">Drag to rotate · Scroll to zoom · Right-click to pan · Click a sensor to inspect data</div>
         </section>
 
         <aside class="control-panel">
@@ -53,12 +46,35 @@
             </div>
             <div class="segmented" id="source-control">
               <button class="active" data-mode="simulation">Simulation</button>
+              <button data-mode="playback">Recorded data</button>
               <button data-mode="serial">Live sensor</button>
             </div>
             <select id="port-select" aria-label="Serial port">
               <option value="">Auto-detect USB serial</option>
             </select>
+            <select id="playback-select" aria-label="Playback dataset" hidden>
+              <option value="">Choose a recording</option>
+            </select>
+            <div class="playback-preview" id="playback-preview" hidden>
+              <strong id="playback-preview-title">Choose a recording</strong>
+              <span id="playback-preview-meta">Recorded data preview</span>
+              <pre id="playback-preview-sample"></pre>
+            </div>
             <p class="source-message" id="source-message">Animated 96-point test data</p>
+          </section>
+
+          <section class="panel-section recording-section">
+            <div class="section-heading">
+              <div><span>CAPTURE</span><h2>Live recording</h2></div>
+              <strong id="recording-status">Ready</strong>
+            </div>
+            <div class="recording-actions">
+              <button class="quiet-button" id="record-clear" type="button">Clear data</button>
+              <button class="record-button" id="record-start" type="button">Start recording</button>
+              <button class="quiet-button" id="record-stop" type="button" disabled>Stop &amp; save</button>
+            </div>
+            <div class="recording-meta" id="recording-meta">Model video + sensor data JSON</div>
+            <p class="source-message" id="recording-message">The recording follows the current camera view and live heatmap.</p>
           </section>
 
           <section class="panel-section model-section">
@@ -68,8 +84,8 @@
             </div>
             <div class="model-facts">
               <div><span>Length</span><strong id="model-length">—</strong></div>
-              <div><span>Diameter</span><strong id="model-diameter">—</strong></div>
-              <div><span>Strips</span><strong>24</strong></div>
+              <div><span>Front Ø</span><strong id="model-front-diameter">—</strong></div>
+              <div><span>Rear Ø</span><strong id="model-rear-diameter">—</strong></div>
             </div>
             <p class="source-message" id="model-message">Edit sliders in Grasshopper, then reload the live mesh.</p>
           </section>

@@ -13,6 +13,7 @@ const state = {
   sensorPoints: null,
   sensorPositions: [],
   distanceMatrix: null,
+  sensorAngles: new Float32Array(SENSOR_COUNT),
   values: new Float32Array(SENSOR_COUNT),
   rawVolts: new Float32Array(SENSOR_COUNT),
   radius: 25,
@@ -27,6 +28,8 @@ const state = {
   frameCounterStarted: performance.now(),
   modelCenter: new THREE.Vector3(),
   modelSize: new THREE.Vector3(250, 124, 124),
+  modelMetadata: null,
+  recording: null,
 };
 
 const elements = {
@@ -34,28 +37,39 @@ const elements = {
   modelLoading: document.querySelector('#model-loading'),
   modelStatus: document.querySelector('#model-status'),
   pointCount: document.querySelector('#point-count'),
-  peakValue: document.querySelector('#peak-value'),
   connectionPill: document.querySelector('#connection-pill'),
   connectionText: document.querySelector('#connection-text'),
   sourceMessage: document.querySelector('#source-message'),
   portSelect: document.querySelector('#port-select'),
+  playbackSelect: document.querySelector('#playback-select'),
+  playbackPreview: document.querySelector('#playback-preview'),
+  playbackPreviewTitle: document.querySelector('#playback-preview-title'),
+  playbackPreviewMeta: document.querySelector('#playback-preview-meta'),
+  playbackPreviewSample: document.querySelector('#playback-preview-sample'),
   sensorMatrix: document.querySelector('#sensor-matrix'),
   frameRate: document.querySelector('#frame-rate'),
   frameSequence: document.querySelector('#frame-sequence'),
   modelMeta: document.querySelector('#model-meta'),
   modelLength: document.querySelector('#model-length'),
-  modelDiameter: document.querySelector('#model-diameter'),
+  modelFrontDiameter: document.querySelector('#model-front-diameter'),
+  modelRearDiameter: document.querySelector('#model-rear-diameter'),
   modelMessage: document.querySelector('#model-message'),
   selectedCard: document.querySelector('#selected-card'),
   selectedIndex: document.querySelector('#selected-index'),
   selectedValue: document.querySelector('#selected-value'),
   selectedVoltage: document.querySelector('#selected-voltage'),
+  selectedAngle: document.querySelector('#selected-angle'),
   legend: document.querySelector('#legend'),
+  recordStart: document.querySelector('#record-start'),
+  recordClear: document.querySelector('#record-clear'),
+  recordStop: document.querySelector('#record-stop'),
+  recordingStatus: document.querySelector('#recording-status'),
+  recordingMeta: document.querySelector('#recording-meta'),
+  recordingMessage: document.querySelector('#recording-message'),
 };
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x070a12);
-scene.fog = new THREE.FogExp2(0x070a12, 0.0019);
 
 const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 4000);
 camera.up.set(0, 0, 1);
@@ -94,8 +108,6 @@ function applyTheme(theme) {
   document.documentElement.dataset.theme = light ? 'light' : 'dark';
   localStorage.setItem('tactile-theme', light ? 'light' : 'dark');
   scene.background.set(light ? 0xf4f6f9 : 0x070a12);
-  scene.fog.color.set(light ? 0xf4f6f9 : 0x070a12);
-  scene.fog.density = light ? 0.00135 : 0.0019;
   grid.material.opacity = light ? 0.24 : 0.34;
   renderer.toneMappingExposure = light ? 1.02 : 1.12;
   document.querySelector('#theme-icon').textContent = light ? '☾' : '☀';
@@ -197,6 +209,71 @@ function updateSelectedCard() {
   elements.selectedIndex.textContent = `A${String(row).padStart(2, '0')} · ${String(column).padStart(2, '0')}`;
   elements.selectedValue.textContent = `${Math.round(state.values[index] * 100)}%`;
   elements.selectedVoltage.textContent = `${state.rawVolts[index].toFixed(3)} V`;
+  const angle = state.sensorAngles[index];
+  elements.selectedAngle.textContent = `Strip angle ${angle > 0 ? `${angle.toFixed(1)}°` : '—'}`;
+}
+
+function computeSensorAngles(positions) {
+  const angles = new Float32Array(SENSOR_COUNT);
+  const physicalColumn = (row, slot) => (row + slot + 1) % ROWS;
+
+  for (let index = 0; index < SENSOR_COUNT; index += 1) {
+    const row = Math.floor(index / COLUMNS);
+    const slot = index % COLUMNS;
+    const current = positions[index];
+    const previousA = slot > 0 ? positions[index - 1] : null;
+    const nextA = slot < COLUMNS - 1 ? positions[index + 1] : null;
+    const tangentA = new THREE.Vector3();
+    if (previousA && nextA) tangentA.subVectors(nextA, previousA);
+    else if (nextA) tangentA.subVectors(nextA, current);
+    else if (previousA) tangentA.subVectors(current, previousA);
+
+    const sameColumn = [];
+    const targetColumn = physicalColumn(row, slot);
+    for (let candidate = 0; candidate < SENSOR_COUNT; candidate += 1) {
+      if (candidate === index) continue;
+      const candidateRow = Math.floor(candidate / COLUMNS);
+      const candidateSlot = candidate % COLUMNS;
+      if (physicalColumn(candidateRow, candidateSlot) === targetColumn) {
+        sameColumn.push({ index: candidate, row: candidateRow });
+      }
+    }
+    sameColumn.sort((a, b) => Math.abs(a.row - row) - Math.abs(b.row - row));
+    const tangentB = new THREE.Vector3();
+    if (sameColumn.length > 1) {
+      const first = positions[sameColumn[0].index];
+      const second = positions[sameColumn[1].index];
+      tangentB.subVectors(second, first);
+    } else if (sameColumn.length === 1) {
+      tangentB.subVectors(positions[sameColumn[0].index], current);
+    }
+
+    if (tangentA.lengthSq() > 0 && tangentB.lengthSq() > 0) {
+      const cosine = Math.abs(tangentA.normalize().dot(tangentB.normalize()));
+      angles[index] = Math.acos(Math.min(1, Math.max(0, cosine))) * 180 / Math.PI;
+    }
+  }
+  return angles;
+}
+
+function endDiameter(positions, bounds, fromFront) {
+  const band = Math.max(1, bounds.max.x - bounds.min.x) * 0.03;
+  const edge = fromFront ? bounds.min.x + band : bounds.max.x - band;
+  let minY = Infinity;
+  let maxY = -Infinity;
+  let minZ = Infinity;
+  let maxZ = -Infinity;
+
+  for (let index = 0; index < positions.length; index += 3) {
+    const x = positions[index];
+    if (fromFront ? x > edge : x < edge) continue;
+    minY = Math.min(minY, positions[index + 1]);
+    maxY = Math.max(maxY, positions[index + 1]);
+    minZ = Math.min(minZ, positions[index + 2]);
+    maxZ = Math.max(maxZ, positions[index + 2]);
+  }
+
+  return Math.max(maxY - minY, maxZ - minZ);
 }
 
 async function loadModel() {
@@ -245,16 +322,19 @@ async function loadModel() {
   controls.target.copy(state.modelCenter);
 
   state.model = model;
+  state.modelMetadata = payload.metadata;
   state.geometry = geometry;
   state.material = material;
   state.sensorPoints = sensorPoints;
   state.sensorPositions = sensorPositions;
+  state.sensorAngles = computeSensorAngles(sensorPositions);
 
   elements.pointCount.textContent = String(payload.metadata.sensorCount);
   elements.modelMeta.textContent = `${payload.metadata.vertexCount.toLocaleString()} vertices`;
   elements.modelStatus.textContent = 'GH live mesh';
   elements.modelLength.textContent = state.modelSize.x.toFixed(1);
-  elements.modelDiameter.textContent = Math.max(state.modelSize.y, state.modelSize.z).toFixed(1);
+  elements.modelFrontDiameter.textContent = endDiameter(source.positions, geometry.boundingBox, true).toFixed(1);
+  elements.modelRearDiameter.textContent = endDiameter(source.positions, geometry.boundingBox, false).toFixed(1);
   fitCamera('perspective', false);
   await precomputeDistances();
   state.heatDirty = true;
@@ -294,10 +374,9 @@ function updateHeatmap() {
   for (let sensorIndex = 0; sensorIndex < SENSOR_COUNT; sensorIndex += 1) {
     const adjusted = Math.min(1, Math.max(0, (state.values[sensorIndex] - state.threshold) / denominator) * state.gain);
     adjustedValues[sensorIndex] = adjusted;
-    colorAt(adjusted, state.palette, workingColor);
-    markerColors[sensorIndex * 3] = workingColor.r;
-    markerColors[sensorIndex * 3 + 1] = workingColor.g;
-    markerColors[sensorIndex * 3 + 2] = workingColor.b;
+    markerColors[sensorIndex * 3] = 0.82;
+    markerColors[sensorIndex * 3 + 1] = 0.85;
+    markerColors[sensorIndex * 3 + 2] = 0.9;
   }
 
   for (let vertexIndex = 0; vertexIndex < vertexCount; vertexIndex += 1) {
@@ -324,16 +403,143 @@ function updateHeatmap() {
 }
 
 function updateMatrix() {
-  let peak = 0;
   document.querySelectorAll('.sensor-cell').forEach((cell, index) => {
     const value = state.values[index];
-    peak = Math.max(peak, value);
     colorAt(value, state.palette, workingColor);
     cell.style.backgroundColor = `#${workingColor.getHexString()}`;
   });
-  elements.peakValue.textContent = `${Math.round(peak * 100)}%`;
   updateSelectedCard();
 }
+
+function recordingFilename(stamp, suffix) {
+  return `tactile-recording-${stamp}.${suffix}`;
+}
+
+function downloadBlob(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function recordingStamp(date = new Date()) {
+  return date.toISOString().replace(/[:.]/g, '-');
+}
+
+function recordingMimeType() {
+  const candidates = [
+    'video/webm;codecs=vp9',
+    'video/webm;codecs=vp8',
+    'video/webm',
+  ];
+  return candidates.find((type) => MediaRecorder.isTypeSupported(type)) ?? '';
+}
+
+function updateRecordingUi() {
+  const recording = state.recording;
+  const active = Boolean(recording);
+  elements.recordStart.disabled = active;
+  elements.recordStop.disabled = !active;
+  elements.recordStart.textContent = active ? 'Recording…' : 'Start recording';
+  elements.recordingStatus.textContent = active ? 'REC' : 'Ready';
+  elements.recordingStatus.classList.toggle('recording-live', active);
+}
+
+async function clearLiveData() {
+  state.values.fill(0);
+  state.rawVolts.fill(0);
+  state.heatDirty = true;
+  updateMatrix();
+  try {
+    const response = await fetch('/api/calibrate', { method: 'POST' });
+    if (!response.ok) throw new Error('Clear request failed');
+    elements.recordingMessage.classList.remove('error');
+    elements.recordingMessage.textContent = 'Live data cleared — keep the sensor untouched briefly';
+  } catch (error) {
+    elements.recordingMessage.classList.add('error');
+    elements.recordingMessage.textContent = error.message;
+  }
+}
+
+function startRecording() {
+  if (!window.MediaRecorder || !renderer.domElement.captureStream) {
+    elements.recordingMessage.textContent = 'This browser does not support model video recording.';
+    elements.recordingMessage.classList.add('error');
+    return;
+  }
+
+  const mimeType = recordingMimeType();
+  if (!mimeType) {
+    elements.recordingMessage.textContent = 'No supported WebM video format was found.';
+    elements.recordingMessage.classList.add('error');
+    return;
+  }
+
+  const startedAt = new Date();
+  const startedPerformance = performance.now();
+  const chunks = [];
+  const stream = renderer.domElement.captureStream(30);
+  const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 8_000_000 });
+  const recording = {
+    recorder,
+    stream,
+    startedAt,
+    startedPerformance,
+    frames: [],
+    chunks,
+  };
+  state.recording = recording;
+  recorder.addEventListener('dataavailable', (event) => {
+    if (event.data.size > 0) chunks.push(event.data);
+  });
+  recorder.addEventListener('stop', () => finishRecording(recording, mimeType));
+  recorder.start(1000);
+  elements.recordingMessage.classList.remove('error');
+  elements.recordingMessage.textContent = 'Recording model video and sensor frames…';
+  elements.recordingMeta.textContent = '0 frames · 0:00';
+  updateRecordingUi();
+}
+
+function stopRecording() {
+  if (!state.recording) return;
+  state.recording.recorder.stop();
+  state.recording.stream.getTracks().forEach((track) => track.stop());
+  elements.recordingMessage.textContent = 'Preparing files…';
+  elements.recordStop.disabled = true;
+}
+
+function finishRecording(recording, mimeType) {
+  if (state.recording !== recording) return;
+  const endedAt = new Date();
+  const durationMs = Math.max(0, performance.now() - recording.startedPerformance);
+  const stamp = recordingStamp(recording.startedAt);
+  const payload = {
+    format: 'tactile-sensor-recording-v1',
+    startedAt: recording.startedAt.toISOString(),
+    endedAt: endedAt.toISOString(),
+    durationMs: Math.round(durationMs),
+    video: { mimeType, canvasWidth: renderer.domElement.width, canvasHeight: renderer.domElement.height },
+    model: state.modelMetadata,
+    settings: { radius: state.radius, gain: state.gain, threshold: state.threshold, opacity: state.opacity, palette: state.palette },
+    frames: recording.frames,
+  };
+  downloadBlob(new Blob(recording.chunks, { type: mimeType }), recordingFilename(stamp, 'webm'));
+  downloadBlob(new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' }), recordingFilename(stamp, 'json'));
+  state.recording = null;
+  elements.recordingMessage.classList.remove('error');
+  elements.recordingMessage.textContent = `Saved video + data · ${recording.frames.length} frames`;
+  elements.recordingMeta.textContent = `${recording.frames.length} frames · ${(durationMs / 1000).toFixed(1)}s`;
+  updateRecordingUi();
+}
+
+elements.recordStart.addEventListener('click', startRecording);
+elements.recordStop.addEventListener('click', stopRecording);
+elements.recordClear.addEventListener('click', clearLiveData);
+updateRecordingUi();
 
 function cameraPose(view) {
   const center = state.modelCenter;
@@ -481,21 +687,63 @@ async function refreshPorts() {
   }
 }
 
+async function refreshPlaybackDatasets() {
+  try {
+    const response = await fetch('/api/playback-datasets');
+    const payload = await response.json();
+    payload.datasets.forEach((dataset) => {
+      const option = document.createElement('option');
+      option.value = dataset.id;
+      option.textContent = dataset.label;
+      elements.playbackSelect.appendChild(option);
+    });
+  } catch {
+    // The backend may not be running yet.
+  }
+}
+
+async function previewPlaybackDataset(dataset) {
+  if (!dataset) {
+    elements.playbackPreview.hidden = true;
+    return;
+  }
+  const response = await fetch(`/api/playback-preview/${encodeURIComponent(dataset)}`);
+  const payload = await response.json();
+  if (!response.ok) throw new Error(payload.detail ?? 'Playback preview failed');
+  elements.playbackPreview.hidden = false;
+  elements.playbackPreviewTitle.textContent = payload.label;
+  elements.playbackPreviewMeta.textContent = `${payload.rows.toLocaleString()} samples · ${payload.frames.toLocaleString()} complete frames · 96 sensors`;
+  elements.playbackPreviewSample.textContent = payload.sample
+    .map((row) => `#${row.scanIndex} ${row.sensor}  ${row.voltage} V  signal ${row.signal}`)
+    .join('\n');
+}
+
 async function setSourceMode(mode) {
   document.querySelectorAll('#source-control button').forEach((button) => {
     button.classList.toggle('active', button.dataset.mode === mode);
   });
   const port = elements.portSelect.value || null;
+  const dataset = elements.playbackSelect.value || null;
+  elements.portSelect.hidden = mode !== 'serial';
+  elements.playbackSelect.hidden = mode !== 'playback';
+  elements.playbackPreview.hidden = mode !== 'playback';
+  if (mode === 'playback' && !dataset) {
+    elements.sourceMessage.classList.remove('error');
+    elements.sourceMessage.textContent = 'Choose a recording to start playback';
+    return;
+  }
   const response = await fetch(apiUrl('/api/mode'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ mode, port }),
+    body: JSON.stringify({ mode, port, dataset }),
   });
   if (!response.ok) throw new Error((await response.json()).detail ?? 'Mode change failed');
   elements.sourceMessage.classList.remove('error');
   elements.sourceMessage.textContent = mode === 'serial'
     ? 'Opening CP2104 at 1,000,000 baud…'
-    : 'Animated 96-point test data';
+    : mode === 'playback'
+      ? 'Playing recorded 96-point sensor data'
+      : 'Animated 96-point test data';
 }
 
 document.querySelectorAll('#source-control button').forEach((button) => {
@@ -509,8 +757,18 @@ document.querySelectorAll('#source-control button').forEach((button) => {
   });
 });
 
+elements.playbackSelect.addEventListener('change', async () => {
+  try {
+    await previewPlaybackDataset(elements.playbackSelect.value);
+    if (elements.playbackSelect.value) await setSourceMode('playback');
+  } catch (error) {
+    elements.sourceMessage.classList.add('error');
+    elements.sourceMessage.textContent = error.message;
+  }
+});
+
 document.querySelector('#calibrate-button').addEventListener('click', async () => {
-  await fetch(apiUrl('/api/calibrate'), { method: 'POST' });
+  await clearLiveData();
   elements.sourceMessage.textContent = 'Zero calibration requested — keep the sensor untouched';
 });
 
@@ -553,10 +811,24 @@ function connectWebSocket() {
     state.heatDirty = true;
     state.frameCounter += 1;
     state.lastSequence = payload.sequence;
+    if (state.recording) {
+      state.recording.frames.push({
+        tMs: Math.round(performance.now() - state.recording.startedPerformance),
+        timestamp: payload.timestamp,
+        sequence: payload.sequence,
+        mode: payload.mode,
+        connected: payload.connected,
+        port: payload.port,
+        values: Array.from(payload.values),
+        rawVolts: Array.from(payload.rawVolts),
+      });
+      const elapsedSeconds = (performance.now() - state.recording.startedPerformance) / 1000;
+      elements.recordingMeta.textContent = `${state.recording.frames.length} frames · ${Math.floor(elapsedSeconds / 60)}:${String(Math.floor(elapsedSeconds % 60)).padStart(2, '0')}`;
+    }
     elements.frameSequence.textContent = `Frame ${String(payload.sequence).padStart(4, '0')}`;
     elements.connectionPill.classList.toggle('error', !payload.connected);
     elements.connectionText.textContent = payload.connected
-      ? payload.mode === 'serial' ? 'Sensor live' : 'Simulation'
+      ? payload.mode === 'serial' ? 'Sensor live' : payload.mode === 'playback' ? 'Recorded data' : 'Simulation'
       : 'Disconnected';
     if (payload.error) {
       elements.sourceMessage.classList.add('error');
@@ -564,6 +836,9 @@ function connectWebSocket() {
     } else if (payload.mode === 'serial') {
       elements.sourceMessage.classList.remove('error');
       elements.sourceMessage.textContent = `${payload.port ?? 'USB serial'} · 1,000,000 baud`;
+    } else if (payload.mode === 'playback') {
+      elements.sourceMessage.classList.remove('error');
+      elements.sourceMessage.textContent = `Playing ${payload.port ?? 'recorded data'}`;
     }
     updateMatrix();
   });
@@ -586,6 +861,7 @@ setInterval(() => {
 buildSensorMatrix();
 updateLegend();
 refreshPorts();
+refreshPlaybackDatasets();
 connectWebSocket();
 loadModel().catch((error) => {
   elements.modelStatus.textContent = 'Model error';
