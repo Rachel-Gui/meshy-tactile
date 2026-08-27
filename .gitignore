@@ -8,6 +8,12 @@ web/dist/
 web/gh-inspector/
 web/gh-sliders*.json
 web/rhinocode-bridge-ok.txt
+uploaded_playback_data/
+/tactile_96points_20260817_194852.csv
+/tactile_96points_20260817_200426.csv
+/tactile_96points_20260820_154902.csv
+/tactile_96points_20260825_144129.csv
+/tactile_96points_20260825_144214.csv
 
 .venv/
 venv/

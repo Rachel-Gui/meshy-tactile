@@ -55,6 +55,24 @@
             <select id="playback-select" aria-label="Playback dataset" hidden>
               <option value="">Choose a recording</option>
             </select>
+            <div class="playback-upload" id="playback-upload" hidden>
+              <input id="playback-file" type="file" accept=".csv,text/csv" hidden />
+              <button class="quiet-button" id="playback-upload-button" type="button">Upload CSV</button>
+              <span id="playback-upload-status">96-point recording · max 100 MB</span>
+            </div>
+            <div class="playback-timeline" id="playback-timeline" hidden>
+              <div class="timeline-header">
+                <button id="playback-toggle" type="button" aria-label="Pause playback" title="Pause playback">Ⅱ</button>
+                <strong id="playback-current-time">0:00.0</strong>
+                <span>/</span>
+                <span id="playback-total-time">0:00.0</span>
+              </div>
+              <input id="playback-scrubber" type="range" min="0" max="0" step="1" value="0" aria-label="Recording timeline" />
+              <div class="timeline-meta">
+                <span id="playback-frame-label">Frame 1 / 1</span>
+                <span>Drag to inspect</span>
+              </div>
+            </div>
             <div class="playback-preview" id="playback-preview" hidden>
               <strong id="playback-preview-title">Choose a recording</strong>
               <span id="playback-preview-meta">Recorded data preview</span>
@@ -73,6 +91,14 @@
               <button class="record-button" id="record-start" type="button">Start recording</button>
               <button class="quiet-button" id="record-stop" type="button" disabled>Stop &amp; save</button>
             </div>
+            <label class="auto-clear-row">
+              <input id="auto-clear" type="checkbox" checked />
+              <span class="auto-clear-switch"></span>
+              <span class="auto-clear-copy">
+                <strong>Auto clear stale data</strong>
+                <small>Reset after 5 seconds without signal change</small>
+              </span>
+            </label>
             <div class="recording-meta" id="recording-meta">Model video + sensor data JSON</div>
             <p class="source-message" id="recording-message">The recording follows the current camera view and live heatmap.</p>
           </section>

@@ -20,8 +20,15 @@ cd /Users/a0000/Desktop/tactile
 ## Data modes
 
 - **Simulation** works without hardware and sends 96 animated values.
+- **Recorded data** accepts CSV uploads directly in the dashboard. Files must
+  contain `scan_index`, `raw_voltage_v`, and `signal_0_to_1`, include at least
+  one complete 96-point frame, and be no larger than 100 MB. Uploaded files are
+  kept in `uploaded_playback_data/` so they remain available after a restart.
 - **Live sensor** auto-detects a `usbserial` or `usbmodem` port and uses the
   existing one-point protocol at 1,000,000 baud.
+- **Auto clear stale data** is enabled by default. In live sensor mode, a
+  non-zero signal that stops changing for five seconds is automatically reset
+  and recalibrated. Turn it off for intentional long, static presses.
 - **Zero** clears the per-sensor rolling baselines. Keep the sensor untouched
   briefly after calibration.
 

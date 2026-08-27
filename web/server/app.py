@@ -8,12 +8,13 @@ from collections import deque
 from contextlib import asynccontextmanager
 import math
 from pathlib import Path
+import re
 import statistics
 import threading
 import time
 from typing import Literal
 
-from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, HTTPException, Request, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -33,23 +34,57 @@ BAUD_RATE = 1_000_000
 ROWS = 12
 COLUMNS = 8
 SENSOR_COUNT = ROWS * COLUMNS
+PLAYBACK_FPS = 15.0
+MAX_UPLOAD_BYTES = 100 * 1024 * 1024
+AUTO_CLEAR_IDLE_SECONDS = 5.0
+AUTO_CLEAR_CHANGE_EPSILON = 0.015
+AUTO_CLEAR_SIGNAL_THRESHOLD = 0.05
 VREF = 3.3
 PHYSICAL_PIN_MAP = (1, 3, 5, 7, 2, 4, 6, 8, 10, 12, 14, 16)
 PLAYBACK_DIR = ROOT.parent / "tactile_data_for_colleague_20260819"
+UPLOAD_DIR = ROOT.parent / "uploaded_playback_data"
 PLAYBACK_DATASETS = {
     "tactile_96points_20260817_194852": PLAYBACK_DIR / "tactile_96points_20260817_194852.csv",
     "tactile_96points_20260817_200426": PLAYBACK_DIR / "tactile_96points_20260817_200426.csv",
+    "tactile_96points_20260825_144129": PLAYBACK_DIR / "tactile_96points_20260825_144129.csv",
+    "tactile_96points_20260825_144214": PLAYBACK_DIR / "tactile_96points_20260825_144214.csv",
+    "tactile_96points_20260827_115909": ROOT.parent / "tactile_96points_20260827_115909.csv",
 }
 PLAYBACK_LABELS = {
     "tactile_96points_20260817_194852": "August 17, 19:48",
     "tactile_96points_20260817_200426": "August 17, 20:04",
+    "tactile_96points_20260825_144129": "August 25, 14:41:29",
+    "tactile_96points_20260825_144214": "August 25, 14:42:14",
+    "tactile_96points_20260827_115909": "August 27, 11:59:09",
 }
+
+
+def register_saved_uploads():
+    if not UPLOAD_DIR.exists():
+        return
+    for path in sorted(UPLOAD_DIR.glob("*.csv")):
+        dataset_id = path.stem
+        display_name = dataset_id.split("__", 1)[-1].replace("_", " ")
+        PLAYBACK_DATASETS[dataset_id] = path
+        PLAYBACK_LABELS[dataset_id] = f"Uploaded · {display_name}"
+
+
+register_saved_uploads()
 
 
 class ModeRequest(BaseModel):
     mode: Literal["simulation", "playback", "serial"]
     port: str | None = None
     dataset: str | None = None
+
+
+class PlaybackControlRequest(BaseModel):
+    frame_index: int | None = None
+    playing: bool | None = None
+
+
+class AutoClearRequest(BaseModel):
+    enabled: bool
 
 
 class SharedState:
@@ -66,6 +101,13 @@ class SharedState:
         self.raw_volts = [0.0] * SENSOR_COUNT
         self.updated_at = time.time()
         self.calibrate_requested = False
+        self.playback_index = 0
+        self.playback_total = 0
+        self.playback_playing = True
+        self.playback_seek_requested: int | None = None
+        self.auto_clear_enabled = True
+        self.auto_clear_count = 0
+        self.last_auto_cleared_at: float | None = None
 
     def snapshot(self):
         with self.lock:
@@ -79,6 +121,14 @@ class SharedState:
                 "timestamp": self.updated_at,
                 "values": list(self.values),
                 "rawVolts": list(self.raw_volts),
+                "playbackIndex": self.playback_index,
+                "playbackTotal": self.playback_total,
+                "playbackPlaying": self.playback_playing,
+                "playbackFps": PLAYBACK_FPS,
+                "autoClearEnabled": self.auto_clear_enabled,
+                "autoClearIdleSeconds": AUTO_CLEAR_IDLE_SECONDS,
+                "autoClearCount": self.auto_clear_count,
+                "lastAutoClearedAt": self.last_auto_cleared_at,
             }
 
     def set_mode(self, mode: str, port: str | None, dataset: str | None):
@@ -89,6 +139,21 @@ class SharedState:
             self.connected = mode in {"simulation", "playback"}
             self.port = None
             self.error = None
+            if mode == "playback":
+                self.playback_index = 0
+                self.playback_total = 0
+                self.playback_playing = True
+                self.playback_seek_requested = 0
+
+    def set_playback_control(self, frame_index: int | None, playing: bool | None):
+        with self.lock:
+            if frame_index is not None:
+                maximum = max(0, self.playback_total - 1)
+                target = min(maximum, max(0, frame_index))
+                self.playback_index = target
+                self.playback_seek_requested = target
+            if playing is not None:
+                self.playback_playing = playing
 
     def request_calibration(self):
         with self.lock:
@@ -97,6 +162,10 @@ class SharedState:
             self.raw_volts = [0.0] * SENSOR_COUNT
             self.sequence += 1
             self.updated_at = time.time()
+
+    def set_auto_clear(self, enabled: bool):
+        with self.lock:
+            self.auto_clear_enabled = enabled
 
 
 def available_ports():
@@ -138,6 +207,43 @@ def load_playback_frames(dataset: str):
     if not frames:
         raise RuntimeError("Playback dataset contains no complete 96-point frames")
     return frames
+
+
+def inspect_playback_file(path: Path):
+    required_fields = {"scan_index", "raw_voltage_v", "signal_0_to_1"}
+    total_rows = 0
+    valid_rows = 0
+    complete_frames = 0
+    frame_indexes = set()
+
+    with path.open(newline="", encoding="utf-8-sig") as handle:
+        reader = csv.DictReader(handle)
+        if not reader.fieldnames or not required_fields.issubset(reader.fieldnames):
+            missing = ", ".join(sorted(required_fields.difference(reader.fieldnames or [])))
+            raise ValueError(f"CSV is missing required columns: {missing}")
+
+        for row in reader:
+            total_rows += 1
+            try:
+                index = int(row["scan_index"]) - 1
+                float(row["signal_0_to_1"])
+                float(row["raw_voltage_v"])
+            except (TypeError, ValueError):
+                continue
+            if not 0 <= index < SENSOR_COUNT:
+                continue
+            if index == 0 and frame_indexes:
+                if len(frame_indexes) == SENSOR_COUNT:
+                    complete_frames += 1
+                frame_indexes = set()
+            frame_indexes.add(index)
+            valid_rows += 1
+
+    if len(frame_indexes) == SENSOR_COUNT:
+        complete_frames += 1
+    if not complete_frames:
+        raise ValueError("CSV contains no complete 96-point frames")
+    return total_rows, valid_rows, complete_frames
 
 
 def choose_port(requested: str | None):
@@ -230,6 +336,9 @@ class SensorEngine(threading.Thread):
         self.stop_event = threading.Event()
         self.serial_connection = None
         self.histories = [deque(maxlen=24) for _ in range(SENSOR_COUNT)]
+        self.last_serial_values = [0.0] * SENSOR_COUNT
+        self.last_signal_change_at = time.monotonic()
+        self.auto_clear_armed = False
 
     def stop(self):
         self.stop_event.set()
@@ -246,6 +355,11 @@ class SensorEngine(threading.Thread):
     def reset_calibration(self):
         for history in self.histories:
             history.clear()
+
+    def reset_auto_clear_tracking(self):
+        self.last_serial_values = [0.0] * SENSOR_COUNT
+        self.last_signal_change_at = time.monotonic()
+        self.auto_clear_armed = False
 
     def update_simulation(self, start_time: float):
         elapsed = time.monotonic() - start_time
@@ -293,6 +407,8 @@ class SensorEngine(threading.Thread):
             self.state.port = self.state.requested_dataset
             self.state.error = None
             self.state.updated_at = time.time()
+            self.state.playback_index = frame_index
+            self.state.playback_total = len(frames)
 
     def connect_serial(self, requested_port: str | None):
         if serial is None:
@@ -304,6 +420,7 @@ class SensorEngine(threading.Thread):
         connection.reset_output_buffer()
         self.serial_connection = connection
         self.reset_calibration()
+        self.reset_auto_clear_tracking()
         with self.state.lock:
             self.state.connected = True
             self.state.port = port
@@ -326,6 +443,32 @@ class SensorEngine(threading.Thread):
             if signal < 0.05:
                 history.append(voltage)
 
+        now = time.monotonic()
+        maximum_signal = max(values, default=0.0)
+        maximum_change = max(
+            (abs(value - previous) for value, previous in zip(values, self.last_serial_values)),
+            default=0.0,
+        )
+        with self.state.lock:
+            auto_clear_enabled = self.state.auto_clear_enabled
+
+        auto_cleared = False
+        if not auto_clear_enabled or maximum_signal < AUTO_CLEAR_SIGNAL_THRESHOLD:
+            self.auto_clear_armed = False
+            self.last_signal_change_at = now
+        elif not self.auto_clear_armed:
+            self.auto_clear_armed = True
+            self.last_signal_change_at = now
+        elif maximum_change >= AUTO_CLEAR_CHANGE_EPSILON:
+            self.last_signal_change_at = now
+        elif now - self.last_signal_change_at >= AUTO_CLEAR_IDLE_SECONDS:
+            self.reset_calibration()
+            values = [0.0] * SENSOR_COUNT
+            self.auto_clear_armed = False
+            self.last_signal_change_at = now
+            auto_cleared = True
+        self.last_serial_values = list(values)
+
         with self.state.lock:
             if self.state.calibrate_requested:
                 self.reset_calibration()
@@ -336,10 +479,14 @@ class SensorEngine(threading.Thread):
             self.state.connected = True
             self.state.error = None
             self.state.updated_at = time.time()
+            if auto_cleared:
+                self.state.auto_clear_count += 1
+                self.state.last_auto_cleared_at = self.state.updated_at
 
     def run(self):
         simulation_start = time.monotonic()
         last_mode = None
+        last_dataset = None
         playback_frames = None
         playback_index = 0
 
@@ -354,12 +501,13 @@ class SensorEngine(threading.Thread):
                 with self.state.lock:
                     self.state.calibrate_requested = False
 
-            if mode != last_mode:
+            if mode != last_mode or (mode == "playback" and requested_dataset != last_dataset):
                 self.close_serial()
                 simulation_start = time.monotonic()
                 playback_frames = None
                 playback_index = 0
                 last_mode = mode
+                last_dataset = requested_dataset
 
             if mode == "simulation":
                 self.update_simulation(simulation_start)
@@ -370,9 +518,19 @@ class SensorEngine(threading.Thread):
                 try:
                     if playback_frames is None:
                         playback_frames = load_playback_frames(requested_dataset)
-                    self.update_playback(playback_frames, playback_index)
-                    playback_index = (playback_index + 1) % len(playback_frames)
-                    self.stop_event.wait(1.0 / 15.0)
+                        with self.state.lock:
+                            self.state.playback_total = len(playback_frames)
+                    with self.state.lock:
+                        seek_requested = self.state.playback_seek_requested
+                        playing = self.state.playback_playing
+                        self.state.playback_seek_requested = None
+                    if seek_requested is not None:
+                        playback_index = min(len(playback_frames) - 1, max(0, seek_requested))
+                    if playing or seek_requested is not None:
+                        self.update_playback(playback_frames, playback_index)
+                    if playing:
+                        playback_index = (playback_index + 1) % len(playback_frames)
+                    self.stop_event.wait(1.0 / PLAYBACK_FPS)
                 except Exception as error:
                     with self.state.lock:
                         self.state.connected = False
@@ -440,6 +598,51 @@ async def playback_datasets():
     }
 
 
+@app.post("/api/playback-datasets/upload")
+async def upload_playback_dataset(request: Request, filename: str):
+    original_name = Path(filename).name.strip()
+    if not original_name or Path(original_name).suffix.lower() != ".csv":
+        raise HTTPException(status_code=400, detail="Choose a CSV file")
+
+    safe_stem = re.sub(r"[^\w.-]+", "_", Path(original_name).stem).strip("._")[:80]
+    safe_stem = safe_stem or "recording"
+    dataset_id = f"upload_{time.time_ns()}__{safe_stem}"
+    UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+    destination = UPLOAD_DIR / f"{dataset_id}.csv"
+    temporary = UPLOAD_DIR / f".{dataset_id}.uploading"
+    total_bytes = 0
+
+    try:
+        with temporary.open("wb") as handle:
+            async for chunk in request.stream():
+                total_bytes += len(chunk)
+                if total_bytes > MAX_UPLOAD_BYTES:
+                    raise HTTPException(status_code=413, detail="CSV must be 100 MB or smaller")
+                handle.write(chunk)
+        if total_bytes == 0:
+            raise HTTPException(status_code=400, detail="The selected CSV is empty")
+        try:
+            rows, valid_rows, frames = inspect_playback_file(temporary)
+        except (UnicodeDecodeError, ValueError, csv.Error) as error:
+            raise HTTPException(status_code=400, detail=str(error)) from error
+        temporary.replace(destination)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
+
+    label = f"Uploaded · {Path(original_name).stem}"
+    PLAYBACK_DATASETS[dataset_id] = destination
+    PLAYBACK_LABELS[dataset_id] = label
+    return {
+        "id": dataset_id,
+        "label": label,
+        "rows": rows,
+        "validRows": valid_rows,
+        "frames": frames,
+        "sizeBytes": total_bytes,
+    }
+
+
 @app.get("/api/playback-preview/{dataset}")
 async def playback_preview(dataset: str):
     path = PLAYBACK_DATASETS.get(dataset)
@@ -478,10 +681,32 @@ async def set_mode(request: ModeRequest):
     return {"ok": True, "mode": request.mode, "port": request.port, "dataset": request.dataset}
 
 
+@app.post("/api/playback/control")
+async def control_playback(request: PlaybackControlRequest):
+    if state.mode != "playback":
+        raise HTTPException(status_code=409, detail="Recorded data is not active")
+    state.set_playback_control(request.frame_index, request.playing)
+    return {
+        "ok": True,
+        "frameIndex": state.playback_index,
+        "playing": state.playback_playing,
+    }
+
+
 @app.post("/api/calibrate")
 async def calibrate():
     state.request_calibration()
     return {"ok": True}
+
+
+@app.post("/api/auto-clear")
+async def set_auto_clear(request: AutoClearRequest):
+    state.set_auto_clear(request.enabled)
+    return {
+        "ok": True,
+        "enabled": request.enabled,
+        "idleSeconds": AUTO_CLEAR_IDLE_SECONDS,
+    }
 
 
 @app.post("/api/model/reload")

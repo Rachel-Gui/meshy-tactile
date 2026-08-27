@@ -30,6 +30,10 @@ const state = {
   modelSize: new THREE.Vector3(250, 124, 124),
   modelMetadata: null,
   recording: null,
+  playbackScrubbing: false,
+  playbackPlaying: true,
+  playbackFps: 15,
+  autoClearCount: 0,
 };
 
 const elements = {
@@ -42,10 +46,20 @@ const elements = {
   sourceMessage: document.querySelector('#source-message'),
   portSelect: document.querySelector('#port-select'),
   playbackSelect: document.querySelector('#playback-select'),
+  playbackUpload: document.querySelector('#playback-upload'),
+  playbackFile: document.querySelector('#playback-file'),
+  playbackUploadButton: document.querySelector('#playback-upload-button'),
+  playbackUploadStatus: document.querySelector('#playback-upload-status'),
   playbackPreview: document.querySelector('#playback-preview'),
   playbackPreviewTitle: document.querySelector('#playback-preview-title'),
   playbackPreviewMeta: document.querySelector('#playback-preview-meta'),
   playbackPreviewSample: document.querySelector('#playback-preview-sample'),
+  playbackTimeline: document.querySelector('#playback-timeline'),
+  playbackToggle: document.querySelector('#playback-toggle'),
+  playbackScrubber: document.querySelector('#playback-scrubber'),
+  playbackCurrentTime: document.querySelector('#playback-current-time'),
+  playbackTotalTime: document.querySelector('#playback-total-time'),
+  playbackFrameLabel: document.querySelector('#playback-frame-label'),
   sensorMatrix: document.querySelector('#sensor-matrix'),
   frameRate: document.querySelector('#frame-rate'),
   frameSequence: document.querySelector('#frame-sequence'),
@@ -63,6 +77,7 @@ const elements = {
   recordStart: document.querySelector('#record-start'),
   recordClear: document.querySelector('#record-clear'),
   recordStop: document.querySelector('#record-stop'),
+  autoClear: document.querySelector('#auto-clear'),
   recordingStatus: document.querySelector('#recording-status'),
   recordingMeta: document.querySelector('#recording-meta'),
   recordingMessage: document.querySelector('#recording-message'),
@@ -539,6 +554,29 @@ function finishRecording(recording, mimeType) {
 elements.recordStart.addEventListener('click', startRecording);
 elements.recordStop.addEventListener('click', stopRecording);
 elements.recordClear.addEventListener('click', clearLiveData);
+elements.autoClear.addEventListener('change', async () => {
+  const enabled = elements.autoClear.checked;
+  elements.autoClear.disabled = true;
+  try {
+    const response = await fetch('/api/auto-clear', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ enabled }),
+    });
+    const payload = await response.json();
+    if (!response.ok) throw new Error(payload.detail ?? 'Auto clear update failed');
+    elements.recordingMessage.classList.remove('error');
+    elements.recordingMessage.textContent = enabled
+      ? `Auto clear enabled · resets stable residual data after ${payload.idleSeconds} seconds`
+      : 'Auto clear disabled';
+  } catch (error) {
+    elements.autoClear.checked = !enabled;
+    elements.recordingMessage.classList.add('error');
+    elements.recordingMessage.textContent = error.message;
+  } finally {
+    elements.autoClear.disabled = false;
+  }
+});
 updateRecordingUi();
 
 function cameraPose(view) {
@@ -687,36 +725,140 @@ async function refreshPorts() {
   }
 }
 
-async function refreshPlaybackDatasets() {
+async function refreshPlaybackDatasets(selectedDataset = null) {
   try {
     const response = await fetch('/api/playback-datasets');
     const payload = await response.json();
+    if (!response.ok) throw new Error(payload.detail ?? 'Could not load recordings');
+    elements.playbackSelect.querySelectorAll('option:not(:first-child)').forEach((option) => option.remove());
     payload.datasets.forEach((dataset) => {
       const option = document.createElement('option');
       option.value = dataset.id;
       option.textContent = dataset.label;
       elements.playbackSelect.appendChild(option);
     });
+    if (selectedDataset && payload.datasets.some((dataset) => dataset.id === selectedDataset)) {
+      elements.playbackSelect.value = selectedDataset;
+    }
+    return payload.datasets;
   } catch {
     // The backend may not be running yet.
+    return [];
   }
 }
+
+elements.playbackUploadButton.addEventListener('click', () => elements.playbackFile.click());
+
+elements.playbackFile.addEventListener('change', async () => {
+  const file = elements.playbackFile.files?.[0];
+  if (!file) return;
+
+  elements.playbackUpload.classList.remove('error');
+  elements.playbackUpload.classList.add('uploading');
+  elements.playbackUploadButton.disabled = true;
+  elements.playbackUploadButton.textContent = 'Uploading…';
+  elements.playbackUploadStatus.textContent = `${file.name} · ${(file.size / 1024 / 1024).toFixed(1)} MB`;
+
+  try {
+    const response = await fetch(`/api/playback-datasets/upload?filename=${encodeURIComponent(file.name)}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/csv' },
+      body: file,
+    });
+    const payload = await response.json();
+    if (!response.ok) throw new Error(payload.detail ?? 'CSV upload failed');
+
+    await refreshPlaybackDatasets(payload.id);
+    await previewPlaybackDataset(payload.id);
+    await setSourceMode('playback');
+    elements.playbackUploadStatus.textContent = `${payload.frames.toLocaleString()} frames ready`;
+  } catch (error) {
+    elements.playbackUpload.classList.add('error');
+    elements.playbackUploadStatus.textContent = error.message;
+  } finally {
+    elements.playbackUpload.classList.remove('uploading');
+    elements.playbackUploadButton.disabled = false;
+    elements.playbackUploadButton.textContent = 'Upload CSV';
+    elements.playbackFile.value = '';
+  }
+});
 
 async function previewPlaybackDataset(dataset) {
   if (!dataset) {
     elements.playbackPreview.hidden = true;
+    elements.playbackTimeline.hidden = true;
     return;
   }
   const response = await fetch(`/api/playback-preview/${encodeURIComponent(dataset)}`);
   const payload = await response.json();
   if (!response.ok) throw new Error(payload.detail ?? 'Playback preview failed');
   elements.playbackPreview.hidden = false;
+  elements.playbackTimeline.hidden = false;
   elements.playbackPreviewTitle.textContent = payload.label;
   elements.playbackPreviewMeta.textContent = `${payload.rows.toLocaleString()} samples · ${payload.frames.toLocaleString()} complete frames · 96 sensors`;
   elements.playbackPreviewSample.textContent = payload.sample
     .map((row) => `#${row.scanIndex} ${row.sensor}  ${row.voltage} V  signal ${row.signal}`)
     .join('\n');
+  updatePlaybackTimeline(0, payload.frames, false);
 }
+
+function formatPlaybackTime(frameIndex, fps = state.playbackFps) {
+  const seconds = Math.max(0, frameIndex) / Math.max(1, fps);
+  const minutes = Math.floor(seconds / 60);
+  return `${minutes}:${(seconds % 60).toFixed(1).padStart(4, '0')}`;
+}
+
+function updatePlaybackTimeline(frameIndex, totalFrames, playing = state.playbackPlaying) {
+  const total = Math.max(1, totalFrames || 1);
+  const index = Math.min(total - 1, Math.max(0, frameIndex || 0));
+  state.playbackPlaying = playing;
+  elements.playbackScrubber.max = String(total - 1);
+  elements.playbackScrubber.value = String(index);
+  elements.playbackScrubber.style.setProperty('--fill', `${total > 1 ? (index / (total - 1)) * 100 : 0}%`);
+  elements.playbackCurrentTime.textContent = formatPlaybackTime(index);
+  elements.playbackTotalTime.textContent = formatPlaybackTime(total - 1);
+  elements.playbackFrameLabel.textContent = `Frame ${(index + 1).toLocaleString()} / ${total.toLocaleString()}`;
+  elements.playbackToggle.textContent = playing ? 'Ⅱ' : '▶';
+  elements.playbackToggle.setAttribute('aria-label', playing ? 'Pause playback' : 'Play recording');
+  elements.playbackToggle.title = playing ? 'Pause playback' : 'Play recording';
+}
+
+async function controlPlayback({ frameIndex = null, playing = null } = {}) {
+  const response = await fetch('/api/playback/control', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ frame_index: frameIndex, playing }),
+  });
+  const payload = await response.json();
+  if (!response.ok) throw new Error(payload.detail ?? 'Playback control failed');
+  return payload;
+}
+
+elements.playbackToggle.addEventListener('click', async () => {
+  try {
+    await controlPlayback({ playing: !state.playbackPlaying });
+  } catch (error) {
+    elements.sourceMessage.classList.add('error');
+    elements.sourceMessage.textContent = error.message;
+  }
+});
+
+elements.playbackScrubber.addEventListener('pointerdown', () => {
+  state.playbackScrubbing = true;
+});
+
+elements.playbackScrubber.addEventListener('input', () => {
+  const frameIndex = Number(elements.playbackScrubber.value);
+  updatePlaybackTimeline(frameIndex, Number(elements.playbackScrubber.max) + 1, false);
+  controlPlayback({ frameIndex, playing: false }).catch((error) => {
+    elements.sourceMessage.classList.add('error');
+    elements.sourceMessage.textContent = error.message;
+  });
+});
+
+elements.playbackScrubber.addEventListener('change', () => {
+  state.playbackScrubbing = false;
+});
 
 async function setSourceMode(mode) {
   document.querySelectorAll('#source-control button').forEach((button) => {
@@ -726,7 +868,9 @@ async function setSourceMode(mode) {
   const dataset = elements.playbackSelect.value || null;
   elements.portSelect.hidden = mode !== 'serial';
   elements.playbackSelect.hidden = mode !== 'playback';
+  elements.playbackUpload.hidden = mode !== 'playback';
   elements.playbackPreview.hidden = mode !== 'playback';
+  elements.playbackTimeline.hidden = mode !== 'playback' || !dataset;
   if (mode === 'playback' && !dataset) {
     elements.sourceMessage.classList.remove('error');
     elements.sourceMessage.textContent = 'Choose a recording to start playback';
@@ -811,6 +955,12 @@ function connectWebSocket() {
     state.heatDirty = true;
     state.frameCounter += 1;
     state.lastSequence = payload.sequence;
+    elements.autoClear.checked = payload.autoClearEnabled !== false;
+    if ((payload.autoClearCount ?? 0) > state.autoClearCount) {
+      state.autoClearCount = payload.autoClearCount;
+      elements.recordingMessage.classList.remove('error');
+      elements.recordingMessage.textContent = 'Stale live sensor data cleared automatically';
+    }
     if (state.recording) {
       state.recording.frames.push({
         tMs: Math.round(performance.now() - state.recording.startedPerformance),
@@ -839,6 +989,10 @@ function connectWebSocket() {
     } else if (payload.mode === 'playback') {
       elements.sourceMessage.classList.remove('error');
       elements.sourceMessage.textContent = `Playing ${payload.port ?? 'recorded data'}`;
+    }
+    if (payload.mode === 'playback' && !state.playbackScrubbing) {
+      state.playbackFps = payload.playbackFps || 15;
+      updatePlaybackTimeline(payload.playbackIndex, payload.playbackTotal, payload.playbackPlaying);
     }
     updateMatrix();
   });
