@@ -34,10 +34,11 @@ cd /Users/a0000/Desktop/tactile
 
 On the hosted Vercel site, Simulation and Recorded data run completely in the
 browser. The five built-in CSV recordings are published with the frontend, and
-an uploaded CSV remains private to the current browser tab. Live USB sensor,
-Grasshopper reload, persistent uploads, and automatic live-sensor clearing use
-the local FastAPI app because a hosted website cannot access those local
-devices or files.
+an uploaded CSV remains private to the current browser tab. On desktop Chrome
+or Edge, **Live sensor** uses Web Serial to talk directly to the selected USB
+device at 1,000,000 baud; sensor data never passes through Vercel. Baseline
+calibration and automatic stale-data clearing also run in the browser.
+Grasshopper reload and persistent uploads still require the local FastAPI app.
 
 ## Update geometry
 

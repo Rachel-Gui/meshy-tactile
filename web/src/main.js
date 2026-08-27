@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { parsePlaybackCsv } from './playback-csv.js';
+import { WebSerialSensor, webSerialSupported } from './web-serial-sensor.js';
 import './styles.css';
 
 const ROWS = 12;
@@ -51,6 +52,7 @@ const state = {
   hostedLastFrameAt: 0,
   hostedStartedAt: performance.now(),
   hostedSequence: 0,
+  hostedAutoClearEnabled: true,
 };
 
 const elements = {
@@ -99,6 +101,25 @@ const elements = {
   recordingMeta: document.querySelector('#recording-meta'),
   recordingMessage: document.querySelector('#recording-message'),
 };
+
+const hostedSerialSensor = HOSTED_MODE && webSerialSupported()
+  ? new WebSerialSensor({
+    onFrame: (frame) => applyFramePayload({
+      type: 'frame',
+      mode: 'serial',
+      connected: true,
+      port: frame.label,
+      error: null,
+      sequence: ++state.hostedSequence,
+      timestamp: Date.now() / 1000,
+      values: frame.values,
+      rawVolts: frame.rawVolts,
+      autoClearEnabled: frame.autoClearEnabled,
+      autoClearCount: frame.autoClearCount,
+    }),
+    onStatus: updateHostedSerialStatus,
+  })
+  : null;
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x070a12);
@@ -487,8 +508,11 @@ async function clearLiveData() {
   state.heatDirty = true;
   updateMatrix();
   if (HOSTED_MODE) {
+    hostedSerialSensor?.resetCalibration();
     elements.recordingMessage.classList.remove('error');
-    elements.recordingMessage.textContent = 'Browser data cleared';
+    elements.recordingMessage.textContent = state.sourceMode === 'serial'
+      ? 'Live data cleared — keep the sensor untouched briefly'
+      : 'Browser data cleared';
     return;
   }
   try {
@@ -579,8 +603,12 @@ elements.recordClear.addEventListener('click', clearLiveData);
 elements.autoClear.addEventListener('change', async () => {
   const enabled = elements.autoClear.checked;
   if (HOSTED_MODE) {
-    elements.autoClear.checked = false;
-    elements.recordingMessage.textContent = 'Auto clear is available with a locally connected live sensor';
+    state.hostedAutoClearEnabled = enabled;
+    hostedSerialSensor?.setAutoClearEnabled(enabled);
+    elements.recordingMessage.classList.remove('error');
+    elements.recordingMessage.textContent = enabled
+      ? 'Auto clear enabled · resets stable residual data after 5 seconds'
+      : 'Auto clear disabled';
     return;
   }
   elements.autoClear.disabled = true;
@@ -977,14 +1005,34 @@ async function setSourceMode(mode) {
     return;
   }
   if (HOSTED_MODE) {
+    elements.portSelect.hidden = true;
     if (mode === 'serial') {
-      document.querySelectorAll('#source-control button').forEach((button) => {
-        button.classList.toggle('active', button.dataset.mode === state.sourceMode);
-      });
-      elements.sourceMessage.classList.add('error');
-      elements.sourceMessage.textContent = 'Live USB sensors require the local FastAPI app';
+      if (!hostedSerialSensor) {
+        document.querySelectorAll('#source-control button').forEach((button) => {
+          button.classList.toggle('active', button.dataset.mode === state.sourceMode);
+        });
+        throw new Error('Use desktop Chrome or Edge to connect a USB serial sensor');
+      }
+      const sourceButtons = document.querySelectorAll('#source-control button');
+      sourceButtons.forEach((button) => { button.disabled = true; });
+      elements.sourceMessage.classList.remove('error');
+      elements.sourceMessage.textContent = 'Choose the CP2104 / USB serial device in the browser prompt…';
+      try {
+        const label = await hostedSerialSensor.connect();
+        state.sourceMode = 'serial';
+        state.hostedLastFrameAt = 0;
+        elements.sourceMessage.textContent = `${label} · 1,000,000 baud`;
+      } catch (error) {
+        sourceButtons.forEach((button) => {
+          button.classList.toggle('active', button.dataset.mode === state.sourceMode);
+        });
+        throw error;
+      } finally {
+        sourceButtons.forEach((button) => { button.disabled = false; });
+      }
       return;
     }
+    if (hostedSerialSensor?.connected) await hostedSerialSensor.disconnect();
     state.sourceMode = mode;
     state.hostedLastFrameAt = 0;
     if (mode === 'playback') {
@@ -1063,6 +1111,25 @@ function websocketAddress() {
   return `${protocol}//${location.host}/api/ws`;
 }
 
+function updateHostedSerialStatus(status) {
+  if (status.state === 'opening') {
+    elements.connectionPill.classList.remove('error');
+    elements.connectionText.textContent = 'Opening sensor';
+    elements.sourceMessage.textContent = `${status.label} · waiting for device startup…`;
+  } else if (status.state === 'connected') {
+    elements.connectionPill.classList.remove('error');
+    elements.connectionText.textContent = 'Sensor connected';
+  } else if (status.state === 'error') {
+    elements.connectionPill.classList.add('error');
+    elements.connectionText.textContent = 'Sensor disconnected';
+    elements.sourceMessage.classList.add('error');
+    elements.sourceMessage.textContent = status.error?.message ?? 'The USB sensor disconnected';
+  } else if (status.state === 'disconnected' && state.sourceMode === 'serial') {
+    elements.connectionPill.classList.add('error');
+    elements.connectionText.textContent = 'Sensor disconnected';
+  }
+}
+
 function applyFramePayload(payload) {
   if (payload.type !== 'frame' || payload.values.length !== SENSOR_COUNT) return;
   state.values.set(payload.values);
@@ -1070,7 +1137,9 @@ function applyFramePayload(payload) {
   state.heatDirty = true;
   state.frameCounter += 1;
   state.lastSequence = payload.sequence;
-  if (!HOSTED_MODE) elements.autoClear.checked = payload.autoClearEnabled !== false;
+  if (!HOSTED_MODE || payload.mode === 'serial') {
+    elements.autoClear.checked = payload.autoClearEnabled !== false;
+  }
   if ((payload.autoClearCount ?? 0) > state.autoClearCount) {
     state.autoClearCount = payload.autoClearCount;
     elements.recordingMessage.classList.remove('error');
@@ -1170,6 +1239,7 @@ function applyHostedSimulationFrame(now) {
 function updateHostedRuntime(now) {
   const interval = 1000 / state.playbackFps;
   if (now - state.hostedLastFrameAt < interval) return;
+  if (state.sourceMode === 'serial') return;
   if (state.sourceMode === 'playback') {
     if (!state.playbackPlaying || !state.hostedPlaybackFrames?.length) return;
     if (state.hostedLastFrameAt > 0) {
@@ -1212,16 +1282,20 @@ function initializeHostedMode() {
   elements.connectionPill.classList.remove('error');
   elements.connectionText.textContent = 'Browser mode';
   elements.portSelect.hidden = true;
-  elements.autoClear.checked = false;
-  elements.autoClear.disabled = true;
+  elements.autoClear.checked = state.hostedAutoClearEnabled;
+  elements.autoClear.disabled = !hostedSerialSensor;
   const serialButton = document.querySelector('#source-control button[data-mode="serial"]');
-  serialButton.disabled = true;
-  serialButton.title = 'Connect a USB sensor through the local FastAPI app';
+  serialButton.disabled = !hostedSerialSensor;
+  serialButton.title = hostedSerialSensor
+    ? 'Choose and connect a USB serial sensor'
+    : 'Web Serial requires desktop Chrome or Edge';
   const reloadButton = document.querySelector('#reload-model');
   reloadButton.disabled = true;
   reloadButton.title = 'Grasshopper reload is available in the local app';
   elements.modelMessage.textContent = 'Hosted model geometry · edit and reload through the local app';
-  elements.recordingMessage.textContent = 'Video and sensor JSON are recorded and downloaded by this browser.';
+  elements.recordingMessage.textContent = hostedSerialSensor
+    ? 'Video and sensor JSON are recorded here; stale live data clears automatically.'
+    : 'Recording works here; USB sensor access requires desktop Chrome or Edge.';
   elements.sourceMessage.textContent = 'Animated 96-point test data in this browser';
   refreshPlaybackDatasets();
 }
