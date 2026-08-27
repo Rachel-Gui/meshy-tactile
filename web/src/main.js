@@ -329,6 +329,12 @@ function endDiameter(positions, bounds, fromFront) {
   return Math.max(maxY - minY, maxZ - minZ);
 }
 
+function modelSensorIndex(channelIndex) {
+  const rowStart = Math.floor(channelIndex / COLUMNS) * COLUMNS;
+  const pointInRow = channelIndex % COLUMNS;
+  return rowStart + (COLUMNS - 1 - pointInRow);
+}
+
 async function loadModel() {
   const response = await fetch('/assets/model.json', { cache: 'no-store' });
   if (!response.ok) throw new Error(`Model request failed: ${response.status}`);
@@ -353,7 +359,16 @@ async function loadModel() {
   model.name = 'Heatmap strips';
   modelGroup.add(model);
 
-  const sensorPositions = payload.sensors.map((sensor) => new THREE.Vector3(...sensor.position));
+  // The physical channels run from the large end toward the small end, while
+  // Grasshopper exports each row in the opposite direction. Reverse the eight
+  // points within every row so channel 1 maps to the large end and channel 8
+  // maps to the small end without changing the incoming channel numbering.
+  const sensorPositions = Array.from(
+    { length: SENSOR_COUNT },
+    (_, channelIndex) => new THREE.Vector3(
+      ...payload.sensors[modelSensorIndex(channelIndex)].position,
+    ),
+  );
   const markerGeometry = new THREE.BufferGeometry().setFromPoints(sensorPositions);
   markerGeometry.setAttribute('color', new THREE.Float32BufferAttribute(new Float32Array(SENSOR_COUNT * 3), 3));
   const markerMaterial = new THREE.PointsMaterial({
