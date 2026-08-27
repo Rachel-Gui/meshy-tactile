@@ -32,6 +32,13 @@ cd /Users/a0000/Desktop/tactile
 - **Zero** clears the per-sensor rolling baselines. Keep the sensor untouched
   briefly after calibration.
 
+On the hosted Vercel site, Simulation and Recorded data run completely in the
+browser. The five built-in CSV recordings are published with the frontend, and
+an uploaded CSV remains private to the current browser tab. Live USB sensor,
+Grasshopper reload, persistent uploads, and automatic live-sensor clearing use
+the local FastAPI app because a hosted website cannot access those local
+devices or files.
+
 ## Update geometry
 
 Keep Rhino 8 and `/Users/a0000/Desktop/tactile/1.gh` open. Change the

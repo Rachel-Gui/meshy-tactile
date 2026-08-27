@@ -1,10 +1,20 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { parsePlaybackCsv } from './playback-csv.js';
 import './styles.css';
 
 const ROWS = 12;
 const COLUMNS = 8;
 const SENSOR_COUNT = ROWS * COLUMNS;
+const HOSTED_MODE = import.meta.env.PROD
+  && !['localhost', '127.0.0.1'].includes(location.hostname);
+const HOSTED_DATASETS = [
+  ['tactile_96points_20260817_194852', 'August 17, 19:48'],
+  ['tactile_96points_20260817_200426', 'August 17, 20:04'],
+  ['tactile_96points_20260825_144129', 'August 25, 14:41:29'],
+  ['tactile_96points_20260825_144214', 'August 25, 14:42:14'],
+  ['tactile_96points_20260827_115909', 'August 27, 11:59:09'],
+].map(([id, label]) => ({ id, label, url: `/data/${id}.csv`, parsed: null }));
 
 const state = {
   model: null,
@@ -34,6 +44,13 @@ const state = {
   playbackPlaying: true,
   playbackFps: 15,
   autoClearCount: 0,
+  sourceMode: 'simulation',
+  hostedDatasets: new Map(HOSTED_DATASETS.map((dataset) => [dataset.id, dataset])),
+  hostedPlaybackFrames: null,
+  hostedPlaybackIndex: 0,
+  hostedLastFrameAt: 0,
+  hostedStartedAt: performance.now(),
+  hostedSequence: 0,
 };
 
 const elements = {
@@ -469,6 +486,11 @@ async function clearLiveData() {
   state.rawVolts.fill(0);
   state.heatDirty = true;
   updateMatrix();
+  if (HOSTED_MODE) {
+    elements.recordingMessage.classList.remove('error');
+    elements.recordingMessage.textContent = 'Browser data cleared';
+    return;
+  }
   try {
     const response = await fetch('/api/calibrate', { method: 'POST' });
     if (!response.ok) throw new Error('Clear request failed');
@@ -556,6 +578,11 @@ elements.recordStop.addEventListener('click', stopRecording);
 elements.recordClear.addEventListener('click', clearLiveData);
 elements.autoClear.addEventListener('change', async () => {
   const enabled = elements.autoClear.checked;
+  if (HOSTED_MODE) {
+    elements.autoClear.checked = false;
+    elements.recordingMessage.textContent = 'Auto clear is available with a locally connected live sensor';
+    return;
+  }
   elements.autoClear.disabled = true;
   try {
     const response = await fetch('/api/auto-clear', {
@@ -633,6 +660,7 @@ new ResizeObserver(resize).observe(elements.viewport);
 function animate(now) {
   requestAnimationFrame(animate);
   updateCameraTween(now);
+  if (HOSTED_MODE) updateHostedRuntime(now);
   if (state.heatDirty) updateHeatmap();
   controls.update();
   renderer.render(scene, camera);
@@ -725,7 +753,35 @@ async function refreshPorts() {
   }
 }
 
+function renderHostedPlaybackOptions(selectedDataset = null) {
+  elements.playbackSelect.querySelectorAll('option:not(:first-child)').forEach((option) => option.remove());
+  state.hostedDatasets.forEach((dataset) => {
+    const option = document.createElement('option');
+    option.value = dataset.id;
+    option.textContent = dataset.label;
+    elements.playbackSelect.appendChild(option);
+  });
+  if (selectedDataset && state.hostedDatasets.has(selectedDataset)) {
+    elements.playbackSelect.value = selectedDataset;
+  }
+}
+
+async function loadHostedDataset(datasetId) {
+  const dataset = state.hostedDatasets.get(datasetId);
+  if (!dataset) throw new Error('Playback dataset was not found');
+  if (!dataset.parsed) {
+    const response = await fetch(dataset.url);
+    if (!response.ok) throw new Error(`Recording download failed: ${response.status}`);
+    dataset.parsed = parsePlaybackCsv(await response.text(), SENSOR_COUNT);
+  }
+  return dataset;
+}
+
 async function refreshPlaybackDatasets(selectedDataset = null) {
+  if (HOSTED_MODE) {
+    renderHostedPlaybackOptions(selectedDataset);
+    return Array.from(state.hostedDatasets.values());
+  }
   try {
     const response = await fetch('/api/playback-datasets');
     const payload = await response.json();
@@ -760,6 +816,22 @@ elements.playbackFile.addEventListener('change', async () => {
   elements.playbackUploadStatus.textContent = `${file.name} · ${(file.size / 1024 / 1024).toFixed(1)} MB`;
 
   try {
+    if (file.size > 100 * 1024 * 1024) throw new Error('CSV must be 100 MB or smaller');
+    if (HOSTED_MODE) {
+      const parsed = parsePlaybackCsv(await file.text(), SENSOR_COUNT);
+      const id = `upload_${Date.now()}`;
+      state.hostedDatasets.set(id, {
+        id,
+        label: `Local · ${file.name.replace(/\.csv$/i, '')}`,
+        url: null,
+        parsed,
+      });
+      renderHostedPlaybackOptions(id);
+      await previewPlaybackDataset(id);
+      await setSourceMode('playback');
+      elements.playbackUploadStatus.textContent = `${parsed.frames.length.toLocaleString()} frames ready`;
+      return;
+    }
     const response = await fetch(`/api/playback-datasets/upload?filename=${encodeURIComponent(file.name)}`, {
       method: 'POST',
       headers: { 'Content-Type': 'text/csv' },
@@ -787,6 +859,23 @@ async function previewPlaybackDataset(dataset) {
   if (!dataset) {
     elements.playbackPreview.hidden = true;
     elements.playbackTimeline.hidden = true;
+    return;
+  }
+  if (HOSTED_MODE) {
+    const hostedDataset = await loadHostedDataset(dataset);
+    const payload = hostedDataset.parsed;
+    state.hostedPlaybackFrames = payload.frames;
+    state.hostedPlaybackIndex = 0;
+    state.playbackPlaying = false;
+    elements.playbackPreview.hidden = false;
+    elements.playbackTimeline.hidden = false;
+    elements.playbackPreviewTitle.textContent = hostedDataset.label;
+    elements.playbackPreviewMeta.textContent = `${payload.rows.toLocaleString()} samples · ${payload.frames.length.toLocaleString()} complete frames · 96 sensors`;
+    elements.playbackPreviewSample.textContent = payload.sample
+      .map((row) => `#${row.scanIndex} ${row.sensor}  ${row.voltage} V  signal ${row.signal}`)
+      .join('\n');
+    updatePlaybackTimeline(0, payload.frames.length, false);
+    applyHostedPlaybackFrame();
     return;
   }
   const response = await fetch(`/api/playback-preview/${encodeURIComponent(dataset)}`);
@@ -824,6 +913,17 @@ function updatePlaybackTimeline(frameIndex, totalFrames, playing = state.playbac
 }
 
 async function controlPlayback({ frameIndex = null, playing = null } = {}) {
+  if (HOSTED_MODE) {
+    const total = state.hostedPlaybackFrames?.length ?? 0;
+    if (!total) throw new Error('Choose a recording first');
+    if (frameIndex !== null) {
+      state.hostedPlaybackIndex = Math.min(total - 1, Math.max(0, frameIndex));
+    }
+    if (playing !== null) state.playbackPlaying = playing;
+    state.hostedLastFrameAt = performance.now();
+    applyHostedPlaybackFrame();
+    return { ok: true, frameIndex: state.hostedPlaybackIndex, playing: state.playbackPlaying };
+  }
   const response = await fetch('/api/playback/control', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -874,6 +974,28 @@ async function setSourceMode(mode) {
   if (mode === 'playback' && !dataset) {
     elements.sourceMessage.classList.remove('error');
     elements.sourceMessage.textContent = 'Choose a recording to start playback';
+    return;
+  }
+  if (HOSTED_MODE) {
+    if (mode === 'serial') {
+      document.querySelectorAll('#source-control button').forEach((button) => {
+        button.classList.toggle('active', button.dataset.mode === state.sourceMode);
+      });
+      elements.sourceMessage.classList.add('error');
+      elements.sourceMessage.textContent = 'Live USB sensors require the local FastAPI app';
+      return;
+    }
+    state.sourceMode = mode;
+    state.hostedLastFrameAt = 0;
+    if (mode === 'playback') {
+      if (!state.hostedPlaybackFrames?.length) await previewPlaybackDataset(dataset);
+      state.playbackPlaying = true;
+      applyHostedPlaybackFrame();
+    }
+    elements.sourceMessage.classList.remove('error');
+    elements.sourceMessage.textContent = mode === 'playback'
+      ? 'Playing recorded 96-point sensor data in this browser'
+      : 'Animated 96-point test data in this browser';
     return;
   }
   const response = await fetch(apiUrl('/api/mode'), {
@@ -941,6 +1063,125 @@ function websocketAddress() {
   return `${protocol}//${location.host}/api/ws`;
 }
 
+function applyFramePayload(payload) {
+  if (payload.type !== 'frame' || payload.values.length !== SENSOR_COUNT) return;
+  state.values.set(payload.values);
+  state.rawVolts.set(payload.rawVolts);
+  state.heatDirty = true;
+  state.frameCounter += 1;
+  state.lastSequence = payload.sequence;
+  if (!HOSTED_MODE) elements.autoClear.checked = payload.autoClearEnabled !== false;
+  if ((payload.autoClearCount ?? 0) > state.autoClearCount) {
+    state.autoClearCount = payload.autoClearCount;
+    elements.recordingMessage.classList.remove('error');
+    elements.recordingMessage.textContent = 'Stale live sensor data cleared automatically';
+  }
+  if (state.recording) {
+    state.recording.frames.push({
+      tMs: Math.round(performance.now() - state.recording.startedPerformance),
+      timestamp: payload.timestamp,
+      sequence: payload.sequence,
+      mode: payload.mode,
+      connected: payload.connected,
+      port: payload.port,
+      values: Array.from(payload.values),
+      rawVolts: Array.from(payload.rawVolts),
+    });
+    const elapsedSeconds = (performance.now() - state.recording.startedPerformance) / 1000;
+    elements.recordingMeta.textContent = `${state.recording.frames.length} frames · ${Math.floor(elapsedSeconds / 60)}:${String(Math.floor(elapsedSeconds % 60)).padStart(2, '0')}`;
+  }
+  elements.frameSequence.textContent = `Frame ${String(payload.sequence).padStart(4, '0')}`;
+  elements.connectionPill.classList.toggle('error', !payload.connected);
+  elements.connectionText.textContent = payload.connected
+    ? payload.mode === 'serial' ? 'Sensor live' : payload.mode === 'playback' ? 'Recorded data' : 'Simulation'
+    : 'Disconnected';
+  if (payload.error) {
+    elements.sourceMessage.classList.add('error');
+    elements.sourceMessage.textContent = payload.error;
+  } else if (payload.mode === 'serial') {
+    elements.sourceMessage.classList.remove('error');
+    elements.sourceMessage.textContent = `${payload.port ?? 'USB serial'} · 1,000,000 baud`;
+  } else if (payload.mode === 'playback') {
+    elements.sourceMessage.classList.remove('error');
+    elements.sourceMessage.textContent = `Playing ${payload.port ?? 'recorded data'}`;
+  }
+  if (payload.mode === 'playback' && !state.playbackScrubbing) {
+    state.playbackFps = payload.playbackFps || 15;
+    updatePlaybackTimeline(payload.playbackIndex, payload.playbackTotal, payload.playbackPlaying);
+  }
+  updateMatrix();
+}
+
+function applyHostedPlaybackFrame() {
+  const frames = state.hostedPlaybackFrames;
+  if (!frames?.length) return;
+  state.hostedPlaybackIndex = Math.min(frames.length - 1, Math.max(0, state.hostedPlaybackIndex));
+  const frame = frames[state.hostedPlaybackIndex];
+  applyFramePayload({
+    type: 'frame',
+    mode: 'playback',
+    connected: true,
+    port: elements.playbackSelect.selectedOptions[0]?.textContent ?? 'recorded data',
+    error: null,
+    sequence: ++state.hostedSequence,
+    timestamp: Date.now() / 1000,
+    values: frame.values,
+    rawVolts: frame.rawVolts,
+    playbackIndex: state.hostedPlaybackIndex,
+    playbackTotal: frames.length,
+    playbackPlaying: state.playbackPlaying,
+    playbackFps: state.playbackFps,
+    autoClearEnabled: false,
+    autoClearCount: 0,
+  });
+}
+
+function applyHostedSimulationFrame(now) {
+  const elapsed = (now - state.hostedStartedAt) / 1000;
+  const values = new Float32Array(SENSOR_COUNT);
+  const rawVolts = new Float32Array(SENSOR_COUNT);
+  const centerRow = (elapsed * 0.55) % ROWS;
+  const centerColumn = 3.5 + Math.sin(elapsed * 0.8) * 2.2;
+  for (let index = 0; index < SENSOR_COUNT; index += 1) {
+    const row = Math.floor(index / COLUMNS);
+    const column = index % COLUMNS;
+    const rowDistance = Math.min(Math.abs(row - centerRow), ROWS - Math.abs(row - centerRow));
+    const distance = Math.hypot(rowDistance / 2.2, (column - centerColumn) / 1.8);
+    const pulse = 0.18 * (Math.sin(elapsed * 2.1 + index * 0.37) + 1) / 2;
+    const value = Math.max(0, Math.min(1, Math.exp(-distance * distance) * 0.9 + pulse * 0.35));
+    values[index] = value;
+    rawVolts[index] = 3.3 * (1 - value * 0.55);
+  }
+  applyFramePayload({
+    type: 'frame',
+    mode: 'simulation',
+    connected: true,
+    port: null,
+    error: null,
+    sequence: ++state.hostedSequence,
+    timestamp: Date.now() / 1000,
+    values,
+    rawVolts,
+    autoClearEnabled: false,
+    autoClearCount: 0,
+  });
+}
+
+function updateHostedRuntime(now) {
+  const interval = 1000 / state.playbackFps;
+  if (now - state.hostedLastFrameAt < interval) return;
+  if (state.sourceMode === 'playback') {
+    if (!state.playbackPlaying || !state.hostedPlaybackFrames?.length) return;
+    if (state.hostedLastFrameAt > 0) {
+      state.hostedPlaybackIndex = (state.hostedPlaybackIndex + 1) % state.hostedPlaybackFrames.length;
+    }
+    applyHostedPlaybackFrame();
+  } else {
+    applyHostedSimulationFrame(now);
+  }
+  state.hostedLastFrameAt = now;
+}
+
 function connectWebSocket() {
   const socket = new WebSocket(websocketAddress());
   socket.addEventListener('open', () => {
@@ -949,52 +1190,7 @@ function connectWebSocket() {
   });
   socket.addEventListener('message', (event) => {
     const payload = JSON.parse(event.data);
-    if (payload.type !== 'frame' || payload.values.length !== SENSOR_COUNT) return;
-    state.values.set(payload.values);
-    state.rawVolts.set(payload.rawVolts);
-    state.heatDirty = true;
-    state.frameCounter += 1;
-    state.lastSequence = payload.sequence;
-    elements.autoClear.checked = payload.autoClearEnabled !== false;
-    if ((payload.autoClearCount ?? 0) > state.autoClearCount) {
-      state.autoClearCount = payload.autoClearCount;
-      elements.recordingMessage.classList.remove('error');
-      elements.recordingMessage.textContent = 'Stale live sensor data cleared automatically';
-    }
-    if (state.recording) {
-      state.recording.frames.push({
-        tMs: Math.round(performance.now() - state.recording.startedPerformance),
-        timestamp: payload.timestamp,
-        sequence: payload.sequence,
-        mode: payload.mode,
-        connected: payload.connected,
-        port: payload.port,
-        values: Array.from(payload.values),
-        rawVolts: Array.from(payload.rawVolts),
-      });
-      const elapsedSeconds = (performance.now() - state.recording.startedPerformance) / 1000;
-      elements.recordingMeta.textContent = `${state.recording.frames.length} frames · ${Math.floor(elapsedSeconds / 60)}:${String(Math.floor(elapsedSeconds % 60)).padStart(2, '0')}`;
-    }
-    elements.frameSequence.textContent = `Frame ${String(payload.sequence).padStart(4, '0')}`;
-    elements.connectionPill.classList.toggle('error', !payload.connected);
-    elements.connectionText.textContent = payload.connected
-      ? payload.mode === 'serial' ? 'Sensor live' : payload.mode === 'playback' ? 'Recorded data' : 'Simulation'
-      : 'Disconnected';
-    if (payload.error) {
-      elements.sourceMessage.classList.add('error');
-      elements.sourceMessage.textContent = payload.error;
-    } else if (payload.mode === 'serial') {
-      elements.sourceMessage.classList.remove('error');
-      elements.sourceMessage.textContent = `${payload.port ?? 'USB serial'} · 1,000,000 baud`;
-    } else if (payload.mode === 'playback') {
-      elements.sourceMessage.classList.remove('error');
-      elements.sourceMessage.textContent = `Playing ${payload.port ?? 'recorded data'}`;
-    }
-    if (payload.mode === 'playback' && !state.playbackScrubbing) {
-      state.playbackFps = payload.playbackFps || 15;
-      updatePlaybackTimeline(payload.playbackIndex, payload.playbackTotal, payload.playbackPlaying);
-    }
-    updateMatrix();
+    applyFramePayload(payload);
   });
   socket.addEventListener('close', () => {
     elements.connectionPill.classList.add('error');
@@ -1012,11 +1208,33 @@ setInterval(() => {
   state.frameCounterStarted = now;
 }, 1000);
 
+function initializeHostedMode() {
+  elements.connectionPill.classList.remove('error');
+  elements.connectionText.textContent = 'Browser mode';
+  elements.portSelect.hidden = true;
+  elements.autoClear.checked = false;
+  elements.autoClear.disabled = true;
+  const serialButton = document.querySelector('#source-control button[data-mode="serial"]');
+  serialButton.disabled = true;
+  serialButton.title = 'Connect a USB sensor through the local FastAPI app';
+  const reloadButton = document.querySelector('#reload-model');
+  reloadButton.disabled = true;
+  reloadButton.title = 'Grasshopper reload is available in the local app';
+  elements.modelMessage.textContent = 'Hosted model geometry · edit and reload through the local app';
+  elements.recordingMessage.textContent = 'Video and sensor JSON are recorded and downloaded by this browser.';
+  elements.sourceMessage.textContent = 'Animated 96-point test data in this browser';
+  refreshPlaybackDatasets();
+}
+
 buildSensorMatrix();
 updateLegend();
-refreshPorts();
-refreshPlaybackDatasets();
-connectWebSocket();
+if (HOSTED_MODE) {
+  initializeHostedMode();
+} else {
+  refreshPorts();
+  refreshPlaybackDatasets();
+  connectWebSocket();
+}
 loadModel().catch((error) => {
   elements.modelStatus.textContent = 'Model error';
   elements.modelLoading.querySelector('span').textContent = error.message;
