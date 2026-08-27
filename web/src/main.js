@@ -938,7 +938,7 @@ document.querySelector('#reload-model').addEventListener('click', async () => {
 
 function websocketAddress() {
   const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-  return `${protocol}//${location.host}/ws`;
+  return `${protocol}//${location.host}/api/ws`;
 }
 
 function connectWebSocket() {

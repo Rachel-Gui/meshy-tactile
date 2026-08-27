@@ -735,6 +735,7 @@ async def reload_model():
     return {"ok": True, "message": message or "Grasshopper model exported"}
 
 
+@app.websocket("/api/ws")
 @app.websocket("/ws")
 async def websocket_stream(websocket: WebSocket):
     await websocket.accept()

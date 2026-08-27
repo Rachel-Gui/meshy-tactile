@@ -7,9 +7,8 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      '/api': backendUrl,
-      '/ws': {
-        target: backendUrl.replace('http://', 'ws://'),
+      '/api': {
+        target: backendUrl,
         ws: true,
       },
     },
