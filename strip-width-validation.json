@@ -1,0 +1,36 @@
+{
+  "ring.gh": {
+    "vertexCount": 13068, 
+    "offsets": [
+      2.0, 
+      2.0, 
+      -2.0, 
+      -2.0
+    ], 
+    "sensorCount": 30, 
+    "exported": true, 
+    "beforeWidth": [
+      4.0, 
+      4.0
+    ], 
+    "runtimeErrors": [], 
+    "stripWidth": 4
+  }, 
+  "1.gh": {
+    "vertexCount": 12222, 
+    "offsets": [
+      2.0, 
+      2.0, 
+      -2.0, 
+      -2.0
+    ], 
+    "sensorCount": 96, 
+    "exported": true, 
+    "beforeWidth": [
+      6.0, 
+      6.0
+    ], 
+    "runtimeErrors": [], 
+    "stripWidth": 4
+  }
+}

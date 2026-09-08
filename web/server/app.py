@@ -736,7 +736,6 @@ async def reload_model():
 
 
 @app.websocket("/api/ws")
-@app.websocket("/ws")
 async def websocket_stream(websocket: WebSocket):
     await websocket.accept()
     try:

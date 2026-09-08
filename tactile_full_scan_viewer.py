@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Display the 32 x 32 stream from the user-supplied tactilesensor.ino."""
+"""Display the tactile sensor stream from the user-supplied downloaded_tactilesensor_a2.ino."""
 
 from __future__ import annotations
 
@@ -10,7 +10,6 @@ from datetime import datetime
 from pathlib import Path
 import queue
 import re
-import struct
 import sys
 import threading
 import time
@@ -44,8 +43,6 @@ RAW_DISPLAY_MIN_V = 0.8
 RAW_DISPLAY_MAX_V = 1.7
 SHORT_AS_OPEN_THRESHOLD_V = 0.2
 SHORT_QUALIFY_TIME_S = 2.0
-MAGIC = b"TS32"
-HEADER = struct.Struct("<4sBBBBHI")
 
 SMOOTHING_ALPHA = 0.35
 BASELINE_FLOOR_V = 0.10
@@ -166,7 +163,7 @@ def parse_args():
     )
     parser.add_argument(
         "--mode",
-        choices=("point", "batch96", "legacy", "framed"),
+        choices=("point", "batch96", "legacy"),
         default="point",
         help="point reads one node; batch96 reads all 96 cyclic nodes per command",
     )
@@ -201,62 +198,14 @@ def read_exact(ser: serial.Serial, size: int, timeout_s: float) -> bytes:
     return bytes(result)
 
 
-def crc16_ccitt(data: bytes) -> int:
-    crc = 0xFFFF
-    for value in data:
-        crc ^= value << 8
-        for _ in range(8):
-            crc = ((crc << 1) ^ 0x1021) & 0xFFFF if crc & 0x8000 else (crc << 1) & 0xFFFF
-    return crc
-
-
-def read_until_magic(ser: serial.Serial) -> None:
-    window = bytearray()
-    deadline = time.monotonic() + FRAME_TIMEOUT_S
-    while time.monotonic() < deadline:
-        value = ser.read(1)
-        if not value:
-            continue
-        window.extend(value)
-        if len(window) > len(MAGIC):
-            del window[0]
-        if bytes(window) == MAGIC:
-            return
-    raise TimeoutError("frame header TS32 not received")
-
-
-def request_frame(ser: serial.Serial, rows: int, cols: int, mode: str, sequence: int):
+def request_frame(ser: serial.Serial, rows: int, cols: int, sequence: int):
     ser.write(b"w")
     ser.flush()
-    if mode == "legacy":
-        payload = read_exact(ser, rows * cols, FRAME_TIMEOUT_S)
-        delimiter = read_exact(ser, 1, FRAME_TIMEOUT_S)
-        if delimiter != b"\n":
-            raise RuntimeError(f"bad legacy frame delimiter: {delimiter!r}")
-        return np.frombuffer(payload, dtype=np.uint8).copy(), sequence + 1
-
-    read_until_magic(ser)
-    rest = read_exact(ser, HEADER.size - len(MAGIC), FRAME_TIMEOUT_S)
-    magic, version, frame_rows, frame_cols, bits, payload_size, sequence = (
-        HEADER.unpack(MAGIC + rest)
-    )
-    expected_size = rows * cols
-    if (magic, version, frame_rows, frame_cols, bits, payload_size) != (
-        MAGIC, 1, rows, cols, 8, expected_size
-    ):
-        raise RuntimeError(
-            "incompatible frame: "
-            f"version={version}, size={frame_rows}x{frame_cols}, "
-            f"bits={bits}, payload={payload_size}"
-        )
-    payload = read_exact(ser, payload_size, FRAME_TIMEOUT_S)
-    received_crc = struct.unpack("<H", read_exact(ser, 2, FRAME_TIMEOUT_S))[0]
-    calculated_crc = crc16_ccitt(payload)
-    if received_crc != calculated_crc:
-        raise RuntimeError(
-            f"CRC error: received 0x{received_crc:04x}, expected 0x{calculated_crc:04x}"
-        )
-    return np.frombuffer(payload, dtype=np.uint8).copy(), sequence
+    payload = read_exact(ser, rows * cols, FRAME_TIMEOUT_S)
+    delimiter = read_exact(ser, 1, FRAME_TIMEOUT_S)
+    if delimiter != b"\n":
+        raise RuntimeError(f"bad legacy frame delimiter: {delimiter!r}")
+    return np.frombuffer(payload, dtype=np.uint8).copy(), sequence + 1
 
 
 def request_point(ser: serial.Serial, row: int, column: int) -> int:
@@ -390,7 +339,7 @@ class FrameReader(threading.Thread):
                     )
                 else:
                     raw, sequence = request_frame(
-                        self.ser, self.rows, self.cols, self.mode, sequence
+                        self.ser, self.rows, self.cols, sequence
                     )
                     frame_v = raw.reshape(self.rows, self.cols).astype(np.float32) * (
                         VREF / 255.0

@@ -4,17 +4,16 @@ Run with Rhino 8's ``rhinocode`` CLI while Rhino and the Grasshopper definition
 are open. The generated JSON is consumed directly by the local Three.js UI.
 """
 
-from __future__ import annotations
-
+import os
+import hashlib
 import json
-from pathlib import Path
 
 import Grasshopper
 import Rhino.Geometry as rg
 from Grasshopper import Instances
 
 
-OUTPUT_PATH = Path("/Users/a0000/Desktop/tactile/web/public/assets/model.json")
+OUTPUT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'public', 'assets', 'model.json')
 ROWS = 12
 COLUMNS = 8
 SENSOR_COUNT = ROWS * COLUMNS
@@ -148,9 +147,9 @@ def mesh_payload(mesh):
 
 document = Instances.ActiveCanvas.Document if Instances.ActiveCanvas else None
 if document is None:
-    raise RuntimeError("Open Grasshopper and /Users/a0000/Desktop/tactile/1.gh first")
+    raise RuntimeError("Open Grasshopper and 1.gh first")
 
-if not document.FilePath.endswith("/tactile/1.gh"):
+if os.path.basename(document.FilePath) != '1.gh':
     raise RuntimeError(
         "The active Grasshopper document is not tactile/1.gh: {}".format(
             document.FilePath
@@ -176,9 +175,17 @@ row_curves = gh_values(parameter_by_name(python_component.Params.Input, "RowCurv
 column_curves = gh_values(parameter_by_name(python_component.Params.Input, "ColumnCurves"))
 sensor_points = order_sensor_points(raw_sensor_points, row_curves, column_curves)
 
+offsets = [abs(float(value)) for obj in document.Objects if obj.Name == 'Offset on Srf'
+           for value in gh_values(obj.Params.Input[1])]
+assert offsets and max(offsets) - min(offsets) < 0.000001
+with open(document.FilePath, 'rb') as source:
+    source_hash = hashlib.sha256(source.read()).hexdigest()
 payload = {
     "metadata": {
-        "source": document.FilePath,
+        "source": os.path.basename(document.FilePath),
+        "sourceSha256": source_hash,
+        "stripWidth": offsets[0] * 2,
+        "units": "mm",
         "coordinateSystem": "Rhino Z-up",
         "rows": ROWS,
         "columns": COLUMNS,
@@ -198,11 +205,8 @@ payload = {
     ],
 }
 
-OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-OUTPUT_PATH.write_text(
-    json.dumps(payload, separators=(",", ":")),
-    encoding="utf-8",
-)
+with open(OUTPUT_PATH, 'w') as output:
+    json.dump(payload, output, separators=(',', ':'))
 
 print(
     "Exported {} vertices, {} faces, and {} sensors to {}".format(

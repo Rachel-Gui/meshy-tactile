@@ -108,10 +108,22 @@
               <div><span>GRASSHOPPER</span><h2>Model geometry</h2></div>
               <button class="quiet-button" id="reload-model">Reload</button>
             </div>
+            <div class="segmented model-switch" id="model-control">
+              <button class="active" data-model="arm" type="button">Arm</button>
+              <button data-model="ring" type="button">Ring</button>
+            </div>
             <div class="model-facts">
               <div><span>Length</span><strong id="model-length">—</strong></div>
               <div><span>Front Ø</span><strong id="model-front-diameter">—</strong></div>
               <div><span>Rear Ø</span><strong id="model-rear-diameter">—</strong></div>
+            </div>
+            <div class="scene-options" id="scene-options">
+              <span class="scene-label">SCENE</span>
+              <div class="segmented" id="scene-control" aria-label="Arm scene">
+                <button data-scene="sensor" type="button" aria-pressed="false">Sensor only</button>
+                <button class="active" data-scene="wearing" type="button" aria-pressed="true">On arm</button>
+              </div>
+              <p class="source-message" id="scene-description">White mannequin · fitted forearm</p>
             </div>
             <p class="source-message" id="model-message">Edit sliders in Grasshopper, then reload the live mesh.</p>
           </section>

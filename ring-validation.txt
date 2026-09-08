@@ -1,0 +1,15 @@
+OK - Ring heatmap | 30 sensor crossing points | 20 mesh pieces | 13068 vertices
+Sensors: 30
+Mesh valid: True
+Vertices: 13068
+Faces: 11456
+Vertex colors: 13068
+Unique colors: 313
+Runtime errors: 0
+Saved: C:\Users\Ruich\Desktop\tactile\meshy-tactile\ring.gh
+Reopened saved .gh: PASS
+30 unique internal points: PASS
+Zero input => one baseline color: PASS
+Unit input => 939 colors: PASS
+Original value 0.3 restored
+Viewport capture: ring-heatmap-preview.png

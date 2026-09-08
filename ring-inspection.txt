@@ -1,0 +1,182 @@
+GH_DOCUMENT=C:\Users\Ruich\Desktop\tactile\meshy-tactile\ring.gh
+OBJECT_COUNT=70
+OBJECT|Loft|Loft|SurfaceComponents.SurfaceComponents.Component_LoftSurface
+INPUT|Loft|Curves|data=2
+INPUT|Loft|Options|data=1
+OBJECT|Move|Move|LinearXForms.Component_Move
+INPUT|Move|Geometry|data=1
+INPUT|Move|Motion|data=1
+OBJECT|Unit X|Unit X|VectorComponents.VectorComponents.Component_UnitVectorX
+INPUT|Unit X|Factor|data=1
+OBJECT|Length|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|YZ Plane|YZ Plane|VectorComponents.PlaneComponents.Component_YZPlane
+INPUT|YZ Plane|Origin|data=1
+OBJECT|Radius small|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Circle|Circle|CurveComponents.Component_Circle
+INPUT|Circle|Plane|data=1
+INPUT|Circle|Radius|data=1
+OBJECT|Circle|Circle|CurveComponents.Component_Circle
+INPUT|Circle|Plane|data=1
+INPUT|Circle|Radius|data=1
+OBJECT|Radius large|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Divide Curve|Divide Curve|VectorComponents.DivisionComponents.Component_DivideCurve
+INPUT|Divide Curve|Curve|data=1
+INPUT|Divide Curve|Count|data=1
+INPUT|Divide Curve|Kinks|data=1
+OBJECT|Grid Count|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Grid Count|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Divide Curve|Divide Curve|VectorComponents.DivisionComponents.Component_DivideCurve
+INPUT|Divide Curve|Curve|data=1
+INPUT|Divide Curve|Count|data=1
+INPUT|Divide Curve|Kinks|data=1
+OBJECT|Line|Line|CurveComponents.Component_Line
+INPUT|Line|Start Point|data=10
+INPUT|Line|End Point|data=10
+OBJECT|Shift List|Shift List|MathComponents.ArrayComponents.Component_ShiftList
+INPUT|Shift List|List|data=10
+INPUT|Shift List|Shift|data=1
+INPUT|Shift List|Wrap|data=1
+OBJECT|Weave Shift|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Boolean Toggle|Boolean Toggle|Grasshopper.Kernel.Special.GH_BooleanToggle
+OBJECT|Shift List|Shift List|MathComponents.ArrayComponents.Component_ShiftList
+INPUT|Shift List|List|data=10
+INPUT|Shift List|Shift|data=1
+INPUT|Shift List|Wrap|data=1
+OBJECT|Line|Line|CurveComponents.Component_Line
+INPUT|Line|Start Point|data=10
+INPUT|Line|End Point|data=10
+OBJECT|Weave Shift|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Boolean Toggle|Boolean Toggle|Grasshopper.Kernel.Special.GH_BooleanToggle
+OBJECT|Vector 2Pt|Vector 2Pt|VectorComponents.VectorComponents.Component_Vector2Pt
+INPUT|Vector 2Pt|Point A|data=0
+INPUT|Vector 2Pt|Point B|data=0
+INPUT|Vector 2Pt|Unitize|data=0
+OBJECT|Vector 2Pt|Vector 2Pt|VectorComponents.VectorComponents.Component_Vector2Pt
+INPUT|Vector 2Pt|Point A|data=0
+INPUT|Vector 2Pt|Point B|data=0
+INPUT|Vector 2Pt|Unitize|data=0
+OBJECT|Merge|Merge|MathComponents.MergeComponents.Component_MergeVariable
+INPUT|Merge|Data 1|data=1
+INPUT|Merge|Data 2|data=1
+INPUT|Merge|Data 3|data=0
+OBJECT|Pull Curve|Pull Curve|CurveComponents.Component_PullCurve
+INPUT|Pull Curve|Curve|data=10
+INPUT|Pull Curve|Surface|data=1
+OBJECT|Pull Curve|Pull Curve|CurveComponents.Component_PullCurve
+INPUT|Pull Curve|Curve|data=10
+INPUT|Pull Curve|Surface|data=1
+OBJECT|Offset on Srf|Offset on Srf|CurveComponents.Component_OffsetCurveOnSurface
+INPUT|Offset on Srf|Curve|data=10
+INPUT|Offset on Srf|Distance|data=1
+INPUT|Offset on Srf|Surface|data=1
+OBJECT|Division|Division|MathComponents.OperatorComponents.Operator_Division
+INPUT|Division|A|data=1
+INPUT|Division|B|data=1
+OBJECT|Strip Width|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Strip Width|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Offset on Srf|Offset on Srf|CurveComponents.Component_OffsetCurveOnSurface
+INPUT|Offset on Srf|Curve|data=10
+INPUT|Offset on Srf|Distance|data=1
+INPUT|Offset on Srf|Surface|data=1
+OBJECT|Division|Division|MathComponents.OperatorComponents.Operator_Division
+INPUT|Division|A|data=1
+INPUT|Division|B|data=1
+OBJECT|Strip Width|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Strip Width|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Negative|Negative|MathComponents.FunctionComponents.OperatorSign
+INPUT|Negative|Value|data=1
+OBJECT|Negative|Negative|MathComponents.FunctionComponents.OperatorSign
+INPUT|Negative|Value|data=1
+OBJECT|Offset on Srf|Offset on Srf|CurveComponents.Component_OffsetCurveOnSurface
+INPUT|Offset on Srf|Curve|data=10
+INPUT|Offset on Srf|Distance|data=1
+INPUT|Offset on Srf|Surface|data=1
+OBJECT|Offset on Srf|Offset on Srf|CurveComponents.Component_OffsetCurveOnSurface
+INPUT|Offset on Srf|Curve|data=10
+INPUT|Offset on Srf|Distance|data=1
+INPUT|Offset on Srf|Surface|data=1
+OBJECT|Loft|Loft|SurfaceComponents.SurfaceComponents.Component_LoftSurface
+INPUT|Loft|Curves|data=20
+INPUT|Loft|Options|data=1
+OBJECT|Merge|Merge|MathComponents.MergeComponents.Component_MergeVariable
+INPUT|Merge|Data 1|data=10
+INPUT|Merge|Data 2|data=10
+INPUT|Merge|Data 3|data=0
+OBJECT||Panel|Grasshopper.Kernel.Special.GH_Panel
+OBJECT|Loft|Loft|SurfaceComponents.SurfaceComponents.Component_LoftSurface
+INPUT|Loft|Curves|data=20
+INPUT|Loft|Options|data=1
+OBJECT|Merge|Merge|MathComponents.MergeComponents.Component_MergeVariable
+INPUT|Merge|Data 1|data=10
+INPUT|Merge|Data 2|data=10
+INPUT|Merge|Data 3|data=0
+OBJECT|Offset Surface|Offset Surface|SurfaceComponents.SurfaceComponents.Component_OffsetSurface
+INPUT|Offset Surface|Surface|data=20
+INPUT|Offset Surface|Distance|data=1
+INPUT|Offset Surface|Retrim|data=1
+OBJECT|Strip Thickness|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Sensor Heatmap
+|Python 3 Script|RhinoCodePluginGH.Components.Python3Component
+INPUT|Sensor Heatmap
+|Values|data=30
+INPUT|Sensor Heatmap
+|Radius|data=1
+INPUT|Sensor Heatmap
+|Offset|data=1
+INPUT|Sensor Heatmap
+|Rotate|data=1
+INPUT|Sensor Heatmap
+|FlipU|data=1
+INPUT|Sensor Heatmap
+|FlipV|data=1
+INPUT|Sensor Heatmap
+|Points|data=40
+INPUT|Sensor Heatmap
+|Strips|data=20
+INPUT|Sensor Heatmap
+|MeshSize|data=1
+INPUT|Sensor Heatmap
+|RowCurves|data=10
+INPUT|Sensor Heatmap
+|ColumnCurves|data=10
+OBJECT|Height Number Slider|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Offset Number Slider|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Rotate Integer Slider|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Boolean Toggle|Boolean Toggle|Grasshopper.Kernel.Special.GH_BooleanToggle
+OBJECT|Boolean Toggle|Boolean Toggle|Grasshopper.Kernel.Special.GH_BooleanToggle
+OBJECT||Panel|Grasshopper.Kernel.Special.GH_Panel
+OBJECT|Repeat Data|Repeat Data|MathComponents.ArrayComponents.Component_RepeatData
+INPUT|Repeat Data|Data|data=1
+INPUT|Repeat Data|Length|data=1
+OBJECT|Number Slider|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Number Slider|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Cross Reference|Cross Reference|MathComponents.ArrayComponents.Component_MatchListCrossReference
+INPUT|Cross Reference|List (List (A))|data=10
+INPUT|Cross Reference|List (List (B))|data=10
+OBJECT|Curve | Curve|Curve | Curve|CurveComponents.Component_CurveIntersection
+INPUT|Curve | Curve|Curve A|data=100
+INPUT|Curve | Curve|Curve B|data=100
+OBJECT|IntersectionPoints|Point|Grasshopper.Kernel.Parameters.Param_Point
+OBJECT|List Length|List Length|MathComponents.ArrayComponents.Component_ListLength
+INPUT|List Length|List|data=50
+OBJECT||Panel|Grasshopper.Kernel.Special.GH_Panel
+OBJECT|Curve Closest Point|Curve Closest Point|AnalysisComponents.Component_CurveClosestPoint
+INPUT|Curve Closest Point|Point|data=50
+INPUT|Curve Closest Point|Curve|data=1
+OBJECT|Larger Than|Larger Than|MathComponents.OperatorComponents.Component_LargerThan
+INPUT|Larger Than|First Number|data=50
+INPUT|Larger Than|Second Number|data=1
+OBJECT|Number Slider|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider
+OBJECT|Dispatch|Dispatch|MathComponents.ArrayComponents.Component_Dispatch
+INPUT|Dispatch|List|data=50
+INPUT|Dispatch|Dispatch pattern|data=50
+OBJECT|SensorIntersections|Point|Grasshopper.Kernel.Parameters.Param_Point
+OBJECT|List Length|List Length|MathComponents.ArrayComponents.Component_ListLength
+INPUT|List Length|List|data=40
+OBJECT||Panel|Grasshopper.Kernel.Special.GH_Panel
+OBJECT|HeatmapMesh|Mesh|Grasshopper.Kernel.Parameters.Param_Mesh
+OBJECT|Merge|Merge|MathComponents.MergeComponents.Component_MergeVariable
+INPUT|Merge|Data 1|data=10
+INPUT|Merge|Data 2|data=10
+INPUT|Merge|Data 3|data=0
+OBJECT|Number Slider|Number Slider|Grasshopper.Kernel.Special.GH_NumberSlider

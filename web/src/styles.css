@@ -101,6 +101,7 @@ h1 { font-size: 17px; line-height: 1; margin: 0; font-weight: 600; letter-spacin
 .quiet-button { padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; color: #8d9bb0; background: transparent; font-size: 9px; cursor: pointer; }
 .quiet-button:hover { border-color: rgba(88,220,255,.28); color: var(--cyan); }
 .segmented { display: grid; grid-template-columns: repeat(3, 1fr); padding: 3px; border: 1px solid var(--line); border-radius: 10px; background: rgba(5,8,14,.46); }
+.model-switch { grid-template-columns: repeat(2, 1fr); margin-bottom: 12px; }
 .segmented button { height: 31px; border: 0; border-radius: 7px; background: transparent; color: #68768b; font-size: 10px; cursor: pointer; }
 .segmented button.active { background: #1b263c; color: #dbe8fa; box-shadow: 0 4px 12px rgba(0,0,0,.2); }
 select { width: 100%; height: 35px; margin-top: 10px; padding: 0 10px; color: #aab8cc; border: 1px solid var(--line); border-radius: 9px; background: #0c1220; outline: none; font-size: 10px; }
@@ -143,6 +144,11 @@ select { width: 100%; height: 35px; margin-top: 10px; padding: 0 10px; color: #a
 .playback-timeline input[type='range'] { display: block; height: 4px; margin: 13px 0 10px; }
 .timeline-meta { display: flex; justify-content: space-between; color: #66758b; font: 400 8px/1 'DM Mono', monospace; }
 .model-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+.scene-options { margin-top: 15px; }
+.scene-options[hidden] { display: none; }
+.scene-label { display: block; margin-bottom: 8px; color: #8a98ad; font: 500 8px/1 'DM Mono', monospace; letter-spacing: .12em; }
+.scene-options .segmented { margin-bottom: 5px; }
+.scene-options button:disabled { opacity: .5; cursor: wait; }
 .model-facts > div { min-width: 0; padding: 10px 8px; border: 1px solid var(--line); border-radius: 9px; background: rgba(5,8,14,.34); }
 .model-facts span { display: block; color: #5f6d82; font: 500 7px/1 'DM Mono', monospace; letter-spacing: .08em; }
 .model-facts strong { display: block; margin-top: 7px; color: #c5d4e8; font: 500 10px/1 'DM Mono', monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

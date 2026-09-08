@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { parsePlaybackCsv } from './playback-csv.js';
 import { WebSerialSensor, webSerialSupported } from './web-serial-sensor.js';
 import './styles.css';
@@ -7,6 +8,7 @@ import './styles.css';
 const ROWS = 12;
 const COLUMNS = 8;
 const SENSOR_COUNT = ROWS * COLUMNS;
+const RING_SENSOR_COUNT = 30;
 const HOSTED_MODE = import.meta.env.PROD
   && !['localhost', '127.0.0.1'].includes(location.hostname);
 const HOSTED_DATASETS = [
@@ -46,6 +48,9 @@ const state = {
   playbackFps: 15,
   autoClearCount: 0,
   sourceMode: 'simulation',
+  modelMode: 'arm',
+  presentation: 'wearing',
+  activeSensorCount: SENSOR_COUNT,
   hostedDatasets: new Map(HOSTED_DATASETS.map((dataset) => [dataset.id, dataset])),
   hostedPlaybackFrames: null,
   hostedPlaybackIndex: 0,
@@ -100,6 +105,7 @@ const elements = {
   recordingStatus: document.querySelector('#recording-status'),
   recordingMeta: document.querySelector('#recording-meta'),
   recordingMessage: document.querySelector('#recording-message'),
+  modelControl: document.querySelector('#model-control'),
 };
 
 const hostedSerialSensor = HOSTED_MODE && webSerialSupported()
@@ -176,6 +182,44 @@ applyTheme(localStorage.getItem('tactile-theme') ?? 'dark');
 
 const modelGroup = new THREE.Group();
 scene.add(modelGroup);
+let armMannequin = null;
+let armMannequinPromise = null;
+
+async function applyPresentation() {
+  const wearing = state.modelMode === 'arm' && state.presentation === 'wearing';
+  document.querySelector('#scene-options').hidden = state.modelMode !== 'arm';
+  if (armMannequin) armMannequin.visible = false;
+  if (wearing) {
+    if (!armMannequinPromise) {
+      armMannequinPromise = new GLTFLoader().loadAsync('/assets/arm-mannequin.glb?v=joints-3')
+        .then((gltf) => {
+          armMannequin = gltf.scene;
+          armMannequin.name = 'Arm wearing scene';
+          scene.add(armMannequin);
+          return armMannequin;
+        }).catch((error) => { armMannequinPromise = null; throw error; });
+    }
+    await armMannequinPromise;
+    armMannequin.visible = true;
+  }
+  const bounds = new THREE.Box3().setFromObject(modelGroup);
+  if (wearing) bounds.union(new THREE.Box3().setFromObject(armMannequin));
+  bounds.getCenter(state.modelCenter);
+  bounds.getSize(state.modelSize);
+  grid.position.z = wearing ? bounds.min.z - 12 : -72;
+  grid.scale.setScalar(wearing ? 1.6 : 1);
+  controls.maxDistance = wearing ? 2200 : state.modelMode === 'ring' ? 250 : 1200;
+  // Occluded sensors should stay behind the white arm in the wearing scene.
+  if (state.sensorPoints) state.sensorPoints.material.depthTest = wearing;
+  document.querySelector('#scene-description').textContent = wearing
+    ? 'White mannequin · fitted forearm' : 'Sensor geometry and heat field';
+  document.querySelectorAll('#scene-control button').forEach((button) => {
+    const active = button.dataset.scene === state.presentation;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', String(active));
+  });
+  fitCamera('perspective', false);
+}
 
 const raycaster = new THREE.Raycaster();
 raycaster.params.Points.threshold = 5;
@@ -232,13 +276,17 @@ function updateLegend() {
 }
 
 function buildSensorMatrix() {
+  elements.sensorMatrix.replaceChildren();
+  elements.sensorMatrix.style.gridTemplateColumns = `repeat(${state.modelMode === 'ring' ? 10 : COLUMNS}, 1fr)`;
   const fragment = document.createDocumentFragment();
-  for (let index = 0; index < SENSOR_COUNT; index += 1) {
+  for (let index = 0; index < state.activeSensorCount; index += 1) {
     const button = document.createElement('button');
     button.className = 'sensor-cell';
     button.type = 'button';
     button.dataset.index = String(index);
-    button.title = `A${String(Math.floor(index / COLUMNS) + 1).padStart(2, '0')} · offset ${(index % COLUMNS) + 1}`;
+    button.title = state.modelMode === 'ring'
+      ? `Crossing ${String(index + 1).padStart(2, '0')}`
+      : `A${String(Math.floor(index / COLUMNS) + 1).padStart(2, '0')} · offset ${(index % COLUMNS) + 1}`;
     button.addEventListener('click', () => selectSensor(index));
     fragment.appendChild(button);
   }
@@ -257,9 +305,13 @@ function selectSensor(index) {
 function updateSelectedCard() {
   if (state.selectedSensor === null) return;
   const index = state.selectedSensor;
-  const row = Math.floor(index / COLUMNS) + 1;
-  const column = (index % COLUMNS) + 1;
-  elements.selectedIndex.textContent = `A${String(row).padStart(2, '0')} · ${String(column).padStart(2, '0')}`;
+  if (state.modelMode === 'ring') {
+    elements.selectedIndex.textContent = `Crossing ${String(index + 1).padStart(2, '0')}`;
+  } else {
+    const row = Math.floor(index / COLUMNS) + 1;
+    const column = (index % COLUMNS) + 1;
+    elements.selectedIndex.textContent = `A${String(row).padStart(2, '0')} · ${String(column).padStart(2, '0')}`;
+  }
   elements.selectedValue.textContent = `${Math.round(state.values[index] * 100)}%`;
   elements.selectedVoltage.textContent = `${state.rawVolts[index].toFixed(3)} V`;
   const angle = state.sensorAngles[index];
@@ -267,10 +319,11 @@ function updateSelectedCard() {
 }
 
 function computeSensorAngles(positions) {
-  const angles = new Float32Array(SENSOR_COUNT);
+  const count = positions.length;
+  const angles = new Float32Array(count);
   const physicalColumn = (row, slot) => (row + slot + 1) % ROWS;
 
-  for (let index = 0; index < SENSOR_COUNT; index += 1) {
+  for (let index = 0; index < count; index += 1) {
     const row = Math.floor(index / COLUMNS);
     const slot = index % COLUMNS;
     const current = positions[index];
@@ -283,7 +336,7 @@ function computeSensorAngles(positions) {
 
     const sameColumn = [];
     const targetColumn = physicalColumn(row, slot);
-    for (let candidate = 0; candidate < SENSOR_COUNT; candidate += 1) {
+    for (let candidate = 0; candidate < count; candidate += 1) {
       if (candidate === index) continue;
       const candidateRow = Math.floor(candidate / COLUMNS);
       const candidateSlot = candidate % COLUMNS;
@@ -336,6 +389,96 @@ function modelSensorIndex(channelIndex) {
 }
 
 async function loadModel() {
+  const buttons = [...elements.modelControl.querySelectorAll('button'), ...document.querySelectorAll('#scene-control button')];
+  buttons.forEach((button) => { button.disabled = true; });
+  state.distanceMatrix = null;
+  state.model = null;
+  state.geometry = null;
+  state.material = null;
+  state.sensorPoints = null;
+  cameraTween = null;
+  modelGroup.traverse((object) => {
+    object.geometry?.dispose();
+    object.material?.dispose();
+  });
+  modelGroup.clear();
+  const ring = state.modelMode === 'ring';
+  state.activeSensorCount = ring ? RING_SENSOR_COUNT : SENSOR_COUNT;
+  controls.minDistance = ring ? 15 : 45;
+  controls.maxDistance = ring ? 250 : 1200;
+  raycaster.params.Points.threshold = ring ? 0.7 : 5;
+  buildSensorMatrix();
+  try {
+    if (ring) await loadRingModel();
+    else await loadArmModel();
+    await applyPresentation();
+  } finally {
+    buttons.forEach((button) => { button.disabled = false; });
+  }
+}
+
+async function loadRingModel() {
+  const response = await fetch('/assets/ring-model.json', { cache: 'no-store' });
+  if (!response.ok) throw new Error(`Ring model request failed: ${response.status}`);
+  const payload = await response.json();
+  if (payload.metadata.sensorCount !== RING_SENSOR_COUNT || payload.sensors.length !== RING_SENSOR_COUNT) {
+    throw new Error('Ring model must contain 30 internal sensor crossings');
+  }
+  const source = payload.geometry;
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(source.positions, 3));
+  geometry.setAttribute('normal', new THREE.Float32BufferAttribute(source.normals, 3));
+  geometry.setAttribute('color', new THREE.Float32BufferAttribute(source.colors, 3));
+  geometry.setIndex(source.indices);
+  geometry.computeBoundingSphere();
+  const material = new THREE.MeshStandardMaterial({
+    vertexColors: true, side: THREE.DoubleSide, metalness: 0.02, roughness: 0.62,
+    opacity: state.opacity, transparent: state.opacity < 0.999,
+  });
+  const model = new THREE.Mesh(geometry, material);
+  model.name = 'Ring Grasshopper strips';
+  modelGroup.add(model);
+
+  // Preserve SensorIntersections order; these are internal strip crossings.
+  const sensorPositions = payload.sensors.map((sensor) => new THREE.Vector3(...sensor.position));
+  const markerGeometry = new THREE.BufferGeometry().setFromPoints(sensorPositions);
+  markerGeometry.setAttribute('color', new THREE.Float32BufferAttribute(new Float32Array(RING_SENSOR_COUNT * 3), 3));
+  const sensorPoints = new THREE.Points(markerGeometry, new THREE.PointsMaterial({
+    size: 0.8, sizeAttenuation: true, vertexColors: true,
+    transparent: true, opacity: 0.95, depthTest: false,
+  }));
+  sensorPoints.visible = document.querySelector('#show-sensors').checked;
+  sensorPoints.renderOrder = 10;
+  modelGroup.add(sensorPoints);
+
+  geometry.computeBoundingBox();
+  geometry.boundingBox.getCenter(state.modelCenter);
+  geometry.boundingBox.getSize(state.modelSize);
+  controls.target.copy(state.modelCenter);
+  state.model = model;
+  state.modelMetadata = payload.metadata;
+  state.geometry = geometry;
+  state.material = material;
+  state.sensorPoints = sensorPoints;
+  state.sensorPositions = sensorPositions;
+  state.sensorAngles = Float32Array.from(payload.sensors, (sensor) => sensor.crossingAngle);
+  elements.pointCount.textContent = String(RING_SENSOR_COUNT);
+  elements.modelMeta.textContent = `${payload.metadata.vertexCount.toLocaleString()} vertices`;
+  elements.modelStatus.textContent = 'Ring mesh';
+  elements.modelLength.textContent = String(payload.metadata.length);
+  elements.modelFrontDiameter.textContent = String(payload.metadata.frontDiameter);
+  elements.modelRearDiameter.textContent = String(payload.metadata.rearDiameter);
+  elements.modelMessage.textContent = `30 internal sensor crossings · ${payload.metadata.stripWidth} mm strips`;
+  fitCamera('perspective', false);
+  await precomputeDistances();
+  state.heatDirty = true;
+  elements.modelLoading.classList.add('hidden');
+}
+
+
+async function loadArmModel() {
+  modelGroup.clear();
+  state.activeSensorCount = SENSOR_COUNT;
   const response = await fetch('/assets/model.json', { cache: 'no-store' });
   if (!response.ok) throw new Error(`Model request failed: ${response.status}`);
   const payload = await response.json();
@@ -352,8 +495,8 @@ async function loadModel() {
     side: THREE.DoubleSide,
     metalness: 0.02,
     roughness: 0.62,
-    transparent: false,
-    opacity: 1,
+    transparent: state.opacity < 0.999,
+    opacity: state.opacity,
   });
   const model = new THREE.Mesh(geometry, material);
   model.name = 'Heatmap strips';
@@ -380,7 +523,7 @@ async function loadModel() {
     depthTest: false,
   });
   const sensorPoints = new THREE.Points(markerGeometry, markerMaterial);
-  sensorPoints.visible = false;
+  sensorPoints.visible = document.querySelector('#show-sensors').checked;
   sensorPoints.renderOrder = 10;
   modelGroup.add(sensorPoints);
 
@@ -400,6 +543,7 @@ async function loadModel() {
   elements.pointCount.textContent = String(payload.metadata.sensorCount);
   elements.modelMeta.textContent = `${payload.metadata.vertexCount.toLocaleString()} vertices`;
   elements.modelStatus.textContent = 'GH live mesh';
+  elements.modelMessage.textContent = `96 sensor crossings · ${payload.metadata.stripWidth} mm strips`;
   elements.modelLength.textContent = state.modelSize.x.toFixed(1);
   elements.modelFrontDiameter.textContent = endDiameter(source.positions, geometry.boundingBox, true).toFixed(1);
   elements.modelRearDiameter.textContent = endDiameter(source.positions, geometry.boundingBox, false).toFixed(1);
@@ -412,14 +556,15 @@ async function loadModel() {
 async function precomputeDistances() {
   const positions = state.geometry.attributes.position.array;
   const vertexCount = positions.length / 3;
-  const distances = new Float32Array(vertexCount * SENSOR_COUNT);
+  const sensorCount = state.activeSensorCount;
+  const distances = new Float32Array(vertexCount * sensorCount);
 
   for (let vertexIndex = 0; vertexIndex < vertexCount; vertexIndex += 1) {
     const x = positions[vertexIndex * 3];
     const y = positions[vertexIndex * 3 + 1];
     const z = positions[vertexIndex * 3 + 2];
-    const offset = vertexIndex * SENSOR_COUNT;
-    for (let sensorIndex = 0; sensorIndex < SENSOR_COUNT; sensorIndex += 1) {
+    const offset = vertexIndex * sensorCount;
+    for (let sensorIndex = 0; sensorIndex < sensorCount; sensorIndex += 1) {
       const sensor = state.sensorPositions[sensorIndex];
       distances[offset + sensorIndex] = Math.hypot(x - sensor.x, y - sensor.y, z - sensor.z);
     }
@@ -437,9 +582,10 @@ function updateHeatmap() {
   const markerColors = state.sensorPoints.geometry.attributes.color.array;
   const vertexCount = colors.length / 3;
   const denominator = Math.max(0.001, 1 - state.threshold);
-  const adjustedValues = new Float32Array(SENSOR_COUNT);
+  const sensorCount = state.activeSensorCount;
+  const adjustedValues = new Float32Array(sensorCount);
 
-  for (let sensorIndex = 0; sensorIndex < SENSOR_COUNT; sensorIndex += 1) {
+  for (let sensorIndex = 0; sensorIndex < sensorCount; sensorIndex += 1) {
     const adjusted = Math.min(1, Math.max(0, (state.values[sensorIndex] - state.threshold) / denominator) * state.gain);
     adjustedValues[sensorIndex] = adjusted;
     markerColors[sensorIndex * 3] = 0.82;
@@ -449,8 +595,8 @@ function updateHeatmap() {
 
   for (let vertexIndex = 0; vertexIndex < vertexCount; vertexIndex += 1) {
     let strongest = 0;
-    const distanceOffset = vertexIndex * SENSOR_COUNT;
-    for (let sensorIndex = 0; sensorIndex < SENSOR_COUNT; sensorIndex += 1) {
+    const distanceOffset = vertexIndex * sensorCount;
+    for (let sensorIndex = 0; sensorIndex < sensorCount; sensorIndex += 1) {
       const distance = state.distanceMatrix[distanceOffset + sensorIndex];
       if (distance >= state.radius) continue;
       const adjusted = adjustedValues[sensorIndex];
@@ -652,7 +798,7 @@ updateRecordingUi();
 function cameraPose(view) {
   const center = state.modelCenter;
   const diagonal = state.modelSize.length();
-  const distance = Math.max(170, diagonal * 1.45);
+  const distance = Math.max(state.modelMode === 'ring' ? 35 : 170, diagonal * 1.45);
   const poses = {
     perspective: new THREE.Vector3(center.x - distance * 0.65, center.y - distance * 0.85, center.z + distance * 0.52),
     front: new THREE.Vector3(center.x - distance, center.y, center.z),
@@ -661,6 +807,9 @@ function cameraPose(view) {
     right: new THREE.Vector3(center.x, center.y + distance, center.z),
     top: new THREE.Vector3(center.x, center.y, center.z + distance),
   };
+  if (state.modelMode === 'arm' && state.presentation === 'wearing') {
+    poses.perspective = new THREE.Vector3(center.x - distance * 0.22, center.y - distance * 0.9, center.z + distance * 0.65);
+  }
   return poses[view] ?? poses.perspective;
 }
 
@@ -739,7 +888,7 @@ function bindRange(id, stateKey, formatter) {
   update();
 }
 
-bindRange('radius', 'radius', (value) => value.toFixed(0));
+bindRange('radius', 'radius', (value) => Number(value.toFixed(1)).toString());
 bindRange('gain', 'gain', (value) => `${value.toFixed(2)}×`);
 bindRange('threshold', 'threshold', (value) => `${Math.round(value * 100)}%`);
 bindRange('opacity', 'opacity', (value) => `${Math.round(value * 100)}%`);
@@ -766,7 +915,7 @@ document.querySelector('#show-grid').addEventListener('change', (event) => {
 });
 
 document.querySelector('#reset-heatmap').addEventListener('click', () => {
-  const defaults = { radius: 25, gain: 1, threshold: 0, opacity: 1 };
+  const defaults = { radius: state.modelMode === 'ring' ? 3 : 25, gain: 1, threshold: 0, opacity: 1 };
   Object.entries(defaults).forEach(([id, value]) => {
     const input = document.querySelector(`#${id}`);
     input.value = String(value);
@@ -1108,6 +1257,12 @@ document.querySelector('#reload-model').addEventListener('click', async () => {
   elements.modelMessage.classList.remove('error');
   elements.modelMessage.textContent = 'Exporting the active Grasshopper heatmap mesh…';
   try {
+    if (state.modelMode === 'ring') {
+      await loadModel();
+      button.disabled = false;
+      button.textContent = 'Reload';
+      return;
+    }
     const response = await fetch(apiUrl('/api/model/reload'), { method: 'POST' });
     const payload = await response.json();
     if (!response.ok) throw new Error(payload.detail ?? 'Grasshopper export failed');
@@ -1119,6 +1274,52 @@ document.querySelector('#reload-model').addEventListener('click', async () => {
     button.disabled = false;
     button.textContent = 'Reload';
   }
+});
+
+document.querySelectorAll('#scene-control button').forEach((button) => {
+  button.addEventListener('click', async () => {
+    if (!state.geometry || state.presentation === button.dataset.scene) return;
+    state.presentation = button.dataset.scene;
+    const buttons = [...document.querySelectorAll('#scene-control button'), ...elements.modelControl.querySelectorAll('button')];
+    buttons.forEach((item) => { item.disabled = true; });
+    try {
+      await applyPresentation();
+    } catch (error) {
+      elements.modelMessage.textContent = `Scene could not load: ${error.message}`;
+    } finally {
+      buttons.forEach((item) => { item.disabled = false; });
+    }
+  });
+});
+
+elements.modelControl.querySelectorAll('button').forEach((button) => {
+  button.addEventListener('click', async () => {
+    if (state.modelMode === button.dataset.model) return;
+    state.modelMode = button.dataset.model;
+    const radiusInput = document.querySelector('#radius');
+    const ring = state.modelMode === 'ring';
+    radiusInput.min = ring ? '0.5' : '4';
+    radiusInput.max = ring ? '12' : '70';
+    radiusInput.step = ring ? '0.5' : '1';
+    radiusInput.value = ring ? '3' : '25';
+    radiusInput.dispatchEvent(new Event('input'));
+    elements.modelControl.querySelectorAll('button').forEach((item) => {
+      item.classList.toggle('active', item.dataset.model === state.modelMode);
+    });
+    state.selectedSensor = null;
+    elements.selectedCard.classList.remove('visible');
+    elements.modelLoading.classList.remove('hidden');
+    elements.modelLoading.querySelector('span').textContent = state.modelMode === 'ring'
+      ? 'Loading ring mesh'
+      : 'Preparing 3D heat field';
+    try {
+      await loadModel();
+    } catch (error) {
+      elements.modelStatus.textContent = 'Model error';
+      elements.modelLoading.querySelector('span').textContent = error.message;
+      console.error(error);
+    }
+  });
 });
 
 function websocketAddress() {
