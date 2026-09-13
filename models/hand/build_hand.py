@@ -44,6 +44,25 @@ for points,radii in digits:
 # Flat wrist cut. Closed watertight surface.
 f=np.maximum(f,-96-x)
 v,faces,n,_=marching_cubes(f,level=0,spacing=(step,)*3,gradient_direction='ascent');v+=origin
+# Fit the illustrative index surface to the measured inner radial envelope of
+# the unchanged GH sleeve. Keep a small clearance to prevent mesh flicker.
+sleeve=json.loads((R/'web/public/assets/ring-model.json').read_text())
+sv=np.array(sleeve['geometry']['positions']).reshape(-1,3)
+slope=(sleeve['metadata']['rearDiameter']-sleeve['metadata']['frontDiameter'])/(2*sleeve['metadata']['length'])
+base=float(np.min(np.linalg.norm(sv[:,1:],axis=1)-slope*sv[:,0]))
+clearance=.18
+radial=np.linalg.norm(v[:,1:],axis=1)
+mask=(v[:,0]>-7)&(v[:,0]<34)&(v[:,1]>-10)&(radial<12)
+t=v[mask,0]
+blend=np.minimum(np.clip((t+7)/7,0,1),np.clip((34-t)/7,0,1))
+blend=blend*blend*(3-2*blend)
+target=base+slope*np.clip(t,0,27)-clearance
+new_r=radial[mask]*(1-blend)+target*blend
+v[mask,1:]*=(new_r/radial[mask])[:,None]
+fitmask=mask&(v[:,0]>=0)&(v[:,0]<=27)
+fitgap=base+slope*v[fitmask,0]-np.linalg.norm(v[fitmask,1:],axis=1)
+assert np.allclose(fitgap,clearance,atol=1e-5)
+(R/'models/hand/sleeve-fit.json').write_text(json.dumps({'method':'Illustrative index finger fitted to conservative GH sleeve inner radial envelope','clearanceMm':clearance,'envelopeRadiusAtX0Mm':base,'radiusSlope':slope,'fittedVertices':int(fitmask.sum()),'minClearanceMm':float(fitgap.min()),'maxClearanceMm':float(fitgap.max()),'sleeveGeometryChanged':False},indent=2)+'\n')
 out=R/'web/public/assets/hand-model.json'
 out.write_text(json.dumps({'positions':v.round(4).ravel().tolist(),'indices':faces.ravel().tolist(),'nails':nails,'metadata':{'units':'mm','description':'Reference-inspired sculpted hand; illustrative, not a scan','indexAxis':'X','wristCutX':-96}},separators=(',',':')))
 with (R/'models/hand/hand.obj').open('w') as o:
