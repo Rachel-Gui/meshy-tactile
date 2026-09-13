@@ -1314,11 +1314,6 @@ elements.playbackSelect.addEventListener('change', async () => {
   }
 });
 
-document.querySelector('#calibrate-button').addEventListener('click', async () => {
-  await clearLiveData();
-  elements.sourceMessage.textContent = 'Zero calibration requested — keep the sensor untouched';
-});
-
 document.querySelector('#reload-model').addEventListener('click', async () => {
   const button = document.querySelector('#reload-model');
   button.disabled = true;
