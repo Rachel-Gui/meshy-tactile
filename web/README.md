@@ -141,3 +141,25 @@ Verification: node web/verify-upload-csv.mjs.
 ## Production deployment
 
 GitHub `Rachel-Gui/meshy-tactile`, branch `main`, automatically deploys the Vercel `meshy-tactile` project with root directory `web` and Vite build. API entrypoints serve upload/share/delete only; local serial and Rhino control remain local. A connected private Blob store supplies `BLOB_READ_WRITE_TOKEN` (server-only). No credentials are committed.
+
+### Camera and sensor capture
+
+In Live recording, click **Open camera** and allow camera access (HTTPS or localhost).
+Optionally select **Record camera video**, then **Start recording**. Press Space or
+**Photo · Space** to capture stills. **Stop & save** downloads one ZIP containing
+model.webm, optional camera.webm, photos/, alignment.json (all sensor values and
+photo-to-nearest-frame matches), and sensor-timestamps.csv. Nothing is uploaded.
+Keep the tab visible; recordings are held in memory until export, so use short
+sessions and save before closing or refreshing the page. Audio is not captured.
+
+All `tMs` values use the same browser monotonic session clock; the epoch anchor is
+stored in `clock.epochStartMs`. Original sensor timestamps remain in `timestamp`.
+Sensor alignment is browser receipt time, not hardware acquisition time. Photos
+include click time and latest preview-frame timing when supported. Camera video
+has session seconds and UTC burned into each rendered image; its rendered-frame
+log is in `cameraVideo.renderedFrames`. Recorder start-event offsets are approximate,
+not exact encoded presentation timestamps. Camera buffering and browser scheduling
+mean this is not hardware-level synchronization. `nearestSensorFrame.deltaMs` is
+sensor receipt minus photo click time; matches are null when no data arrived.
+
+Validation: `node web/verify-camera-capture.mjs` from the repository root.

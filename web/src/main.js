@@ -1,3 +1,5 @@
+import { zipSync, strToU8 } from 'fflate';
+import { createCameraCapture, recordStream, nearestFrame } from './camera-capture.js';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { parsePlaybackCsv } from './playback-csv.js';
@@ -645,7 +647,8 @@ function updateRecordingUi() {
   const recording = state.recording;
   const active = Boolean(recording);
   elements.recordStart.disabled = active;
-  elements.recordStop.disabled = !active;
+  elements.recordStop.disabled = !active || recording.stopping;
+  cameraCapture.update();
   elements.recordStart.textContent = active ? 'Recording…' : 'Start recording';
   elements.recordingStatus.textContent = active ? 'REC' : 'Ready';
   elements.recordingStatus.classList.toggle('recording-live', active);
@@ -675,76 +678,79 @@ async function clearLiveData() {
   }
 }
 
-function startRecording() {
-  if (!window.MediaRecorder || !renderer.domElement.captureStream) {
-    elements.recordingMessage.textContent = 'This browser does not support model video recording.';
+const cameraCapture = createCameraCapture(() => state.recording, message => {
+  elements.recordingMessage.textContent = message;
+  elements.recordingMessage.classList.add('error');
+});
+
+async function startRecording() {
+  if (state.recording) return;
+  let recording;
+  try {
+    if (!window.MediaRecorder || !renderer.domElement.captureStream) throw new Error('This browser does not support video recording.');
+    const mimeType = recordingMimeType();
+    if (!mimeType) throw new Error('No supported WebM video format was found.');
+    recording = { startedAt: new Date(), startedPerformance: performance.now(), frames: [], mimeType,
+      model: structuredClone(state.modelMetadata), settings: { radius: state.radius, gain: state.gain, threshold: state.threshold, opacity: state.opacity, palette: state.palette } };
+    cameraCapture.start(recording, mimeType);
+    recording.stream = renderer.domElement.captureStream(30);
+    recording.modelRecording = recordStream(recording.stream, recording.startedPerformance, mimeType);
+    state.recording = recording;
+    elements.recordingMessage.classList.remove('error');
+    elements.recordingMessage.textContent = 'Recording · Space to take a photo · keep this tab visible';
+    elements.recordingMeta.textContent = '0 frames · 0:00';
+    updateRecordingUi();
+  } catch (error) {
+    await recording?.cameraRecording?.stop();
+    recording?.stream?.getTracks().forEach(track => track.stop());
+    elements.recordingMessage.textContent = error.message;
     elements.recordingMessage.classList.add('error');
-    return;
   }
+}
 
-  const mimeType = recordingMimeType();
-  if (!mimeType) {
-    elements.recordingMessage.textContent = 'No supported WebM video format was found.';
+async function stopRecording() {
+  const recording = state.recording;
+  if (!recording || recording.stopping) return;
+  recording.stopping = true;
+  recording.durationMs = performance.now() - recording.startedPerformance;
+  updateRecordingUi();
+  elements.recordingMessage.textContent = 'Preparing ZIP…';
+  try {
+    const [modelVideo, cameraVideo] = await Promise.all([recording.modelRecording.stop(), recording.cameraRecording?.stop(), Promise.all(recording.pendingPhotos)]);
+    const files = { 'model.webm': new Uint8Array(await modelVideo.arrayBuffer()) };
+    if (cameraVideo) files['camera.webm'] = new Uint8Array(await cameraVideo.arrayBuffer());
+    const photos = await Promise.all(recording.photos.map(async ({ blob, ...entry }) => {
+      if (blob) files[entry.filename] = new Uint8Array(await blob.arrayBuffer());
+      return { ...entry, nearestSensorFrame: nearestFrame(recording.frames, entry.tMs) };
+    }));
+    const payload = {
+      cameraDisconnectedMs: recording.cameraDisconnectedMs ?? null,
+      format: 'tactile-sensor-recording-v2', startedAt: recording.startedAt.toISOString(),
+      endedAt: new Date(recording.startedAt.getTime() + recording.durationMs).toISOString(), durationMs: recording.durationMs,
+      clock: { basis: 'performance.now relative to session start', epochStartMs: recording.startedAt.getTime(), sensorTime: 'browser frame receipt; original timestamp preserved separately', cameraTime: 'browser canvas draw/photo click; not hardware exposure time', videoAlignment: 'camera video displays session seconds on each image; recorder event offsets are approximate', deltaConvention: 'nearest sensor tMs minus photo tMs' },
+      video: { filename: 'model.webm', mimeType: recording.mimeType, ...recording.modelRecording.timing },
+      cameraVideo: cameraVideo ? { filename: 'camera.webm', mimeType: recording.mimeType, ...recording.cameraRecording.timing, renderedFrames: recording.cameraFrames } : null,
+      model: recording.model, settings: recording.settings, photos, frames: recording.frames,
+    };
+    files['alignment.json'] = strToU8(JSON.stringify(payload, null, 2));
+    files['sensor-timestamps.csv'] = strToU8('frame_index,session_ms,epoch_ms,source_timestamp,sequence,mode\n' + recording.frames.map((frame, i) => [i, frame.tMs, recording.startedAt.getTime() + frame.tMs, frame.timestamp, frame.sequence, frame.mode].map(value => JSON.stringify(value ?? '')).join(',')).join('\n'));
+    downloadBlob(new Blob([zipSync(files, { level: 0 })], { type: 'application/zip' }), recordingFilename(recordingStamp(recording.startedAt), 'zip'));
+    elements.recordingMessage.classList.remove('error');
+    elements.recordingMessage.textContent = `Saved ZIP · ${recording.frames.length} sensor frames · ${photos.length} photos${cameraVideo ? ' · camera video' : ''}`;
+    state.recording = null;
+  } catch (error) {
+    recording.stopping = false;
+    elements.recordingMessage.textContent = `Export failed: ${error.message}. Click Stop & save to retry.`;
     elements.recordingMessage.classList.add('error');
-    return;
+  } finally {
+    recording.stream.getTracks().forEach(track => track.stop());
+    updateRecordingUi();
   }
-
-  const startedAt = new Date();
-  const startedPerformance = performance.now();
-  const chunks = [];
-  const stream = renderer.domElement.captureStream(30);
-  const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 8_000_000 });
-  const recording = {
-    recorder,
-    stream,
-    startedAt,
-    startedPerformance,
-    frames: [],
-    chunks,
-  };
-  state.recording = recording;
-  recorder.addEventListener('dataavailable', (event) => {
-    if (event.data.size > 0) chunks.push(event.data);
-  });
-  recorder.addEventListener('stop', () => finishRecording(recording, mimeType));
-  recorder.start(1000);
-  elements.recordingMessage.classList.remove('error');
-  elements.recordingMessage.textContent = 'Recording model video and sensor frames…';
-  elements.recordingMeta.textContent = '0 frames · 0:00';
-  updateRecordingUi();
 }
 
-function stopRecording() {
-  if (!state.recording) return;
-  state.recording.recorder.stop();
-  state.recording.stream.getTracks().forEach((track) => track.stop());
-  elements.recordingMessage.textContent = 'Preparing files…';
-  elements.recordStop.disabled = true;
-}
-
-function finishRecording(recording, mimeType) {
-  if (state.recording !== recording) return;
-  const endedAt = new Date();
-  const durationMs = Math.max(0, performance.now() - recording.startedPerformance);
-  const stamp = recordingStamp(recording.startedAt);
-  const payload = {
-    format: 'tactile-sensor-recording-v1',
-    startedAt: recording.startedAt.toISOString(),
-    endedAt: endedAt.toISOString(),
-    durationMs: Math.round(durationMs),
-    video: { mimeType, canvasWidth: renderer.domElement.width, canvasHeight: renderer.domElement.height },
-    model: state.modelMetadata,
-    settings: { radius: state.radius, gain: state.gain, threshold: state.threshold, opacity: state.opacity, palette: state.palette },
-    frames: recording.frames,
-  };
-  downloadBlob(new Blob(recording.chunks, { type: mimeType }), recordingFilename(stamp, 'webm'));
-  downloadBlob(new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' }), recordingFilename(stamp, 'json'));
-  state.recording = null;
-  elements.recordingMessage.classList.remove('error');
-  elements.recordingMessage.textContent = `Saved video + data · ${recording.frames.length} frames`;
-  elements.recordingMeta.textContent = `${recording.frames.length} frames · ${(durationMs / 1000).toFixed(1)}s`;
-  updateRecordingUi();
-}
+window.addEventListener('beforeunload', event => {
+  if (state.recording) { event.preventDefault(); event.returnValue = ''; }
+});
 
 elements.recordStart.addEventListener('click', startRecording);
 elements.recordStop.addEventListener('click', stopRecording);
@@ -1430,9 +1436,11 @@ function applyFramePayload(payload) {
     elements.recordingMessage.classList.remove('error');
     elements.recordingMessage.textContent = 'Stale live sensor data cleared automatically';
   }
-  if (state.recording) {
+  if (state.recording && !state.recording.stopping) {
     state.recording.frames.push({
-      tMs: Math.round(performance.now() - state.recording.startedPerformance),
+      tMs: performance.now() - state.recording.startedPerformance,
+      modelMode: state.modelMode,
+      sensorCount: state.activeSensorCount,
       timestamp: payload.timestamp,
       sequence: payload.sequence,
       mode: payload.mode,

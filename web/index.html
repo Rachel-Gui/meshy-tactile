@@ -118,6 +118,15 @@
               <div><span>CAPTURE</span><h2>Live recording</h2></div>
               <strong id="recording-status">Ready</strong>
             </div>
+            <div class="camera-capture">
+              <video id="camera-preview" autoplay muted playsinline hidden></video>
+              <div class="recording-actions">
+                <button id="camera-toggle" class="quiet-button" type="button">Open camera</button>
+                <button id="camera-photo" class="quiet-button" type="button" disabled>Photo · Space</button>
+              </div>
+              <label><input id="camera-record-video" type="checkbox" /> Record camera video</label>
+              <p id="camera-status" class="source-message">Camera off · photos available during recording</p>
+            </div>
             <div class="recording-actions">
               <button class="quiet-button" id="record-clear" type="button">Clear data</button>
               <button class="record-button" id="record-start" type="button">Start recording</button>
@@ -131,8 +140,8 @@
                 <small>Reset after 5 seconds without signal change</small>
               </span>
             </label>
-            <div class="recording-meta" id="recording-meta">Model video + sensor data JSON</div>
-            <p class="source-message" id="recording-message">The recording follows the current camera view and live heatmap.</p>
+            <div class="recording-meta" id="recording-meta">ZIP · videos + photos + aligned data</div>
+            <p class="source-message" id="recording-message">Open camera, start recording, then press Space for photos. Alignment uses browser receive time. Keep this tab visible; save before closing.</p>
           </section>
 
 
