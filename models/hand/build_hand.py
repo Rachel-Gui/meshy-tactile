@@ -4,7 +4,7 @@ import numpy as np,json
 from skimage.measure import marching_cubes
 R=Path(__file__).resolve().parents[2]
 step=.85
-origin=np.array([-105.,-78.,-22.]); end=np.array([86.,51.,23.])
+origin=np.array([-105.,-78.,-48.]); end=np.array([86.,51.,23.])
 x,y,z=np.meshgrid(*[np.arange(a,b+step,step,dtype=np.float32) for a,b in zip(origin,end)],indexing='ij')
 f=np.full(x.shape,1000,dtype=np.float32)
 def merge(d,k=3):
@@ -26,17 +26,21 @@ ell([-60,-25,-2],[25,24,10],5)
 bone([-102,-26,-2],[-62,-26,-2],17,20,7)
 ell([-37,-1,-3],[23,17,12],5)
 # Finger joint centres. Index radius stays inside the existing GH sleeve.
-digits=[([[-16,0,0],[17,0,0],[39,1,1],[57,2,1]], [7.5,7.45,6.4,5.2]),
-([[-12,-18,0],[24,-19,1],[48,-20,2],[68,-21,2]],[8,7.5,6.5,5.5]),
-([[-15,-37,-1],[18,-39,0],[41,-42,1],[58,-44,1]],[7.6,7.1,6.1,5.1]),
-([[-23,-53,-2],[2,-57,-1],[20,-61,0],[34,-64,0]],[6.4,5.9,5.1,4.4]),
-([[-47,2,-2],[-29,19,-1],[-10,29,1],[4,37,2]],[10.5,9,7.1,5.7])]
+digits=[([[-16,0,0],[27,0,0],[43,1,-6],[55,2,-17]], [7.5,7.1,6.1,5.2]),
+([[-12,-18,0],[20,-19,-3],[41,-20,-13],[55,-21,-28]],[8,7.5,6.5,5.5]),
+([[-15,-37,-1],[14,-38,-5],[33,-40,-17],[44,-41,-32]],[7.6,7.1,6.1,5.1]),
+([[-23,-53,-2],[-1,-55,-6],[14,-57,-18],[21,-58,-31]],[6.4,5.9,5.1,4.4]),
+([[-47,2,-2],[-29,19,-3],[-12,27,-10],[0,29,-20]],[10.5,9,7.1,5.7])]
 nails=[]
 for points,radii in digits:
  for i in range(3):bone(points[i],points[i+1],radii[i],radii[i+1],2.8)
  for point,radius in zip(points[1:3],radii[1:3]):ell(point,[radius*1.12,radius*1.04,radius*.9],1.5)
  a=np.array(points[-2]);b=np.array(points[-1]);c=b*.74+a*.26
- nails.append({'center':[float(c[0]),float(c[1]),float(c[2]+radii[-1]*.79)],'angle':float(np.arctan2(b[1]-a[1],b[0]-a[0])),'length':float(np.linalg.norm(b-a)*.66),'width':radii[-1]*1.3})
+ direction=(b-a)/np.linalg.norm(b-a)
+ side=np.cross([0.,0.,1.],direction);side/=np.linalg.norm(side)
+ normal=np.cross(direction,side)
+ center=c+normal*radii[-1]*.79
+ nails.append({'center':center.tolist(),'direction':direction.tolist(),'normal':normal.tolist(),'length':float(np.linalg.norm(b-a)*.66),'width':radii[-1]*1.3})
 # Flat wrist cut. Closed watertight surface.
 f=np.maximum(f,-96-x)
 v,faces,n,_=marching_cubes(f,level=0,spacing=(step,)*3,gradient_direction='ascent');v+=origin

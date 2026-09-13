@@ -15,7 +15,10 @@ export function createFingerHandScene() {
     const nailMaterial = new THREE.MeshStandardMaterial({ color: '#c9c3bf', roughness: .46 });
     for (const nail of data.nails) {
       const mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 28, 16), nailMaterial);
-      mesh.position.set(...nail.center); mesh.scale.set(nail.length / 2, nail.width / 2, .55); mesh.rotation.z = nail.angle;
+      mesh.position.set(...nail.center); mesh.scale.set(nail.length / 2, nail.width / 2, .55); const direction = new THREE.Vector3(...nail.direction);
+      const normal = new THREE.Vector3(...nail.normal);
+      const side = new THREE.Vector3().crossVectors(normal, direction).normalize();
+      mesh.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(direction, side, normal));
       hand.add(mesh);
     }
   });
