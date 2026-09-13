@@ -1,3 +1,4 @@
+import { createFingerHandScene } from './finger-hand-scene.js';
 import { zipSync, strToU8 } from 'fflate';
 import { createCameraCapture, recordStream, nearestFrame } from './camera-capture.js';
 import * as THREE from 'three';
@@ -185,13 +186,22 @@ applyTheme(localStorage.getItem('tactile-theme') ?? 'dark');
 
 const modelGroup = new THREE.Group();
 scene.add(modelGroup);
+const fingerHand = createFingerHandScene();
+fingerHand.visible = false;
+scene.add(fingerHand);
+const fingerSceneControl = document.querySelector('#finger-scene-control');
+const fingerHandToggle = document.querySelector('#finger-hand-toggle');
+fingerHandToggle.addEventListener('change', () => applyPresentation());
 async function applyPresentation() {
+  fingerSceneControl.hidden = state.modelMode !== 'ring';
+  fingerHand.visible = state.modelMode === 'ring' && fingerHandToggle.checked;
   const bounds = new THREE.Box3().setFromObject(modelGroup);
+  if (fingerHand.visible) bounds.union(new THREE.Box3().setFromObject(fingerHand));
   bounds.getCenter(state.modelCenter);
   bounds.getSize(state.modelSize);
   grid.position.z = -72;
   grid.scale.setScalar(1);
-  controls.maxDistance = state.modelMode === 'ring' ? 250 : 1200;
+  controls.maxDistance = state.modelMode === 'ring' ? (fingerHand.visible ? 650 : 250) : 1200;
   if (state.sensorPoints) state.sensorPoints.material.depthTest = false;
   fitCamera('perspective', false);
 }
@@ -794,7 +804,7 @@ function cameraPose(view) {
   const diagonal = state.modelSize.length();
   const distance = Math.max(state.modelMode === 'ring' ? 35 : 170, diagonal * 1.45);
   const poses = {
-    perspective: new THREE.Vector3(center.x - distance * 0.65, center.y - distance * 0.85, center.z + distance * 0.52),
+    perspective: new THREE.Vector3(center.x - distance * 0.65, center.y + distance * (fingerHand.visible ? 0.85 : -0.85), center.z + distance * 0.72),
     front: new THREE.Vector3(center.x - distance, center.y, center.z),
     back: new THREE.Vector3(center.x + distance, center.y, center.z),
     left: new THREE.Vector3(center.x, center.y - distance, center.z),

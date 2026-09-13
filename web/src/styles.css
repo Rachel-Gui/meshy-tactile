@@ -280,3 +280,6 @@ input[type='range']::-webkit-slider-thumb { appearance: none; width: 13px; heigh
 .camera-capture { margin-bottom: 14px; }
 .camera-capture video { width: 100%; border-radius: 8px; margin-bottom: 8px; background: #111; }
 .camera-capture label { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 11px; }
+
+.finger-scene-control { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 11px; }
+.finger-scene-control[hidden] { display: none; }
