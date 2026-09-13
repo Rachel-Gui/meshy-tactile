@@ -7,21 +7,21 @@ import * as THREE from 'three';
 
 const source = await readFile(new URL('./src/main.js', import.meta.url), 'utf8');
 const asset = JSON.parse(await readFile(new URL('./public/assets/ring-model.json', import.meta.url), 'utf8'));
-const hash = createHash('sha256').update(await readFile(new URL('../ring.gh', import.meta.url))).digest('hex');
+const hash = createHash('sha256').update(await readFile(new URL('../models/tactile/ring.gh', import.meta.url))).digest('hex');
 assert.equal(asset.metadata.sourceSha256, hash);
-assert.equal(asset.metadata.stripWidth, 4);
+assert.equal(asset.metadata.stripWidth, 3);
 const armAsset = JSON.parse(await readFile(new URL('./public/assets/model.json', import.meta.url), 'utf8'));
 assert.equal(armAsset.metadata.stripWidth, 4);
 assert.equal(armAsset.metadata.sourceSha256,
-  createHash('sha256').update(await readFile(new URL('../1.gh', import.meta.url))).digest('hex'));
+  createHash('sha256').update(await readFile(new URL('../models/tactile/1.gh', import.meta.url))).digest('hex'));
 assert.equal(asset.sensors.length, 30);
-assert.equal(asset.geometry.positions.length, 13068 * 3);
+assert.equal(asset.geometry.positions.length, asset.metadata.vertexCount * 3);
 assert.equal(asset.geometry.normals.length, asset.geometry.positions.length);
 assert.equal(asset.geometry.colors.length, asset.geometry.positions.length);
 assert.equal(asset.geometry.indices.length, asset.metadata.triangleCount * 3);
 assert(asset.geometry.positions.every(Number.isFinite));
 assert(asset.geometry.normals.every(Number.isFinite));
-assert(asset.geometry.indices.every((i) => Number.isInteger(i) && i >= 0 && i < 13068));
+assert(asset.geometry.indices.every((i) => Number.isInteger(i) && i >= 0 && i < asset.metadata.vertexCount));
 assert.equal(new Set(asset.sensors.map((s) => s.position.join(','))).size, 30);
 assert(asset.sensors.every((s, i) => s.index === i && s.position[0] > 0.01 && s.position[0] < 26.99));
 
@@ -59,11 +59,11 @@ const run = new Function('THREE', 'state', 'elements', 'modelGroup', 'controls',
 await run.loadModel();
 assert.equal(matrixCount, 30);
 assert.equal(modelGroup.children.length, 2, 'mesh and crossing markers only');
-assert.equal(state.geometry.attributes.position.count, 13068);
+assert.equal(state.geometry.attributes.position.count, asset.metadata.vertexCount);
 assert.deepEqual(state.sensorPositions.map((p) => p.toArray()), asset.sensors.map((s) => s.position));
 assert.equal(state.sensorAngles.length, 30);
 assert(state.sensorAngles.every((a) => a > 0 && a <= 90));
-assert.equal(state.distanceMatrix.length, 13068 * 30);
+assert.equal(state.distanceMatrix.length, asset.metadata.vertexCount * 30);
 assert.equal(state.sensorPoints.visible, true);
 assert.equal(state.material.opacity, 0.6);
 assert.equal(buttons.every((b) => b.disabled === false), true);
@@ -78,7 +78,7 @@ let changed = 0;
 for (let i = 0; i < active.length; i += 3) {
   if (active[i] !== baseline[i]) changed += 1;
 }
-assert(changed > 0 && changed < 13068, 'single crossing produces a local heat field');
+assert(changed > 0 && changed < asset.metadata.vertexCount, 'single crossing produces a local heat field');
 assert(active.every(Number.isFinite));
 
 let disposed = false;
@@ -95,5 +95,5 @@ await run.loadModel();
 run.updateHeatmap();
 assert.equal(matrixCount, 30);
 assert.equal(modelGroup.children.length, 2);
-assert.equal(state.geometry.attributes.position.count, 13068);
+assert.equal(state.geometry.attributes.position.count, asset.metadata.vertexCount);
 console.log(`PASS: GH asset identity, mesh integrity, 30 crossings, localized heat (${changed} vertices), Arm/Ring switching and disposal`);

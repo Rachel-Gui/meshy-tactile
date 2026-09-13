@@ -1,0 +1,18 @@
+{
+  "endBandWidthMm": 5,
+  "endBandCount": 2,
+  "sensorCount": 96,
+  "bandIntervalsMm": [
+    [
+      0,
+      5
+    ],
+    [
+      245,
+      250
+    ]
+  ],
+  "errors": [],
+  "backup": "/Users/a0000/Desktop/tactile/Archive/model_backups/human_arm.before-restore-5mm-20260913.gh",
+  "rhinoSnapshot": "/Users/a0000/Desktop/tactile/models/tactile/human_arm_end_bands.3dm"
+}

@@ -6,6 +6,7 @@ are open. The generated JSON is consumed directly by the local Three.js UI.
 
 import os
 import hashlib
+import shutil
 import json
 
 import Grasshopper
@@ -151,7 +152,7 @@ if document is None:
 
 if os.path.basename(document.FilePath) != '1.gh':
     raise RuntimeError(
-        "The active Grasshopper document is not tactile/1.gh: {}".format(
+        "The active Grasshopper document is not tactile/models/tactile/1.gh: {}".format(
             document.FilePath
         )
     )
@@ -205,8 +206,17 @@ payload = {
     ],
 }
 
+band_sliders = [o for o in document.Objects if o.NickName == 'End Band Width (mm)']
+if band_sliders:
+    payload['metadata']['endBandWidth'] = float(str(band_sliders[0].CurrentValue))
+    payload['metadata']['endBandCount'] = 2
+
 with open(OUTPUT_PATH, 'w') as output:
     json.dump(payload, output, separators=(',', ':'))
+
+built_asset = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dist', 'assets', 'model.json')
+if os.path.isdir(os.path.dirname(built_asset)):
+    shutil.copy2(OUTPUT_PATH, built_asset)
 
 print(
     "Exported {} vertices, {} faces, and {} sensors to {}".format(

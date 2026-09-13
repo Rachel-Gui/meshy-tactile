@@ -1,7 +1,9 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { parsePlaybackCsv } from './playback-csv.js';
+import { parseActionClip } from './action-library.js';
+import { createPlaybackDataPreview } from './playback-data-preview.js';
+import { createRingActionMapping, mapRingActionFrame } from './ring-action-mapping.js';
 import { WebSerialSensor, webSerialSupported } from './web-serial-sensor.js';
 import './styles.css';
 
@@ -9,15 +11,12 @@ const ROWS = 12;
 const COLUMNS = 8;
 const SENSOR_COUNT = ROWS * COLUMNS;
 const RING_SENSOR_COUNT = 30;
+const ROBOT_SENSOR_COUNT = 132;
+const modelForCount = count => count === 132 ? 'robot' : count === 18 ? 'ring' : 'arm';
 const HOSTED_MODE = import.meta.env.PROD
   && !['localhost', '127.0.0.1'].includes(location.hostname);
-const HOSTED_DATASETS = [
-  ['tactile_96points_20260817_194852', 'August 17, 19:48'],
-  ['tactile_96points_20260817_200426', 'August 17, 20:04'],
-  ['tactile_96points_20260825_144129', 'August 25, 14:41:29'],
-  ['tactile_96points_20260825_144214', 'August 25, 14:42:14'],
-  ['tactile_96points_20260827_115909', 'August 27, 11:59:09'],
-].map(([id, label]) => ({ id, label, url: `/data/${id}.csv`, parsed: null }));
+const HOSTED_DATASETS = [];
+
 
 const state = {
   model: null,
@@ -26,9 +25,9 @@ const state = {
   sensorPoints: null,
   sensorPositions: [],
   distanceMatrix: null,
-  sensorAngles: new Float32Array(SENSOR_COUNT),
-  values: new Float32Array(SENSOR_COUNT),
-  rawVolts: new Float32Array(SENSOR_COUNT),
+  sensorAngles: new Float32Array(ROBOT_SENSOR_COUNT),
+  values: new Float32Array(ROBOT_SENSOR_COUNT),
+  rawVolts: new Float32Array(ROBOT_SENSOR_COUNT),
   radius: 25,
   gain: 1,
   threshold: 0,
@@ -47,12 +46,14 @@ const state = {
   playbackPlaying: true,
   playbackFps: 15,
   autoClearCount: 0,
-  sourceMode: 'simulation',
+  sourceMode: 'playback',
   modelMode: 'arm',
-  presentation: 'wearing',
   activeSensorCount: SENSOR_COUNT,
   hostedDatasets: new Map(HOSTED_DATASETS.map((dataset) => [dataset.id, dataset])),
   hostedPlaybackFrames: null,
+  actionClip: null,
+  ringActionMapping: null,
+  playbackRequest: 0,
   hostedPlaybackIndex: 0,
   hostedLastFrameAt: 0,
   hostedStartedAt: performance.now(),
@@ -182,42 +183,14 @@ applyTheme(localStorage.getItem('tactile-theme') ?? 'dark');
 
 const modelGroup = new THREE.Group();
 scene.add(modelGroup);
-let armMannequin = null;
-let armMannequinPromise = null;
-
 async function applyPresentation() {
-  const wearing = state.modelMode === 'arm' && state.presentation === 'wearing';
-  document.querySelector('#scene-options').hidden = state.modelMode !== 'arm';
-  if (armMannequin) armMannequin.visible = false;
-  if (wearing) {
-    if (!armMannequinPromise) {
-      armMannequinPromise = new GLTFLoader().loadAsync('/assets/arm-mannequin.glb?v=joints-3')
-        .then((gltf) => {
-          armMannequin = gltf.scene;
-          armMannequin.name = 'Arm wearing scene';
-          scene.add(armMannequin);
-          return armMannequin;
-        }).catch((error) => { armMannequinPromise = null; throw error; });
-    }
-    await armMannequinPromise;
-    armMannequin.visible = true;
-  }
   const bounds = new THREE.Box3().setFromObject(modelGroup);
-  if (wearing) bounds.union(new THREE.Box3().setFromObject(armMannequin));
   bounds.getCenter(state.modelCenter);
   bounds.getSize(state.modelSize);
-  grid.position.z = wearing ? bounds.min.z - 12 : -72;
-  grid.scale.setScalar(wearing ? 1.6 : 1);
-  controls.maxDistance = wearing ? 2200 : state.modelMode === 'ring' ? 250 : 1200;
-  // Occluded sensors should stay behind the white arm in the wearing scene.
-  if (state.sensorPoints) state.sensorPoints.material.depthTest = wearing;
-  document.querySelector('#scene-description').textContent = wearing
-    ? 'White mannequin · fitted forearm' : 'Sensor geometry and heat field';
-  document.querySelectorAll('#scene-control button').forEach((button) => {
-    const active = button.dataset.scene === state.presentation;
-    button.classList.toggle('active', active);
-    button.setAttribute('aria-pressed', String(active));
-  });
+  grid.position.z = -72;
+  grid.scale.setScalar(1);
+  controls.maxDistance = state.modelMode === 'ring' ? 250 : 1200;
+  if (state.sensorPoints) state.sensorPoints.material.depthTest = false;
   fitCamera('perspective', false);
 }
 
@@ -277,7 +250,9 @@ function updateLegend() {
 
 function buildSensorMatrix() {
   elements.sensorMatrix.replaceChildren();
-  elements.sensorMatrix.style.gridTemplateColumns = `repeat(${state.modelMode === 'ring' ? 10 : COLUMNS}, 1fr)`;
+  elements.sensorMatrix.style.gridTemplateColumns = `repeat(${state.modelMode === 'robot' ? 12 : state.modelMode === 'ring' ? 10 : COLUMNS}, 1fr)`;
+  document.querySelector('.matrix-section .section-heading span').textContent = state.modelMode === 'robot' ? '11 × 12' : state.modelMode === 'ring' ? '3 × 10' : '12 × 8';
+  document.querySelector('.matrix-labels').textContent = state.modelMode === 'robot' ? '132 nodes · workbook display layout' : state.modelMode === 'ring' ? 'Ring crossings' : 'A strips · offset 1 → 8';
   const fragment = document.createDocumentFragment();
   for (let index = 0; index < state.activeSensorCount; index += 1) {
     const button = document.createElement('button');
@@ -287,6 +262,11 @@ function buildSensorMatrix() {
     button.title = state.modelMode === 'ring'
       ? `Crossing ${String(index + 1).padStart(2, '0')}`
       : `A${String(Math.floor(index / COLUMNS) + 1).padStart(2, '0')} · offset ${(index % COLUMNS) + 1}`;
+    if (state.modelMode === 'robot') button.title = state.actionClip?.labels[index] || `Node ${index + 1}`;
+    if (state.sourceMode === 'playback' && state.modelMode === 'ring' && state.ringActionMapping) {
+      const source = state.ringActionMapping.indexOf(index);
+      button.title = source < 0 ? `Crossing ${index + 1} · no input` : `${state.actionClip.labels[source]} → Crossing ${index + 1}`;
+    }
     button.addEventListener('click', () => selectSensor(index));
     fragment.appendChild(button);
   }
@@ -306,14 +286,17 @@ function updateSelectedCard() {
   if (state.selectedSensor === null) return;
   const index = state.selectedSensor;
   if (state.modelMode === 'ring') {
-    elements.selectedIndex.textContent = `Crossing ${String(index + 1).padStart(2, '0')}`;
+    const source = state.sourceMode === 'playback' ? state.ringActionMapping?.indexOf(index) : undefined;
+    elements.selectedIndex.textContent = `Crossing ${String(index + 1).padStart(2, '0')}${source >= 0 ? ` · ${state.actionClip.labels[source]}` : source === -1 ? ' · no input' : ''}`;
+  } else if (state.modelMode === 'robot') {
+    elements.selectedIndex.textContent = state.actionClip?.labels[index] || `Node ${index + 1}`;
   } else {
     const row = Math.floor(index / COLUMNS) + 1;
     const column = (index % COLUMNS) + 1;
     elements.selectedIndex.textContent = `A${String(row).padStart(2, '0')} · ${String(column).padStart(2, '0')}`;
   }
   elements.selectedValue.textContent = `${Math.round(state.values[index] * 100)}%`;
-  elements.selectedVoltage.textContent = `${state.rawVolts[index].toFixed(3)} V`;
+  elements.selectedVoltage.textContent = Number.isFinite(state.rawVolts[index]) ? `${state.rawVolts[index].toFixed(3)} V` : '—';
   const angle = state.sensorAngles[index];
   elements.selectedAngle.textContent = `Strip angle ${angle > 0 ? `${angle.toFixed(1)}°` : '—'}`;
 }
@@ -389,7 +372,7 @@ function modelSensorIndex(channelIndex) {
 }
 
 async function loadModel() {
-  const buttons = [...elements.modelControl.querySelectorAll('button'), ...document.querySelectorAll('#scene-control button')];
+  const buttons = [...elements.modelControl.querySelectorAll('button')];
   buttons.forEach((button) => { button.disabled = true; });
   state.distanceMatrix = null;
   state.model = null;
@@ -403,7 +386,9 @@ async function loadModel() {
   });
   modelGroup.clear();
   const ring = state.modelMode === 'ring';
-  state.activeSensorCount = ring ? RING_SENSOR_COUNT : SENSOR_COUNT;
+  state.activeSensorCount = state.modelMode === 'robot' ? ROBOT_SENSOR_COUNT : ring ? RING_SENSOR_COUNT : SENSOR_COUNT;
+  state.selectedSensor = null;
+  elements.selectedCard.classList.remove('visible');
   controls.minDistance = ring ? 15 : 45;
   controls.maxDistance = ring ? 250 : 1200;
   raycaster.params.Points.threshold = ring ? 0.7 : 5;
@@ -412,6 +397,7 @@ async function loadModel() {
     if (ring) await loadRingModel();
     else await loadArmModel();
     await applyPresentation();
+    document.querySelector('#source-control button[data-mode="serial"]').disabled = state.modelMode === 'robot' || (HOSTED_MODE && !hostedSerialSensor);
   } finally {
     buttons.forEach((button) => { button.disabled = false; });
   }
@@ -478,8 +464,10 @@ async function loadRingModel() {
 
 async function loadArmModel() {
   modelGroup.clear();
-  state.activeSensorCount = SENSOR_COUNT;
-  const response = await fetch('/assets/model.json', { cache: 'no-store' });
+  const robot = state.modelMode === 'robot';
+  state.activeSensorCount = robot ? ROBOT_SENSOR_COUNT : SENSOR_COUNT;
+  const response = await fetch(robot ? '/assets/robot-arm-model.json' : '/assets/model.json', { cache: 'no-store' });
+  if (!response.ok) throw new Error(`Model download failed: ${response.status}`);
   if (!response.ok) throw new Error(`Model request failed: ${response.status}`);
   const payload = await response.json();
   const source = payload.geometry;
@@ -507,13 +495,13 @@ async function loadArmModel() {
   // points within every row so channel 1 maps to the large end and channel 8
   // maps to the small end without changing the incoming channel numbering.
   const sensorPositions = Array.from(
-    { length: SENSOR_COUNT },
+    { length: state.activeSensorCount },
     (_, channelIndex) => new THREE.Vector3(
-      ...payload.sensors[modelSensorIndex(channelIndex)].position,
+      ...payload.sensors[robot ? channelIndex : modelSensorIndex(channelIndex)].position,
     ),
   );
   const markerGeometry = new THREE.BufferGeometry().setFromPoints(sensorPositions);
-  markerGeometry.setAttribute('color', new THREE.Float32BufferAttribute(new Float32Array(SENSOR_COUNT * 3), 3));
+  markerGeometry.setAttribute('color', new THREE.Float32BufferAttribute(new Float32Array(state.activeSensorCount * 3), 3));
   const markerMaterial = new THREE.PointsMaterial({
     size: 4.0,
     sizeAttenuation: true,
@@ -538,15 +526,15 @@ async function loadArmModel() {
   state.material = material;
   state.sensorPoints = sensorPoints;
   state.sensorPositions = sensorPositions;
-  state.sensorAngles = computeSensorAngles(sensorPositions);
+  state.sensorAngles = robot ? new Float32Array(payload.sensors.map(s => s.crossingAngle || 0)) : computeSensorAngles(sensorPositions);
 
   elements.pointCount.textContent = String(payload.metadata.sensorCount);
   elements.modelMeta.textContent = `${payload.metadata.vertexCount.toLocaleString()} vertices`;
-  elements.modelStatus.textContent = 'GH live mesh';
-  elements.modelMessage.textContent = `96 sensor crossings · ${payload.metadata.stripWidth} mm strips`;
-  elements.modelLength.textContent = state.modelSize.x.toFixed(1);
-  elements.modelFrontDiameter.textContent = endDiameter(source.positions, geometry.boundingBox, true).toFixed(1);
-  elements.modelRearDiameter.textContent = endDiameter(source.positions, geometry.boundingBox, false).toFixed(1);
+  elements.modelStatus.textContent = robot ? 'Robot arm · GH mesh' : 'GH live mesh';
+  elements.modelMessage.textContent = `${state.activeSensorCount} sensor crossings · ${payload.metadata.stripWidth} mm strips`;
+  elements.modelLength.textContent = (payload.metadata.length ?? state.modelSize.x).toFixed(1);
+  elements.modelFrontDiameter.textContent = (payload.metadata.frontDiameter ?? endDiameter(source.positions, geometry.boundingBox, true)).toFixed(1);
+  elements.modelRearDiameter.textContent = (payload.metadata.rearDiameter ?? endDiameter(source.positions, geometry.boundingBox, false)).toFixed(1);
   fitCamera('perspective', false);
   await precomputeDistances();
   state.heatDirty = true;
@@ -807,9 +795,6 @@ function cameraPose(view) {
     right: new THREE.Vector3(center.x, center.y + distance, center.z),
     top: new THREE.Vector3(center.x, center.y, center.z + distance),
   };
-  if (state.modelMode === 'arm' && state.presentation === 'wearing') {
-    poses.perspective = new THREE.Vector3(center.x - distance * 0.22, center.y - distance * 0.9, center.z + distance * 0.65);
-  }
   return poses[view] ?? poses.perspective;
 }
 
@@ -852,7 +837,7 @@ new ResizeObserver(resize).observe(elements.viewport);
 function animate(now) {
   requestAnimationFrame(animate);
   updateCameraTween(now);
-  if (HOSTED_MODE) updateHostedRuntime(now);
+  if (HOSTED_MODE || state.sourceMode === 'playback') updateHostedRuntime(now);
   if (state.heatDirty) updateHeatmap();
   controls.update();
   renderer.render(scene, camera);
@@ -915,7 +900,7 @@ document.querySelector('#show-grid').addEventListener('change', (event) => {
 });
 
 document.querySelector('#reset-heatmap').addEventListener('click', () => {
-  const defaults = { radius: state.modelMode === 'ring' ? 3 : 25, gain: 1, threshold: 0, opacity: 1 };
+  const defaults = { radius: state.modelMode === 'ring' ? 3 : state.modelMode === 'robot' ? 10 : 25, gain: 1, threshold: 0, opacity: 1 };
   Object.entries(defaults).forEach(([id, value]) => {
     const input = document.querySelector(`#${id}`);
     input.value = String(value);
@@ -946,16 +931,19 @@ async function refreshPorts() {
 }
 
 function renderHostedPlaybackOptions(selectedDataset = null) {
-  elements.playbackSelect.querySelectorAll('option:not(:first-child)').forEach((option) => option.remove());
-  state.hostedDatasets.forEach((dataset) => {
-    const option = document.createElement('option');
-    option.value = dataset.id;
-    option.textContent = dataset.label;
-    elements.playbackSelect.appendChild(option);
+  elements.playbackSelect.replaceChildren(new Option('Choose an action', ''));
+  const groups = new Map();
+  state.hostedDatasets.forEach(dataset => {
+    const mode = modelForCount(dataset.sensorCount || dataset.parsed?.sensorCount);
+    if (mode !== state.modelMode) return;
+    const name = `${mode === 'robot' ? 'Robot arm' : mode === 'arm' ? 'Human arm' : 'Finger'} · ${dataset.group || 'Uploaded recordings'}`;
+    if (!groups.has(name)) {
+      const group = document.createElement('optgroup'); group.label = name;
+      groups.set(name, group); elements.playbackSelect.append(group);
+    }
+    groups.get(name).append(new Option(dataset.uploadedAt ? `NEW · ${dataset.label} · ${new Date(dataset.uploadedAt).toLocaleString()}` : dataset.label, dataset.id));
   });
-  if (selectedDataset && state.hostedDatasets.has(selectedDataset)) {
-    elements.playbackSelect.value = selectedDataset;
-  }
+  if (selectedDataset && state.hostedDatasets.has(selectedDataset)) elements.playbackSelect.value = selectedDataset;
 }
 
 async function loadHostedDataset(datasetId) {
@@ -964,35 +952,86 @@ async function loadHostedDataset(datasetId) {
   if (!dataset.parsed) {
     const response = await fetch(dataset.url);
     if (!response.ok) throw new Error(`Recording download failed: ${response.status}`);
-    dataset.parsed = parsePlaybackCsv(await response.text(), SENSOR_COUNT);
+    dataset.parsed = dataset.url.endsWith('.json')
+      ? parseActionClip(await response.json()) : parsePlaybackCsv(await response.text(), SENSOR_COUNT);
   }
   return dataset;
 }
 
 async function refreshPlaybackDatasets(selectedDataset = null) {
-  if (HOSTED_MODE) {
-    renderHostedPlaybackOptions(selectedDataset);
-    return Array.from(state.hostedDatasets.values());
-  }
   try {
-    const response = await fetch('/api/playback-datasets');
-    const payload = await response.json();
-    if (!response.ok) throw new Error(payload.detail ?? 'Could not load recordings');
-    elements.playbackSelect.querySelectorAll('option:not(:first-child)').forEach((option) => option.remove());
-    payload.datasets.forEach((dataset) => {
-      const option = document.createElement('option');
-      option.value = dataset.id;
-      option.textContent = dataset.label;
-      elements.playbackSelect.appendChild(option);
+    const response = await fetch('/action-library/manifest.json');
+    if (!response.ok) throw new Error('Could not load the action library');
+    const datasets = await response.json();
+    for (const [id, entry] of state.hostedDatasets) if (entry.url) state.hostedDatasets.delete(id);
+    datasets.forEach(dataset => {
+      if (!state.hostedDatasets.has(dataset.id)) state.hostedDatasets.set(dataset.id, dataset);
     });
-    if (selectedDataset && payload.datasets.some((dataset) => dataset.id === selectedDataset)) {
-      elements.playbackSelect.value = selectedDataset;
-    }
-    return payload.datasets;
-  } catch {
-    // The backend may not be running yet.
+    renderHostedPlaybackOptions(selectedDataset);
+    return datasets;
+  } catch (error) {
+    elements.sourceMessage.textContent = error.message;
+    elements.sourceMessage.classList.add('error');
     return [];
   }
+}
+
+function readUploadOwners() {
+  try { return JSON.parse(localStorage.getItem('tactile-upload-owners') || '{}'); }
+  catch { return {}; }
+}
+async function uploadError(response) {
+  try { const data = await response.json(); return typeof data.detail === 'string' ? data.detail : 'Upload service unavailable'; }
+  catch { return 'Shared upload service unavailable. Connect to the app server.'; }
+}
+function updateUploadActions(dataset) {
+  const share = document.querySelector('#share-upload');
+  const remove = document.querySelector('#delete-upload');
+  share.hidden = !dataset?.shareId;
+  remove.hidden = !dataset?.shareId || !readUploadOwners()[dataset.shareId];
+  document.querySelector('#upload-share-link').hidden = true;
+}
+document.querySelector('#share-upload').addEventListener('click', async () => {
+  const dataset = state.hostedDatasets.get(elements.playbackSelect.value);
+  if (!dataset?.shareId) return;
+  const url = new URL(location.href); url.search = ''; url.hash = ''; url.searchParams.set('upload', dataset.shareId);
+  const input = document.querySelector('#upload-share-link'); input.value = url.href; input.hidden = false; input.select();
+  try { await navigator.clipboard.writeText(url.href); elements.sourceMessage.textContent = 'Share link copied'; }
+  catch { elements.sourceMessage.textContent = 'Copy the preview link below'; }
+});
+document.querySelector('#delete-upload').addEventListener('click', async () => {
+  const dataset = state.hostedDatasets.get(elements.playbackSelect.value);
+  if (!dataset?.shareId || !confirm(`Delete “${dataset.label}”? Its shared link will stop working.`)) return;
+  const button = document.querySelector('#delete-upload'); button.disabled = true;
+  try {
+    const owners = readUploadOwners();
+    const response = await fetch(`/api/shared-uploads/${dataset.shareId}`, {method:'DELETE',headers:{Authorization:`Bearer ${owners[dataset.shareId] || ''}`}});
+    if (!response.ok) throw new Error(await uploadError(response));
+    delete owners[dataset.shareId]; localStorage.setItem('tactile-upload-owners', JSON.stringify(owners));
+    state.hostedDatasets.delete(dataset.id);
+    const fallback = [...state.hostedDatasets.values()].find(d=>modelForCount(d.sensorCount)===state.modelMode);
+    renderHostedPlaybackOptions(fallback?.id); updateUploadActions(null);
+    await previewPlaybackDataset(fallback?.id || '');
+    const url=new URL(location.href); url.searchParams.delete('upload');history.replaceState(null,'',url);
+    elements.sourceMessage.textContent = 'Upload deleted; shared link disabled';
+  } catch (error) { elements.sourceMessage.textContent = error.message; }
+  finally { button.disabled = false; }
+});
+async function restoreSharedUploads() {
+  const sharedId = new URLSearchParams(location.search).get('upload');
+  const ids = new Set([...Object.keys(readUploadOwners()), ...(sharedId ? [sharedId] : [])]);
+  await Promise.all([...ids].map(async id => {
+    try {
+      const response = await fetch(`/api/shared-uploads/${encodeURIComponent(id)}`);
+      if (!response.ok) {
+        if (response.status === 404) {const owners=readUploadOwners();delete owners[id];localStorage.setItem('tactile-upload-owners',JSON.stringify(owners));}
+        if (id===sharedId) throw new Error(await uploadError(response));
+        return;
+      }
+      const dataset=await response.json();state.hostedDatasets.set(dataset.id,dataset);
+    } catch(error) { if(id===sharedId) elements.sourceMessage.textContent=error.message; }
+  }));
+  return sharedId ? state.hostedDatasets.get(`shared_${sharedId}`) : null;
 }
 
 elements.playbackUploadButton.addEventListener('click', () => elements.playbackFile.click());
@@ -1008,34 +1047,32 @@ elements.playbackFile.addEventListener('change', async () => {
   elements.playbackUploadStatus.textContent = `${file.name} · ${(file.size / 1024 / 1024).toFixed(1)} MB`;
 
   try {
-    if (file.size > 100 * 1024 * 1024) throw new Error('CSV must be 100 MB or smaller');
-    if (HOSTED_MODE) {
-      const parsed = parsePlaybackCsv(await file.text(), SENSOR_COUNT);
-      const id = `upload_${Date.now()}`;
-      state.hostedDatasets.set(id, {
-        id,
-        label: `Local · ${file.name.replace(/\.csv$/i, '')}`,
-        url: null,
-        parsed,
+    if (file.size > 3 * 1024 * 1024) throw new Error('CSV must be 3 MB or smaller');
+    {
+      const csv = await file.text();
+      const parsed = parsePlaybackCsv(csv, SENSOR_COUNT);
+      const owners = readUploadOwners();
+      // Check storage before uploading: the private deletion key must survive refresh.
+      localStorage.setItem('tactile-upload-owners', JSON.stringify(owners));
+      const uploadBody = JSON.stringify({filename: file.name, csv});
+      if (new Blob([uploadBody]).size > 4 * 1024 * 1024) throw new Error('CSV encoding exceeds the upload limit; use a shorter clip');
+      const response = await fetch('/api/shared-uploads', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: uploadBody,
       });
+      if (!response.ok) throw new Error(await uploadError(response));
+      const saved = await response.json();
+      owners[saved.shareId] = saved.ownerToken;
+      localStorage.setItem('tactile-upload-owners', JSON.stringify(owners));
+      const id = saved.id;
+      delete saved.ownerToken;
+      state.hostedDatasets.set(id, {...saved, parsed});
       renderHostedPlaybackOptions(id);
       await previewPlaybackDataset(id);
       await setSourceMode('playback');
       elements.playbackUploadStatus.textContent = `${parsed.frames.length.toLocaleString()} frames ready`;
       return;
     }
-    const response = await fetch(`/api/playback-datasets/upload?filename=${encodeURIComponent(file.name)}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/csv' },
-      body: file,
-    });
-    const payload = await response.json();
-    if (!response.ok) throw new Error(payload.detail ?? 'CSV upload failed');
-
-    await refreshPlaybackDatasets(payload.id);
-    await previewPlaybackDataset(payload.id);
-    await setSourceMode('playback');
-    elements.playbackUploadStatus.textContent = `${payload.frames.toLocaleString()} frames ready`;
   } catch (error) {
     elements.playbackUpload.classList.add('error');
     elements.playbackUploadStatus.textContent = error.message;
@@ -1048,39 +1085,66 @@ elements.playbackFile.addEventListener('change', async () => {
 });
 
 async function previewPlaybackDataset(dataset) {
+  const request = ++state.playbackRequest;
+  state.playbackPlaying = false;
   if (!dataset) {
+    state.hostedPlaybackFrames = null;
+    state.playbackPlaying = false;
+    state.values.fill(0); state.rawVolts.fill(0); state.heatDirty = true;
     elements.playbackPreview.hidden = true;
     elements.playbackTimeline.hidden = true;
     return;
   }
-  if (HOSTED_MODE) {
-    const hostedDataset = await loadHostedDataset(dataset);
-    const payload = hostedDataset.parsed;
-    state.hostedPlaybackFrames = payload.frames;
-    state.hostedPlaybackIndex = 0;
-    state.playbackPlaying = false;
-    elements.playbackPreview.hidden = false;
-    elements.playbackTimeline.hidden = false;
-    elements.playbackPreviewTitle.textContent = hostedDataset.label;
-    elements.playbackPreviewMeta.textContent = `${payload.rows.toLocaleString()} samples · ${payload.frames.length.toLocaleString()} complete frames · 96 sensors`;
-    elements.playbackPreviewSample.textContent = payload.sample
-      .map((row) => `#${row.scanIndex} ${row.sensor}  ${row.voltage} V  signal ${row.signal}`)
-      .join('\n');
-    updatePlaybackTimeline(0, payload.frames.length, false);
-    applyHostedPlaybackFrame();
-    return;
+  const hostedDataset = await loadHostedDataset(dataset);
+  if (request !== state.playbackRequest) return;
+  const payload = hostedDataset.parsed;
+  state.actionClip = payload.sensorCount ? payload : null;
+  state.hostedPlaybackFrames = payload.frames;
+  state.hostedPlaybackIndex = 0;
+  state.playbackFps = payload.fps || 15;
+  state.playbackPlaying = false;
+  const modelMode = modelForCount(payload.sensorCount);
+  state.ringActionMapping = null;
+  state.values.fill(0); state.rawVolts.fill(NaN); state.heatDirty = true;
+  if (state.modelMode !== modelMode) {
+    state.modelMode = modelMode;
+    const radiusInput = document.querySelector('#radius');
+    const ring = modelMode === 'ring';
+    radiusInput.min = ring ? '0.5' : '4';
+    radiusInput.max = ring ? '12' : '70';
+    radiusInput.step = ring ? '0.5' : '1';
+    radiusInput.value = ring ? '3' : state.modelMode === 'robot' ? '10' : '25';
+    radiusInput.dispatchEvent(new Event('input'));
+    elements.modelControl.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.model === modelMode));
+    await loadModel();
+    if (request !== state.playbackRequest) return;
   }
-  const response = await fetch(`/api/playback-preview/${encodeURIComponent(dataset)}`);
-  const payload = await response.json();
-  if (!response.ok) throw new Error(payload.detail ?? 'Playback preview failed');
+  renderHostedPlaybackOptions(dataset);
+  if (modelMode === 'ring') {
+    state.ringActionMapping = createRingActionMapping(payload.coordinates,
+      state.sensorPositions.map((p, index) => ({ index, position: p.toArray() })));
+    elements.modelMessage.textContent = '18 nodes mapped onto Ring · geometric display alignment';
+  }
+  buildSensorMatrix();
   elements.playbackPreview.hidden = false;
   elements.playbackTimeline.hidden = false;
-  elements.playbackPreviewTitle.textContent = payload.label;
-  elements.playbackPreviewMeta.textContent = `${payload.rows.toLocaleString()} samples · ${payload.frames.toLocaleString()} complete frames · 96 sensors`;
-  elements.playbackPreviewSample.textContent = payload.sample
-    .map((row) => `#${row.scanIndex} ${row.sensor}  ${row.voltage} V  signal ${row.signal}`)
-    .join('\n');
-  updatePlaybackTimeline(0, payload.frames, false);
+  elements.playbackPreviewTitle.textContent = hostedDataset.label;
+  document.querySelector('#playback-new-badge').hidden = !hostedDataset.uploadedAt;
+  const uploadTime = document.querySelector('#playback-upload-time');
+  uploadTime.hidden = !hostedDataset.uploadedAt;
+  uploadTime.textContent = hostedDataset.uploadedAt ? `Uploaded ${new Date(hostedDataset.uploadedAt).toLocaleString()}` : '';
+  if (hostedDataset.uploadedAt) uploadTime.dateTime = hostedDataset.uploadedAt;
+  updateUploadActions(hostedDataset);
+  elements.playbackPreviewMeta.textContent = `${payload.frames.length.toLocaleString()} playback frames · ${payload.sensorCount || 96} sensors`;
+  elements.playbackPreviewSample.textContent = payload.source
+    ? `${payload.originalFrames} measured frames · ${payload.interpolated ? 'interpolated to 20 FPS' : '20 FPS'}\n${payload.raw ? 'Raw / baseline / signal available' : 'Processed signal only'}${payload.missingSamples ? `\n${payload.missingSamples} missing measurements shown as —` : ''}`
+    : payload.sample.map(row => `#${row.scanIndex} ${row.sensor}  ${row.voltage} V  signal ${row.signal}`).join('\n');
+  if (payload.recordedAt) elements.playbackPreviewSample.textContent += `\nRecorded ${payload.recordedAt}`;
+  if (payload.timingSource) elements.playbackPreviewSample.textContent += `\nTime: ${payload.timingSource}`;
+  if (payload.signalLayer) elements.playbackPreviewSample.textContent += `\n${payload.signalLayer}`;
+  if (payload.sensorCount === 132) elements.playbackPreviewSample.textContent += '\nReconstructed signal · front/back labels provisional';
+  updatePlaybackTimeline(0, payload.frames.length, false);
+  applyHostedPlaybackFrame();
 }
 
 function formatPlaybackTime(frameIndex, fps = state.playbackFps) {
@@ -1105,7 +1169,7 @@ function updatePlaybackTimeline(frameIndex, totalFrames, playing = state.playbac
 }
 
 async function controlPlayback({ frameIndex = null, playing = null } = {}) {
-  if (HOSTED_MODE) {
+  {
     const total = state.hostedPlaybackFrames?.length ?? 0;
     if (!total) throw new Error('Choose a recording first');
     if (frameIndex !== null) {
@@ -1116,14 +1180,6 @@ async function controlPlayback({ frameIndex = null, playing = null } = {}) {
     applyHostedPlaybackFrame();
     return { ok: true, frameIndex: state.hostedPlaybackIndex, playing: state.playbackPlaying };
   }
-  const response = await fetch('/api/playback/control', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ frame_index: frameIndex, playing }),
-  });
-  const payload = await response.json();
-  if (!response.ok) throw new Error(payload.detail ?? 'Playback control failed');
-  return payload;
 }
 
 elements.playbackToggle.addEventListener('click', async () => {
@@ -1153,6 +1209,7 @@ elements.playbackScrubber.addEventListener('change', () => {
 });
 
 async function setSourceMode(mode) {
+  if (mode === 'serial' && state.modelMode === 'robot') throw new Error('Robot arm: select a recorded 132-node action');
   document.querySelectorAll('#source-control button').forEach((button) => {
     button.classList.toggle('active', button.dataset.mode === mode);
   });
@@ -1165,10 +1222,27 @@ async function setSourceMode(mode) {
   elements.playbackTimeline.hidden = mode !== 'playback' || !dataset;
   if (mode === 'playback' && !dataset) {
     elements.sourceMessage.classList.remove('error');
-    elements.sourceMessage.textContent = 'Choose a recording to start playback';
+    state.sourceMode = 'playback';
+    state.playbackPlaying = false;
+    state.values.fill(0); state.rawVolts.fill(0); state.heatDirty = true;
+    elements.sourceMessage.textContent = 'Choose an action to start playback';
     return;
   }
-  if (HOSTED_MODE) {
+  elements.modelControl.querySelectorAll('button').forEach(b => { b.disabled = false; });
+  document.querySelector('.matrix-section').hidden = false;
+  elements.recordStart.disabled = Boolean(state.recording);
+  document.querySelector('.footer-data > span').textContent = '96 mapped intersections';
+  if (mode === 'playback') {
+    if (hostedSerialSensor?.connected) await hostedSerialSensor.disconnect();
+    if (!state.hostedPlaybackFrames?.length) await previewPlaybackDataset(dataset);
+    state.sourceMode = 'playback';
+    state.playbackPlaying = true;
+    state.hostedLastFrameAt = 0;
+    applyHostedPlaybackFrame();
+    return;
+  }
+  state.sourceMode = mode;
+  if (HOSTED_MODE || state.modelMode === 'robot') {
     elements.portSelect.hidden = true;
     if (mode === 'serial') {
       if (!hostedSerialSensor) {
@@ -1199,11 +1273,6 @@ async function setSourceMode(mode) {
     if (hostedSerialSensor?.connected) await hostedSerialSensor.disconnect();
     state.sourceMode = mode;
     state.hostedLastFrameAt = 0;
-    if (mode === 'playback') {
-      if (!state.hostedPlaybackFrames?.length) await previewPlaybackDataset(dataset);
-      state.playbackPlaying = true;
-      applyHostedPlaybackFrame();
-    }
     elements.sourceMessage.classList.remove('error');
     elements.sourceMessage.textContent = mode === 'playback'
       ? 'Playing recorded 96-point sensor data in this browser'
@@ -1263,11 +1332,14 @@ document.querySelector('#reload-model').addEventListener('click', async () => {
       button.textContent = 'Reload';
       return;
     }
-    const response = await fetch(apiUrl('/api/model/reload'), { method: 'POST' });
+    const response = await fetch(apiUrl(`/api/model/reload?model=${state.modelMode}`), { method: 'POST' });
     const payload = await response.json();
     if (!response.ok) throw new Error(payload.detail ?? 'Grasshopper export failed');
     elements.modelMessage.textContent = 'Model updated. Reloading viewer…';
-    location.reload();
+    await loadModel();
+    if (state.sourceMode === 'playback') applyHostedPlaybackFrame();
+    button.disabled = false;
+    button.textContent = 'Reload';
   } catch (error) {
     elements.modelMessage.classList.add('error');
     elements.modelMessage.textContent = error.message;
@@ -1276,32 +1348,33 @@ document.querySelector('#reload-model').addEventListener('click', async () => {
   }
 });
 
-document.querySelectorAll('#scene-control button').forEach((button) => {
-  button.addEventListener('click', async () => {
-    if (!state.geometry || state.presentation === button.dataset.scene) return;
-    state.presentation = button.dataset.scene;
-    const buttons = [...document.querySelectorAll('#scene-control button'), ...elements.modelControl.querySelectorAll('button')];
-    buttons.forEach((item) => { item.disabled = true; });
-    try {
-      await applyPresentation();
-    } catch (error) {
-      elements.modelMessage.textContent = `Scene could not load: ${error.message}`;
-    } finally {
-      buttons.forEach((item) => { item.disabled = false; });
-    }
-  });
-});
-
 elements.modelControl.querySelectorAll('button').forEach((button) => {
   button.addEventListener('click', async () => {
     if (state.modelMode === button.dataset.model) return;
+    if (state.sourceMode === 'playback') {
+      const target = [...state.hostedDatasets.values()].find(dataset =>
+        (modelForCount(dataset.sensorCount || dataset.parsed?.sensorCount)) === button.dataset.model);
+      if (!target) return;
+      const buttons = [...elements.modelControl.querySelectorAll('button')];
+      buttons.forEach(item => { item.disabled = true; });
+      try {
+        await previewPlaybackDataset(target.id);
+        await setSourceMode('playback');
+      } catch (error) {
+        elements.sourceMessage.textContent = error.message;
+        elements.sourceMessage.classList.add('error');
+      } finally {
+        buttons.forEach(item => { item.disabled = false; });
+      }
+      return;
+    }
     state.modelMode = button.dataset.model;
     const radiusInput = document.querySelector('#radius');
     const ring = state.modelMode === 'ring';
     radiusInput.min = ring ? '0.5' : '4';
     radiusInput.max = ring ? '12' : '70';
     radiusInput.step = ring ? '0.5' : '1';
-    radiusInput.value = ring ? '3' : '25';
+    radiusInput.value = ring ? '3' : state.modelMode === 'robot' ? '10' : '25';
     radiusInput.dispatchEvent(new Event('input'));
     elements.modelControl.querySelectorAll('button').forEach((item) => {
       item.classList.toggle('active', item.dataset.model === state.modelMode);
@@ -1347,7 +1420,8 @@ function updateHostedSerialStatus(status) {
 }
 
 function applyFramePayload(payload) {
-  if (payload.type !== 'frame' || payload.values.length !== SENSOR_COUNT) return;
+  if (payload.type !== 'frame' || payload.values.length !== (state.modelMode === 'robot' ? ROBOT_SENSOR_COUNT : SENSOR_COUNT)) return;
+  state.values.fill(0); state.rawVolts.fill(NaN);
   state.values.set(payload.values);
   state.rawVolts.set(payload.rawVolts);
   state.heatDirty = true;
@@ -1397,11 +1471,29 @@ function applyFramePayload(payload) {
   updateMatrix();
 }
 
+const playbackDataPreview = createPlaybackDataPreview(document.querySelector('#current-frame-preview'), index => {
+  selectSensor(index);
+  renderCurrentPlaybackData();
+});
+function renderCurrentPlaybackData() {
+  const dataset=state.hostedDatasets.get(elements.playbackSelect.value);
+  const clip=dataset?.parsed;
+  const frame=state.hostedPlaybackFrames?.[state.hostedPlaybackIndex];
+  if(clip && frame) playbackDataPreview.update(clip,frame,state.hostedPlaybackIndex,state.playbackPlaying,state.ringActionMapping,state.selectedSensor);
+}
+
 function applyHostedPlaybackFrame() {
   const frames = state.hostedPlaybackFrames;
   if (!frames?.length) return;
   state.hostedPlaybackIndex = Math.min(frames.length - 1, Math.max(0, state.hostedPlaybackIndex));
   const frame = frames[state.hostedPlaybackIndex];
+  const sparse = state.actionClip?.sensorCount === 18;
+  if (sparse && !state.ringActionMapping) return;
+  const mappedFrame = sparse ? mapRingActionFrame(frame, state.ringActionMapping) : frame;
+  elements.recordStart.disabled = Boolean(state.recording);
+  elements.recordStart.title = '';
+  document.querySelector('.footer-data > span').textContent = sparse ? '18 mapped nodes · Finger' : `${state.actionClip?.sensorCount || 96} mapped intersections`;
+  elements.pointCount.textContent = sparse ? '18 / 30' : `${state.actionClip?.sensorCount || 96} points`;
   applyFramePayload({
     type: 'frame',
     mode: 'playback',
@@ -1410,8 +1502,8 @@ function applyHostedPlaybackFrame() {
     error: null,
     sequence: ++state.hostedSequence,
     timestamp: Date.now() / 1000,
-    values: frame.values,
-    rawVolts: frame.rawVolts,
+    values: mappedFrame.values,
+    rawVolts: mappedFrame.rawVolts,
     playbackIndex: state.hostedPlaybackIndex,
     playbackTotal: frames.length,
     playbackPlaying: state.playbackPlaying,
@@ -1419,18 +1511,22 @@ function applyHostedPlaybackFrame() {
     autoClearEnabled: false,
     autoClearCount: 0,
   });
+  renderCurrentPlaybackData();
 }
 
 function applyHostedSimulationFrame(now) {
   const elapsed = (now - state.hostedStartedAt) / 1000;
-  const values = new Float32Array(SENSOR_COUNT);
-  const rawVolts = new Float32Array(SENSOR_COUNT);
-  const centerRow = (elapsed * 0.55) % ROWS;
+  const simulationCount = state.modelMode === 'robot' ? ROBOT_SENSOR_COUNT : SENSOR_COUNT;
+  const values = new Float32Array(simulationCount);
+  const rawVolts = new Float32Array(simulationCount);
+  const simulationRows = state.modelMode === 'robot' ? 11 : ROWS;
+  const simulationColumns = state.modelMode === 'robot' ? 12 : COLUMNS;
+  const centerRow = (elapsed * 0.55) % simulationRows;
   const centerColumn = 3.5 + Math.sin(elapsed * 0.8) * 2.2;
-  for (let index = 0; index < SENSOR_COUNT; index += 1) {
-    const row = Math.floor(index / COLUMNS);
-    const column = index % COLUMNS;
-    const rowDistance = Math.min(Math.abs(row - centerRow), ROWS - Math.abs(row - centerRow));
+  for (let index = 0; index < simulationCount; index += 1) {
+    const row = Math.floor(index / simulationColumns);
+    const column = index % simulationColumns;
+    const rowDistance = Math.min(Math.abs(row - centerRow), simulationRows - Math.abs(row - centerRow));
     const distance = Math.hypot(rowDistance / 2.2, (column - centerColumn) / 1.8);
     const pulse = 0.18 * (Math.sin(elapsed * 2.1 + index * 0.37) + 1) / 2;
     const value = Math.max(0, Math.min(1, Math.exp(-distance * distance) * 0.9 + pulse * 0.35));
@@ -1476,11 +1572,13 @@ function connectWebSocket() {
   });
   socket.addEventListener('message', (event) => {
     const payload = JSON.parse(event.data);
-    applyFramePayload(payload);
+    if (state.sourceMode !== 'playback' && state.modelMode !== 'robot') applyFramePayload(payload);
   });
   socket.addEventListener('close', () => {
-    elements.connectionPill.classList.add('error');
-    elements.connectionText.textContent = 'Backend offline';
+    if (state.sourceMode !== 'playback') {
+      elements.connectionPill.classList.add('error');
+      elements.connectionText.textContent = 'Backend offline';
+    }
     setTimeout(connectWebSocket, 1400);
   });
   socket.addEventListener('error', () => socket.close());
@@ -1513,7 +1611,6 @@ function initializeHostedMode() {
     ? 'Video and sensor JSON are recorded here; stale live data clears automatically.'
     : 'Recording works here; USB sensor access requires desktop Chrome or Edge.';
   elements.sourceMessage.textContent = 'Animated 96-point test data in this browser';
-  refreshPlaybackDatasets();
 }
 
 buildSensorMatrix();
@@ -1522,10 +1619,18 @@ if (HOSTED_MODE) {
   initializeHostedMode();
 } else {
   refreshPorts();
-  refreshPlaybackDatasets();
   connectWebSocket();
 }
-loadModel().catch((error) => {
+loadModel().then(async () => {
+  const datasets = await refreshPlaybackDatasets();
+  const sharedDataset = await restoreSharedUploads();
+  if (datasets.length || sharedDataset) {
+    const initialDataset = sharedDataset || datasets.find(dataset => dataset.sensorCount === (new URLSearchParams(location.search).get('model') === 'robot' ? 132 : 96)) || datasets[0];
+    elements.playbackSelect.value = initialDataset.id;
+    await previewPlaybackDataset(initialDataset.id);
+    await setSourceMode('playback');
+  }
+}).catch((error) => {
   elements.modelStatus.textContent = 'Model error';
   elements.modelLoading.querySelector('span').textContent = error.message;
   console.error(error);

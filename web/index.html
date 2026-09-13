@@ -39,26 +39,43 @@
         </section>
 
         <aside class="control-panel">
+          <section class="panel-section model-section">
+            <div class="section-heading">
+              <div><span>GRASSHOPPER</span><h2>Model geometry</h2></div>
+              <button class="quiet-button" id="reload-model">Reload</button>
+            </div>
+            <div class="segmented model-switch" id="model-control">
+              <button class="active" data-model="arm" type="button">Human arm</button>
+              <button data-model="ring" type="button">Finger</button>
+              <button data-model="robot" type="button">Robot arm</button>
+            </div>
+            <div class="model-facts">
+              <div><span>Length</span><strong id="model-length">—</strong></div>
+              <div><span>Front Ø</span><strong id="model-front-diameter">—</strong></div>
+              <div><span>Rear Ø</span><strong id="model-rear-diameter">—</strong></div>
+            </div>
+            <p class="source-message" id="model-message">Edit sliders in Grasshopper, then reload the live mesh.</p>
+          </section>
+
           <section class="panel-section source-section">
             <div class="section-heading">
               <div><span>INPUT</span><h2>Data source</h2></div>
               <button class="quiet-button" id="calibrate-button">Zero</button>
             </div>
             <div class="segmented" id="source-control">
-              <button class="active" data-mode="simulation">Simulation</button>
-              <button data-mode="playback">Recorded data</button>
+              <button class="active" data-mode="playback">Action library</button>
               <button data-mode="serial">Live sensor</button>
             </div>
             <select id="port-select" aria-label="Serial port">
               <option value="">Auto-detect USB serial</option>
             </select>
             <select id="playback-select" aria-label="Playback dataset" hidden>
-              <option value="">Choose a recording</option>
+              <option value="">Choose an action</option>
             </select>
             <div class="playback-upload" id="playback-upload" hidden>
               <input id="playback-file" type="file" accept=".csv,text/csv" hidden />
               <button class="quiet-button" id="playback-upload-button" type="button">Upload CSV</button>
-              <span id="playback-upload-status">96-point recording · max 100 MB</span>
+              <span id="playback-upload-status">18 / 96 / 132 nodes · max 3 MB</span>
             </div>
             <div class="playback-timeline" id="playback-timeline" hidden>
               <div class="timeline-header">
@@ -73,10 +90,26 @@
                 <span>Drag to inspect</span>
               </div>
             </div>
+            <p class="upload-format-help">Upload Signal Combined as CSV (N001… columns). Model detected automatically. Uploads are saved. Share a preview link or delete your own uploads.</p>
             <div class="playback-preview" id="playback-preview" hidden>
-              <strong id="playback-preview-title">Choose a recording</strong>
+              <span class="new-badge" id="playback-new-badge" hidden>NEW</span>
+              <time id="playback-upload-time" hidden></time>
+              <strong id="playback-preview-title">Choose an action</strong>
               <span id="playback-preview-meta">Recorded data preview</span>
-              <pre id="playback-preview-sample"></pre>
+              <div class="current-frame-preview" id="current-frame-preview">
+                <strong data-frame-status>Current frame</strong>
+                <p data-frame-summary></p>
+                <div class="current-frame-table" tabindex="0" aria-label="Current sensor values, scroll to view all nodes">
+                  <table><thead><tr><th>Node</th><th>Signal<br>0–1</th><th>Raw<br>V</th><th>Baseline<br>V</th></tr></thead><tbody></tbody></table>
+                </div>
+                <small>Click a node to inspect it on the model. — = unavailable.</small>
+              </div>
+              <details class="dataset-details"><summary>Dataset details</summary><pre id="playback-preview-sample"></pre></details>
+              <div class="upload-actions">
+                <button class="quiet-button" id="share-upload" hidden>Share preview</button>
+                <button class="quiet-button" id="delete-upload" hidden>Delete my upload</button>
+              </div>
+              <input id="upload-share-link" aria-label="Shared preview link" readonly hidden />
             </div>
             <p class="source-message" id="source-message">Animated 96-point test data</p>
           </section>
@@ -103,30 +136,7 @@
             <p class="source-message" id="recording-message">The recording follows the current camera view and live heatmap.</p>
           </section>
 
-          <section class="panel-section model-section">
-            <div class="section-heading">
-              <div><span>GRASSHOPPER</span><h2>Model geometry</h2></div>
-              <button class="quiet-button" id="reload-model">Reload</button>
-            </div>
-            <div class="segmented model-switch" id="model-control">
-              <button class="active" data-model="arm" type="button">Arm</button>
-              <button data-model="ring" type="button">Ring</button>
-            </div>
-            <div class="model-facts">
-              <div><span>Length</span><strong id="model-length">—</strong></div>
-              <div><span>Front Ø</span><strong id="model-front-diameter">—</strong></div>
-              <div><span>Rear Ø</span><strong id="model-rear-diameter">—</strong></div>
-            </div>
-            <div class="scene-options" id="scene-options">
-              <span class="scene-label">SCENE</span>
-              <div class="segmented" id="scene-control" aria-label="Arm scene">
-                <button data-scene="sensor" type="button" aria-pressed="false">Sensor only</button>
-                <button class="active" data-scene="wearing" type="button" aria-pressed="true">On arm</button>
-              </div>
-              <p class="source-message" id="scene-description">White mannequin · fitted forearm</p>
-            </div>
-            <p class="source-message" id="model-message">Edit sliders in Grasshopper, then reload the live mesh.</p>
-          </section>
+
 
           <section class="panel-section">
             <div class="section-heading">

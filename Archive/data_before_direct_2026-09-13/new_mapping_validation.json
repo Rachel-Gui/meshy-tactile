@@ -1,0 +1,38 @@
+[
+  {
+    "file": "finger/action_library/18point_6x6_sparse/segments/E007_grab_finger_3x6_direct.xlsx",
+    "matching_source_rows": 9
+  },
+  {
+    "file": "finger/action_library/18point_6x6_sparse/segments/E008_back_touch_finger_3x6_direct.xlsx",
+    "matching_source_rows": 7
+  },
+  {
+    "file": "finger/action_library/18point_6x6_sparse/segments/E015_front_touch_finger_3x6_direct.xlsx",
+    "matching_source_rows": 13
+  },
+  {
+    "file": "human_arm/action_library/96point_12x8/segments/E025_front_touch_arm_12x8_direct.xlsx",
+    "matching_source_rows": 81
+  },
+  {
+    "file": "human_arm/action_library/96point_12x8/segments/E009_grab_arm_12x8_direct.xlsx",
+    "matching_source_rows": 127
+  },
+  {
+    "file": "human_arm/action_library/96point_12x8/segments/E022_back_touch_arm_12x8_direct.xlsx",
+    "matching_source_rows": 6
+  },
+  {
+    "file": "robot_arm/action_library/robot_arm_132node/segments/R007_back_touch_robot_arm_11x12_direct.xlsx",
+    "matching_source_rows": 0
+  },
+  {
+    "file": "robot_arm/action_library/robot_arm_132node/segments/R003_front_touch_robot_arm_11x12_direct.xlsx",
+    "matching_source_rows": 3
+  },
+  {
+    "file": "robot_arm/action_library/robot_arm_132node/segments/R004_grab_robot_arm_11x12_direct.xlsx",
+    "matching_source_rows": 4
+  }
+]

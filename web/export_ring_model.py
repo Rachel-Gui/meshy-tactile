@@ -7,6 +7,7 @@ import hashlib
 import json
 import math
 import os
+import shutil
 import traceback
 
 import Rhino
@@ -15,7 +16,7 @@ import Grasshopper as gh
 from Grasshopper.Kernel import GH_DocumentIO
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-DEFINITION = os.path.join(os.path.dirname(ROOT), 'ring.gh')
+DEFINITION = os.path.join(os.path.dirname(ROOT), 'models', 'tactile', 'ring.gh')
 OUTPUT = os.path.join(ROOT, 'public', 'assets', 'ring-model.json')
 
 
@@ -87,16 +88,23 @@ def export():
             'sensorOrder': 'SensorIntersections GH list order',
             'sensorCount': len(sensors), 'vertexCount': mesh.Vertices.Count,
             'faceCount': mesh.Faces.Count, 'triangleCount': len(indices) // 3,
-            'length': float(named['Length'].CurrentValue),
-            'frontDiameter': 2 * float(named['Radius small'].CurrentValue),
-            'rearDiameter': 2 * float(named['Radius large'].CurrentValue),
+            'length': float(str(named['Length'].CurrentValue)),
+            'frontDiameter': 2 * float(str(named['Radius small'].CurrentValue)),
+            'rearDiameter': 2 * float(str(named['Radius large'].CurrentValue)),
             'heatRadius': 3,
         },
         'geometry': {'positions': positions, 'normals': normals, 'colors': colors, 'indices': indices},
         'sensors': sensor_payload,
     }
+    bands = [o for o in objects if o.NickName == 'End Band Width (mm)']
+    if bands:
+        payload['metadata']['endBandWidth'] = float(str(bands[0].CurrentValue))
+        payload['metadata']['endBandCount'] = 2
     with open(OUTPUT, 'w') as target:
         json.dump(payload, target, separators=(',', ':'))
+    built = os.path.join(ROOT, 'dist', 'assets', 'ring-model.json')
+    if os.path.isdir(os.path.dirname(built)):
+        shutil.copy2(OUTPUT, built)
     document.Dispose()
     print('Exported ring.gh: {} vertices, {} sensors'.format(mesh.Vertices.Count, len(sensors)))
 
@@ -106,5 +114,5 @@ if __name__ == '__main__':
         export()
     except:
         with open(os.path.join(ROOT, 'ring-export-error.txt'), 'w') as error_file:
-            error_file.write(traceback.format_exc().encode('utf-8'))
+            error_file.write(traceback.format_exc())
         raise

@@ -1,0 +1,12 @@
+{
+  "status": "verified",
+  "length": 250,
+  "frontDiameter": 32,
+  "rearDiameter": 32,
+  "sensorCount": 132,
+  "errors": [],
+  "gh": "/Users/a0000/Desktop/tactile/models/robot_arm/robot_arm_132_32mm.gh",
+  "rhino": "/Users/a0000/Desktop/tactile/models/robot_arm/robot_arm_132_32mm.3dm",
+  "export": "/Users/a0000/Desktop/tactile/web/public/assets/robot-arm-model.json",
+  "originalHumanArmUnchanged": true
+}

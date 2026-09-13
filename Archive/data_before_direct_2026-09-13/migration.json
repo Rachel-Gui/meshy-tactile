@@ -1,0 +1,17 @@
+[
+  {
+    "source": "/Users/a0000/Desktop/tactile/new/finger_3x6",
+    "current": "/Users/a0000/Desktop/tactile/finger/action_library/18point_6x6_sparse",
+    "archive": "/Users/a0000/Desktop/tactile/Archive/data_before_direct_2026-09-13/finger/action_library"
+  },
+  {
+    "source": "/Users/a0000/Desktop/tactile/new/arm_12x8",
+    "current": "/Users/a0000/Desktop/tactile/human_arm/action_library/96point_12x8",
+    "archive": "/Users/a0000/Desktop/tactile/Archive/data_before_direct_2026-09-13/human_arm/action_library"
+  },
+  {
+    "source": "/Users/a0000/Desktop/tactile/new/robot_arm_11x12",
+    "current": "/Users/a0000/Desktop/tactile/robot_arm/action_library/robot_arm_132node",
+    "archive": "/Users/a0000/Desktop/tactile/Archive/data_before_direct_2026-09-13/robot_arm/action_library"
+  }
+]

@@ -20,10 +20,16 @@ cd /Users/a0000/Desktop/tactile
 ## Data modes
 
 - **Simulation** works without hardware and sends 96 animated values.
-- **Recorded data** accepts CSV uploads directly in the dashboard. Files must
-  contain `scan_index`, `raw_voltage_v`, and `signal_0_to_1`, include at least
-  one complete 96-point frame, and be no larger than 100 MB. Uploaded files are
-  kept in `uploaded_playback_data/` so they remain available after a restart.
+- **Action library** loads 60 reviewed actions from the `finger`, `human_arm`, and `robot_arm` action libraries:
+  12 actions from older 30-point recordings (18 retained nodes), 16 sparse
+  18-node clips, 29 full 96-point clips, and 3 robot-arm 132-node clips. Arm opens by default with its 29 clips. Arm/Ring buttons switch the model and its action list during playback.
+  96-point clips drive Arm; 18-node clips automatically switch to Ring.
+  Six source columns are spaced at 60° around the Ring X axis; the three
+  topology slots select low/middle/high axial crossing tiers. Each node maps
+  to the nearest angular crossing in its tier, with 18 unique targets and
+  12 unused crossings. This is geometric display alignment, not physical
+  wiring calibration. Hover/select a crossing to see its source label. Playback and CSV uploads run in the browser in both local and
+  hosted modes; uploads remain only in the current tab.
 - **Live sensor** auto-detects a `usbserial` or `usbmodem` port and uses the
   existing one-point protocol at 1,000,000 baud.
 - **Auto clear stale data** is enabled by default. In live sensor mode, a
@@ -32,26 +38,26 @@ cd /Users/a0000/Desktop/tactile
 - **Zero** clears the per-sensor rolling baselines. Keep the sensor untouched
   briefly after calibration.
 
-On the hosted Vercel site, Simulation and Recorded data run completely in the
-browser. The five built-in CSV recordings are published with the frontend, and
+On the hosted Vercel site, Action library playback runs in the
+browser. The reviewed action library is published with the frontend, and
 an uploaded CSV remains private to the current browser tab. On desktop Chrome
 or Edge, **Live sensor** uses Web Serial to talk directly to the selected USB
 device at 1,000,000 baud; sensor data never passes through Vercel. Baseline
 calibration and automatic stale-data clearing also run in the browser.
-Grasshopper reload and persistent uploads still require the local FastAPI app.
+Grasshopper reload and the backend upload API still require the local FastAPI app.
 
 ## Update geometry
 
-Both `ring.gh` and `1.gh` use **4 mm strip widths**, constructed with
-centreline offsets of +2/-2 mm. The exported metadata records `stripWidth`
-and the source GH checksum. `1.before-width4.gh` preserves the previous
-6 mm arm definition. `../strip-width-validation.json` records the Rhino
+`ring.gh` uses **3 mm strip widths**, constructed with centreline offsets
+of +1.5/-1.5 mm. `1.gh` retains **4 mm** widths (+2/-2 mm). The exported metadata records `stripWidth`
+and the source GH checksum. `../Archive/model_backups/1.before-width4.gh` preserves the previous
+6 mm arm definition. `../Archive/validation_reports/strip-width-validation.json` records the Rhino
 solution checks for both models.
 
 ### Ring mode
 
 The **Ring** button loads `public/assets/ring-model.json`, exported directly
-from the repaired `../ring.gh`. It displays the woven strip mesh and its 30
+from the repaired `../models/tactile/ring.gh`. It displays the woven strip mesh and its 30
 internal sensor crossings (27 mm long, 17/18 mm end diameters). The default
 heat radius is 3 mm. Sensor labels and angles refer to actual strip crossings.
 
@@ -71,7 +77,8 @@ loader code. This automated check does not render a browser screenshot.
 
 ### Arm mode
 
-Arm opens in the **On arm** scene: a matte white display mannequin with a
+Arm opens in **Sensor only**, showing the isolated sensor and heat field.
+Select **On arm** to load and show a matte white display mannequin with a
 hand, forearm and upper arm. **Sensor only** returns to the isolated sensor.
 The scene is hidden automatically in Ring mode. Heatmap inputs and the original
 GH sensor mesh are unchanged. Sensor markers respect arm occlusion when worn.
@@ -85,7 +92,7 @@ See `model-source/README.md` for attribution. Run
 The fit check samples the actual strip mesh and verifies a sub-3.5 mm gap
 to the underlying arm. Refit/regenerate this scene if sleeve dimensions change.
 
-Keep Rhino 8 and `/Users/a0000/Desktop/tactile/1.gh` open. Change the
+Keep Rhino 8 and `/Users/a0000/Desktop/tactile/models/tactile/1.gh` open. Change the
 Grasshopper sliders, wait for the solution to finish, then click **Reload** in
 the Model geometry section. The dashboard exports the current `HeatmapMesh`
 and the ordered 96 sensor positions without baking.
@@ -97,3 +104,40 @@ cd /Users/a0000/Desktop/tactile/web
 npm install
 npm run build
 ```
+
+## Recording source
+
+Reviewed workbooks are exported to `public/action-library/` by:
+
+```bash
+/Users/a0000/anaconda3/bin/python tools/export_action_library.py
+npm run build
+node verify-action-library.mjs
+```
+
+The exporter uses the desktop viewer's mapping and 20 FPS interpolation.
+Original workbooks are unchanged; unavailable measurements remain null in JSON.
+Vite copies these assets into `dist/action-library/`; old built-in CSV assets
+are no longer included. Previous persistent uploads were moved to
+`../Archive/frontend_uploads_before_action_library_20260911/`.
+
+Ring 3 mm validation: `../Archive/validation_reports/ring-width-3mm.json`.
+Previous 4 mm Ring definition: `../Archive/model_backups/ring.before-width3.gh`.
+
+### Robot arm mode
+
+Open `http://127.0.0.1:8001/?model=robot`. The GH-exported sleeve is 250 mm long with 32 mm diameter at both ends and 132 mapped interior crossings. The Robot arm selector loads R001/R002/R003 reconstructed signals. Playback is interpolated to 20 FPS; the original 3/5/5 scan counts remain shown. Front/back labels and mounting orientation are provisional. USB live input remains the 96-channel protocol and is disabled in Robot arm mode.
+
+The local Reload button saves/exports the active Robot arm GH definition through `export_robot_arm_model.py`. New model files: `models/robot_arm/robot_arm_132_32mm.gh` and `.3dm`.
+
+## CSV upload preview
+
+Upload CSV accepts the current Signal Combined worksheet exported as CSV: N001…N018 (Finger), N001…N096 (Human arm), or N001…N132 (Robot arm), with row-major node order. It auto-detects the model and preserves elapsed timing through 20 FPS interpolation. Supported time columns: action_elapsed_s, action_time_s, source_elapsed_s, source_time_s, or timestamp; without time columns it assumes 20 FPS. Values must be finite 0–1 responses. The old 96-point scan_index/raw_voltage_v/signal_0_to_1 CSV remains supported.
+
+Uploaded CSV previews persist in private Vercel Blob storage in production and SQLite locally. Share preview creates a link readable by anyone who has it. Delete my upload requires the private owner key stored in the uploader’s browser localStorage; the share URL does not contain that key. Clearing browser storage loses deletion access. NEW and upload/recording timestamps are shown. Export Signal Combined as CSV before uploading XLSX data; maximum CSV size is 3 MB (server request limit 4 MB).
+
+Verification: node web/verify-upload-csv.mjs.
+
+## Production deployment
+
+GitHub `Rachel-Gui/meshy-tactile`, branch `main`, automatically deploys the Vercel `meshy-tactile` project with root directory `web` and Vite build. API entrypoints serve upload/share/delete only; local serial and Rhino control remain local. A connected private Blob store supplies `BLOB_READ_WRITE_TOKEN` (server-only). No credentials are committed.

@@ -41,22 +41,11 @@ AUTO_CLEAR_CHANGE_EPSILON = 0.015
 AUTO_CLEAR_SIGNAL_THRESHOLD = 0.05
 VREF = 3.3
 PHYSICAL_PIN_MAP = (1, 3, 5, 7, 2, 4, 6, 8, 10, 12, 14, 16)
-PLAYBACK_DIR = ROOT.parent / "tactile_data_for_colleague_20260819"
+# Reviewed actions are served as /action-library JSON and played in the browser.
+# Legacy built-in CSV recordings have been removed from the active catalog.
 UPLOAD_DIR = ROOT.parent / "uploaded_playback_data"
-PLAYBACK_DATASETS = {
-    "tactile_96points_20260817_194852": PLAYBACK_DIR / "tactile_96points_20260817_194852.csv",
-    "tactile_96points_20260817_200426": PLAYBACK_DIR / "tactile_96points_20260817_200426.csv",
-    "tactile_96points_20260825_144129": PLAYBACK_DIR / "tactile_96points_20260825_144129.csv",
-    "tactile_96points_20260825_144214": PLAYBACK_DIR / "tactile_96points_20260825_144214.csv",
-    "tactile_96points_20260827_115909": ROOT.parent / "tactile_96points_20260827_115909.csv",
-}
-PLAYBACK_LABELS = {
-    "tactile_96points_20260817_194852": "August 17, 19:48",
-    "tactile_96points_20260817_200426": "August 17, 20:04",
-    "tactile_96points_20260825_144129": "August 25, 14:41:29",
-    "tactile_96points_20260825_144214": "August 25, 14:42:14",
-    "tactile_96points_20260827_115909": "August 27, 11:59:09",
-}
+PLAYBACK_DATASETS = {}
+PLAYBACK_LABELS = {}
 
 
 def register_saved_uploads():
@@ -565,7 +554,10 @@ async def lifespan(_app: FastAPI):
     engine.join(timeout=3.0)
 
 
+from .shared_uploads import create_upload_router
+
 app = FastAPI(title="Tactile 3D Dashboard", lifespan=lifespan)
+app.include_router(create_upload_router(UPLOAD_DIR / "shared"))
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
@@ -710,9 +702,11 @@ async def set_auto_clear(request: AutoClearRequest):
 
 
 @app.post("/api/model/reload")
-async def reload_model():
+async def reload_model(model: str = "arm"):
     rhinocode = Path("/Applications/Rhino 8.app/Contents/Resources/bin/rhinocode")
-    exporter = ROOT / "export_grasshopper_model.py"
+    if model not in {"arm", "robot"}:
+        raise HTTPException(status_code=400, detail="Unknown model")
+    exporter = ROOT / ("export_robot_arm_model.py" if model == "robot" else "export_grasshopper_model.py")
     if not rhinocode.exists():
         raise HTTPException(status_code=500, detail="Rhino 8 rhinocode was not found")
 
@@ -729,7 +723,7 @@ async def reload_model():
     if process.returncode != 0:
         raise HTTPException(
             status_code=500,
-            detail=message or "Open Rhino and tactile/1.gh before reloading",
+            detail=message or "Open Rhino and tactile/models/tactile/1.gh before reloading",
         )
 
     return {"ok": True, "message": message or "Grasshopper model exported"}
