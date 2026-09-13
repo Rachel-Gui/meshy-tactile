@@ -1,0 +1,49 @@
+"""Reference-inspired hand, millimetres; continuous implicit surface, index axis X."""
+from pathlib import Path
+import numpy as np,json
+from skimage.measure import marching_cubes
+R=Path(__file__).resolve().parents[2]
+step=.85
+origin=np.array([-105.,-78.,-22.]); end=np.array([86.,51.,23.])
+x,y,z=np.meshgrid(*[np.arange(a,b+step,step,dtype=np.float32) for a,b in zip(origin,end)],indexing='ij')
+f=np.full(x.shape,1000,dtype=np.float32)
+def merge(d,k=3):
+ global f
+ h=np.maximum(k-np.abs(f-d),0)/k
+ f=np.minimum(f,d)-h*h*k*.25
+
+def ell(c,r,k=3):
+ q=[(v-a)/b for v,a,b in zip([x,y,z],c,r)]
+ merge((np.sqrt(sum(v*v for v in q))-1)*min(r),k)
+def bone(a,b,ra,rb,k=2):
+ a=np.array(a);b=np.array(b);v=b-a
+ t=np.clip(((x-a[0])*v[0]+(y-a[1])*v[1]+(z-a[2])*v[2])/sum(v*v),0,1)
+ d=np.sqrt((x-a[0]-t*v[0])**2+(y-a[1]-t*v[1])**2+((z-a[2]-t*v[2])/0.88)**2)-(ra+(rb-ra)*t)
+ merge(d,k)
+# Palm volume and wrist blend, broad knuckles tapering toward wrist.
+ell([-37,-25,-1],[34,33,10.5],5)
+ell([-60,-25,-2],[25,24,10],5)
+bone([-102,-26,-2],[-62,-26,-2],17,20,7)
+ell([-37,-1,-3],[23,17,12],5)
+# Finger joint centres. Index radius stays inside the existing GH sleeve.
+digits=[([[-16,0,0],[17,0,0],[39,1,1],[57,2,1]], [7.5,7.45,6.4,5.2]),
+([[-12,-18,0],[24,-19,1],[48,-20,2],[68,-21,2]],[8,7.5,6.5,5.5]),
+([[-15,-37,-1],[18,-39,0],[41,-42,1],[58,-44,1]],[7.6,7.1,6.1,5.1]),
+([[-23,-53,-2],[2,-57,-1],[20,-61,0],[34,-64,0]],[6.4,5.9,5.1,4.4]),
+([[-47,2,-2],[-29,19,-1],[-10,29,1],[4,37,2]],[10.5,9,7.1,5.7])]
+nails=[]
+for points,radii in digits:
+ for i in range(3):bone(points[i],points[i+1],radii[i],radii[i+1],2.8)
+ for point,radius in zip(points[1:3],radii[1:3]):ell(point,[radius*1.12,radius*1.04,radius*.9],1.5)
+ a=np.array(points[-2]);b=np.array(points[-1]);c=b*.74+a*.26
+ nails.append({'center':[float(c[0]),float(c[1]),float(c[2]+radii[-1]*.79)],'angle':float(np.arctan2(b[1]-a[1],b[0]-a[0])),'length':float(np.linalg.norm(b-a)*.66),'width':radii[-1]*1.3})
+# Flat wrist cut. Closed watertight surface.
+f=np.maximum(f,-96-x)
+v,faces,n,_=marching_cubes(f,level=0,spacing=(step,)*3,gradient_direction='ascent');v+=origin
+out=R/'web/public/assets/hand-model.json'
+out.write_text(json.dumps({'positions':v.round(4).ravel().tolist(),'indices':faces.ravel().tolist(),'nails':nails,'metadata':{'units':'mm','description':'Reference-inspired sculpted hand; illustrative, not a scan','indexAxis':'X','wristCutX':-96}},separators=(',',':')))
+with (R/'models/hand/hand.obj').open('w') as o:
+ o.write('# Reference-inspired continuous hand mesh, mm\n')
+ for p in v:o.write('v %.4f %.4f %.4f\n'%tuple(p))
+ for p in faces+1:o.write('f %d %d %d\n'%tuple(p))
+print(len(v),'vertices',len(faces),'triangles')

@@ -193,6 +193,7 @@ const fingerSceneControl = document.querySelector('#finger-scene-control');
 const fingerHandToggle = document.querySelector('#finger-hand-toggle');
 fingerHandToggle.addEventListener('change', () => applyPresentation());
 async function applyPresentation() {
+  await fingerHand.userData.ready;
   fingerSceneControl.hidden = state.modelMode !== 'ring';
   fingerHand.visible = state.modelMode === 'ring' && fingerHandToggle.checked;
   const bounds = new THREE.Box3().setFromObject(modelGroup);
