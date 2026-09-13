@@ -1,0 +1,117 @@
+{
+  "dataset": "direct-2026-09-13",
+  "index": {
+    "path": "action_index.xlsx",
+    "sha256": "9cdab23725d38f6613ea2cd0f282d15dfa78fbd9716f521c6ac4e8c14492fd64"
+  },
+  "actions": [
+    {
+      "id": "direct_finger_E007",
+      "label": "E007 · grab",
+      "group": "Finger · 18 nodes · latest",
+      "action": "grab",
+      "sensorCount": 18,
+      "source": "finger/action_library/18point_6x6_sparse/segments/E007_grab_finger_3x6_direct.xlsx",
+      "originalFrames": 9,
+      "url": "/action-library/direct_finger_E007.json",
+      "frames": 85,
+      "sha256": "86cb505718f5eb653355ad2a8f9fbd3a7ebccf22e96fb335072d40112873c447"
+    },
+    {
+      "id": "direct_finger_E008",
+      "label": "E008 · back_touch",
+      "group": "Finger · 18 nodes · latest",
+      "action": "back_touch",
+      "sensorCount": 18,
+      "source": "finger/action_library/18point_6x6_sparse/segments/E008_back_touch_finger_3x6_direct.xlsx",
+      "originalFrames": 6,
+      "url": "/action-library/direct_finger_E008.json",
+      "frames": 54,
+      "sha256": "b22d495c277b3b93db07c9977a8ad2bc45edb12a10f810e24fcc4fc8ef5b7da4"
+    },
+    {
+      "id": "direct_finger_E015",
+      "label": "E015 · front_touch",
+      "group": "Finger · 18 nodes · latest",
+      "action": "front_touch",
+      "sensorCount": 18,
+      "source": "finger/action_library/18point_6x6_sparse/segments/E015_front_touch_finger_3x6_direct.xlsx",
+      "originalFrames": 9,
+      "url": "/action-library/direct_finger_E015.json",
+      "frames": 88,
+      "sha256": "f1d05f337346b6464d7bb65bf68d776ea9d5c4118e528652dcd683cd4166bb30"
+    },
+    {
+      "id": "direct_human_arm_E009",
+      "label": "E009 · grab",
+      "group": "Human arm · 96 nodes · latest",
+      "action": "grab",
+      "sensorCount": 96,
+      "source": "human_arm/action_library/96point_12x8/segments/E009_grab_arm_12x8_direct.xlsx",
+      "originalFrames": 127,
+      "url": "/action-library/direct_human_arm_E009.json",
+      "frames": 128,
+      "sha256": "2b28cbaf6f0689a926639364cf30efd10793d2bab1c450efd2eb538eaef53862"
+    },
+    {
+      "id": "direct_human_arm_E022",
+      "label": "E022 · back_touch",
+      "group": "Human arm · 96 nodes · latest",
+      "action": "back_touch",
+      "sensorCount": 96,
+      "source": "human_arm/action_library/96point_12x8/segments/E022_back_touch_arm_12x8_direct.xlsx",
+      "originalFrames": 6,
+      "url": "/action-library/direct_human_arm_E022.json",
+      "frames": 144,
+      "sha256": "37abde36fb8b0381c35ece5e3c78714e19e17df1fbc72ab4766ebb2415921096"
+    },
+    {
+      "id": "direct_human_arm_E025",
+      "label": "E025 · front_touch",
+      "group": "Human arm · 96 nodes · latest",
+      "action": "front_touch",
+      "sensorCount": 96,
+      "source": "human_arm/action_library/96point_12x8/segments/E025_front_touch_arm_12x8_direct.xlsx",
+      "originalFrames": 81,
+      "url": "/action-library/direct_human_arm_E025.json",
+      "frames": 82,
+      "sha256": "734e31450009be32611703e1d28974dcb6f5286459ef82e5255535f9b659d674"
+    },
+    {
+      "id": "direct_robot_arm_R003",
+      "label": "R003 · front_touch",
+      "group": "Robot arm · 132 nodes · latest",
+      "action": "front_touch",
+      "sensorCount": 132,
+      "source": "robot_arm/action_library/robot_arm_132node/segments/R003_front_touch_robot_arm_11x12_direct.xlsx",
+      "originalFrames": 3,
+      "url": "/action-library/direct_robot_arm_R003.json",
+      "frames": 107,
+      "sha256": "2b7cca80449c6656ec1fba984eefa8864c2d025946ae1ceb98cb5515c40a827c"
+    },
+    {
+      "id": "direct_robot_arm_R004",
+      "label": "R004 · grab",
+      "group": "Robot arm · 132 nodes · latest",
+      "action": "grab",
+      "sensorCount": 132,
+      "source": "robot_arm/action_library/robot_arm_132node/segments/R004_grab_robot_arm_11x12_direct.xlsx",
+      "originalFrames": 4,
+      "url": "/action-library/direct_robot_arm_R004.json",
+      "frames": 160,
+      "sha256": "b4c57710ea60b7d5135d016f1cdc9a170957a65afdc3f8642fb91c841b5eaac0"
+    },
+    {
+      "id": "direct_robot_arm_R007",
+      "label": "R007 · back_touch",
+      "group": "Robot arm · 132 nodes · latest",
+      "action": "back_touch",
+      "sensorCount": 132,
+      "source": "robot_arm/action_library/robot_arm_132node/segments/R007_back_touch_robot_arm_11x12_direct.xlsx",
+      "originalFrames": 4,
+      "url": "/action-library/direct_robot_arm_R007.json",
+      "frames": 160,
+      "sha256": "93132c237fe5315a482a69bc69d613f1ffd7ab9f15c928a743a30ab64b74f889"
+    }
+  ]
+}

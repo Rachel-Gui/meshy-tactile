@@ -1,7 +1,7 @@
-# human_arm
+# Human arm
 
-当前动作库使用 2026-09-13 导入的 3 个 Direct 动作（front_touch / back_touch / grab），显示 Signal Combined。
+Current library: 3 Direct actions imported on 2026-09-13 (front_touch, back_touch, grab), with 96 measured nodes. The primary layer is Signal Combined.
 
-数据位置与运行方法见根目录 `CURRENT_DATASET.md`。旧数据保存在 `Archive/data_before_direct_2026-09-13`。
+See [Current dataset](../CURRENT_DATASET.md) for canonical paths and update instructions. Previous data is preserved in Archive.
 
-Human arm 首尾各有 5 mm 宽条带，Grasshopper、Rhino 和前端已同步。
+End bands: 5 mm at each end.

@@ -19,32 +19,14 @@ cd /Users/a0000/Desktop/tactile
 
 ## Data modes
 
-- **Simulation** works without hardware and sends 96 animated values.
-- **Action library** loads 60 reviewed actions from the `finger`, `human_arm`, and `robot_arm` action libraries:
-  12 actions from older 30-point recordings (18 retained nodes), 16 sparse
-  18-node clips, 29 full 96-point clips, and 3 robot-arm 132-node clips. Arm opens by default with its 29 clips. Arm/Ring buttons switch the model and its action list during playback.
-  96-point clips drive Arm; 18-node clips automatically switch to Ring.
-  Six source columns are spaced at 60° around the Ring X axis; the three
-  topology slots select low/middle/high axial crossing tiers. Each node maps
-  to the nearest angular crossing in its tier, with 18 unique targets and
-  12 unused crossings. This is geometric display alignment, not physical
-  wiring calibration. Hover/select a crossing to see its source label. Playback and CSV uploads run in the browser in both local and
-  hosted modes; uploads remain only in the current tab.
-- **Live sensor** auto-detects a `usbserial` or `usbmodem` port and uses the
-  existing one-point protocol at 1,000,000 baud.
-- **Auto clear stale data** is enabled by default. In live sensor mode, a
-  non-zero signal that stops changing for five seconds is automatically reset
-  and recalibrated. Turn it off for intentional long, static presses.
-- **Zero** clears the per-sensor rolling baselines. Keep the sensor untouched
-  briefly after calibration.
+- **Action library** loads the current 9 Direct actions: 3 Human arm (96 nodes), 3 Finger (18 nodes), and 3 Robot arm (132 nodes). Each category has front touch, back touch and grab. See [the current data guide](../CURRENT_DATASET.md) for canonical XLSX paths and checksums.
+- The frontend reads `public/action-library/manifest.json` and the corresponding JSON files. Signal Combined is interpolated to 20 FPS; original measurement timing, Raw and Baseline are retained.
+- Finger's 18 measured nodes map to 18 of the model's 30 crossings; unused crossings are not additional measurements.
+- **Live sensor** uses USB serial at 1,000,000 baud. Hosted Chrome/Edge uses Web Serial; local mode uses FastAPI.
+- **Auto clear stale data** resets stable residual signals after five seconds. Disable for intentional sustained presses.
+- CSV uploads support 18/96/132 nodes. Shared uploads persist in Vercel Blob online and SQLite locally; deletion requires the uploader's browser owner key.
 
-On the hosted Vercel site, Action library playback runs in the
-browser. The reviewed action library is published with the frontend, and
-an uploaded CSV remains private to the current browser tab. On desktop Chrome
-or Edge, **Live sensor** uses Web Serial to talk directly to the selected USB
-device at 1,000,000 baud; sensor data never passes through Vercel. Baseline
-calibration and automatic stale-data clearing also run in the browser.
-Grasshopper reload and the backend upload API still require the local FastAPI app.
+Historical recordings and figures are in `../Archive/`; they are not built-in playback sources. Simulation and Zero controls have been removed. Grasshopper reload requires the local service.
 
 ## Update geometry
 

@@ -1,0 +1,26 @@
+[
+  {
+    "action": "grasp",
+    "clip": "96_segment_E009",
+    "source": "human_arm/action_library/96point_12x8/segments/E009_grasp_tactile_96points_20260827_115909_f0155-f0281.xlsx",
+    "frame_1_based": 78,
+    "time_seconds": 3.85,
+    "selection": "Maximum sum of 96 signals; strongest complete non-interpolated clip per action"
+  },
+  {
+    "action": "front_touch",
+    "clip": "96_segment_E015",
+    "source": "human_arm/action_library/96point_12x8/segments/E015_front_touch_tactile_96points_20260829_151106_f0160-f0253.xlsx",
+    "frame_1_based": 15,
+    "time_seconds": 0.7,
+    "selection": "Maximum sum of 96 signals; strongest complete non-interpolated clip per action"
+  },
+  {
+    "action": "back_touch",
+    "clip": "96_segment_E008",
+    "source": "human_arm/action_library/96point_12x8/segments/E008_back_touch_tactile_96points_20260825_144214_f0354-f0402.xlsx",
+    "frame_1_based": 31,
+    "time_seconds": 1.5,
+    "selection": "Maximum sum of 96 signals; strongest complete non-interpolated clip per action"
+  }
+]

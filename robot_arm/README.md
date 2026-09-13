@@ -1,7 +1,7 @@
-# robot_arm
+# Robot arm
 
-当前动作库使用 2026-09-13 导入的 3 个 Direct 动作（front_touch / back_touch / grab），显示 Signal Combined。
+Current library: 3 Direct actions imported on 2026-09-13 (front_touch, back_touch, grab), with 132 measured nodes. The primary layer is Signal Combined.
 
-数据位置与运行方法见根目录 `CURRENT_DATASET.md`。旧数据保存在 `Archive/data_before_direct_2026-09-13`。
+See [Current dataset](../CURRENT_DATASET.md) for canonical paths and update instructions. Previous data is preserved in Archive.
 
-250 mm 长、两端直径 32 mm，首尾条带宽 5 mm。
+Length: 250 mm. Both end diameters: 32 mm. End bands: 5 mm at each end.

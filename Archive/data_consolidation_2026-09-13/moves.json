@@ -1,0 +1,1617 @@
+[
+  {
+    "from": "new/README.md",
+    "to": "Archive/data_consolidation_2026-09-13/new/README.md",
+    "sha256": "6425b9fc1f8fd799f575aba4d06286b263df76890327b05a6747ef1a1a9fca23"
+  },
+  {
+    "from": "new/action_index.xlsx",
+    "to": "Archive/data_consolidation_2026-09-13/new/action_index.xlsx",
+    "sha256": "688d8a2c7d869afa6d5f9281e0d657582db840c3208ebfc1338e658d0874c12c"
+  },
+  {
+    "from": "new/arm_12x8/segments/E009_grab_arm_12x8_direct.xlsx",
+    "to": "Archive/data_consolidation_2026-09-13/new/arm_12x8/segments/E009_grab_arm_12x8_direct.xlsx",
+    "sha256": "2b28cbaf6f0689a926639364cf30efd10793d2bab1c450efd2eb538eaef53862"
+  },
+  {
+    "from": "new/arm_12x8/segments/E022_back_touch_arm_12x8_direct.xlsx",
+    "to": "Archive/data_consolidation_2026-09-13/new/arm_12x8/segments/E022_back_touch_arm_12x8_direct.xlsx",
+    "sha256": "37abde36fb8b0381c35ece5e3c78714e19e17df1fbc72ab4766ebb2415921096"
+  },
+  {
+    "from": "new/arm_12x8/segments/E025_front_touch_arm_12x8_direct.xlsx",
+    "to": "Archive/data_consolidation_2026-09-13/new/arm_12x8/segments/E025_front_touch_arm_12x8_direct.xlsx",
+    "sha256": "734e31450009be32611703e1d28974dcb6f5286459ef82e5255535f9b659d674"
+  },
+  {
+    "from": "new/finger_3x6/segments/E007_grab_finger_3x6_direct.xlsx",
+    "to": "Archive/data_consolidation_2026-09-13/new/finger_3x6/segments/E007_grab_finger_3x6_direct.xlsx",
+    "sha256": "86cb505718f5eb653355ad2a8f9fbd3a7ebccf22e96fb335072d40112873c447"
+  },
+  {
+    "from": "new/finger_3x6/segments/E008_back_touch_finger_3x6_direct.xlsx",
+    "to": "Archive/data_consolidation_2026-09-13/new/finger_3x6/segments/E008_back_touch_finger_3x6_direct.xlsx",
+    "sha256": "b22d495c277b3b93db07c9977a8ad2bc45edb12a10f810e24fcc4fc8ef5b7da4"
+  },
+  {
+    "from": "new/finger_3x6/segments/E015_front_touch_finger_3x6_direct.xlsx",
+    "to": "Archive/data_consolidation_2026-09-13/new/finger_3x6/segments/E015_front_touch_finger_3x6_direct.xlsx",
+    "sha256": "f1d05f337346b6464d7bb65bf68d776ea9d5c4118e528652dcd683cd4166bb30"
+  },
+  {
+    "from": "new/robot_arm_11x12/segments/R003_front_touch_robot_arm_11x12_direct.xlsx",
+    "to": "Archive/data_consolidation_2026-09-13/new/robot_arm_11x12/segments/R003_front_touch_robot_arm_11x12_direct.xlsx",
+    "sha256": "2b7cca80449c6656ec1fba984eefa8864c2d025946ae1ceb98cb5515c40a827c"
+  },
+  {
+    "from": "new/robot_arm_11x12/segments/R004_grab_robot_arm_11x12_direct.xlsx",
+    "to": "Archive/data_consolidation_2026-09-13/new/robot_arm_11x12/segments/R004_grab_robot_arm_11x12_direct.xlsx",
+    "sha256": "b4c57710ea60b7d5135d016f1cdc9a170957a65afdc3f8642fb91c841b5eaac0"
+  },
+  {
+    "from": "new/robot_arm_11x12/segments/R007_back_touch_robot_arm_11x12_direct.xlsx",
+    "to": "Archive/data_consolidation_2026-09-13/new/robot_arm_11x12/segments/R007_back_touch_robot_arm_11x12_direct.xlsx",
+    "sha256": "93132c237fe5315a482a69bc69d613f1ffd7ab9f15c928a743a30ab64b74f889"
+  },
+  {
+    "from": "new/view_direct_actions.py",
+    "to": "Archive/data_consolidation_2026-09-13/new/view_direct_actions.py",
+    "sha256": "d57e1859c2386357ae7a2fe58240aae193471daca6d0a90e8d4d81f01565b258"
+  },
+  {
+    "from": "human_arm/recordings/96point/2026-08-31/tactile_96points_20260831_162810.xlsx",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/recordings/96point/2026-08-31/tactile_96points_20260831_162810.xlsx",
+    "sha256": "9ff05dbaa98eb92c4d76ccb903cc5e366181b9045437b229bce48ec96ca64324"
+  },
+  {
+    "from": "human_arm/recordings/96point/2026-08-31/tactile_96points_20260831_162937.xlsx",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/recordings/96point/2026-08-31/tactile_96points_20260831_162937.xlsx",
+    "sha256": "8371699ed93e0d6712e46370fbfbf095fc8ad21da7d9d08fa8b96faafdbec6c4"
+  },
+  {
+    "from": "human_arm/recordings/96point/tactile_96points_20260817_194852.csv",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/recordings/96point/tactile_96points_20260817_194852.csv",
+    "sha256": "34757573d71d1e9cc3630fb8d2a0ecab69ac37ec2ccc51df6c8f02e97d6c96d7"
+  },
+  {
+    "from": "human_arm/recordings/96point/tactile_96points_20260817_200426.csv",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/recordings/96point/tactile_96points_20260817_200426.csv",
+    "sha256": "9d0308612f8ec91ea423d63f859b6f5180c3532bd7877e8d6264a87febd1f5c5"
+  },
+  {
+    "from": "human_arm/recordings/96point/tactile_96points_20260820_154902.csv",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/recordings/96point/tactile_96points_20260820_154902.csv",
+    "sha256": "262167a6e3039cea1f55b80acf302272900d8887468bef910038ceee476522f8"
+  },
+  {
+    "from": "human_arm/recordings/96point/tactile_96points_20260825_144129.csv",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/recordings/96point/tactile_96points_20260825_144129.csv",
+    "sha256": "ed55b476067c8a1b769fa99e5340322439bcb2c6a907d5122a267351ae6d9894"
+  },
+  {
+    "from": "human_arm/recordings/96point/tactile_96points_20260825_144214.csv",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/recordings/96point/tactile_96points_20260825_144214.csv",
+    "sha256": "5962ed0d379ad7582bf6faafba2a1eb730f0409f8a7952f2b1b064c7834f9608"
+  },
+  {
+    "from": "human_arm/recordings/96point/tactile_96points_20260827_115909.csv",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/recordings/96point/tactile_96points_20260827_115909.csv",
+    "sha256": "15b1b146e0f9c2cd42ad8ff774116218770f6df5ec2776797e7c178e06f60264"
+  },
+  {
+    "from": "human_arm/recordings/96point/tactile_96points_20260829_151106.csv",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/recordings/96point/tactile_96points_20260829_151106.csv",
+    "sha256": "acca2e4ff6b1545f75dd722773fc3bbd7bef929bcdf343ab2d168b5f36454c09"
+  },
+  {
+    "from": "human_arm/recordings/96point/tactile_96points_20260829_155316.csv",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/recordings/96point/tactile_96points_20260829_155316.csv",
+    "sha256": "81b534a00e8c6ae297c9d1ddb2b98fa0208a216d03d996e1dd9d80cc682cc912"
+  },
+  {
+    "from": "human_arm/recordings/general/tactile_96points_20260820_164334.csv",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/recordings/general/tactile_96points_20260820_164334.csv",
+    "sha256": "d3de3d418086c224272c312c85b8585ee144b2bb9ce98c172996f5d29b66b1fd"
+  },
+  {
+    "from": "finger/recordings/.DS_Store",
+    "to": "Archive/data_consolidation_2026-09-13/finger/recordings/.DS_Store",
+    "sha256": "29b3c7294f80bdd1f1e2888526dac9abe3e1cbaad91d63e79860cd7e2af3b9ab"
+  },
+  {
+    "from": "finger/recordings/30point/2026-09-01/tactile_30points_20260901_175521.xlsx",
+    "to": "Archive/data_consolidation_2026-09-13/finger/recordings/30point/2026-09-01/tactile_30points_20260901_175521.xlsx",
+    "sha256": "831c7a6f1456ab1033f8b6bc67c603d48985666e1a01cb157fc44f011599f42a"
+  },
+  {
+    "from": "finger/recordings/README.md",
+    "to": "Archive/data_consolidation_2026-09-13/finger/recordings/README.md",
+    "sha256": "c62118bde5f712671c3b6bb8708cead43ceaef2d85cf93ad9ea83b57964557df"
+  },
+  {
+    "from": "finger/recordings/robot-finger/2026-09-02/tactile_30points_20260902_152922.xlsx",
+    "to": "Archive/data_consolidation_2026-09-13/finger/recordings/robot-finger/2026-09-02/tactile_30points_20260902_152922.xlsx",
+    "sha256": "d301aafb672b59eb6d68c6844195fe57ed502b79172600628ca351a61f6114f9"
+  },
+  {
+    "from": "finger/recordings/robot-finger/2026-09-02/tactile_30points_20260902_153731.xlsx",
+    "to": "Archive/data_consolidation_2026-09-13/finger/recordings/robot-finger/2026-09-02/tactile_30points_20260902_153731.xlsx",
+    "sha256": "fbb6c34b226a6699abb80b2d6988d6b4af87f03990dc0895d91a9059f03a80b1"
+  },
+  {
+    "from": "human_arm/plots/README.md",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/plots/README.md",
+    "sha256": "35397676c47674619923646880de1d9d96b9bb919b6659632c258163a0517034"
+  },
+  {
+    "from": "human_arm/plots/arm_contact_comparison.png",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/plots/arm_contact_comparison.png",
+    "sha256": "8971e34ebce1973e36dcbe878f0ba8bb09f2f051f53086f571e6f79322e843b7"
+  },
+  {
+    "from": "human_arm/plots/back_touch_3d_heatmap.png",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/plots/back_touch_3d_heatmap.png",
+    "sha256": "f0d8b1bcbd234d8f986fadd32c58c6bb1354f5510c9f5d9c57899b332a5b576a"
+  },
+  {
+    "from": "human_arm/plots/front_touch_3d_heatmap.png",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/plots/front_touch_3d_heatmap.png",
+    "sha256": "6cb450c17670c6b506f12d8cf9efbf715ed9ff925a088498ad644b277327b713"
+  },
+  {
+    "from": "human_arm/plots/generate_heatmaps.py",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/plots/generate_heatmaps.py",
+    "sha256": "34f906a277c81a04991fb506e660e433a5bc8ab97068894460da2ae1844f60b3"
+  },
+  {
+    "from": "human_arm/plots/grasp_3d_heatmap.png",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/plots/grasp_3d_heatmap.png",
+    "sha256": "0094a62bd5d4053fb16233bedb2b369c138fb60cbbaa25a4ffa21db6636e9636"
+  },
+  {
+    "from": "human_arm/plots/grasp_time_sequence.png",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/plots/grasp_time_sequence.png",
+    "sha256": "acc8806e215cf7cb9a840236cf965ac3ef09a1db6851b6e73bef5743309351f8"
+  },
+  {
+    "from": "human_arm/plots/selection.json",
+    "to": "Archive/data_consolidation_2026-09-13/human_arm/plots/selection.json",
+    "sha256": "1c1694cd6f976a5346e148a90edb8772e188fbe78edfd2495b813738f5511f21"
+  },
+  {
+    "from": "robot_arm/plots/.DS_Store",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/.DS_Store",
+    "sha256": "cedc3078d42aa7c7a5c5331129cfc47c88313e21722f92b25a19ec191f58933b"
+  },
+  {
+    "from": "robot_arm/plots/paper/R001_all_scans_2d.png",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R001_all_scans_2d.png",
+    "sha256": "02db0a24259003dc039704feda55cbee427944fc335b051abd17ac420361aed7"
+  },
+  {
+    "from": "robot_arm/plots/paper/R001_all_scans_2d.svg",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R001_all_scans_2d.svg",
+    "sha256": "21210fedab59cbad334588283ab66db4c3a3e239b68637a8a939cb195247ef54"
+  },
+  {
+    "from": "robot_arm/plots/paper/R001_peak_2d.png",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R001_peak_2d.png",
+    "sha256": "3117516d668dd2c50089f5919305cabfe41f3918b15a4375e7d553dca8220c4b"
+  },
+  {
+    "from": "robot_arm/plots/paper/R001_peak_2d.svg",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R001_peak_2d.svg",
+    "sha256": "78b68cebf1d3668b0461c9bac42ed1ab032932a534c2470b1e1979d4262ba3db"
+  },
+  {
+    "from": "robot_arm/plots/paper/R001_peak_3d.png",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R001_peak_3d.png",
+    "sha256": "c2a22cceb2a22d660640a47f3bab356c97654e4dcd4467e68bddee4f3e92ed70"
+  },
+  {
+    "from": "robot_arm/plots/paper/R001_peak_3d.svg",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R001_peak_3d.svg",
+    "sha256": "83550b62a3d50da99d7b52e44cfd9e65f2d50a9f56d6549e5b5433069a8988e3"
+  },
+  {
+    "from": "robot_arm/plots/paper/R002_all_scans_2d.png",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R002_all_scans_2d.png",
+    "sha256": "8ef500d486351db1f3d8c65aed4f0cb498f32838973844f423dfd6fc59db0e3c"
+  },
+  {
+    "from": "robot_arm/plots/paper/R002_all_scans_2d.svg",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R002_all_scans_2d.svg",
+    "sha256": "e60aef58d3ee0b069a8fe83d9503e393bc04b17c8409f965949e79ec433caa15"
+  },
+  {
+    "from": "robot_arm/plots/paper/R002_peak_2d.png",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R002_peak_2d.png",
+    "sha256": "655c9fdb283035cf660644bb79ffe4ebeabd5157ceece8c42e0618f9b5436cb5"
+  },
+  {
+    "from": "robot_arm/plots/paper/R002_peak_2d.svg",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R002_peak_2d.svg",
+    "sha256": "1e92a202899195f8df4c725b2f7e2a9d9d6a6241e6f7b81fddae20df490c3f95"
+  },
+  {
+    "from": "robot_arm/plots/paper/R002_peak_3d.png",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R002_peak_3d.png",
+    "sha256": "acb71e555896cb9dc748e8b48513ef1cf1ce814370e2696ac0ffc48f22786701"
+  },
+  {
+    "from": "robot_arm/plots/paper/R002_peak_3d.svg",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R002_peak_3d.svg",
+    "sha256": "d0404451a4f23e3db8cc9f64cb92b47e390cf6e44ed915157d9d39d169061cbb"
+  },
+  {
+    "from": "robot_arm/plots/paper/R003_all_scans_2d.png",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R003_all_scans_2d.png",
+    "sha256": "f8c6a030a4b87566c37a2d3d33ad4f007639705476ad73ee12ff2cb3381f0ac5"
+  },
+  {
+    "from": "robot_arm/plots/paper/R003_all_scans_2d.svg",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R003_all_scans_2d.svg",
+    "sha256": "9c342dcf48d517136e2d1e02bf08b04749943f73c5975e4dba24822527d29227"
+  },
+  {
+    "from": "robot_arm/plots/paper/R003_peak_2d.png",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R003_peak_2d.png",
+    "sha256": "d2d8cae9da25f6987e001a4d0998216290918d9f2a0e6810211c551ceb6e4535"
+  },
+  {
+    "from": "robot_arm/plots/paper/R003_peak_2d.svg",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R003_peak_2d.svg",
+    "sha256": "891aefce99329457883128bad2a6fb03d2e165de0941253f0cc3dd1b2054781e"
+  },
+  {
+    "from": "robot_arm/plots/paper/R003_peak_3d.png",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R003_peak_3d.png",
+    "sha256": "5c7df9739d99843b18f58a6d4f78fb560799853dbd3501191018b17a225a2e41"
+  },
+  {
+    "from": "robot_arm/plots/paper/R003_peak_3d.svg",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/R003_peak_3d.svg",
+    "sha256": "f3f5585a4649058825bab3524229cf5f19c21b725117ecae7036449642464f9b"
+  },
+  {
+    "from": "robot_arm/plots/paper/captions.md",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/captions.md",
+    "sha256": "7ea206fc1f75f1ceed15448c205b2d67abedbf93f911083f087bfdbf383fb563"
+  },
+  {
+    "from": "robot_arm/plots/paper/fig01_contact_comparison_2d.png",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/fig01_contact_comparison_2d.png",
+    "sha256": "83872be1ba24ad3bb212d3eb3359eb985d879dbf009d894848b7df3d92b2bec6"
+  },
+  {
+    "from": "robot_arm/plots/paper/fig01_contact_comparison_2d.svg",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/fig01_contact_comparison_2d.svg",
+    "sha256": "b0c95dd544d419fb84551a2d0a204d3ef7ec1538bd7b9df2056eb095522bf3fb"
+  },
+  {
+    "from": "robot_arm/plots/paper/fig02_robot_arm_3d_comparison.png",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/fig02_robot_arm_3d_comparison.png",
+    "sha256": "ef12a40fb279edc64382043f0633d1ea27fc9ae576285ba4f5d385a1590568e5"
+  },
+  {
+    "from": "robot_arm/plots/paper/fig02_robot_arm_3d_comparison.svg",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/fig02_robot_arm_3d_comparison.svg",
+    "sha256": "f41567d4137a8049b553d3113d9489d7b2a77919b6de0721bf3adb60ab547d12"
+  },
+  {
+    "from": "robot_arm/plots/paper/generate_3d_figures.py",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/generate_3d_figures.py",
+    "sha256": "879bdf5d1130f374ad3e20b9beee3bfa07250d47da001696cad16da1656b9e2a"
+  },
+  {
+    "from": "robot_arm/plots/paper/generate_figures.py",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/generate_figures.py",
+    "sha256": "ae4710f545f9a98dcea596dda890cc28dfad1ab351b408b10b6cbf738c3cdd0c"
+  },
+  {
+    "from": "robot_arm/plots/paper/provenance.json",
+    "to": "Archive/data_consolidation_2026-09-13/robot_arm/plots/paper/provenance.json",
+    "sha256": "7c2ee02433887292c42e87147db7622b6241f5d03d2e5a1eb910ab41751c948e"
+  },
+  {
+    "from": "plots/.DS_Store",
+    "to": "Archive/data_consolidation_2026-09-13/plots/.DS_Store",
+    "sha256": "fe50d6a18c247069ccebee4c0a265e156d9723a0983cc854a957aa26c14bef34"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/README.md",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/README.md",
+    "sha256": "ed4d8cf7f0def4c99745ec293d1d3c53687e9ae513d34b60c9dadfced8d3e50a"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E001.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E001.png",
+    "sha256": "5cd50016d45560aceedaf7f0a3aa61cdba69a6c9303e70baa4834d945c7f9450"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E001_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E001_preview.jpg",
+    "sha256": "d5d5d7b58adbaafc0d790d18bd958d06786e06efadf905be8bc912560d3f0217"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E002.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E002.png",
+    "sha256": "f5af19e3a5523993723ace821a95cb74ab64256934bb61d69e5d59fd963efa58"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E002_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E002_preview.jpg",
+    "sha256": "bd7b79b4755c74be35bba981eac1d2811104106ca38d1057a04b6167992497cd"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E003.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E003.png",
+    "sha256": "802f3cad1e9cc9b5b849394826521ff7217d164cdd69af2c11d97dc795830340"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E003_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E003_preview.jpg",
+    "sha256": "b56b6906cd37a690fd234f1a56d295cb3cbecb142b8f2d610fb4f0b8f3991981"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E004.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E004.png",
+    "sha256": "2abad40eb501d85dbe7fa8c6465470bfcb8a250146966a87dd151d764c60f086"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E004_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E004_preview.jpg",
+    "sha256": "98d6dd8a7360809c402f11ac333c5d4c63053102d73f19a9a7b68c71e1b4f324"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E005.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E005.png",
+    "sha256": "4bdef7b4c48573eb80afeb0820699eb092133b8e020b5b0157a06df961d0a318"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E005_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E005_preview.jpg",
+    "sha256": "256df051bf744cd33bc8ee1798ba53434d99382e21ee3982f555985fbcf7b525"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E006.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E006.png",
+    "sha256": "781698ebacfc395a068fbe46682fc6ba15980d398df5eb71654a8386e77b0eab"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E006_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E006_preview.jpg",
+    "sha256": "8c7df622bf4feac6af37633bbc47377b5b8dce8d7147cb607cfea3a1ad6d4846"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E007.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E007.png",
+    "sha256": "b5281b8f3e48fb927a970b05a60ca9471796fadc93b163d6e3a422729e2e2f76"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E007_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E007_preview.jpg",
+    "sha256": "62a904ee1aa3602825b32bf7731fa97547381db28d44b26272a523eb795ac2b5"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E008.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E008.png",
+    "sha256": "2f88bde958ebedf220da4153e8803faf24d485e50db22b1624f3e1af1afcae25"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E008_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E008_preview.jpg",
+    "sha256": "d0c8a26d0f3740d0a244751f3148bf6cb1850d0532489ee34fbeca1106f0aee5"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E009.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E009.png",
+    "sha256": "30dfa82fa68b90c6b67b2a8f0730c15283e9d62cb7eefc3942822ded4b7e46f3"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E009_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E009_preview.jpg",
+    "sha256": "31f21c68990e7aa5fc2cfc9481bbfbd15cbaf8594e97ac6f7645402579775654"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E010.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E010.png",
+    "sha256": "9fab78d9e5c90ada57036c803beb46b4c5b502d10460e040529208f76a59cd32"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E010_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E010_preview.jpg",
+    "sha256": "25370cf8c125bd9bcf9847fdd009ffe6c0be815239b65c911c447ad2b055e6f6"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E011.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E011.png",
+    "sha256": "4cbb16540465b06d5d70c1b0dfdd9f3b48c532886ec780535935b8c0402a3dbe"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E011_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E011_preview.jpg",
+    "sha256": "0cb2631776b361ace3049c277d56f2269c4ca403eb83fda1b33c9d1be2769067"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E012.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E012.png",
+    "sha256": "f038188044a4c1ad404710745ec8e7db54b83c9f8469ce0c4170fc5f3a0a61cd"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E012_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E012_preview.jpg",
+    "sha256": "0a6459ee542ba2e930e74eb3ebcab0e6e0a67e00a049272cf7caa953e5017cbe"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E013.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E013.png",
+    "sha256": "7d5c4c20658ef9abe6ed7c752e5cd692530498d40b5c7085b94359661d010079"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E013_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E013_preview.jpg",
+    "sha256": "25b1ba835ba2302c7f8176bafbef5f2e561a1a8e7201c37e3d72c8ccb23758fe"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E014.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E014.png",
+    "sha256": "05184a62ad297214d51c19a81407978f851295faa58db5be7426934810c47d18"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E014_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E014_preview.jpg",
+    "sha256": "9e7c9e7b0b1580117aa4554ecc667e15c207db3d31d34ce73a53fdc2b818479b"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E015.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E015.png",
+    "sha256": "cf518ea031cf63343b0123b6111039902ba9b3649a7d0119da9ea2eae8fa2d70"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E015_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E015_preview.jpg",
+    "sha256": "1d4bc1cc3320db829cc1031146b25a9bb7c7f77bb3d1a0bae461fdc7046485d2"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E016.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E016.png",
+    "sha256": "79ce2a289399c9819b0236115bc6a5576103d797845da922453350af54669925"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/18_segment_E016_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/18_segment_E016_preview.jpg",
+    "sha256": "6973886784800bf1fb67355c1027b4265109b962e96a0206cc5cd0bcc60c46d6"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A001.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A001.png",
+    "sha256": "c3a10fd181ce564560422a717602f774ccab478c31dcb4e439b301c9a283ee06"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A001_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A001_preview.jpg",
+    "sha256": "4820a85ad7cfffd758074002febbab91359158cf464c7ac1e49818a21fe9b05f"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A002.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A002.png",
+    "sha256": "20f6ec122c9f6e642b16b11e57318a62552d28344b0d858e5e236cabd090df23"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A002_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A002_preview.jpg",
+    "sha256": "16dd1fba4dfef93bb20ec66df574dcb994075f3c6c0a65da1108c3aab5c0ccbc"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A003.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A003.png",
+    "sha256": "ec10030129e5dd835d53bf8ea51bf8bb93570839f5542fef0e81488c7ad19da1"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A003_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A003_preview.jpg",
+    "sha256": "e2a60d3ba3bcb18626c70a80904c4d7e67cb07f5251361d268e5135381ac3864"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A004.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A004.png",
+    "sha256": "61b66d9ff6c05a1f79f6ca43c975eb8d354a159a97d084d3588ecf02c34bce86"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A004_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A004_preview.jpg",
+    "sha256": "eb19a8119ad6f1536077efe7f7b370152798a49fac8045921d29994ee99f84e7"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A005.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A005.png",
+    "sha256": "8fd404b4c775d6b541e2fc5a0c5c5cc474e6fa5ef5ddd06088aea7446b6b4797"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A005_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A005_preview.jpg",
+    "sha256": "aff6c855a6fe0f7704041bc3a6c4ff90e1969f7d5dd1038281525d5ec67c8d4d"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A006.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A006.png",
+    "sha256": "e6460eadc6ade938792061fe51f87da9ddc5253d06f663ce1414ddd04ef83134"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A006_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A006_preview.jpg",
+    "sha256": "43db3a58b3b0fb82b1b6784aa1f25d441893215e522a6b41e3c5cb654ad5a89f"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A007.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A007.png",
+    "sha256": "5e1f8b3bdcc36ba95b0a030d7fe4250bba1b4351fe0a13fd8ea9926f17fd275c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A007_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A007_preview.jpg",
+    "sha256": "dbcb7ea142cf3664902110cdead67dd5f41b5d53d1a084a6a3286911bc72ad9d"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A008.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A008.png",
+    "sha256": "9cd63ac58f5ab2ff4c322da53a542028b46b1a6afa94d930ca1cf9d939173c89"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A008_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A008_preview.jpg",
+    "sha256": "f72d144a5003f643d15d943853bb3002e22d79b303952a3d1994095bbbcabb6e"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A009.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A009.png",
+    "sha256": "932c0b48ee00bfeae6a272ae98b28b8e493182532f27412cc3c8f37932ed40e3"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A009_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A009_preview.jpg",
+    "sha256": "04f59eb5acda12909e537671233536116348c64e2179f88d59227ddd1b191f13"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A010.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A010.png",
+    "sha256": "8b9374744ab2f414e7647bacb9d55e1550bcf82e13ce4216efc4897ff4cace4c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A010_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A010_preview.jpg",
+    "sha256": "b18734d36f67f2dff4431e464a92983d652d1277a94f162d78a9fa7908e7e9f8"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A011.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A011.png",
+    "sha256": "98a8523a470184a950a5959fb3b57914dcafe9b7281bfd94c973e932e4ea2239"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A011_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A011_preview.jpg",
+    "sha256": "f5dba2b10066f369ef6e4c3dfbce54cf5b29765df228373a0f66c9b274fe913d"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A012.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A012.png",
+    "sha256": "7b78ce619871e289c54f1b4b03bfdd8933365458875c51a0e6f81ed23ba3ee10"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger/30_combined_A012_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger/30_combined_A012_preview.jpg",
+    "sha256": "07702fb7649bd66a9e33a72858b16fa8818f0973fccad2ccfb0960766e6ab43a"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger_mapping.json",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger_mapping.json",
+    "sha256": "f3436bf636a42ae389ef5addc67d5eaa16ce5394b1177db1b399fdaf96b61f9b"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/finger_overview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/finger_overview.jpg",
+    "sha256": "3d67d77fbc85085b02bdbc10520dea539d0b2ac10c29ad999ded66154b0a0983"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/generate.py",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/generate.py",
+    "sha256": "ee00f86c1ba3565f3aa434724bfe75949cd74d567b7066fc6297683a6b136446"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E001.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E001.png",
+    "sha256": "077420b90f5f16d0fdda32eea22998ea5fbd53187bb2a82d9f0593f8c8e1b64c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E001_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E001_preview.jpg",
+    "sha256": "96433926bc2435223747eb7d2075ee5dbb35f4976775483a3724e2acf8c91851"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E002.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E002.png",
+    "sha256": "f0ab441cc775c7a555b3bb510ed00a3774744b1ea96c03c521d5da71b0ac418f"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E002_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E002_preview.jpg",
+    "sha256": "959650441726a792a98f17bab8d534811148da55f5b51b0dc5e15a5eab4bb40a"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E003.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E003.png",
+    "sha256": "97751d8f91accbcb94c98370764445ef87167fa4e0d6bc173f2372d39af051d7"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E003_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E003_preview.jpg",
+    "sha256": "768e9ce88c9576cf5bf36e44b607ff4b4df2f3f88a3f3ec44900be70b8410705"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E004.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E004.png",
+    "sha256": "d1ecf9bb9003bda54164442b5aefe8292a2389b5888e9f1c8d0676371fdc46ee"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E004_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E004_preview.jpg",
+    "sha256": "291147145548e5f64a3936daa363c23922567fa18aaaada1e3803a166c5be186"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E005.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E005.png",
+    "sha256": "2a120688bd0c34bdc86750b2a75e13fe2d66a4a79857695e2327707f777c63a9"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E005_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E005_preview.jpg",
+    "sha256": "3db7bd78f25babb82476cad2478862816ca61b6834038371bb7f1c092ad1d489"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E006.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E006.png",
+    "sha256": "02610af099cce25b7ffb7c5c1056d6a536a1b76501f16dc1b8c5afc65a3a392c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E006_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E006_preview.jpg",
+    "sha256": "4f19f26a0f5cc42409ce4698aead1795d5205be2ad503f05b07ac241d81732a1"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E007.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E007.png",
+    "sha256": "5373812792ac2e0c8ab6d188e930c9514e917292b91d79961260ae804cd09ba9"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E007_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E007_preview.jpg",
+    "sha256": "15e5059750cf7ef8cdbb162cf9b635e04c73895456fe3333f2d871f38f2a413d"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E008.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E008.png",
+    "sha256": "888e153c1d0053b7106a5fab27fec72cd716b08688bb5d2636db12287820e872"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E008_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E008_preview.jpg",
+    "sha256": "e55ae167b9af18b2dbbda1f20fcba7452398e223c139f19247a40f62f3e786a4"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E009.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E009.png",
+    "sha256": "e471f2b005045ad806a8955b8106c8371aca84b9fa4360bea8886ab070842d6d"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E009_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E009_preview.jpg",
+    "sha256": "a8e86a5c4a2426374695c30b8f0d795837cf745ec76a4fd26caf8eb77db26bbd"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E010.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E010.png",
+    "sha256": "b7cb6fae86b55441a226b00e4eb0fce4d90c40e776845b4465348373d7956bf2"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E010_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E010_preview.jpg",
+    "sha256": "654d9e109d4bfe7bd5c0fe801e645630eeaa5f6bf8a8b9140011e7bd7ad20229"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E011.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E011.png",
+    "sha256": "ab6269980b904a53a4189135ce597bd4bf7eaff7cf22a348d969b8c9ac646f28"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E011_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E011_preview.jpg",
+    "sha256": "5527b31286441e372d6056102b32e538167212d70414898f9268ece37e3654e6"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E012.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E012.png",
+    "sha256": "7b2343440105a20c24b09949e242cdf30360dff508718d2dd8d4f65cdfcc5c5c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E012_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E012_preview.jpg",
+    "sha256": "349a2faaf07e49c20d11a0dd57bc8c83c9bf862b923892014eca1ae93e836a0b"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E013.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E013.png",
+    "sha256": "757f3233605d23179a737bfd0717598e123333b0361bfb18751e8b66b3f6ca4a"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E013_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E013_preview.jpg",
+    "sha256": "34ecedab816b851f4592469d5135d5055c4705cd9e9737719934baf8d45be06b"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E014.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E014.png",
+    "sha256": "7dacd86c9605e3738918b4e595318b6f502e33c7e95c15b88bb59ba3da3df860"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E014_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E014_preview.jpg",
+    "sha256": "d8ab5f2debddb6665873b2ae4b051bcf0df7535fae133553796156d1130e959a"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E015.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E015.png",
+    "sha256": "97734a332effcb2d9d0ba9a5cf1265eb333a75da9eac67362ff338c92b0d6f6b"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E015_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E015_preview.jpg",
+    "sha256": "9212cae57d5fdda7553b7970c53e6b10622e070f3a5e871d0d57807431f367e1"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E016.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E016.png",
+    "sha256": "803ea7091d256f82579ff81a6c5d92a11e920ec53c48d01aaf7a6e4219bd71b9"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E016_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E016_preview.jpg",
+    "sha256": "9f6714f55c93bf04e1218d4e2cb7c49026228f7a289b0c4b81088bfc6c86f508"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E017.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E017.png",
+    "sha256": "dc8e50cc8308cc33551ee1f881f486c1e037977f41174dd55ff345250c4ff4f5"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E017_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E017_preview.jpg",
+    "sha256": "2c0134cfdbbc38e67f61cf04682f3d0e98c3a8b182e8d943d70bb16085af80a3"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E018.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E018.png",
+    "sha256": "28d5185697152027a0021cd1c3bc6be2b3c70d46940c2cfc89aa1fb607073366"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E018_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E018_preview.jpg",
+    "sha256": "458deab14635b35c31ef5301cd5d0cd0e9eaf5c3c26bdecac62cf612d40c5a1e"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E019.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E019.png",
+    "sha256": "ce18fa64b4f4ae169a3396920b41a848d6534520344200700c01563945ce395e"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E019_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E019_preview.jpg",
+    "sha256": "2954d005a8e3715dd502ff88d0daabc018c8b81ece95b3c0412dbbdb4cb0fd24"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E020.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E020.png",
+    "sha256": "e40a57e961ee9423f8e28e370c9d727484b0f38c6790bd70624d3d6fd71299e3"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E020_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E020_preview.jpg",
+    "sha256": "9f85807536ca08f2d5eccb68d1ce1e96ee82fda7e8532006f454771e368cc344"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E021.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E021.png",
+    "sha256": "e85b216c6c565418cb20d86785345b2736bd0f742c91e050feec0993bd9b29ab"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E021_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E021_preview.jpg",
+    "sha256": "742a0e903cc09f3c276654ea38b1f106b790c8a78de582f4bedd66b5be4fadb6"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E022.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E022.png",
+    "sha256": "6aafc5bb5214b54f4ae6b2b11fb82cc0d33e95644edf318dea08163aeb09fc86"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E022_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E022_preview.jpg",
+    "sha256": "54ac5a5befedb1717bb1d30d37ae6d2b494950766b73960309ffe2a2f737598f"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E023.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E023.png",
+    "sha256": "9674b57c2b3c458428d9b19c453f6b7153c7c5af43fb13c1a01cb50438a8a263"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E023_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E023_preview.jpg",
+    "sha256": "fdac09d224341db73fc0fb27711d58fe4a3e034060b100b7a2638d11df0972be"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E024.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E024.png",
+    "sha256": "e2664a341477f127fbd89b0ca601ee89a7b041448871096a799212d624f72bb9"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E024_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E024_preview.jpg",
+    "sha256": "3157cfa82e58c157d1963941ee9fd0af2087b931d4f460ddb37350c024a8d33d"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E025.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E025.png",
+    "sha256": "161604e71e7db2bfb3dbbd2fe7082e28b22ca33da80866246181b755b787d953"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E025_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E025_preview.jpg",
+    "sha256": "a57873fe03f93ef99ed8e59b2f1d5fe66875db0f63edc0d822119d76de13613b"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E026.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E026.png",
+    "sha256": "018bf50ebf8819f0371f1ec94b15d41cf8f885b0a03c46bbf88ad769d6a76e7c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E026_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E026_preview.jpg",
+    "sha256": "b987041e6d480bca0c41e1a13d58628ca2e0452ce76e3e6a8f09b6e99a938135"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E027.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E027.png",
+    "sha256": "5f390b10848931de3b312428a225dcd6e8c9b3a554afc7cf329efa754d6e59ba"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E027_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E027_preview.jpg",
+    "sha256": "39aebbfdc1c4d9b8e3a545fa4df52ebe0be3ad76f7800ec58be2624cc94c2e39"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E028.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E028.png",
+    "sha256": "5d2bab8c533ff3269d7b2831aae632898361a8cb406aad8699ad8424e889622d"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E028_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E028_preview.jpg",
+    "sha256": "9858fb87fe524e9ec3e0a211df20ba077e84a14eaca615feda5ba1ddba206f79"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E029.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E029.png",
+    "sha256": "398d74a0271670fcfbb1f718340e95e487090850ab9cdd92ccc5452582f5057c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm/96_segment_E029_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm/96_segment_E029_preview.jpg",
+    "sha256": "1891be4f5431d0192c660ae7a8ef92039cad300b2fcce813eee20b795337b8b9"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/human_arm_overview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/human_arm_overview.jpg",
+    "sha256": "b527fc2c49ff1befe7b0dedf9e020c8cbd455f415e239adf0cccc265d95f4404"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/index.csv",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/index.csv",
+    "sha256": "82ca102d93ea4081f9e126987e5a7af14b56ad920e5463e07e3952825dbdb50f"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/index.html",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/index.html",
+    "sha256": "fc57c92543c31a0e6423dde1992176da9011a5990814544c9d90aa46ba20f6a5"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/provenance.json",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/provenance.json",
+    "sha256": "5b0dd2e60f027702d09bce9479d5f96ad8c3573e0966c4cfcf3ca5eb4b1ed653"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/robot_arm/132_segment_R001.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/robot_arm/132_segment_R001.png",
+    "sha256": "a4c1524ead0685bea56c71217955c75e195473fefe3c59b20407b0e3ebcd2e32"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/robot_arm/132_segment_R001_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/robot_arm/132_segment_R001_preview.jpg",
+    "sha256": "3613f265b9f20174dfbf873a5826e6b7963ea6f59168a8f14cf6cead5acc7970"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/robot_arm/132_segment_R002.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/robot_arm/132_segment_R002.png",
+    "sha256": "23bed1c01da66727002c6ffd9db0be554e7f4c53081a6c7de4f24365d52f211c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/robot_arm/132_segment_R002_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/robot_arm/132_segment_R002_preview.jpg",
+    "sha256": "fcf56837b22da53d122f2d7e3a500d14f9d26fd534ceedefbea791d2a0bafba9"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/robot_arm/132_segment_R003.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/robot_arm/132_segment_R003.png",
+    "sha256": "24b47d522b1080c210c1260eca423f043499cca80a1fa593a9a19309a2e7df09"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/robot_arm/132_segment_R003_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/robot_arm/132_segment_R003_preview.jpg",
+    "sha256": "19c636c15cbf380632255d04e122083eca270d9f6c8476e0fc84413d7206da0a"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13/robot_arm_overview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13/robot_arm_overview.jpg",
+    "sha256": "1723c4ed0fe4db9f0505cb729857c8bbcb5df6acda0a7caecaec6ce9101217b9"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/.DS_Store",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/.DS_Store",
+    "sha256": "cd0287d7281b32915dfc9a7f250a8b93785c444cfe7dcd1bd6959a7f4e1b4c4c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/README.md",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/README.md",
+    "sha256": "ed4d8cf7f0def4c99745ec293d1d3c53687e9ae513d34b60c9dadfced8d3e50a"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E001.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E001.png",
+    "sha256": "5cd50016d45560aceedaf7f0a3aa61cdba69a6c9303e70baa4834d945c7f9450"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E001_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E001_preview.jpg",
+    "sha256": "d5d5d7b58adbaafc0d790d18bd958d06786e06efadf905be8bc912560d3f0217"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E002.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E002.png",
+    "sha256": "f5af19e3a5523993723ace821a95cb74ab64256934bb61d69e5d59fd963efa58"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E002_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E002_preview.jpg",
+    "sha256": "bd7b79b4755c74be35bba981eac1d2811104106ca38d1057a04b6167992497cd"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E003.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E003.png",
+    "sha256": "802f3cad1e9cc9b5b849394826521ff7217d164cdd69af2c11d97dc795830340"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E003_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E003_preview.jpg",
+    "sha256": "b56b6906cd37a690fd234f1a56d295cb3cbecb142b8f2d610fb4f0b8f3991981"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E004.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E004.png",
+    "sha256": "2abad40eb501d85dbe7fa8c6465470bfcb8a250146966a87dd151d764c60f086"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E004_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E004_preview.jpg",
+    "sha256": "98d6dd8a7360809c402f11ac333c5d4c63053102d73f19a9a7b68c71e1b4f324"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E005.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E005.png",
+    "sha256": "4bdef7b4c48573eb80afeb0820699eb092133b8e020b5b0157a06df961d0a318"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E005_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E005_preview.jpg",
+    "sha256": "256df051bf744cd33bc8ee1798ba53434d99382e21ee3982f555985fbcf7b525"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E006.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E006.png",
+    "sha256": "781698ebacfc395a068fbe46682fc6ba15980d398df5eb71654a8386e77b0eab"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E006_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E006_preview.jpg",
+    "sha256": "8c7df622bf4feac6af37633bbc47377b5b8dce8d7147cb607cfea3a1ad6d4846"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E007.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E007.png",
+    "sha256": "b5281b8f3e48fb927a970b05a60ca9471796fadc93b163d6e3a422729e2e2f76"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E007_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E007_preview.jpg",
+    "sha256": "62a904ee1aa3602825b32bf7731fa97547381db28d44b26272a523eb795ac2b5"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E008.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E008.png",
+    "sha256": "2f88bde958ebedf220da4153e8803faf24d485e50db22b1624f3e1af1afcae25"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E008_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E008_preview.jpg",
+    "sha256": "d0c8a26d0f3740d0a244751f3148bf6cb1850d0532489ee34fbeca1106f0aee5"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E009.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E009.png",
+    "sha256": "30dfa82fa68b90c6b67b2a8f0730c15283e9d62cb7eefc3942822ded4b7e46f3"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E009_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E009_preview.jpg",
+    "sha256": "31f21c68990e7aa5fc2cfc9481bbfbd15cbaf8594e97ac6f7645402579775654"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E010.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E010.png",
+    "sha256": "9fab78d9e5c90ada57036c803beb46b4c5b502d10460e040529208f76a59cd32"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E010_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E010_preview.jpg",
+    "sha256": "25370cf8c125bd9bcf9847fdd009ffe6c0be815239b65c911c447ad2b055e6f6"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E011.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E011.png",
+    "sha256": "4cbb16540465b06d5d70c1b0dfdd9f3b48c532886ec780535935b8c0402a3dbe"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E011_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E011_preview.jpg",
+    "sha256": "0cb2631776b361ace3049c277d56f2269c4ca403eb83fda1b33c9d1be2769067"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E012.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E012.png",
+    "sha256": "f038188044a4c1ad404710745ec8e7db54b83c9f8469ce0c4170fc5f3a0a61cd"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E012_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E012_preview.jpg",
+    "sha256": "0a6459ee542ba2e930e74eb3ebcab0e6e0a67e00a049272cf7caa953e5017cbe"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E013.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E013.png",
+    "sha256": "7d5c4c20658ef9abe6ed7c752e5cd692530498d40b5c7085b94359661d010079"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E013_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E013_preview.jpg",
+    "sha256": "25b1ba835ba2302c7f8176bafbef5f2e561a1a8e7201c37e3d72c8ccb23758fe"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E014.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E014.png",
+    "sha256": "05184a62ad297214d51c19a81407978f851295faa58db5be7426934810c47d18"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E014_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E014_preview.jpg",
+    "sha256": "9e7c9e7b0b1580117aa4554ecc667e15c207db3d31d34ce73a53fdc2b818479b"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E015.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E015.png",
+    "sha256": "cf518ea031cf63343b0123b6111039902ba9b3649a7d0119da9ea2eae8fa2d70"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E015_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E015_preview.jpg",
+    "sha256": "1d4bc1cc3320db829cc1031146b25a9bb7c7f77bb3d1a0bae461fdc7046485d2"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E016.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E016.png",
+    "sha256": "79ce2a289399c9819b0236115bc6a5576103d797845da922453350af54669925"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/18_segment_E016_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/18_segment_E016_preview.jpg",
+    "sha256": "6973886784800bf1fb67355c1027b4265109b962e96a0206cc5cd0bcc60c46d6"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A001.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A001.png",
+    "sha256": "c3a10fd181ce564560422a717602f774ccab478c31dcb4e439b301c9a283ee06"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A001_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A001_preview.jpg",
+    "sha256": "4820a85ad7cfffd758074002febbab91359158cf464c7ac1e49818a21fe9b05f"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A002.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A002.png",
+    "sha256": "20f6ec122c9f6e642b16b11e57318a62552d28344b0d858e5e236cabd090df23"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A002_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A002_preview.jpg",
+    "sha256": "16dd1fba4dfef93bb20ec66df574dcb994075f3c6c0a65da1108c3aab5c0ccbc"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A003.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A003.png",
+    "sha256": "ec10030129e5dd835d53bf8ea51bf8bb93570839f5542fef0e81488c7ad19da1"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A003_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A003_preview.jpg",
+    "sha256": "e2a60d3ba3bcb18626c70a80904c4d7e67cb07f5251361d268e5135381ac3864"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A004.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A004.png",
+    "sha256": "61b66d9ff6c05a1f79f6ca43c975eb8d354a159a97d084d3588ecf02c34bce86"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A004_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A004_preview.jpg",
+    "sha256": "eb19a8119ad6f1536077efe7f7b370152798a49fac8045921d29994ee99f84e7"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A005.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A005.png",
+    "sha256": "8fd404b4c775d6b541e2fc5a0c5c5cc474e6fa5ef5ddd06088aea7446b6b4797"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A005_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A005_preview.jpg",
+    "sha256": "aff6c855a6fe0f7704041bc3a6c4ff90e1969f7d5dd1038281525d5ec67c8d4d"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A006.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A006.png",
+    "sha256": "e6460eadc6ade938792061fe51f87da9ddc5253d06f663ce1414ddd04ef83134"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A006_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A006_preview.jpg",
+    "sha256": "43db3a58b3b0fb82b1b6784aa1f25d441893215e522a6b41e3c5cb654ad5a89f"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A007.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A007.png",
+    "sha256": "5e1f8b3bdcc36ba95b0a030d7fe4250bba1b4351fe0a13fd8ea9926f17fd275c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A007_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A007_preview.jpg",
+    "sha256": "dbcb7ea142cf3664902110cdead67dd5f41b5d53d1a084a6a3286911bc72ad9d"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A008.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A008.png",
+    "sha256": "9cd63ac58f5ab2ff4c322da53a542028b46b1a6afa94d930ca1cf9d939173c89"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A008_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A008_preview.jpg",
+    "sha256": "f72d144a5003f643d15d943853bb3002e22d79b303952a3d1994095bbbcabb6e"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A009.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A009.png",
+    "sha256": "932c0b48ee00bfeae6a272ae98b28b8e493182532f27412cc3c8f37932ed40e3"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A009_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A009_preview.jpg",
+    "sha256": "04f59eb5acda12909e537671233536116348c64e2179f88d59227ddd1b191f13"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A010.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A010.png",
+    "sha256": "8b9374744ab2f414e7647bacb9d55e1550bcf82e13ce4216efc4897ff4cace4c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A010_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A010_preview.jpg",
+    "sha256": "b18734d36f67f2dff4431e464a92983d652d1277a94f162d78a9fa7908e7e9f8"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A011.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A011.png",
+    "sha256": "98a8523a470184a950a5959fb3b57914dcafe9b7281bfd94c973e932e4ea2239"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A011_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A011_preview.jpg",
+    "sha256": "f5dba2b10066f369ef6e4c3dfbce54cf5b29765df228373a0f66c9b274fe913d"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A012.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A012.png",
+    "sha256": "7b78ce619871e289c54f1b4b03bfdd8933365458875c51a0e6f81ed23ba3ee10"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger/30_combined_A012_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger/30_combined_A012_preview.jpg",
+    "sha256": "07702fb7649bd66a9e33a72858b16fa8818f0973fccad2ccfb0960766e6ab43a"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger_mapping.json",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger_mapping.json",
+    "sha256": "f3436bf636a42ae389ef5addc67d5eaa16ce5394b1177db1b399fdaf96b61f9b"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/finger_overview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/finger_overview.jpg",
+    "sha256": "3d67d77fbc85085b02bdbc10520dea539d0b2ac10c29ad999ded66154b0a0983"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E001.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E001.png",
+    "sha256": "077420b90f5f16d0fdda32eea22998ea5fbd53187bb2a82d9f0593f8c8e1b64c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E001_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E001_preview.jpg",
+    "sha256": "96433926bc2435223747eb7d2075ee5dbb35f4976775483a3724e2acf8c91851"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E002.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E002.png",
+    "sha256": "f0ab441cc775c7a555b3bb510ed00a3774744b1ea96c03c521d5da71b0ac418f"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E002_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E002_preview.jpg",
+    "sha256": "959650441726a792a98f17bab8d534811148da55f5b51b0dc5e15a5eab4bb40a"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E003.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E003.png",
+    "sha256": "97751d8f91accbcb94c98370764445ef87167fa4e0d6bc173f2372d39af051d7"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E003_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E003_preview.jpg",
+    "sha256": "768e9ce88c9576cf5bf36e44b607ff4b4df2f3f88a3f3ec44900be70b8410705"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E004.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E004.png",
+    "sha256": "d1ecf9bb9003bda54164442b5aefe8292a2389b5888e9f1c8d0676371fdc46ee"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E004_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E004_preview.jpg",
+    "sha256": "291147145548e5f64a3936daa363c23922567fa18aaaada1e3803a166c5be186"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E005.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E005.png",
+    "sha256": "2a120688bd0c34bdc86750b2a75e13fe2d66a4a79857695e2327707f777c63a9"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E005_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E005_preview.jpg",
+    "sha256": "3db7bd78f25babb82476cad2478862816ca61b6834038371bb7f1c092ad1d489"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E006.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E006.png",
+    "sha256": "02610af099cce25b7ffb7c5c1056d6a536a1b76501f16dc1b8c5afc65a3a392c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E006_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E006_preview.jpg",
+    "sha256": "4f19f26a0f5cc42409ce4698aead1795d5205be2ad503f05b07ac241d81732a1"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E007.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E007.png",
+    "sha256": "5373812792ac2e0c8ab6d188e930c9514e917292b91d79961260ae804cd09ba9"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E007_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E007_preview.jpg",
+    "sha256": "15e5059750cf7ef8cdbb162cf9b635e04c73895456fe3333f2d871f38f2a413d"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E008.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E008.png",
+    "sha256": "888e153c1d0053b7106a5fab27fec72cd716b08688bb5d2636db12287820e872"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E008_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E008_preview.jpg",
+    "sha256": "e55ae167b9af18b2dbbda1f20fcba7452398e223c139f19247a40f62f3e786a4"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E009.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E009.png",
+    "sha256": "e471f2b005045ad806a8955b8106c8371aca84b9fa4360bea8886ab070842d6d"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E009_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E009_preview.jpg",
+    "sha256": "a8e86a5c4a2426374695c30b8f0d795837cf745ec76a4fd26caf8eb77db26bbd"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E010.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E010.png",
+    "sha256": "b7cb6fae86b55441a226b00e4eb0fce4d90c40e776845b4465348373d7956bf2"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E010_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E010_preview.jpg",
+    "sha256": "654d9e109d4bfe7bd5c0fe801e645630eeaa5f6bf8a8b9140011e7bd7ad20229"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E011.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E011.png",
+    "sha256": "ab6269980b904a53a4189135ce597bd4bf7eaff7cf22a348d969b8c9ac646f28"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E011_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E011_preview.jpg",
+    "sha256": "5527b31286441e372d6056102b32e538167212d70414898f9268ece37e3654e6"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E012.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E012.png",
+    "sha256": "7b2343440105a20c24b09949e242cdf30360dff508718d2dd8d4f65cdfcc5c5c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E012_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E012_preview.jpg",
+    "sha256": "349a2faaf07e49c20d11a0dd57bc8c83c9bf862b923892014eca1ae93e836a0b"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E013.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E013.png",
+    "sha256": "757f3233605d23179a737bfd0717598e123333b0361bfb18751e8b66b3f6ca4a"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E013_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E013_preview.jpg",
+    "sha256": "34ecedab816b851f4592469d5135d5055c4705cd9e9737719934baf8d45be06b"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E014.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E014.png",
+    "sha256": "7dacd86c9605e3738918b4e595318b6f502e33c7e95c15b88bb59ba3da3df860"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E014_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E014_preview.jpg",
+    "sha256": "d8ab5f2debddb6665873b2ae4b051bcf0df7535fae133553796156d1130e959a"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E015.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E015.png",
+    "sha256": "97734a332effcb2d9d0ba9a5cf1265eb333a75da9eac67362ff338c92b0d6f6b"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E015_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E015_preview.jpg",
+    "sha256": "9212cae57d5fdda7553b7970c53e6b10622e070f3a5e871d0d57807431f367e1"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E016.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E016.png",
+    "sha256": "803ea7091d256f82579ff81a6c5d92a11e920ec53c48d01aaf7a6e4219bd71b9"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E016_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E016_preview.jpg",
+    "sha256": "9f6714f55c93bf04e1218d4e2cb7c49026228f7a289b0c4b81088bfc6c86f508"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E017.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E017.png",
+    "sha256": "dc8e50cc8308cc33551ee1f881f486c1e037977f41174dd55ff345250c4ff4f5"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E017_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E017_preview.jpg",
+    "sha256": "2c0134cfdbbc38e67f61cf04682f3d0e98c3a8b182e8d943d70bb16085af80a3"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E018.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E018.png",
+    "sha256": "28d5185697152027a0021cd1c3bc6be2b3c70d46940c2cfc89aa1fb607073366"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E018_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E018_preview.jpg",
+    "sha256": "458deab14635b35c31ef5301cd5d0cd0e9eaf5c3c26bdecac62cf612d40c5a1e"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E019.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E019.png",
+    "sha256": "ce18fa64b4f4ae169a3396920b41a848d6534520344200700c01563945ce395e"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E019_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E019_preview.jpg",
+    "sha256": "2954d005a8e3715dd502ff88d0daabc018c8b81ece95b3c0412dbbdb4cb0fd24"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E020.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E020.png",
+    "sha256": "e40a57e961ee9423f8e28e370c9d727484b0f38c6790bd70624d3d6fd71299e3"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E020_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E020_preview.jpg",
+    "sha256": "9f85807536ca08f2d5eccb68d1ce1e96ee82fda7e8532006f454771e368cc344"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E021.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E021.png",
+    "sha256": "e85b216c6c565418cb20d86785345b2736bd0f742c91e050feec0993bd9b29ab"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E021_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E021_preview.jpg",
+    "sha256": "742a0e903cc09f3c276654ea38b1f106b790c8a78de582f4bedd66b5be4fadb6"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E022.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E022.png",
+    "sha256": "6aafc5bb5214b54f4ae6b2b11fb82cc0d33e95644edf318dea08163aeb09fc86"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E022_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E022_preview.jpg",
+    "sha256": "54ac5a5befedb1717bb1d30d37ae6d2b494950766b73960309ffe2a2f737598f"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E023.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E023.png",
+    "sha256": "9674b57c2b3c458428d9b19c453f6b7153c7c5af43fb13c1a01cb50438a8a263"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E023_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E023_preview.jpg",
+    "sha256": "fdac09d224341db73fc0fb27711d58fe4a3e034060b100b7a2638d11df0972be"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E024.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E024.png",
+    "sha256": "e2664a341477f127fbd89b0ca601ee89a7b041448871096a799212d624f72bb9"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E024_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E024_preview.jpg",
+    "sha256": "3157cfa82e58c157d1963941ee9fd0af2087b931d4f460ddb37350c024a8d33d"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E025.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E025.png",
+    "sha256": "161604e71e7db2bfb3dbbd2fe7082e28b22ca33da80866246181b755b787d953"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E025_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E025_preview.jpg",
+    "sha256": "a57873fe03f93ef99ed8e59b2f1d5fe66875db0f63edc0d822119d76de13613b"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E026.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E026.png",
+    "sha256": "018bf50ebf8819f0371f1ec94b15d41cf8f885b0a03c46bbf88ad769d6a76e7c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E026_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E026_preview.jpg",
+    "sha256": "b987041e6d480bca0c41e1a13d58628ca2e0452ce76e3e6a8f09b6e99a938135"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E027.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E027.png",
+    "sha256": "5f390b10848931de3b312428a225dcd6e8c9b3a554afc7cf329efa754d6e59ba"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E027_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E027_preview.jpg",
+    "sha256": "39aebbfdc1c4d9b8e3a545fa4df52ebe0be3ad76f7800ec58be2624cc94c2e39"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E028.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E028.png",
+    "sha256": "5d2bab8c533ff3269d7b2831aae632898361a8cb406aad8699ad8424e889622d"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E028_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E028_preview.jpg",
+    "sha256": "9858fb87fe524e9ec3e0a211df20ba077e84a14eaca615feda5ba1ddba206f79"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E029.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E029.png",
+    "sha256": "398d74a0271670fcfbb1f718340e95e487090850ab9cdd92ccc5452582f5057c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E029_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm/96_segment_E029_preview.jpg",
+    "sha256": "1891be4f5431d0192c660ae7a8ef92039cad300b2fcce813eee20b795337b8b9"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/human_arm_overview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/human_arm_overview.jpg",
+    "sha256": "b527fc2c49ff1befe7b0dedf9e020c8cbd455f415e239adf0cccc265d95f4404"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/index.csv",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/index.csv",
+    "sha256": "82ca102d93ea4081f9e126987e5a7af14b56ad920e5463e07e3952825dbdb50f"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/index.html",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/index.html",
+    "sha256": "fc57c92543c31a0e6423dde1992176da9011a5990814544c9d90aa46ba20f6a5"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/provenance.json",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/provenance.json",
+    "sha256": "5b0dd2e60f027702d09bce9479d5f96ad8c3573e0966c4cfcf3ca5eb4b1ed653"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/robot_arm/132_segment_R001.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/robot_arm/132_segment_R001.png",
+    "sha256": "a4c1524ead0685bea56c71217955c75e195473fefe3c59b20407b0e3ebcd2e32"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/robot_arm/132_segment_R001_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/robot_arm/132_segment_R001_preview.jpg",
+    "sha256": "3613f265b9f20174dfbf873a5826e6b7963ea6f59168a8f14cf6cead5acc7970"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/robot_arm/132_segment_R002.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/robot_arm/132_segment_R002.png",
+    "sha256": "23bed1c01da66727002c6ffd9db0be554e7f4c53081a6c7de4f24365d52f211c"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/robot_arm/132_segment_R002_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/robot_arm/132_segment_R002_preview.jpg",
+    "sha256": "fcf56837b22da53d122f2d7e3a500d14f9d26fd534ceedefbea791d2a0bafba9"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/robot_arm/132_segment_R003.png",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/robot_arm/132_segment_R003.png",
+    "sha256": "24b47d522b1080c210c1260eca423f043499cca80a1fa593a9a19309a2e7df09"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/robot_arm/132_segment_R003_preview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/robot_arm/132_segment_R003_preview.jpg",
+    "sha256": "19c636c15cbf380632255d04e122083eca270d9f6c8476e0fc84413d7206da0a"
+  },
+  {
+    "from": "plots/all_actions_3d_2026-09-13 2/robot_arm_overview.jpg",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_2026-09-13 2/robot_arm_overview.jpg",
+    "sha256": "1723c4ed0fe4db9f0505cb729857c8bbcb5df6acda0a7caecaec6ce9101217b9"
+  },
+  {
+    "from": "plots/all_actions_3d_60_images.zip",
+    "to": "Archive/data_consolidation_2026-09-13/plots/all_actions_3d_60_images.zip",
+    "sha256": "598a019dac1993be382a522e0ef611af3dfbafb6ec6bcfed59c63b4086f8e629"
+  }
+]

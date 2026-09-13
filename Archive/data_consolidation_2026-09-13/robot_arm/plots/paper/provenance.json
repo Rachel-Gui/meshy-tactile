@@ -1,0 +1,64 @@
+[
+  {
+    "clip": "R001",
+    "source": "robot_arm/action_library/robot_arm_132node/segments/R001_back_touch_tactile_132points_20260912_192911_f0006-f0008.xlsx",
+    "sha256": "94d28e9df8346a7e1d3eac0d8e26c7008d985e6941cc9b56d89fc423a8171c9c",
+    "source_frames": [
+      6,
+      7,
+      8
+    ],
+    "source_times_s": [
+      17.742136,
+      20.38521,
+      23.022233
+    ],
+    "peak_source_frame": 8,
+    "peak_source_time_s": 23.022233,
+    "confidence": "low"
+  },
+  {
+    "clip": "R002",
+    "source": "robot_arm/action_library/robot_arm_132node/segments/R002_front_touch_tactile_132points_20260912_192911_f0009-f0013.xlsx",
+    "sha256": "1b7782aab8d17300569aee36c3d9a60cd3e194582c8c820dca257b8418addfad",
+    "source_frames": [
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "source_times_s": [
+      25.659178,
+      28.302271,
+      30.942239,
+      33.582433,
+      36.232582
+    ],
+    "peak_source_frame": 9,
+    "peak_source_time_s": 25.659178,
+    "confidence": "low"
+  },
+  {
+    "clip": "R003",
+    "source": "robot_arm/action_library/robot_arm_132node/segments/R003_grasp_tactile_132points_20260912_192911_f0014-f0018.xlsx",
+    "sha256": "447e9e8c9ddaec244e749f0a7048329232035f59a268d4e931a72db946764148",
+    "source_frames": [
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "source_times_s": [
+      38.868285,
+      41.501464,
+      44.1423,
+      46.782355,
+      49.425468
+    ],
+    "peak_source_frame": 15,
+    "peak_source_time_s": 41.501464,
+    "confidence": "high"
+  }
+]

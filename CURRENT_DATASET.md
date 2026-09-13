@@ -1,11 +1,32 @@
-# 当前数据：2026-09-13 Direct Action Dataset
+# Current dataset
 
-当前使用 new 导入的 9 个动作，每类正面触摸、背面触摸、抓握各一个。
+Version: **2026-09-13 Direct**, containing 9 actions. Each category has front_touch, back_touch and grab.
 
-- Finger：`finger/action_library/18point_6x6_sparse/segments`，E015 / E008 / E007，18 点。
-- Human arm：`human_arm/action_library/96point_12x8/segments`，E025 / E022 / E009，96 点。
-- Robot arm：`robot_arm/action_library/robot_arm_132node/segments`，R003 / R007 / R004，132 点。
+| Category | Nodes | Canonical XLSX directory | IDs: front / back / grab |
+|---|---:|---|---|
+| Human arm | 96 | `human_arm/action_library/96point_12x8/segments/` | E025 / E022 / E009 |
+| Robot arm | 132 | `robot_arm/action_library/robot_arm_132node/segments/` | R003 / R007 / R004 |
+| Finger | 18 | `finger/action_library/18point_6x6_sparse/segments/` | E015 / E008 / E007 |
 
-总索引 `action_index.xlsx`。主信号为 `Signal Combined`；前端导出程序 `python3 web/tools/export_action_library.py`，随后 `npm --prefix web run build`。桌面查看器运行 `python3 tools/viewers/view_all_heatmaps.py`。
+Index: [action_index.xlsx](action_index.xlsx). Source paths and SHA-256 checksums: [current-data-manifest.json](current-data-manifest.json). Maintain these canonical directories; the former `new` import package is archived.
 
-旧动作库、旧前端 JSON 和旧导出/查看程序保存在 `Archive/data_before_direct_2026-09-13`。`new` 保留为导入来源。此前生成的 60 张图片基于旧数据，不代表当前 9 条数据。
+The frontend loads `web/public/action-library/manifest.json` and its JSON clips. The desktop viewer reads the canonical XLSX files. Signal Combined is the primary signal, interpolated to 20 FPS for playback. Original measurement times, Raw and Baseline are retained; interpolation does not create additional measurements.
+
+After updating source workbooks, update the index and checksum manifest, then run:
+
+```bash
+python3 web/tools/export_action_library.py
+node web/verify-action-library.mjs
+node web/verify-playback-data-preview.mjs
+npm --prefix web run build
+```
+
+Deploy to update the public dashboard. User-uploaded datasets are separate from these 9 built-in actions.
+
+## Archives
+
+- `Archive/data_before_direct_2026-09-13/`: previous 60-action library, frontend JSON and historical tools.
+- `Archive/data_consolidation_2026-09-13/new/`: original import package; its 9 action files are byte-identical to the canonical sources. Its index retains the original import paths.
+- `Archive/data_consolidation_2026-09-13/{human_arm,finger}/recordings/`: previous raw recordings.
+- Figure directories within that archive contain historical plots, not plots of the current 9 actions.
+- `moves.json` records each original path, archive path and SHA-256 checksum. No source data was deleted.
