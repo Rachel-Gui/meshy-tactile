@@ -76,8 +76,8 @@
               <option value="">Choose an action</option>
             </select>
             <div class="playback-upload" id="playback-upload" hidden>
-              <input id="playback-file" type="file" accept=".csv,text/csv" hidden />
-              <button class="quiet-button" id="playback-upload-button" type="button">Upload CSV</button>
+              <input id="playback-file" type="file" accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden />
+              <button class="quiet-button" id="playback-upload-button" type="button">Upload CSV / Excel</button>
               <span id="playback-upload-status">18 / 96 / 132 nodes · max 3 MB</span>
             </div>
             <div class="playback-timeline" id="playback-timeline" hidden>
@@ -93,7 +93,7 @@
                 <span>Drag to inspect</span>
               </div>
             </div>
-            <p class="upload-format-help">Upload Signal Combined as CSV (N001… columns). Model detected automatically. Uploads are saved. Share a preview link or delete your own uploads.</p>
+            <p class="upload-format-help">Upload CSV or Excel (.xlsx): Signal Combined sheet, or a single sheet with time and N001… columns. Model detected automatically. Uploads are saved. Share a preview link or delete your own uploads.</p>
             <div class="playback-preview" id="playback-preview" hidden>
               <span class="new-badge" id="playback-new-badge" hidden>NEW</span>
               <time id="playback-upload-time" hidden></time>

@@ -1064,9 +1064,12 @@ elements.playbackFile.addEventListener('change', async () => {
   elements.playbackUploadStatus.textContent = `${file.name} · ${(file.size / 1024 / 1024).toFixed(1)} MB`;
 
   try {
-    if (file.size > 3 * 1024 * 1024) throw new Error('CSV must be 3 MB or smaller');
+    if (file.size > 3 * 1024 * 1024) throw new Error('File must be 3 MB or smaller');
+    if (!/\.(csv|xlsx)$/i.test(file.name)) throw new Error('Use CSV or Excel .xlsx. Save older .xls files as .xlsx first.');
     {
-      const csv = await file.text();
+      const csv = /\.xlsx$/i.test(file.name)
+        ? (await import('./playback-excel.js')).excelToCsv(await file.arrayBuffer())
+        : await file.text();
       const parsed = parsePlaybackCsv(csv, SENSOR_COUNT);
       const owners = readUploadOwners();
       // Check storage before uploading: the private deletion key must survive refresh.
@@ -1096,7 +1099,7 @@ elements.playbackFile.addEventListener('change', async () => {
   } finally {
     elements.playbackUpload.classList.remove('uploading');
     elements.playbackUploadButton.disabled = false;
-    elements.playbackUploadButton.textContent = 'Upload CSV';
+    elements.playbackUploadButton.textContent = 'Upload CSV / Excel';
     elements.playbackFile.value = '';
   }
 });
