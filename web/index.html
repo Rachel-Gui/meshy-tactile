@@ -53,6 +53,16 @@
               <input id="finger-hand-toggle" type="checkbox" checked />
               <span>Show hand · sleeve on index finger</span>
             </label>
+            <div class="fixed-view-control">
+              <select id="fixed-view-select" aria-label="固定视角">
+                <option value="front">正视角</option>
+                <option value="left">侧视角</option>
+                <option value="back">后视角</option>
+                <option value="top">俯视角</option>
+                <option value="perspective">三维斜视角</option>
+              </select>
+              <button class="quiet-button" id="apply-fixed-view" type="button" title="平滑旋转到所选视角">固定视角</button>
+            </div>
             <div class="model-facts">
               <div><span>Length</span><strong id="model-length">—</strong></div>
               <div><span>Front Ø</span><strong id="model-front-diameter">—</strong></div>
@@ -80,6 +90,10 @@
               <button class="quiet-button" id="playback-upload-button" type="button">Upload CSV / Excel</button>
               <span id="playback-upload-status">18 / 96 / 132 nodes · max 3 MB</span>
             </div>
+            <div class="shared-upload-toolbar">
+              <span id="shared-upload-status" role="status">Loading shared uploads…</span>
+              <button class="quiet-button" id="refresh-shared-uploads" type="button">Refresh uploads</button>
+            </div>
             <div class="playback-timeline" id="playback-timeline" hidden>
               <div class="timeline-header">
                 <button id="playback-toggle" type="button" aria-label="Pause playback" title="Pause playback">Ⅱ</button>
@@ -93,7 +107,7 @@
                 <span>Drag to inspect</span>
               </div>
             </div>
-            <p class="upload-format-help">Upload CSV or Excel (.xlsx): Signal Combined sheet, or a single sheet with time and N001… columns. Model detected automatically. Uploads are saved. Share a preview link or delete your own uploads.</p>
+            <p class="upload-format-help">Upload CSV or Excel (.xlsx): Signal Combined sheet, or a single sheet with time and N001… columns. Model detected automatically. Uploads are visible to everyone in Shared uploads and refresh automatically. Only the uploader can delete a recording.</p>
             <div class="playback-preview" id="playback-preview" hidden>
               <span class="new-badge" id="playback-new-badge" hidden>NEW</span>
               <time id="playback-upload-time" hidden></time>

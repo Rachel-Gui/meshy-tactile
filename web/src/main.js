@@ -218,6 +218,11 @@ const raycaster = new THREE.Raycaster();
 raycaster.params.Points.threshold = 5;
 const mouse = new THREE.Vector2();
 let cameraTween = null;
+controls.addEventListener('start', () => { cameraTween = null; });
+document.querySelector('#apply-fixed-view').addEventListener('click', () => {
+  if (!state.model) return;
+  fitCamera(document.querySelector('#fixed-view-select').value);
+});
 
 const paletteStops = {
   thermal: [
@@ -827,17 +832,27 @@ function cameraPose(view) {
 function fitCamera(view = 'perspective', animated = true) {
   const destination = cameraPose(view);
   const target = state.modelCenter.clone();
+  cameraTween = null;
+  // Consume remaining drag/pan damping before starting a repeatable preset move.
+  const damping = controls.enableDamping;
+  controls.enableDamping = false;
+  controls.update();
+  controls.enableDamping = damping;
   if (!animated) {
     camera.position.copy(destination);
     controls.target.copy(target);
     controls.update();
     return;
   }
+  const fromOffset = camera.position.clone().sub(controls.target);
+  const toOffset = destination.clone().sub(target);
   cameraTween = {
     start: performance.now(),
     duration: 620,
-    fromPosition: camera.position.clone(),
-    toPosition: destination,
+    fromDirection: fromOffset.clone().normalize(),
+    rotation: new THREE.Quaternion().setFromUnitVectors(fromOffset.clone().normalize(), toOffset.clone().normalize()),
+    fromDistance: fromOffset.length(),
+    toDistance: toOffset.length(),
     fromTarget: controls.target.clone(),
     toTarget: target,
   };
@@ -847,8 +862,12 @@ function updateCameraTween(now) {
   if (!cameraTween) return;
   const progress = Math.min(1, (now - cameraTween.start) / cameraTween.duration);
   const eased = 1 - Math.pow(1 - progress, 3);
-  camera.position.lerpVectors(cameraTween.fromPosition, cameraTween.toPosition, eased);
   controls.target.lerpVectors(cameraTween.fromTarget, cameraTween.toTarget, eased);
+  const rotation = new THREE.Quaternion().slerp(cameraTween.rotation, eased);
+  camera.position.copy(cameraTween.fromDirection).applyQuaternion(rotation)
+    .multiplyScalar(THREE.MathUtils.lerp(cameraTween.fromDistance, cameraTween.toDistance, eased))
+    .add(controls.target);
+  camera.lookAt(controls.target);
   if (progress >= 1) cameraTween = null;
 }
 
@@ -865,7 +884,7 @@ function animate(now) {
   updateCameraTween(now);
   if (HOSTED_MODE || state.sourceMode === 'playback') updateHostedRuntime(now);
   if (state.heatDirty) updateHeatmap();
-  controls.update();
+  if (!cameraTween) controls.update();
   renderer.render(scene, camera);
 }
 
@@ -961,7 +980,7 @@ function renderHostedPlaybackOptions(selectedDataset = null) {
   const groups = new Map();
   state.hostedDatasets.forEach(dataset => {
     const mode = modelForCount(dataset.sensorCount || dataset.parsed?.sensorCount);
-    if (mode !== state.modelMode) return;
+    if (mode !== state.modelMode && !dataset.shareId) return;
     const name = `${mode === 'robot' ? 'Robot arm' : mode === 'arm' ? 'Human arm' : 'Finger'} · ${dataset.group || 'Uploaded recordings'}`;
     if (!groups.has(name)) {
       const group = document.createElement('optgroup'); group.label = name;
@@ -1033,6 +1052,7 @@ document.querySelector('#delete-upload').addEventListener('click', async () => {
     const owners = readUploadOwners();
     const response = await fetch(`/api/shared-uploads/${dataset.shareId}`, {method:'DELETE',headers:{Authorization:`Bearer ${owners[dataset.shareId] || ''}`}});
     if (!response.ok) throw new Error(await uploadError(response));
+    sharedCatalogMutation += 1;
     delete owners[dataset.shareId]; localStorage.setItem('tactile-upload-owners', JSON.stringify(owners));
     state.hostedDatasets.delete(dataset.id);
     const fallback = [...state.hostedDatasets.values()].find(d=>modelForCount(d.sensorCount)===state.modelMode);
@@ -1043,7 +1063,47 @@ document.querySelector('#delete-upload').addEventListener('click', async () => {
   } catch (error) { elements.sourceMessage.textContent = error.message; }
   finally { button.disabled = false; }
 });
+let sharedCatalogMutation = 0;
+let sharedCatalogRefreshing = false;
+async function refreshSharedUploads() {
+  if (sharedCatalogRefreshing) return;
+  sharedCatalogRefreshing = true;
+  const version = sharedCatalogMutation;
+  const button = document.querySelector('#refresh-shared-uploads');
+  const status = document.querySelector('#shared-upload-status');
+  button.disabled = true;
+  try {
+    const response = await fetch('/api/shared-uploads', {cache: 'no-store'});
+    if (!response.ok) throw new Error(await uploadError(response));
+    const datasets = await response.json();
+    if (!Array.isArray(datasets)) throw new Error('Shared upload service returned an invalid list');
+    if (version !== sharedCatalogMutation) return;
+    const selected = elements.playbackSelect.value;
+    const listed = new Set(datasets.map(dataset => dataset.id));
+    for (const [id, dataset] of state.hostedDatasets) {
+      if (dataset.shareId && !listed.has(id)) state.hostedDatasets.delete(id);
+    }
+    for (const dataset of datasets) {
+      const previous = state.hostedDatasets.get(dataset.id);
+      state.hostedDatasets.set(dataset.id, {...dataset, ...(previous?.parsed ? {parsed: previous.parsed} : {})});
+    }
+    renderHostedPlaybackOptions(selected);
+    // Refreshing the catalog must not restart the current playback.
+    if (selected && !state.hostedDatasets.has(selected)) updateUploadActions(null);
+    status.textContent = `${datasets.length} shared uploads · visible to everyone`;
+  } catch (error) {
+    status.textContent = `Shared uploads unavailable: ${error.message}`;
+  } finally {
+    sharedCatalogRefreshing = false;
+    button.disabled = false;
+  }
+}
+document.querySelector('#refresh-shared-uploads').addEventListener('click', refreshSharedUploads);
+setInterval(() => { if (!document.hidden) refreshSharedUploads(); }, 30000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshSharedUploads(); });
+
 async function restoreSharedUploads() {
+  await refreshSharedUploads();
   const sharedId = new URLSearchParams(location.search).get('upload');
   const ids = new Set([...Object.keys(readUploadOwners()), ...(sharedId ? [sharedId] : [])]);
   await Promise.all([...ids].map(async id => {
@@ -1091,6 +1151,7 @@ elements.playbackFile.addEventListener('change', async () => {
       });
       if (!response.ok) throw new Error(await uploadError(response));
       const saved = await response.json();
+      sharedCatalogMutation += 1;
       owners[saved.shareId] = saved.ownerToken;
       localStorage.setItem('tactile-upload-owners', JSON.stringify(owners));
       const id = saved.id;

@@ -25,8 +25,12 @@ cd /Users/a0000/Desktop/tactile
 - **Live sensor** uses USB serial at 1,000,000 baud. Hosted Chrome/Edge uses Web Serial; local mode uses FastAPI.
 - **Auto clear stale data** resets stable residual signals after five seconds. Disable for intentional sustained presses.
 - CSV uploads support 18/96/132 nodes. Shared uploads persist in Vercel Blob online and SQLite locally; deletion requires the uploader's browser owner key.
+- Everyone sees uploaded CSV/Excel recordings in the **Shared uploads** groups, including uploads for other models. The catalog refreshes every 30 seconds while the page is visible, on returning to the tab, or with **Refresh uploads**. Selecting an upload switches to its model; catalog refreshes do not restart playback. Existing saved uploads are included automatically.
+- Hosted uploads require a connected private Vercel Blob store with `BLOB_READ_WRITE_TOKEN` available to the deployed project. The public catalog returns only recording metadata; CSV content is fetched when selected, and owner deletion keys remain private. Local SQLite catalogs are shared by visitors using the same app server.
 
 Historical recordings and figures are in `../Archive/`; they are not built-in playback sources. Simulation and Zero controls have been removed. Grasshopper reload requires the local service.
+
+Validate shared uploads with `python3 -m unittest web.server.test_shared_uploads -v` from the repository root and `node verify-shared-uploads.mjs` from `web/`.
 
 ## Update geometry
 

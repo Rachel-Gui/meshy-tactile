@@ -76,6 +76,11 @@ h1 { font-size: 17px; line-height: 1; margin: 0; font-weight: 600; letter-spacin
 .workspace { display: grid; grid-template-columns: minmax(0, 1fr) 326px; min-height: 0; }
 
 .viewport-wrap { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+.fixed-view-control { display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+.fixed-view-control select { flex: 1; min-width: 0; margin: 0; }
+.fixed-view-control button { flex-shrink: 0; white-space: nowrap; }
+.shared-upload-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 10px; font-size: 11px; }
+.shared-upload-toolbar button { flex-shrink: 0; }
 #viewport { position: absolute; inset: 0; }
 #viewport canvas { display: block; width: 100%; height: 100%; outline: none; }
 .viewport-gradient { pointer-events: none; position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, transparent 20%, rgba(5,7,12,.22) 78%, rgba(5,7,12,.58) 100%); }

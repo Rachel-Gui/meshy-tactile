@@ -1,9 +1,10 @@
-"""Persistent link-shared CSV uploads. Deletion requires a private owner token."""
+"""Persistent public CSV catalog. Deletion requires a private owner token."""
 import csv,hashlib,hmac,io,json,math,os,re,secrets,sqlite3
 from datetime import datetime,timezone
 from pathlib import Path
+from functools import lru_cache
 from fastapi import APIRouter,HTTPException,Request
-from fastapi.responses import PlainTextResponse
+from fastapi.responses import PlainTextResponse,JSONResponse
 
 MAX_BYTES=4*1024*1024
 
@@ -55,6 +56,32 @@ def create_upload_router(directory):
    finally:conn.close()
  def metadata(row):
   return dict(id='shared_'+row['id'],label=row['label'],uploadedAt=row['created'],sensorCount=row['sensor_count'],group='Shared uploads',url='/api/shared-uploads/'+row['id']+'/data.csv',shareId=row['id'])
+ @lru_cache(maxsize=512)
+ def cloud_metadata(ident):
+  # Recordings are immutable: cache only safe metadata, never CSV or owner keys.
+  return metadata(find(ident))
+ @router.get('')
+ def list_uploads():
+  if cloud():
+   from vercel.blob import list_objects
+   items=[];cursor=None
+   while True:
+    page=list_objects(prefix='shared-uploads/',limit=1000,cursor=cursor)
+    for blob in page.blobs:
+     match=re.fullmatch(r'shared-uploads/([a-f0-9]{32})\.json',blob.pathname)
+     if not match:continue
+     try:items.append(cloud_metadata(match.group(1)))
+     except HTTPException as exc:
+      if exc.status_code!=404:raise
+      # An owner may delete a recording between listing and reading it.
+    if not page.has_more:break
+    cursor=page.cursor
+  else:
+   conn=db()
+   try:items=[metadata(dict(row)) for row in conn.execute('SELECT id,label,created,sensor_count FROM uploads')]
+   finally:conn.close()
+  items.sort(key=lambda item:(item['uploadedAt'],item['id']),reverse=True)
+  return JSONResponse(items,headers={'Cache-Control':'no-store'})
  @router.post('')
  async def upload(request:Request):
   body=bytearray()
@@ -100,5 +127,6 @@ def create_upload_router(directory):
   row=find(ident)
   if not hmac.compare_digest(hashlib.sha256(token.encode()).hexdigest(),row['owner_hash']):raise HTTPException(403,'Only the uploader can delete this recording')
   remove(ident)
+  cloud_metadata.cache_clear()
   return {'deleted':True}
  return router
