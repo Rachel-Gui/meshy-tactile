@@ -1,0 +1,1841 @@
+[
+  {
+    "name": "Loft",
+    "nick": "Loft",
+    "id": "962f660e-5bf0-4157-b26a-7364d51276b0",
+    "type": "SurfaceComponents.SurfaceComponents.Component_LoftSurface",
+    "inputs": [
+      {
+        "name": "Curves",
+        "sources": [
+          "d4e48405-7d34-497e-806f-e7ac9a634b09"
+        ],
+        "values": [
+          "Circular Curve",
+          "Circular Curve"
+        ]
+      },
+      {
+        "name": "Options",
+        "sources": [],
+        "values": [
+          " Loft"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Loft",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "Move",
+    "nick": "Move",
+    "id": "8008fe42-bdec-4b80-81d9-0b6b63a346a8",
+    "type": "LinearXForms.Component_Move",
+    "inputs": [
+      {
+        "name": "Geometry",
+        "sources": [
+          "522253d2-7628-424c-8fff-a3394c6e753a"
+        ],
+        "values": [
+          "Circle(R:62.00 mm)"
+        ]
+      },
+      {
+        "name": "Motion",
+        "sources": [
+          "f1d9f2fc-57f4-464f-bfc1-a03e020518d6"
+        ],
+        "values": [
+          "{250,0,0}"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Geometry",
+        "count": 1
+      },
+      {
+        "name": "Transform",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "Unit X",
+    "nick": "Unit X",
+    "id": "d45a4429-33af-4dcf-ae11-bc196e77a95f",
+    "type": "VectorComponents.VectorComponents.Component_UnitVectorX",
+    "inputs": [
+      {
+        "name": "Factor",
+        "sources": [
+          "34e17184-8fe6-49b6-b700-3ab6be63e387"
+        ],
+        "values": [
+          "250"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Unit vector",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Length",
+    "id": "34e17184-8fe6-49b6-b700-3ab6be63e387",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "250",
+    "min": "0",
+    "max": "1000"
+  },
+  {
+    "name": "YZ Plane",
+    "nick": "YZ Plane",
+    "id": "a7b2fc51-541d-4f6b-bc7d-acbccce68b74",
+    "type": "VectorComponents.PlaneComponents.Component_YZPlane",
+    "inputs": [
+      {
+        "name": "Origin",
+        "sources": [],
+        "values": [
+          "{0, 0, 0}"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Plane",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Radius small",
+    "id": "99bf71b6-0348-43d4-a9b1-468ec5381bf2",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "35",
+    "min": "0",
+    "max": "100"
+  },
+  {
+    "name": "Circle",
+    "nick": "Circle",
+    "id": "15fc3e78-6d34-4876-846c-1e0670d4bcc5",
+    "type": "CurveComponents.Component_Circle",
+    "inputs": [
+      {
+        "name": "Plane",
+        "sources": [
+          "3cc5f035-af8d-45eb-b332-fefe425b5cc3"
+        ],
+        "values": [
+          "World YZ"
+        ]
+      },
+      {
+        "name": "Radius",
+        "sources": [
+          "99bf71b6-0348-43d4-a9b1-468ec5381bf2"
+        ],
+        "values": [
+          "35"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Circle",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "Circle",
+    "nick": "Circle",
+    "id": "3163cbac-4ee2-4c7f-82cd-4e1083eddba2",
+    "type": "CurveComponents.Component_Circle",
+    "inputs": [
+      {
+        "name": "Plane",
+        "sources": [
+          "3cc5f035-af8d-45eb-b332-fefe425b5cc3"
+        ],
+        "values": [
+          "World YZ"
+        ]
+      },
+      {
+        "name": "Radius",
+        "sources": [
+          "a580f2f0-2e73-4097-9e20-4ff0ce1e6c4c"
+        ],
+        "values": [
+          "62"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Circle",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Radius large",
+    "id": "a580f2f0-2e73-4097-9e20-4ff0ce1e6c4c",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "62",
+    "min": "0",
+    "max": "100"
+  },
+  {
+    "name": "Divide Curve",
+    "nick": "Divide Curve",
+    "id": "669f3e26-a57e-4086-b380-c6179c3d64dc",
+    "type": "VectorComponents.DivisionComponents.Component_DivideCurve",
+    "inputs": [
+      {
+        "name": "Curve",
+        "sources": [
+          "02ef3373-7a92-470f-a21e-55ae586e8627"
+        ],
+        "values": [
+          "Circular Curve"
+        ]
+      },
+      {
+        "name": "Count",
+        "sources": [
+          "dd7a738e-6fee-4eb4-a050-9b0f5288ed73"
+        ],
+        "values": [
+          "12"
+        ]
+      },
+      {
+        "name": "Kinks",
+        "sources": [],
+        "values": [
+          "False"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Points",
+        "count": 12
+      },
+      {
+        "name": "Tangents",
+        "count": 12
+      },
+      {
+        "name": "Parameters",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Grid Count",
+    "id": "dd7a738e-6fee-4eb4-a050-9b0f5288ed73",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "12",
+    "min": "0",
+    "max": "40"
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Grid Count",
+    "id": "66b45b48-dc83-4dc6-a279-37ea89f00444",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "12",
+    "min": "0",
+    "max": "40"
+  },
+  {
+    "name": "Divide Curve",
+    "nick": "Divide Curve",
+    "id": "5c76e6e7-7404-40fd-a038-ca23b0abe05c",
+    "type": "VectorComponents.DivisionComponents.Component_DivideCurve",
+    "inputs": [
+      {
+        "name": "Curve",
+        "sources": [
+          "fd97b6cf-841f-46d7-8bb0-783cc5444e44"
+        ],
+        "values": [
+          "Circular Curve"
+        ]
+      },
+      {
+        "name": "Count",
+        "sources": [
+          "66b45b48-dc83-4dc6-a279-37ea89f00444"
+        ],
+        "values": [
+          "12"
+        ]
+      },
+      {
+        "name": "Kinks",
+        "sources": [],
+        "values": [
+          "False"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Points",
+        "count": 12
+      },
+      {
+        "name": "Tangents",
+        "count": 12
+      },
+      {
+        "name": "Parameters",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "name": "Line",
+    "nick": "Line",
+    "id": "6877684e-39bc-4bba-ac8c-0cd0dd53c1f5",
+    "type": "CurveComponents.Component_Line",
+    "inputs": [
+      {
+        "name": "Start Point",
+        "sources": [
+          "34fe4104-a819-4a59-b9af-5ceb2ecbf699"
+        ],
+        "values": [
+          "{0, 35, 0}",
+          "{0, 30.310889, 17.5}",
+          "{0, 17.5, 30.310889}",
+          "{0, 0, 35}",
+          "{0, -17.5, 30.310889}"
+        ]
+      },
+      {
+        "name": "End Point",
+        "sources": [
+          "1b430b04-fead-4dd7-9cf5-47d452486813"
+        ],
+        "values": [
+          "{250, -31.0, 53.693575}",
+          "{250, -53.693575, 31.0}",
+          "{250, -62, 0}",
+          "{250, -53.693575, -31.0}",
+          "{250, -31.0, -53.693575}"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Line",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "name": "Shift List",
+    "nick": "Shift List",
+    "id": "2b9c4b8a-35f1-4014-888c-6e74b73df7ae",
+    "type": "MathComponents.ArrayComponents.Component_ShiftList",
+    "inputs": [
+      {
+        "name": "List",
+        "sources": [
+          "e19abbee-c4b2-45c9-8653-6771c5a9630b"
+        ],
+        "values": [
+          "{250, 62, 0}",
+          "{250, 53.693575, 31.0}",
+          "{250, 31.0, 53.693575}",
+          "{250, 0, 62}",
+          "{250, -31.0, 53.693575}"
+        ]
+      },
+      {
+        "name": "Shift",
+        "sources": [
+          "deef1ab0-f405-4cfa-8ce4-c81212a69570"
+        ],
+        "values": [
+          "4"
+        ]
+      },
+      {
+        "name": "Wrap",
+        "sources": [
+          "8cfb5f13-8fa7-48b3-8529-b868883efe40"
+        ],
+        "values": [
+          "True"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "List",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Weave Shift",
+    "id": "deef1ab0-f405-4cfa-8ce4-c81212a69570",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "4",
+    "min": "0",
+    "max": "10"
+  },
+  {
+    "name": "Boolean Toggle",
+    "nick": "Boolean Toggle",
+    "id": "8cfb5f13-8fa7-48b3-8529-b868883efe40",
+    "type": "Grasshopper.Kernel.Special.GH_BooleanToggle"
+  },
+  {
+    "name": "Shift List",
+    "nick": "Shift List",
+    "id": "e9c4a0ef-af65-4a08-8c35-77ceb2186341",
+    "type": "MathComponents.ArrayComponents.Component_ShiftList",
+    "inputs": [
+      {
+        "name": "List",
+        "sources": [
+          "e19abbee-c4b2-45c9-8653-6771c5a9630b"
+        ],
+        "values": [
+          "{250, 62, 0}",
+          "{250, 53.693575, 31.0}",
+          "{250, 31.0, 53.693575}",
+          "{250, 0, 62}",
+          "{250, -31.0, 53.693575}"
+        ]
+      },
+      {
+        "name": "Shift",
+        "sources": [
+          "ed0a46b7-edca-492f-8b5c-306c694efa04"
+        ],
+        "values": [
+          "-4"
+        ]
+      },
+      {
+        "name": "Wrap",
+        "sources": [
+          "6c45f9c3-3916-4e98-ba20-89e33b317504"
+        ],
+        "values": [
+          "True"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "List",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "name": "Line",
+    "nick": "Line",
+    "id": "4e2475a6-c08e-41db-9773-7d21a7309bd5",
+    "type": "CurveComponents.Component_Line",
+    "inputs": [
+      {
+        "name": "Start Point",
+        "sources": [
+          "34fe4104-a819-4a59-b9af-5ceb2ecbf699"
+        ],
+        "values": [
+          "{0, 35, 0}",
+          "{0, 30.310889, 17.5}",
+          "{0, 17.5, 30.310889}",
+          "{0, 0, 35}",
+          "{0, -17.5, 30.310889}"
+        ]
+      },
+      {
+        "name": "End Point",
+        "sources": [
+          "80fcbb28-0993-4318-95c9-bc17fa635a63"
+        ],
+        "values": [
+          "{250, -31.0, -53.693575}",
+          "{250, -0, -62}",
+          "{250, 31.0, -53.693575}",
+          "{250.0, 53.693575, -31.0}",
+          "{250, 62, 0}"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Line",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Weave Shift",
+    "id": "ed0a46b7-edca-492f-8b5c-306c694efa04",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "-4",
+    "min": "-10",
+    "max": "0"
+  },
+  {
+    "name": "Boolean Toggle",
+    "nick": "Boolean Toggle",
+    "id": "6c45f9c3-3916-4e98-ba20-89e33b317504",
+    "type": "Grasshopper.Kernel.Special.GH_BooleanToggle"
+  },
+  {
+    "name": "Vector 2Pt",
+    "nick": "Vector 2Pt",
+    "id": "16bd9e6e-ac32-4c10-80d0-1b13afaff9f8",
+    "type": "VectorComponents.VectorComponents.Component_Vector2Pt",
+    "inputs": [
+      {
+        "name": "Point A",
+        "sources": [
+          "34fe4104-a819-4a59-b9af-5ceb2ecbf699"
+        ],
+        "values": []
+      },
+      {
+        "name": "Point B",
+        "sources": [
+          "1b430b04-fead-4dd7-9cf5-47d452486813"
+        ],
+        "values": []
+      },
+      {
+        "name": "Unitize",
+        "sources": [],
+        "values": []
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Vector",
+        "count": 0
+      },
+      {
+        "name": "Length",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "name": "Vector 2Pt",
+    "nick": "Vector 2Pt",
+    "id": "32dd3b36-16d6-40e8-b967-772f41e0ec6f",
+    "type": "VectorComponents.VectorComponents.Component_Vector2Pt",
+    "inputs": [
+      {
+        "name": "Point A",
+        "sources": [
+          "34fe4104-a819-4a59-b9af-5ceb2ecbf699"
+        ],
+        "values": []
+      },
+      {
+        "name": "Point B",
+        "sources": [
+          "80fcbb28-0993-4318-95c9-bc17fa635a63"
+        ],
+        "values": []
+      },
+      {
+        "name": "Unitize",
+        "sources": [],
+        "values": []
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Vector",
+        "count": 0
+      },
+      {
+        "name": "Length",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "name": "Merge",
+    "nick": "Merge",
+    "id": "e50165d9-a515-4c13-8c79-398f81fcdd32",
+    "type": "MathComponents.MergeComponents.Component_MergeVariable",
+    "inputs": [
+      {
+        "name": "Data 1",
+        "sources": [
+          "02ef3373-7a92-470f-a21e-55ae586e8627"
+        ],
+        "values": [
+          "Circle(R:35.00 mm)"
+        ]
+      },
+      {
+        "name": "Data 2",
+        "sources": [
+          "fd97b6cf-841f-46d7-8bb0-783cc5444e44"
+        ],
+        "values": [
+          "Circle(R:62.00 mm)"
+        ]
+      },
+      {
+        "name": "Data 3",
+        "sources": [],
+        "values": []
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Result",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "name": "Pull Curve",
+    "nick": "Pull Curve",
+    "id": "27ad477d-704e-4712-adb5-00849685b952",
+    "type": "CurveComponents.Component_PullCurve",
+    "inputs": [
+      {
+        "name": "Curve",
+        "sources": [
+          "5f02675a-9797-4efd-8a59-f8162d159140"
+        ],
+        "values": [
+          "Line-like Curve",
+          "Line-like Curve",
+          "Line-like Curve",
+          "Line-like Curve",
+          "Line-like Curve"
+        ]
+      },
+      {
+        "name": "Surface",
+        "sources": [
+          "3650466c-122a-416d-b289-78ba4904dae7"
+        ],
+        "values": [
+          "Untrimmed Surface"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Curve",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "name": "Pull Curve",
+    "nick": "Pull Curve",
+    "id": "0ea9f2e5-53b7-432d-992e-4814c73ab469",
+    "type": "CurveComponents.Component_PullCurve",
+    "inputs": [
+      {
+        "name": "Curve",
+        "sources": [
+          "19c22e27-54c4-4987-b427-5f3d111b95e6"
+        ],
+        "values": [
+          "Line-like Curve",
+          "Line-like Curve",
+          "Line-like Curve",
+          "Line-like Curve",
+          "Line-like Curve"
+        ]
+      },
+      {
+        "name": "Surface",
+        "sources": [
+          "3650466c-122a-416d-b289-78ba4904dae7"
+        ],
+        "values": [
+          "Untrimmed Surface"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Curve",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "name": "Offset on Srf",
+    "nick": "Offset on Srf",
+    "id": "e4eb370c-4b15-402b-a9a7-b64f82122c87",
+    "type": "CurveComponents.Component_OffsetCurveOnSurface",
+    "inputs": [
+      {
+        "name": "Curve",
+        "sources": [
+          "6371fa8d-ae4f-4fbb-ad75-3b6a156b1a70"
+        ],
+        "values": [
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve"
+        ]
+      },
+      {
+        "name": "Distance",
+        "sources": [
+          "4a31863b-a7f7-4786-90b0-522659feea55"
+        ],
+        "values": [
+          "2"
+        ]
+      },
+      {
+        "name": "Surface",
+        "sources": [
+          "3650466c-122a-416d-b289-78ba4904dae7"
+        ],
+        "values": [
+          "Untrimmed Surface"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Curve",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "name": "Division",
+    "nick": "Division",
+    "id": "7cfdbe89-e22d-4949-80bc-bc52d21b01a3",
+    "type": "MathComponents.OperatorComponents.Operator_Division",
+    "inputs": [
+      {
+        "name": "A",
+        "sources": [
+          "d254839c-f85b-4e7e-a235-ab836bb1341c"
+        ],
+        "values": [
+          "4"
+        ]
+      },
+      {
+        "name": "B",
+        "sources": [
+          "decaa6fe-8ae8-4c59-b149-9c13474374fd"
+        ],
+        "values": [
+          "2"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Result",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Strip Width",
+    "id": "d254839c-f85b-4e7e-a235-ab836bb1341c",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "4",
+    "min": "0",
+    "max": "30"
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Strip Width",
+    "id": "decaa6fe-8ae8-4c59-b149-9c13474374fd",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "2",
+    "min": "0",
+    "max": "30"
+  },
+  {
+    "name": "Offset on Srf",
+    "nick": "Offset on Srf",
+    "id": "dc722700-3aec-49b5-9226-0cfb0507ac6c",
+    "type": "CurveComponents.Component_OffsetCurveOnSurface",
+    "inputs": [
+      {
+        "name": "Curve",
+        "sources": [
+          "d56afeb5-c027-4522-a8e2-70efea2d75d5"
+        ],
+        "values": [
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve"
+        ]
+      },
+      {
+        "name": "Distance",
+        "sources": [
+          "97365abe-5db0-466d-8fee-0a694de154de"
+        ],
+        "values": [
+          "2"
+        ]
+      },
+      {
+        "name": "Surface",
+        "sources": [
+          "3650466c-122a-416d-b289-78ba4904dae7"
+        ],
+        "values": [
+          "Untrimmed Surface"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Curve",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "name": "Division",
+    "nick": "Division",
+    "id": "44a4f4b8-23c6-4c9e-b1da-5b49157b547b",
+    "type": "MathComponents.OperatorComponents.Operator_Division",
+    "inputs": [
+      {
+        "name": "A",
+        "sources": [
+          "2a6b8c87-cb43-4e67-a34b-37578b3b3883"
+        ],
+        "values": [
+          "4"
+        ]
+      },
+      {
+        "name": "B",
+        "sources": [
+          "c46834c2-142e-445c-9e7f-fc9cf9c2127d"
+        ],
+        "values": [
+          "2"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Result",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Strip Width",
+    "id": "2a6b8c87-cb43-4e67-a34b-37578b3b3883",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "4",
+    "min": "0",
+    "max": "30"
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Strip Width",
+    "id": "c46834c2-142e-445c-9e7f-fc9cf9c2127d",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "2",
+    "min": "0",
+    "max": "30"
+  },
+  {
+    "name": "Negative",
+    "nick": "Negative",
+    "id": "62ed4ce7-db0c-4b3b-ad1f-41d10090672b",
+    "type": "MathComponents.FunctionComponents.OperatorSign",
+    "inputs": [
+      {
+        "name": "Value",
+        "sources": [
+          "4a31863b-a7f7-4786-90b0-522659feea55"
+        ],
+        "values": [
+          "2"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Result",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "Negative",
+    "nick": "Negative",
+    "id": "277d3bd1-5989-49cb-9758-0a84265b3ada",
+    "type": "MathComponents.FunctionComponents.OperatorSign",
+    "inputs": [
+      {
+        "name": "Value",
+        "sources": [
+          "97365abe-5db0-466d-8fee-0a694de154de"
+        ],
+        "values": [
+          "2"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Result",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "Offset on Srf",
+    "nick": "Offset on Srf",
+    "id": "814b74f5-f1c5-43e8-bfa5-7bfd0a4524c0",
+    "type": "CurveComponents.Component_OffsetCurveOnSurface",
+    "inputs": [
+      {
+        "name": "Curve",
+        "sources": [
+          "6371fa8d-ae4f-4fbb-ad75-3b6a156b1a70"
+        ],
+        "values": [
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve"
+        ]
+      },
+      {
+        "name": "Distance",
+        "sources": [
+          "e62b681b-aa68-4b42-bde4-30a5ed4b98de"
+        ],
+        "values": [
+          "-2"
+        ]
+      },
+      {
+        "name": "Surface",
+        "sources": [
+          "3650466c-122a-416d-b289-78ba4904dae7"
+        ],
+        "values": [
+          "Untrimmed Surface"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Curve",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "name": "Offset on Srf",
+    "nick": "Offset on Srf",
+    "id": "edd9216b-d6f3-4e30-84cb-2ddf4a43af8d",
+    "type": "CurveComponents.Component_OffsetCurveOnSurface",
+    "inputs": [
+      {
+        "name": "Curve",
+        "sources": [
+          "d56afeb5-c027-4522-a8e2-70efea2d75d5"
+        ],
+        "values": [
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve"
+        ]
+      },
+      {
+        "name": "Distance",
+        "sources": [
+          "1a5eb20f-661d-48d7-a2ae-12eaeb960c8d"
+        ],
+        "values": [
+          "-2"
+        ]
+      },
+      {
+        "name": "Surface",
+        "sources": [
+          "3650466c-122a-416d-b289-78ba4904dae7"
+        ],
+        "values": [
+          "Untrimmed Surface"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Curve",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "name": "Loft",
+    "nick": "Loft",
+    "id": "255f98b1-331d-424a-9395-f53739f1dc00",
+    "type": "SurfaceComponents.SurfaceComponents.Component_LoftSurface",
+    "inputs": [
+      {
+        "name": "Curves",
+        "sources": [
+          "2b6584f5-c97b-4354-90c0-9d97100822b9"
+        ],
+        "values": [
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve"
+        ]
+      },
+      {
+        "name": "Options",
+        "sources": [],
+        "values": [
+          " Loft"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Loft",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "name": "Merge",
+    "nick": "Merge",
+    "id": "1ca10b56-295d-4bb3-b9fb-d922cac9576f",
+    "type": "MathComponents.MergeComponents.Component_MergeVariable",
+    "inputs": [
+      {
+        "name": "Data 1",
+        "sources": [
+          "7be06111-fc2b-4a8a-8690-728813569a9b"
+        ],
+        "values": [
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve"
+        ]
+      },
+      {
+        "name": "Data 2",
+        "sources": [
+          "ad004daf-be5e-42f5-bf40-9ebb8efbe0ff"
+        ],
+        "values": [
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve"
+        ]
+      },
+      {
+        "name": "Data 3",
+        "sources": [],
+        "values": []
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Result",
+        "count": 24
+      }
+    ]
+  },
+  {
+    "name": "Panel",
+    "nick": "",
+    "id": "67919262-e0ff-481c-9489-cea9de53a02d",
+    "type": "Grasshopper.Kernel.Special.GH_Panel"
+  },
+  {
+    "name": "Loft",
+    "nick": "Loft",
+    "id": "679c2559-d848-4377-a3cb-614a8753594c",
+    "type": "SurfaceComponents.SurfaceComponents.Component_LoftSurface",
+    "inputs": [
+      {
+        "name": "Curves",
+        "sources": [
+          "7fc1b895-9cbd-4641-a807-c4172b2c16fb"
+        ],
+        "values": [
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve"
+        ]
+      },
+      {
+        "name": "Options",
+        "sources": [],
+        "values": [
+          " Loft"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Loft",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "name": "Merge",
+    "nick": "Merge",
+    "id": "45c067da-ff4d-40dc-b382-26bb9b830c1a",
+    "type": "MathComponents.MergeComponents.Component_MergeVariable",
+    "inputs": [
+      {
+        "name": "Data 1",
+        "sources": [
+          "97878059-536e-46d1-9ec4-4a0940b42aab"
+        ],
+        "values": [
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve"
+        ]
+      },
+      {
+        "name": "Data 2",
+        "sources": [
+          "a82024d0-fc42-410e-8a40-b9b24dbb8c6c"
+        ],
+        "values": [
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve"
+        ]
+      },
+      {
+        "name": "Data 3",
+        "sources": [],
+        "values": []
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Result",
+        "count": 24
+      }
+    ]
+  },
+  {
+    "name": "Offset Surface",
+    "nick": "Offset Surface",
+    "id": "275dab02-493c-427e-8fb2-238a2afccfbf",
+    "type": "SurfaceComponents.SurfaceComponents.Component_OffsetSurface",
+    "inputs": [
+      {
+        "name": "Surface",
+        "sources": [
+          "dc1232cb-9575-4915-823e-dfdd52bcc215",
+          "2791d7a6-34a8-4f81-9e9b-32994d212a5d"
+        ],
+        "values": [
+          "Untrimmed Surface",
+          "Untrimmed Surface",
+          "Untrimmed Surface",
+          "Untrimmed Surface",
+          "Untrimmed Surface"
+        ]
+      },
+      {
+        "name": "Distance",
+        "sources": [
+          "4a162742-3ffe-4341-ac0c-ca056b47a89a"
+        ],
+        "values": [
+          "0.2"
+        ]
+      },
+      {
+        "name": "Retrim",
+        "sources": [],
+        "values": [
+          "True"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Surface",
+        "count": 24
+      }
+    ]
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Strip Thickness",
+    "id": "4a162742-3ffe-4341-ac0c-ca056b47a89a",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "0.2",
+    "min": "0",
+    "max": "5"
+  },
+  {
+    "name": "Python 3 Script",
+    "nick": "Sensor Heatmap\n",
+    "id": "8bc5b923-e1e0-47dd-9ce1-5dcee35d845f",
+    "type": "RhinoCodePluginGH.Components.Python3Component",
+    "inputs": [
+      {
+        "name": "Values",
+        "sources": [
+          "fd8000f6-02d0-40c8-8533-4aaad01e0c54"
+        ],
+        "values": [
+          "0.3",
+          "0.3",
+          "0.3",
+          "0.3",
+          "0.3"
+        ]
+      },
+      {
+        "name": "Radius",
+        "sources": [
+          "ae0c44be-0488-4d42-b774-d053539d68cc"
+        ],
+        "values": [
+          "25"
+        ]
+      },
+      {
+        "name": "Offset",
+        "sources": [
+          "6ddb775a-eb68-4376-97c8-edb757d52b84"
+        ],
+        "values": [
+          "0.2"
+        ]
+      },
+      {
+        "name": "Rotate",
+        "sources": [
+          "758dda6c-b01e-4f2c-b7f5-65771f68e8f6"
+        ],
+        "values": [
+          "0"
+        ]
+      },
+      {
+        "name": "FlipU",
+        "sources": [
+          "2998d7d9-5095-4335-b082-b9cda6c25a99"
+        ],
+        "values": [
+          "False"
+        ]
+      },
+      {
+        "name": "FlipV",
+        "sources": [
+          "5729e386-9d4f-4a41-a3e5-7e418d9998c0"
+        ],
+        "values": [
+          "False"
+        ]
+      },
+      {
+        "name": "Points",
+        "sources": [
+          "da7a5687-c6e4-40da-b511-54278a7011e0"
+        ],
+        "values": [
+          "{250, -31.0, -53.693575}",
+          "{167.864518, -13.751023, -51.319406}",
+          "{130.349818, -1.3934e-8, -49.077783}",
+          "{106.440504, 12.033995, -44.911256}",
+          "{87.818024, 22.242221, -38.524516}"
+        ]
+      },
+      {
+        "name": "Strips",
+        "sources": [
+          "6d110f76-2009-4ed9-b13c-4d02cb7e80c6"
+        ],
+        "values": [
+          "Untrimmed Surface",
+          "Untrimmed Surface",
+          "Untrimmed Surface",
+          "Untrimmed Surface",
+          "Untrimmed Surface"
+        ]
+      },
+      {
+        "name": "MeshSize",
+        "sources": [
+          "63309b78-bea8-491d-aa90-39d97eff3446"
+        ],
+        "values": [
+          "3"
+        ]
+      },
+      {
+        "name": "RowCurves",
+        "sources": [
+          "6371fa8d-ae4f-4fbb-ad75-3b6a156b1a70"
+        ],
+        "values": [
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve"
+        ]
+      },
+      {
+        "name": "ColumnCurves",
+        "sources": [
+          "d56afeb5-c027-4522-a8e2-70efea2d75d5"
+        ],
+        "values": [
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Status",
+        "count": 1
+      },
+      {
+        "name": "HeatMesh",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Height Number Slider",
+    "id": "ae0c44be-0488-4d42-b774-d053539d68cc",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "25",
+    "min": "0",
+    "max": "40"
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Offset Number Slider",
+    "id": "6ddb775a-eb68-4376-97c8-edb757d52b84",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "0.2",
+    "min": "0",
+    "max": "1"
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Rotate Integer Slider",
+    "id": "758dda6c-b01e-4f2c-b7f5-65771f68e8f6",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "0",
+    "min": "0",
+    "max": "1"
+  },
+  {
+    "name": "Boolean Toggle",
+    "nick": "Boolean Toggle",
+    "id": "2998d7d9-5095-4335-b082-b9cda6c25a99",
+    "type": "Grasshopper.Kernel.Special.GH_BooleanToggle"
+  },
+  {
+    "name": "Boolean Toggle",
+    "nick": "Boolean Toggle",
+    "id": "5729e386-9d4f-4a41-a3e5-7e418d9998c0",
+    "type": "Grasshopper.Kernel.Special.GH_BooleanToggle"
+  },
+  {
+    "name": "Panel",
+    "nick": "",
+    "id": "05d2f66a-55c8-4c89-801b-1ef08bf60ab2",
+    "type": "Grasshopper.Kernel.Special.GH_Panel"
+  },
+  {
+    "name": "Repeat Data",
+    "nick": "Repeat Data",
+    "id": "f964d3f0-46a5-4d49-8adc-9ae19bdef525",
+    "type": "MathComponents.ArrayComponents.Component_RepeatData",
+    "inputs": [
+      {
+        "name": "Data",
+        "sources": [
+          "7b1415ca-94a5-4c60-b5e5-30df2842b86f"
+        ],
+        "values": [
+          "0.3"
+        ]
+      },
+      {
+        "name": "Length",
+        "sources": [
+          "05e41e17-f071-4b31-814a-1455d0f7649f"
+        ],
+        "values": [
+          "96"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Data",
+        "count": 96
+      }
+    ]
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Number Slider",
+    "id": "7b1415ca-94a5-4c60-b5e5-30df2842b86f",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "0.3",
+    "min": "0",
+    "max": "1"
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Number Slider",
+    "id": "05e41e17-f071-4b31-814a-1455d0f7649f",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "96",
+    "min": "0",
+    "max": "100"
+  },
+  {
+    "name": "Cross Reference",
+    "nick": "Cross Reference",
+    "id": "754f0f7b-f4a4-4a95-b688-afd72ef12c82",
+    "type": "MathComponents.ArrayComponents.Component_MatchListCrossReference",
+    "inputs": [
+      {
+        "name": "List (List (A))",
+        "sources": [
+          "6371fa8d-ae4f-4fbb-ad75-3b6a156b1a70"
+        ],
+        "values": [
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve"
+        ]
+      },
+      {
+        "name": "List (List (B))",
+        "sources": [
+          "d56afeb5-c027-4522-a8e2-70efea2d75d5"
+        ],
+        "values": [
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "List (List (A))",
+        "count": 144
+      },
+      {
+        "name": "List (List (B))",
+        "count": 144
+      }
+    ]
+  },
+  {
+    "name": "Curve | Curve",
+    "nick": "Curve | Curve",
+    "id": "35fe9d28-d564-434b-820f-a38887a9ee34",
+    "type": "CurveComponents.Component_CurveIntersection",
+    "inputs": [
+      {
+        "name": "Curve A",
+        "sources": [
+          "86a2b965-c725-4249-a914-63f2eee3c058"
+        ],
+        "values": [
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve"
+        ]
+      },
+      {
+        "name": "Curve B",
+        "sources": [
+          "57d011a9-32cc-4d46-9816-e87f88d1299a"
+        ],
+        "values": [
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve",
+          "Curve"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Points",
+        "count": 108
+      },
+      {
+        "name": "Params A",
+        "count": 108
+      },
+      {
+        "name": "Params B",
+        "count": 108
+      }
+    ]
+  },
+  {
+    "name": "Point",
+    "nick": "IntersectionPoints",
+    "id": "acb6a749-eb4b-4849-b681-4c236836bd33",
+    "type": "Grasshopper.Kernel.Parameters.Param_Point"
+  },
+  {
+    "name": "List Length",
+    "nick": "List Length",
+    "id": "53058efa-7811-412e-86be-3d37814305c5",
+    "type": "MathComponents.ArrayComponents.Component_ListLength",
+    "inputs": [
+      {
+        "name": "List",
+        "sources": [
+          "acb6a749-eb4b-4849-b681-4c236836bd33"
+        ],
+        "values": [
+          "{0, 35, 0}",
+          "{250, -31.0, -53.693575}",
+          "{167.864518, -13.751023, -51.319406}",
+          "{130.349818, -1.3934e-8, -49.077783}",
+          "{106.440504, 12.033995, -44.911256}"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Length",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "Panel",
+    "nick": "",
+    "id": "17828fa6-158a-4945-999b-041c93d19149",
+    "type": "Grasshopper.Kernel.Special.GH_Panel"
+  },
+  {
+    "name": "Curve Closest Point",
+    "nick": "Curve Closest Point",
+    "id": "10b4e693-64fe-456a-b2fc-aef5565b5981",
+    "type": "AnalysisComponents.Component_CurveClosestPoint",
+    "inputs": [
+      {
+        "name": "Point",
+        "sources": [
+          "acb6a749-eb4b-4849-b681-4c236836bd33"
+        ],
+        "values": [
+          "{0, 35, 0}",
+          "{250, -31.0, -53.693575}",
+          "{167.864518, -13.751023, -51.319406}",
+          "{130.349818, -1.3934e-8, -49.077783}",
+          "{106.440504, 12.033995, -44.911256}"
+        ]
+      },
+      {
+        "name": "Curve",
+        "sources": [
+          "02ef3373-7a92-470f-a21e-55ae586e8627"
+        ],
+        "values": [
+          "Circular Curve"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Point",
+        "count": 108
+      },
+      {
+        "name": "Parameter",
+        "count": 108
+      },
+      {
+        "name": "Distance",
+        "count": 108
+      }
+    ]
+  },
+  {
+    "name": "Larger Than",
+    "nick": "Larger Than",
+    "id": "932cad9c-2445-485f-acda-1bbfa78dddd9",
+    "type": "MathComponents.OperatorComponents.Component_LargerThan",
+    "inputs": [
+      {
+        "name": "First Number",
+        "sources": [
+          "acadce35-2b9a-42a5-a537-18b7d11b53d1"
+        ],
+        "values": [
+          "0",
+          "251.453773",
+          "168.840709",
+          "131.107814",
+          "107.059465"
+        ]
+      },
+      {
+        "name": "Second Number",
+        "sources": [
+          "037f925f-1b18-434b-92d2-f72de248e59f"
+        ],
+        "values": [
+          "0.01"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Larger than",
+        "count": 108
+      },
+      {
+        "name": "\u2026 or Equal to",
+        "count": 108
+      }
+    ]
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Number Slider",
+    "id": "037f925f-1b18-434b-92d2-f72de248e59f",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "0.01",
+    "min": "0",
+    "max": "1"
+  },
+  {
+    "name": "Dispatch",
+    "nick": "Dispatch",
+    "id": "b162ebde-224b-4ab7-a162-06b066d46ffe",
+    "type": "MathComponents.ArrayComponents.Component_Dispatch",
+    "inputs": [
+      {
+        "name": "List",
+        "sources": [
+          "acb6a749-eb4b-4849-b681-4c236836bd33"
+        ],
+        "values": [
+          "{0, 35, 0}",
+          "{250, -31.0, -53.693575}",
+          "{167.864518, -13.751023, -51.319406}",
+          "{130.349818, -1.3934e-8, -49.077783}",
+          "{106.440504, 12.033995, -44.911256}"
+        ]
+      },
+      {
+        "name": "Dispatch pattern",
+        "sources": [
+          "b4047b2f-3ada-4a5a-bd8c-8a5aa03f4a18"
+        ],
+        "values": [
+          "False",
+          "True",
+          "True",
+          "True",
+          "True"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "List A",
+        "count": 96
+      },
+      {
+        "name": "List B",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "name": "Point",
+    "nick": "SensorIntersections",
+    "id": "da7a5687-c6e4-40da-b511-54278a7011e0",
+    "type": "Grasshopper.Kernel.Parameters.Param_Point"
+  },
+  {
+    "name": "List Length",
+    "nick": "List Length",
+    "id": "2d3cd404-0a81-4ca9-ab80-d6fd4db971f7",
+    "type": "MathComponents.ArrayComponents.Component_ListLength",
+    "inputs": [
+      {
+        "name": "List",
+        "sources": [
+          "da7a5687-c6e4-40da-b511-54278a7011e0"
+        ],
+        "values": [
+          "{250, -31.0, -53.693575}",
+          "{167.864518, -13.751023, -51.319406}",
+          "{130.349818, -1.3934e-8, -49.077783}",
+          "{106.440504, 12.033995, -44.911256}",
+          "{87.818024, 22.242221, -38.524516}"
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Length",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "Panel",
+    "nick": "",
+    "id": "d18e5859-59fa-43f6-8ee7-84bcf7a49f7d",
+    "type": "Grasshopper.Kernel.Special.GH_Panel"
+  },
+  {
+    "name": "Mesh",
+    "nick": "HeatmapMesh",
+    "id": "8d58cbc6-ed8e-4d50-bf34-3b1a6326ffc8",
+    "type": "Grasshopper.Kernel.Parameters.Param_Mesh"
+  },
+  {
+    "name": "Merge",
+    "nick": "Merge",
+    "id": "b6305f34-8d86-43e6-a1b4-989c13f2c873",
+    "type": "MathComponents.MergeComponents.Component_MergeVariable",
+    "inputs": [
+      {
+        "name": "Data 1",
+        "sources": [
+          "2791d7a6-34a8-4f81-9e9b-32994d212a5d"
+        ],
+        "values": [
+          "Untrimmed Surface",
+          "Untrimmed Surface",
+          "Untrimmed Surface",
+          "Untrimmed Surface",
+          "Untrimmed Surface"
+        ]
+      },
+      {
+        "name": "Data 2",
+        "sources": [
+          "dc1232cb-9575-4915-823e-dfdd52bcc215"
+        ],
+        "values": [
+          "Untrimmed Surface",
+          "Untrimmed Surface",
+          "Untrimmed Surface",
+          "Untrimmed Surface",
+          "Untrimmed Surface"
+        ]
+      },
+      {
+        "name": "Data 3",
+        "sources": [],
+        "values": []
+      }
+    ],
+    "outputs": [
+      {
+        "name": "Result",
+        "count": 24
+      }
+    ]
+  },
+  {
+    "name": "Number Slider",
+    "nick": "Number Slider",
+    "id": "63309b78-bea8-491d-aa90-39d97eff3446",
+    "type": "Grasshopper.Kernel.Special.GH_NumberSlider",
+    "value": "3",
+    "min": "0",
+    "max": "10"
+  }
+]

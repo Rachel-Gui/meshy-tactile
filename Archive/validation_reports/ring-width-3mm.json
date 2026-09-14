@@ -1,0 +1,16 @@
+{
+  "runtimeErrors": [], 
+  "stripWidth": 3, 
+  "beforeWidth": [
+    4.0, 
+    4.0
+  ], 
+  "sensorCount": 30, 
+  "exported": true, 
+  "offsets": [
+    1.5, 
+    1.5, 
+    -1.5, 
+    -1.5
+  ]
+}

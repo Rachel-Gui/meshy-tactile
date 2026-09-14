@@ -1,0 +1,57 @@
+[
+  {
+    "from": "1.3dm",
+    "to": "models/tactile/1.3dm",
+    "sha256": "3cfdbabd26b1e496e0fcba8737ceaf6b279cb67630fec6160ba0d46a50522297"
+  },
+  {
+    "from": "1.gh",
+    "to": "models/tactile/1.gh",
+    "sha256": "7d0323f6c88ab0c6eda70b5b309df0ed4eba1cbd3def5eab0bf02788b9f6367b"
+  },
+  {
+    "from": "ring.gh",
+    "to": "models/tactile/ring.gh",
+    "sha256": "18db2ee96ffd346525a0551a0ed6dd74e577d9d62341abdb0b44d1a648e19813"
+  },
+  {
+    "from": "Robot Arm.3dm",
+    "to": "models/robot_arm/Robot Arm.3dm",
+    "sha256": "680baad0601272232010b099f5e00a7e193dc3d3028b318b5be8084bd4893819"
+  },
+  {
+    "from": "Robot Arm.3mf",
+    "to": "models/robot_arm/Robot Arm.3mf",
+    "sha256": "6ea4893a47fc5fc727b71d2bc0fd3404ea14af0427da5df13b8d25dd15bc2475"
+  },
+  {
+    "from": "print robot arm.stp",
+    "to": "models/robot_arm/print robot arm.stp",
+    "sha256": "b0ccbd2dd5eb7444b367a203002b93186411ff01b82e2018f9c5c8d81a138933"
+  },
+  {
+    "from": "cello test.dxf",
+    "to": "models/experiments/cello test.dxf",
+    "sha256": "e5055608363aada12068591fccb4ec90c379560e16e9b032096659688433f685"
+  },
+  {
+    "from": "downloaded_tactilesensor_a2.ino",
+    "to": "firmware/downloaded_tactilesensor_a2.ino",
+    "sha256": "8e6374045f37ba2f70c823f2a4b893c19964253c22552212d9fbae6c1b1a6188"
+  },
+  {
+    "from": "tactile_cyclic_96points_viewer.py",
+    "to": "tools/viewers/tactile_cyclic_96points_viewer.py",
+    "sha256": "b2f54a1ddd477ae9c76870cc15c0b745af78bc71f17ac577bb000419c7ba29ba"
+  },
+  {
+    "from": "tactile_full_scan_viewer.py",
+    "to": "tools/viewers/tactile_full_scan_viewer.py",
+    "sha256": "1528614a3f6563677974395c42635952d4ac8209be463956cc67a9a004895610"
+  },
+  {
+    "from": "tactile_mapped_12x12_viewer.py",
+    "to": "tools/viewers/tactile_mapped_12x12_viewer.py",
+    "sha256": "8fb444317f18f70f42ef5ca319429a506fd8f1cc18efd3e16b1a5bdc87d90a87"
+  }
+]

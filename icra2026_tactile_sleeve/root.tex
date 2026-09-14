@@ -83,13 +83,13 @@ This electronic document is a ÒliveÓ template. The various components of your 
 Robotics has advanced greatly in recent years and are now very prevalent in manufacturing with growing instances of direct human interaction. There has been a growing need for robotic systems to be aware of their surroundings so that they can accurately interact with the physical world. Vision based systems, such as optical cameras and lidar, have been very popular for a variety of applications, but for direct tactile sensing they lack the high temporal resolution and dynamic range needed for many scenarios such as fine grain interaction where sensing of direct forces matter. For these situations, robotic skins or wearable sensors provide much better data input. Current solutions are sparse, wired, and cover only part of the limb as well as lack full spatial coverage of an area without custom integrations.
 
 
-In this work, we propose a reconfigurable sensor integrated skin built around the braid kinematics of McKibben muscles to address this. The braided architecture simultaneously provides mechanical reconfigurability and tactile sensing to a range of conical geometries often found on robot appendages. Our prototype sleeve conforms to a range of limb sizes with each interlace forming a piezoresistive sensing node. Our research contributions presented in this paper include:
+In this work, we propose a reconfigurable sensor integrated skin built around the braid kinematics of McKibben muscles to address this. The braided architecture simultaneously provides mechanical reconfigurability and tactile sensing to a range of conical geometries often found on robot appendages. Our prototype skin conforms to a range of limb sizes with each interlace forming a piezoresistive sensing node. Our research contributions presented in this paper include:
 
 \begin{itemize}
     \item Two Prototpyes and design framework (expand on this, ref design equations)
     \item An empirical characterization of the sensor within the McKibben architecture in various configurations (angles vs pressure)
     \item A companion tool closes the loop between geometry and sensing: it generates the braid structure from the design parameters, computes the braid angle at every node, assigns the angle calibration to each node, and renders live 3D heat maps. 
-    \item An evluation of the sleeve when used on a robotic finger and arm in various real world applications
+    \item An evluation of the skin when used on a robotic finger and arm in various real world applications
 \end{itemize}
 
 
@@ -110,10 +110,10 @@ In this work, we propose a reconfigurable sensor integrated skin built around th
 
 \subsection{Tactile Sensing on Robotics Skins and Smart Textiles}
 
-Tactile sensing for robotic manipulation has advanced rapidly. Vision-based fingertip sensors such as GelSight~\cite{gelsight} can deliver submillimeter spatial resolution. More recent skins scale sensing to larger areas: magnetic patches can be swapped out in seconds~\cite{anyskin}, and stretchable skins wrap robot limbs for physical human-robot interaction~\cite{cushsense}. Together, these works have extended tactile sensing from the fingertip toward the whole limb. Our sleeve builds on the same sensing principle, but uses a braided geometry rather than a planar row-column sheet to define the node lattice. This distinction is mechanical as well as electrical. In prior textile arrays, the sensing layout is placed onto or integrated into a deformable substrate. In our design, the sensing ribbons themselves form the reconfigurable structure. The same braid therefore determines both how the sleeve conforms to the limb and where the tactile nodes are located.
+Tactile sensing for robotic manipulation has advanced rapidly. Vision-based fingertip sensors such as GelSight~\cite{gelsight} can deliver submillimeter spatial resolution. More recent skins scale sensing to larger areas: magnetic patches can be swapped out in seconds~\cite{anyskin}, and stretchable skins wrap robot limbs for physical human-robot interaction~\cite{cushsense}. Together, these works have extended tactile sensing from the fingertip toward the whole limb. Our skin builds on the same sensing principle, but uses a braided geometry rather than a planar row-column sheet to define the node lattice. This distinction is mechanical as well as electrical. In prior textile arrays, the sensing layout is placed onto or integrated into a deformable substrate. In our design, the sensing ribbons themselves form the reconfigurable structure. The same braid therefore determines both how the skin conforms to the limb and where the tactile nodes are located.
 
 
-In parallel, the HRI community has brought touch sensing onto textiles. Examples include interactive fabrics woven at scale~\cite{jacquard} and touch-sensing cords~\cite{iobraid}. For dense pressure mapping, a common design sandwiches a piezoresistive layer between orthogonal conductive electrodes. The resulting row-column matrix turns each crossover into a pressure sensitive junction~\cite{holm}. This principle has powered fabric-based robot skins~\cite{buscher}, scalable tactile gloves~\cite{tactileglove}, and full-size knitted sensing garments~\cite{tactiletextiles,knits}. These works reach hundreds of sensing points over full garments. Our sleeve builds on the same principle, using each crossover as a junction. The novelty is that a braided geometry, rather than a row-column sheet, defines the node lattice. As a result, the structure that senses is also the structure that conforms the array to limbs of different sizes.
+In parallel, the HRI community has brought touch sensing onto textiles. Examples include interactive fabrics woven at scale~\cite{jacquard} and touch-sensing cords~\cite{iobraid}. For dense pressure mapping, a common design sandwiches a piezoresistive layer between orthogonal conductive electrodes. The resulting row-column matrix turns each crossover into a pressure sensitive junction~\cite{holm}. This principle has powered fabric-based robot skins~\cite{buscher}, scalable tactile gloves~\cite{tactileglove}, and full-size knitted sensing garments~\cite{tactiletextiles,knits}. These works reach hundreds of sensing points over full garments. Our skin builds on the same principle, using each crossover as a junction. The novelty is that a braided geometry, rather than a row-column sheet, defines the node lattice. As a result, the structure that senses is also the structure that conforms the array to limbs of different sizes.
 
 \subsection{Braided Structures in Robotics and Sensing}
 
@@ -150,7 +150,7 @@ The key contribution of this work is a reconfigurable tactile sensing skin, and 
 
 Braiding turns this junction principle into a dense array. The skin is a regular braid of $2n$ sensing ribbons, terminated at both ends by collars. Every ribbon crossover forms one sensing node, so a braid with $N$ turns per ribbon contains $2n^2 N$ crossovers that tile the full circumference of the limb. Crossovers that coincide with the collar anchors serve as mechanical pivots and are excluded from readout. The braid geometry itself therefore determines the array layout: as the braid changes diameter and length to conform to the limb, the same sensing ribbons maintain a distributed lattice of pressure sensitive crossovers.
 
-\subsection{Reconfigurable Mechanical Design}
+\subsection{Reconfigurable Mechanical Design}\label{sec:braid-layout}
 The braid follows McKibben kinematics. As the skin is pulled onto a limb, its diameter and length trade off along a fixed kinematic curve. One skin conforms to a range of limb sizes instead of a single diameter. Collars at both ends fix the ribbon ends and define the usable length. Two geometries cover the limb segments considered in this work: a symmetric segment is modeled as a cylinder, and a tapered segment as a cone.
 
 \subsubsection{Cylinder}
@@ -209,7 +209,7 @@ sensing nodes & 30 & 96 \\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{FINGER AND ARM SKIN DESIGNS}
+\section{FINGER AND ARM SKIN DESIGNS}\label{sec:designs}
 
 \begin{figure}[t]
   \centering
@@ -254,7 +254,7 @@ The arm skin follows the process of Sec.~III-C on the conical mandrel with geode
   \label{fig:hand interface}
 \end{figure*}
 
-\subsection{Pressure versus Resistance across Braid Angles}
+\subsection{Pressure versus Resistance across Braid Angles}\label{sec:angle-characterization}
 Characterizing the sensing response across braid angles is important because the braid angle changes as the skin adapts to different diameters and lengths. For the conical arm skin, the braid angle also varies along the length of the skin. Since different braid angles produce different resistance baselines, a single pressure-resistance mapping cannot be assumed for all sensing nodes. We therefore characterize the pressure-resistance response at different braid angles to establish the corresponding mappings required for sensing across the skin's reconfigurable geometry.
 The braid angle changes the geometry of each ribbon crossover. For two ribbons of width $w$ crossing at braid angle $\theta$, the crossover area is
 \begin{equation}
@@ -262,24 +262,55 @@ A_{node} = \frac{w^2}{\sin(2\theta)}.
 \end{equation}
 The crossover area is minimized near $\theta = 45^\circ$ and increases as the braid angle moves away from $45^\circ$. Therefore, changes in braid angle alter the pressure relationship at each sensing node and affect its electrical response.
 We characterized this effect for the two ribbon widths used in our prototypes: 3~mm for the finger skin and 7~mm for the arm skin. Both were tested at braid angles of $42^\circ$, $48^\circ$, $52^\circ$, $58^\circ$, $64^\circ$, and $72^\circ$. At each angle, the voltage divider output was recorded as a function of pressure (Fig.~\ref{}).
-The measured responses follow the predicted trend, with smaller braid angles producing higher resistance baselines. For the 3~mm ribbons, the response curves remain closely grouped. In contrast, the 7~mm ribbons show a larger variation in baseline resistance across braid angles. This larger variation indicates that a single pressure to resistance mapping is insufficient for all braid configurations. Angle calibration is therefore important for generating accurate real time pressure heat maps, and the tool in Sec.~V-C assigns these calibrations to individual nodes.
+The measured responses follow the predicted trend, with smaller braid angles producing higher resistance baselines. For the 3~mm ribbons, the response curves remain closely grouped. In contrast, the 7~mm ribbons show a larger variation in baseline resistance across braid angles. This larger variation indicates that a single pressure to resistance mapping is insufficient for all braid configurations. Angle calibration is therefore important for generating accurate real time pressure heat maps, and the tool in Sec.~\ref{sec:tool} assigns these calibrations to individual nodes.
 
 \subsection{Coverage Validation}
 measured vs theoretical D-L curve
 
-\subsection{INTERACTIVE DESIGN AND VISUALIZATION}
-Two practical needs motivate a companion software tool. First, the braid angle differs from node to node and shifts whenever the sleeve adapts to a different limb size, and Sec.~IV-A shows that the electrical response depends on this angle. Decoding a worn sleeve therefore requires the current angle at every node. Second, the array wraps a curved surface, so a flat heat map of the node values is difficult to read.
+\subsection{Interactive Design and Visualization Tool}\label{sec:tool}
+Two practical needs motivate a companion software tool. First, the braid angle differs from node to node and shifts whenever the sleeve adapts to a different limb size, and Sec.~\ref{sec:angle-characterization} shows that the electrical response depends on this angle. Decoding a worn sleeve therefore requires the current angle at every node. Second, the array wraps a curved surface, so a flat heat map of the node values is difficult to read.
 
-\emph{Geometry generation.} The tool takes the design parameters of Sec.~III as input: target diameter and length, ribbon count, ribbon length, and ribbon width, plus the cone half-angle for tapered limbs. It solves the braid layout of Sec.~III-C and builds the corresponding three-dimensional ribbon structure.
+\emph{Geometry generation.} The tool takes the design parameters of Sec.~\ref{sec:designs} as input: target diameter and length, ribbon count, ribbon length, and ribbon width, plus the cone half-angle for tapered limbs. It solves the braid layout of Sec.~\ref{sec:braid-layout} and builds the corresponding three-dimensional ribbon structure.
 
-\emph{Calibration.} Our tool evaluates the braid angle at every node: $\theta = \arcsin(\pi N D / b)$ from the current diameter on the cylinder, and $\theta(s) = \arcsin(p/s)$ node by node along the cone. Each node is assigned the pressure-resistance mapping of the nearest characterized angle from Sec.~IV-A. 
+\emph{Calibration.} Our tool evaluates the braid angle at every node: $\theta = \arcsin(\pi N D / b)$ from the current diameter on the cylinder, and $\theta(s) = \arcsin(p/s)$ node by node along the cone. Each node is assigned the pressure-resistance mapping of the nearest characterized angle from Sec.~\ref{sec:angle-characterization}. 
 
-\emph{3D heat map.} Connected to the readout circuit, the tool renders each calibrated node value as a colored marker at its crossover on the 3D sleeve model. Contact location and intensity are read directly from the 3D sleeve surface instead of being unwrapped from a flat grid. All heat maps in Sec.~VI are rendered by this tool.
+\emph{3D heat map.} Connected to the readout circuit, the tool renders each calibrated node value as a colored marker at its crossover on the 3D sleeve model. Contact location and intensity are read directly from the 3D sleeve surface instead of being unwrapped from a flat grid. All heat maps in the remainder of this section are rendered by this tool.
 
 \subsection{Hand Interfaces}
 
+plan A
+
+human and robot hand x3 sensors
+3 different scenarios, with 3 sensors wearing on different finger parts, all doing same grasping 
+
+1. 3 sensors on the same finger
+2. 3 sensors on the proximal joint of fingers
+3. 3 sensors on different parts of different fingers
+
+
+plan B
+
+human and robot hand x1 sensors
+9 different scenarios, with 1 sensors wearing on different finger parts/finger, all doing same grasping 
+
+1 sensor on 3 different parts of 3 different fingers (x9 images)
+
+record video 
+
 
 \subsection{Arm Interfaces}
+
+human arm
+ask 3 people to wear, 3 scenarios for each person 
+
+robot arm 
+robot arm itself + 2 3d print cases, 3 scenario for each (hand grasping, finger poking, push an object on the arm)
+
+record video
+
+9/12
+
+
 
 \begin{figure*}[t]
   \centering

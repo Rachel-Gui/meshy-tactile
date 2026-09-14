@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "file:///Users/a0000/Desktop/tactile/web/set_ring_width_3mm.py", line 60, in <module>
+  File "file:///Users/a0000/Desktop/tactile/web/set_ring_width_3mm.py", line 26, in run
+TypeError: float() argument must be a string or a number, not 'Decimal'

@@ -1,0 +1,6 @@
+{
+  "sensorCount": 96,
+  "maximumSensorPositionChangeMm": 0.0,
+  "reopenSolved": true,
+  "bandWidthMm": 15
+}

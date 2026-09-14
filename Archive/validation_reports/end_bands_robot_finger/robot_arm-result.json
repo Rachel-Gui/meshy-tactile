@@ -1,0 +1,8 @@
+{
+  "model": "robot_arm",
+  "widthMm": 5,
+  "bandCount": 2,
+  "sensorCount": 132,
+  "runtimeErrors": [],
+  "rhinoSnapshot": "/Users/a0000/Desktop/tactile/models/robot_arm/robot_arm_132_32mm.3dm"
+}

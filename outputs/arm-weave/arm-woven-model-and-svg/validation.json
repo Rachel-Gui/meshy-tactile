@@ -1,0 +1,375 @@
+{
+  "strandCount": 24,
+  "sensorCount": 96,
+  "stripWidthMm": 4,
+  "stripThicknessMm": 0.4,
+  "weaveLiftMm": 0.8,
+  "centerCrossingSurfaceGapMm": 1.2,
+  "endBandWidthMm": 5,
+  "endBandRadialThicknessMm": 2,
+  "closedStrands": true,
+  "strandIntersections": [],
+  "alternation": [
+    {
+      "family": "A",
+      "index": 0,
+      "crossings": 8,
+      "heights": [
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8
+      ]
+    },
+    {
+      "family": "A",
+      "index": 1,
+      "crossings": 8,
+      "heights": [
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8
+      ]
+    },
+    {
+      "family": "A",
+      "index": 2,
+      "crossings": 8,
+      "heights": [
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8
+      ]
+    },
+    {
+      "family": "A",
+      "index": 3,
+      "crossings": 8,
+      "heights": [
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8
+      ]
+    },
+    {
+      "family": "A",
+      "index": 4,
+      "crossings": 8,
+      "heights": [
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8
+      ]
+    },
+    {
+      "family": "A",
+      "index": 5,
+      "crossings": 8,
+      "heights": [
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8
+      ]
+    },
+    {
+      "family": "A",
+      "index": 6,
+      "crossings": 8,
+      "heights": [
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8
+      ]
+    },
+    {
+      "family": "A",
+      "index": 7,
+      "crossings": 8,
+      "heights": [
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8
+      ]
+    },
+    {
+      "family": "A",
+      "index": 8,
+      "crossings": 8,
+      "heights": [
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8
+      ]
+    },
+    {
+      "family": "A",
+      "index": 9,
+      "crossings": 8,
+      "heights": [
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8
+      ]
+    },
+    {
+      "family": "A",
+      "index": 10,
+      "crossings": 8,
+      "heights": [
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8
+      ]
+    },
+    {
+      "family": "A",
+      "index": 11,
+      "crossings": 8,
+      "heights": [
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8
+      ]
+    },
+    {
+      "family": "B",
+      "index": 0,
+      "crossings": 8,
+      "heights": [
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8
+      ]
+    },
+    {
+      "family": "B",
+      "index": 1,
+      "crossings": 8,
+      "heights": [
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8
+      ]
+    },
+    {
+      "family": "B",
+      "index": 2,
+      "crossings": 8,
+      "heights": [
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8
+      ]
+    },
+    {
+      "family": "B",
+      "index": 3,
+      "crossings": 8,
+      "heights": [
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8
+      ]
+    },
+    {
+      "family": "B",
+      "index": 4,
+      "crossings": 8,
+      "heights": [
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8
+      ]
+    },
+    {
+      "family": "B",
+      "index": 5,
+      "crossings": 8,
+      "heights": [
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8
+      ]
+    },
+    {
+      "family": "B",
+      "index": 6,
+      "crossings": 8,
+      "heights": [
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8
+      ]
+    },
+    {
+      "family": "B",
+      "index": 7,
+      "crossings": 8,
+      "heights": [
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8
+      ]
+    },
+    {
+      "family": "B",
+      "index": 8,
+      "crossings": 8,
+      "heights": [
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8
+      ]
+    },
+    {
+      "family": "B",
+      "index": 9,
+      "crossings": 8,
+      "heights": [
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8
+      ]
+    },
+    {
+      "family": "B",
+      "index": 10,
+      "crossings": 8,
+      "heights": [
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8
+      ]
+    },
+    {
+      "family": "B",
+      "index": 11,
+      "crossings": 8,
+      "heights": [
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8,
+        0.8,
+        -0.8
+      ]
+    }
+  ],
+  "errors": []
+}

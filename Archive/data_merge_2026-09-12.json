@@ -1,0 +1,1385 @@
+{
+  "status": "verified",
+  "files": [
+    {
+      "old": "finger_action_library/18point_6x6_sparse/action_index.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/action_index.xlsx",
+      "sha256": "bf10e0197bbe6836edc31b9a936bbeea134c123977bb684fa4084570b6783730",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/18point_6x6_sparse/segments/E001_grasp_tactile_48points_20260908_163756_f0001-f0012.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E001_grasp_tactile_48points_20260908_163756_f0001-f0012.xlsx",
+      "sha256": "ac950c0dfa37e1fcbd6cf737dac0e4645d3e86cbb5a9dcceb771620e4c190e55",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/18point_6x6_sparse/segments/E002_grasp_tactile_48points_20260908_163756_f0015-f0023.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E002_grasp_tactile_48points_20260908_163756_f0015-f0023.xlsx",
+      "sha256": "0b0ad8fdc5cf2cd0e78d8bb27d308646041e33fb00d3c7291a10ddb5ec261845",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/18point_6x6_sparse/segments/E003_back_touch_tactile_48points_20260908_164148_f0000-f0005.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E003_back_touch_tactile_48points_20260908_164148_f0000-f0005.xlsx",
+      "sha256": "cfd8f60567e958f237a5478a3387a3c15a97649f82f38510adb672c0daac6922",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/18point_6x6_sparse/segments/E004_grasp_tactile_48points_20260908_164148_f0007-f0013.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E004_grasp_tactile_48points_20260908_164148_f0007-f0013.xlsx",
+      "sha256": "e5808f4c881c1a1935b606cdf7b4e612fb5f299bee22f9d050846b10a4a10e0b",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/18point_6x6_sparse/segments/E005_front_touch_tactile_48points_20260908_164148_f0013-f0018.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E005_front_touch_tactile_48points_20260908_164148_f0013-f0018.xlsx",
+      "sha256": "529c9fbdd7c4a0e3027a6abba6c070d5c2be095f940d529b45daac7009b658cb",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/18point_6x6_sparse/segments/E006_front_touch_tactile_48points_20260908_164148_f0019-f0022.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E006_front_touch_tactile_48points_20260908_164148_f0019-f0022.xlsx",
+      "sha256": "8e11c11186f43fc1bd6bf50bb32105bcdad76fc9ab8905e2c2951b886611ee94",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/18point_6x6_sparse/segments/E007_grasp_tactile_48points_20260908_164741_f0006-f0014.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E007_grasp_tactile_48points_20260908_164741_f0006-f0014.xlsx",
+      "sha256": "184d312e18b459d482ddb8870be8d70949337ce26ef0d0ed152293383b5dfd7b",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/18point_6x6_sparse/segments/E008_back_touch_tactile_48points_20260908_164741_f0015-f0020.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E008_back_touch_tactile_48points_20260908_164741_f0015-f0020.xlsx",
+      "sha256": "1495891f22860be0703eaf0555ffa27afcf1f6057a8831444569e92e358463f2",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/18point_6x6_sparse/segments/E009_grasp_tactile_48points_20260908_164741_f0020-f0027.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E009_grasp_tactile_48points_20260908_164741_f0020-f0027.xlsx",
+      "sha256": "d6bf97b0fd163924a3d64e014938f15818de77a2cbbd7034db2b7baa215dc4cb",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/18point_6x6_sparse/segments/E010_grasp_tactile_48points_20260908_164741_f0026-f0033.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E010_grasp_tactile_48points_20260908_164741_f0026-f0033.xlsx",
+      "sha256": "e6220dd789e9b8c888ba9a988a80ecb20bd3d5e6e21b0c060dc333bbe8961f2c",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/18point_6x6_sparse/segments/E011_grasp_tactile_48points_20260908_164741_f0033-f0037.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E011_grasp_tactile_48points_20260908_164741_f0033-f0037.xlsx",
+      "sha256": "3773cc9d370a828ed36192fa81869ba394b6ed0c7305ebe95ff998659b4f804d",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/18point_6x6_sparse/segments/E012_grasp_tactile_48points_20260908_164741_f0037-f0044.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E012_grasp_tactile_48points_20260908_164741_f0037-f0044.xlsx",
+      "sha256": "c043799387c15417abf90d390ca8826d426e584110be89059f1adb1180010bff",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/18point_6x6_sparse/segments/E013_back_touch_tactile_48points_20260908_164741_f0043-f0049.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E013_back_touch_tactile_48points_20260908_164741_f0043-f0049.xlsx",
+      "sha256": "fdfb83dd104a63ed24ff303b8543479d34b1d07f13c3bacc01a92a372682498c",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/18point_6x6_sparse/segments/E014_grasp_tactile_48points_20260908_164741_f0049-f0056.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E014_grasp_tactile_48points_20260908_164741_f0049-f0056.xlsx",
+      "sha256": "5f04595ee0e82899fce827714f47fe925856a41e72a8b7f495e987a14b516c5a",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/18point_6x6_sparse/segments/E015_front_touch_tactile_48points_20260908_164741_f0055-f0063.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E015_front_touch_tactile_48points_20260908_164741_f0055-f0063.xlsx",
+      "sha256": "4ca52fc86e4e32ccab2c52c6d93a9f7a18b1135eb25cb5a586f422298b7efeb3",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/18point_6x6_sparse/segments/E016_back_touch_tactile_48points_20260908_164741_f0062-f0067.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E016_back_touch_tactile_48points_20260908_164741_f0062-f0067.xlsx",
+      "sha256": "436dcb8e49f8ea0bb210bcfa28267c90b1fc50d5995d139d5326f6d85218198b",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/30point_recordings_18node_sparse/finger_actions_18node_6x6_sparse.xlsx",
+      "new": "finger/action_library/30point_recordings_18node_sparse/finger_actions_18node_6x6_sparse.xlsx",
+      "sha256": "933b73fffbaf864a4ffa712183c0d3620aec60a3dd0b1e1d3a863144891e0fad",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/README.md",
+      "new": "Archive/library_merge_sources/finger_action_library/README.md",
+      "sha256": "4618baf35914a692f96fa913d741c50dc0944b3da7c8d0300c6f0c256f26bd9d",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/__pycache__/view_all_heatmaps.cpython-313.pyc",
+      "new": "Archive/library_merge_sources/finger_action_library/__pycache__/view_all_heatmaps.cpython-313.pyc",
+      "sha256": "7290d44412daaad797407289e14ec981194b25288bd9d84183ae2d4aa062270e",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/__pycache__/view_all_heatmaps.cpython-314.pyc",
+      "new": "Archive/library_merge_sources/finger_action_library/__pycache__/view_all_heatmaps.cpython-314.pyc",
+      "sha256": "0b305ba5165e6d6bd5f54540eabd96a6e3fa547018d260945d67ca310acb9be7",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/__pycache__/vmod_tmp.cpython-314.pyc",
+      "new": "Archive/library_merge_sources/finger_action_library/__pycache__/vmod_tmp.cpython-314.pyc",
+      "sha256": "d8ba89de37be922b9243b8cf95072d11bc3000d59acabb1d5ee3651ee2e01fe6",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library/view_all_heatmaps.py",
+      "new": "Archive/library_merge_sources/finger_action_library/view_all_heatmaps.py",
+      "sha256": "62dd60d6c12a5b4ba1cefa76961276f6af318bb291dc344e090fbe5ed6086f0a",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/action_index.xlsx",
+      "new": "human_arm/action_library/96point_12x8/action_index.xlsx",
+      "sha256": "936abd03c2e0f83862e0ddaef40fcf71fd339281f150eecfc4a48de58775809c",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E001_grasp_tactile_96points_20260817_194852_f0000-f0007.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E001_grasp_tactile_96points_20260817_194852_f0000-f0007.xlsx",
+      "sha256": "d9d77e78866c7508471401590929ed482f2fcdeb178ffea745ef25c6a3590b9b",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E002_grasp_tactile_96points_20260817_200426_f0000-f0042.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E002_grasp_tactile_96points_20260817_200426_f0000-f0042.xlsx",
+      "sha256": "c05dd31afb58f31005337db24e4cbc318168279bdb4155e7f676499c450354cd",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E003_grasp_tactile_96points_20260817_200426_f0067-f0134.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E003_grasp_tactile_96points_20260817_200426_f0067-f0134.xlsx",
+      "sha256": "7d899caac4eea9feb55d553cfbb9d2f947ca4cc11e6e51353ca44edf6d152cfd",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E004_front_touch_tactile_96points_20260817_200426_f0130-f0181.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E004_front_touch_tactile_96points_20260817_200426_f0130-f0181.xlsx",
+      "sha256": "462963dffae9fe1c0fc03dae3d6564025de5c76ce25d8f0fbd2a36407283bead",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E005_front_touch_tactile_96points_20260817_200426_f0174-f0259.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E005_front_touch_tactile_96points_20260817_200426_f0174-f0259.xlsx",
+      "sha256": "a941e4adb121e48e8ef49fad6d0b65926bafab9074ae672b22771615dff3126a",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E006_grasp_tactile_96points_20260825_144129_f0053-f0174.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E006_grasp_tactile_96points_20260825_144129_f0053-f0174.xlsx",
+      "sha256": "7ff6bc33bfcbc7adb88961ca8125275d91115a1e911ca0007f28bba5ad98b0b1",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E007_grasp_tactile_96points_20260825_144214_f0056-f0170.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E007_grasp_tactile_96points_20260825_144214_f0056-f0170.xlsx",
+      "sha256": "67764da4393f7219f8b853a86ea0466e699eca841aae8482cfb5b45f535a31a1",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E008_back_touch_tactile_96points_20260825_144214_f0354-f0402.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E008_back_touch_tactile_96points_20260825_144214_f0354-f0402.xlsx",
+      "sha256": "0b8081a9f0881cd7d097f8e64098f347927b3ff0bde44cc53bc2250c5414f1a0",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E009_grasp_tactile_96points_20260827_115909_f0155-f0281.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E009_grasp_tactile_96points_20260827_115909_f0155-f0281.xlsx",
+      "sha256": "d91c25a87a735741347833c99a3793cc3e4fa5efdb393d0ed9fd706876c70514",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E010_grasp_tactile_96points_20260827_115909_f0327-f0486.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E010_grasp_tactile_96points_20260827_115909_f0327-f0486.xlsx",
+      "sha256": "801185ee8c9870a9247794b0c87e67791994db616d07741c390890780c5d8b60",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E011_grasp_tactile_96points_20260827_115909_f0477-f0582.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E011_grasp_tactile_96points_20260827_115909_f0477-f0582.xlsx",
+      "sha256": "64683abc8411aab0a4d51fc243d965ea277d4e375e0f2eb6ef09c3f1b8ce01a3",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E012_grasp_tactile_96points_20260827_115909_f0759-f0887.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E012_grasp_tactile_96points_20260827_115909_f0759-f0887.xlsx",
+      "sha256": "cac83b7c40b69b8b1a0755d6be6be43a18671934aa13317b1e80fa4282a651de",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E013_grasp_tactile_96points_20260827_115909_f0990-f1108.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E013_grasp_tactile_96points_20260827_115909_f0990-f1108.xlsx",
+      "sha256": "201836fbbb7f0a41d7f669e57f6af5eeef2b9d456f5cf975e71236acf7416b88",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E014_grasp_tactile_96points_20260829_151106_f0032-f0127.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E014_grasp_tactile_96points_20260829_151106_f0032-f0127.xlsx",
+      "sha256": "eb46974e6ea4a974b75d44a4dafbb205cbf3d941812a024024b4003cfc7d8cc0",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E015_front_touch_tactile_96points_20260829_151106_f0160-f0253.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E015_front_touch_tactile_96points_20260829_151106_f0160-f0253.xlsx",
+      "sha256": "22d0babe5751a5de9b06b53e6282c550b50b58e4e3372b99f4156fede5994b89",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E016_grasp_tactile_96points_20260829_151106_f0327-f0377.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E016_grasp_tactile_96points_20260829_151106_f0327-f0377.xlsx",
+      "sha256": "eaa547d9c608b31c03e5fc76d8a6d2ddc071fa312ab5e3a2b8c77fe4e7a0c1f4",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E017_grasp_tactile_96points_20260829_151106_f0397-f0509.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E017_grasp_tactile_96points_20260829_151106_f0397-f0509.xlsx",
+      "sha256": "89db18a58b4c07bd6605fb2b7818a95be748d01017991283fdfed307cdad54e3",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E018_front_touch_tactile_96points_20260829_151106_f0516-f0543.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E018_front_touch_tactile_96points_20260829_151106_f0516-f0543.xlsx",
+      "sha256": "9a77120a874407a9bbf3c0d856de9dbc341b6e7718e19d7aee6f3a17d3356d56",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E019_grasp_tactile_96points_20260829_151106_f0542-f0620.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E019_grasp_tactile_96points_20260829_151106_f0542-f0620.xlsx",
+      "sha256": "0308e606692c81c665cba95d92c1bfdc73806cebaeca859df23519ad2536f779",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E020_grasp_tactile_96points_20260829_155316_f0622-f0683.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E020_grasp_tactile_96points_20260829_155316_f0622-f0683.xlsx",
+      "sha256": "73ffc695510c2d693f16d1d7c2cbe4aacbb1ff18e0eea3b483d23b9b48b85f99",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E021_grasp_tactile_96points_20260829_155316_f0943-f1037.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E021_grasp_tactile_96points_20260829_155316_f0943-f1037.xlsx",
+      "sha256": "e75a931514358b041464b2a6ab80676f4a174ae41c74020d0a20f74fe48c8c66",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E022_back_touch_tactile_96points_20260820_164334_f0000-f0005.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E022_back_touch_tactile_96points_20260820_164334_f0000-f0005.xlsx",
+      "sha256": "7d920214fd31985720db8b12a77564e3063436884679540862a5c2e5c180ffb2",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E023_back_touch_tactile_96points_20260820_164334_f0006-f0018.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E023_back_touch_tactile_96points_20260820_164334_f0006-f0018.xlsx",
+      "sha256": "1bcec23db587a0b0c089b7aa6d9a3e8e7e209fae7415afc6777055554fbffc19",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E024_grasp_tactile_96points_20260831_162810_f0028-f0110.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E024_grasp_tactile_96points_20260831_162810_f0028-f0110.xlsx",
+      "sha256": "6320130adf10c72d7584b0ac868b87e94a0310066ca1b1ff5888141758a74591",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E025_front_touch_tactile_96points_20260831_162810_f0159-f0239.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E025_front_touch_tactile_96points_20260831_162810_f0159-f0239.xlsx",
+      "sha256": "03b5c9d000a0413a47eca9578b8179a8e8954ccb115d9b48f4476c3674c916ea",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E026_grasp_tactile_96points_20260831_162937_f0021-f0099.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E026_grasp_tactile_96points_20260831_162937_f0021-f0099.xlsx",
+      "sha256": "09a4940a2a7056ca359b9815c11ae9bf3cba8a7225ae393c4cb4de22cae31b71",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E027_grasp_tactile_96points_20260831_162937_f0095-f0174.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E027_grasp_tactile_96points_20260831_162937_f0095-f0174.xlsx",
+      "sha256": "063d3c78a033fc0281520b719f9e6ee8ac4a15681ac296264e50767ff24fd6f9",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E028_front_touch_tactile_96points_20260831_162937_f0239-f0291.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E028_front_touch_tactile_96points_20260831_162937_f0239-f0291.xlsx",
+      "sha256": "4ff86c1c32706ce4bda780c4968341172d3b37c2480e55f4c824b62ec0798b34",
+      "duplicate": false
+    },
+    {
+      "old": "arm/96point_12x8/segments/E029_grasp_tactile_96points_20260908_165907_f0003-f0016.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E029_grasp_tactile_96points_20260908_165907_f0003-f0016.xlsx",
+      "sha256": "795e4827f357b2a3ea57c7cd390d8d1b6adf5f76387e2ebb894c11e5be1ccba5",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/action_index_press_only_legacy_20260910.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/action_index_press_only_legacy_20260910.xlsx",
+      "sha256": "8a2e7298df13df11fc7568b75f9181d788d5d22e2f2d0aef40614b78a03b74b6",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E001_grasp_tactile_48points_20260908_163756_f0005-f0009.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E001_grasp_tactile_48points_20260908_163756_f0005-f0009.xlsx",
+      "sha256": "f246332fefb0838406c5eafba8d0d2f3fd1479ee7770b2eda4e152295acfcf3a",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E002_grasp_tactile_48points_20260908_163756_f0017-f0021.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E002_grasp_tactile_48points_20260908_163756_f0017-f0021.xlsx",
+      "sha256": "4be6539bbaaffe213accc0a894469a4156c010133663f3558538f803e543aedc",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E003_back_touch_tactile_48points_20260908_164148_f0001-f0003.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E003_back_touch_tactile_48points_20260908_164148_f0001-f0003.xlsx",
+      "sha256": "7270132a120ab9b5a49b75b1bb256d4056846625c8cd037e775bdf197c762ab7",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E004_grasp_tactile_48points_20260908_164148_f0009-f0012.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E004_grasp_tactile_48points_20260908_164148_f0009-f0012.xlsx",
+      "sha256": "42775db8dd0491cbdd64632ce403e6622a640a07f6e413d7f8074e341f79f156",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E005_front_touch_tactile_48points_20260908_164148_f0014-f0018.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E005_front_touch_tactile_48points_20260908_164148_f0014-f0018.xlsx",
+      "sha256": "892ed33cd42f683a334071f4fa342232eb7c6d0c7e0cf53450716e90c5068384",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E006_front_touch_tactile_48points_20260908_164148_f0019-f0020.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E006_front_touch_tactile_48points_20260908_164148_f0019-f0020.xlsx",
+      "sha256": "1309fb3d8e43bf1e8d54269b599f5b725945e17712d8c359cd160bebe997744d",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E007_grasp_tactile_48points_20260908_164741_f0008-f0012.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E007_grasp_tactile_48points_20260908_164741_f0008-f0012.xlsx",
+      "sha256": "b80f8b42b1b430a62446ed4199d49a11dd254345d9afe809771a08eba0d3a2de",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E008_back_touch_tactile_48points_20260908_164741_f0017-f0018.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E008_back_touch_tactile_48points_20260908_164741_f0017-f0018.xlsx",
+      "sha256": "2bd7baa2c0ba40f653df9de5fefea56b6d4104fc1348a6bd79ca12bc0e50f0d9",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E009_grasp_tactile_48points_20260908_164741_f0022-f0025.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E009_grasp_tactile_48points_20260908_164741_f0022-f0025.xlsx",
+      "sha256": "3214770e4359e9cf9e6f98f4a1a6b5d162a17d3bd56a8305ee9ce2a86413a6a9",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E010_grasp_tactile_48points_20260908_164741_f0028-f0032.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E010_grasp_tactile_48points_20260908_164741_f0028-f0032.xlsx",
+      "sha256": "e75415221198f8db15a0f5acb8c13a8c8f599f569c21bfbb9f3e0744731a1c76",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E011_grasp_tactile_48points_20260908_164741_f0035-f0036.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E011_grasp_tactile_48points_20260908_164741_f0035-f0036.xlsx",
+      "sha256": "16bc90d748f501e4ae2bf461a2c9f5d4c163bf0b3c7bf87431bec9caf67e2a46",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E012_grasp_tactile_48points_20260908_164741_f0038-f0042.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E012_grasp_tactile_48points_20260908_164741_f0038-f0042.xlsx",
+      "sha256": "94f6cd8a3fee6d577abe92c748031c77d8307c6b9b215bc1523da6da2a785b3c",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E013_back_touch_tactile_48points_20260908_164741_f0045-f0047.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E013_back_touch_tactile_48points_20260908_164741_f0045-f0047.xlsx",
+      "sha256": "881041985a8d9ceb6518cf0b03cb3aeca8947c940918ac5b32a8e9695af276dd",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E014_grasp_tactile_48points_20260908_164741_f0050-f0054.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E014_grasp_tactile_48points_20260908_164741_f0050-f0054.xlsx",
+      "sha256": "d01cc3df8f26f534a9501a2fbab2d5b300757b3f1dec5cab56bd09ea2087ef52",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E015_front_touch_tactile_48points_20260908_164741_f0058-f0061.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E015_front_touch_tactile_48points_20260908_164741_f0058-f0061.xlsx",
+      "sha256": "246e4838e2571bee001091a912a343db060801518dec63ef9693d26be48b8329",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E016_back_touch_tactile_48points_20260908_164741_f0064-f0065.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E016_back_touch_tactile_48points_20260908_164741_f0064-f0065.xlsx",
+      "sha256": "cf34387902e1b54b47b4c2f348b0c9b07df9a563f216893f0f519f45d4cdebfb",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/30point_recordings_18node_sparse/legacy_compressed_mapping/DO_NOT_USE_legacy_wrong_3row_mapping.xlsx",
+      "new": "finger/action_library/30point_recordings_18node_sparse/archive/legacy_compressed_mapping/DO_NOT_USE_legacy_wrong_3row_mapping.xlsx",
+      "sha256": "fad71943c414370c8e42b427d40875b6446240e36c2740a9cb5fe7783a6aff71",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/30point_recordings_18node_sparse/legacy_press_only/finger_actions_18node_6x6_sparse_press_only_legacy_20260910.xlsx",
+      "new": "finger/action_library/30point_recordings_18node_sparse/archive/legacy_press_only/finger_actions_18node_6x6_sparse_press_only_legacy_20260910.xlsx",
+      "sha256": "88ea3479e55baa40ba2990090a7c767e1cc08f28701d193ceac7c488fad86e93",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/action_index_press_only_legacy_20260910.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/action_index_press_only_legacy_20260910.xlsx",
+      "sha256": "4f127d9de24d8106af24b37f3b70fba0ba22610ff544c025df8b40c35a04890d",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E001_grasp_tactile_96points_20260817_194852_f0002-f0003.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E001_grasp_tactile_96points_20260817_194852_f0002-f0003.xlsx",
+      "sha256": "99726b2b35025dff6e93321d8cf75d83389ce88cb7a1d130643c2357697dc853",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E002_grasp_tactile_96points_20260817_200426_f0004-f0034.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E002_grasp_tactile_96points_20260817_200426_f0004-f0034.xlsx",
+      "sha256": "369f5b28eb735953dbfaee9e897a25a33f2827d4608e59845b13c1bd1c84e15b",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E003_grasp_tactile_96points_20260817_200426_f0075-f0126.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E003_grasp_tactile_96points_20260817_200426_f0075-f0126.xlsx",
+      "sha256": "23690cc080bf35f1a067f710bf59cdeab128a96221cb3b7543acb53016b8c6d9",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E004_front_touch_tactile_96points_20260817_200426_f0138-f0173.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E004_front_touch_tactile_96points_20260817_200426_f0138-f0173.xlsx",
+      "sha256": "c36263d5cbea894d3cd49d563264c2919e08b87bf0700662be011bac47434134",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E005_front_touch_tactile_96points_20260817_200426_f0182-f0245.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E005_front_touch_tactile_96points_20260817_200426_f0182-f0245.xlsx",
+      "sha256": "9989d7eefa11fe0322f7c644f7f90b95ba3c94490a4b1f214fcf23a434173138",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E006_grasp_tactile_96points_20260825_144129_f0063-f0126.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E006_grasp_tactile_96points_20260825_144129_f0063-f0126.xlsx",
+      "sha256": "20383c56ff232a21ffc38134fd275f8a4d19c1085dde54391dab05524c997d6f",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E007_grasp_tactile_96points_20260825_144214_f0066-f0129.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E007_grasp_tactile_96points_20260825_144214_f0066-f0129.xlsx",
+      "sha256": "9ef3fec04f70a0a09ea0eb584f86faacce1c1195b4c5b3ed018d6c8d76a6758b",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E008_back_touch_tactile_96points_20260825_144214_f0364-f0392.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E008_back_touch_tactile_96points_20260825_144214_f0364-f0392.xlsx",
+      "sha256": "d673e9d40a968dcef7f9b3d5cfa117cec91045c1d991c9690edca8a265988c0d",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E009_grasp_tactile_96points_20260827_115909_f0165-f0228.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E009_grasp_tactile_96points_20260827_115909_f0165-f0228.xlsx",
+      "sha256": "4d43431f2f666ef96cab5173e8bb8c12c885742110498c191691de4849c363df",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E010_grasp_tactile_96points_20260827_115909_f0337-f0400.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E010_grasp_tactile_96points_20260827_115909_f0337-f0400.xlsx",
+      "sha256": "83fa6f4ec8e6698d1a0adcd0f149af61dea8b1fc68685536bfe0905dd539d9db",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E011_grasp_tactile_96points_20260827_115909_f0487-f0550.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E011_grasp_tactile_96points_20260827_115909_f0487-f0550.xlsx",
+      "sha256": "0ea4b1b70dd4af808903bfdac8f4bea862a0b2145ff0a3636d3d085417b8c0af",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E012_grasp_tactile_96points_20260827_115909_f0769-f0832.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E012_grasp_tactile_96points_20260827_115909_f0769-f0832.xlsx",
+      "sha256": "4156813310e7b13e00593265345126198299d77878471e413ea68d6d89432c8b",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E013_grasp_tactile_96points_20260827_115909_f1000-f1063.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E013_grasp_tactile_96points_20260827_115909_f1000-f1063.xlsx",
+      "sha256": "0dd5f1d4cc82aa116cb831c7a1a5e247247fae680bc05f837387431fea53c03a",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E014_grasp_tactile_96points_20260829_151106_f0040-f0103.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E014_grasp_tactile_96points_20260829_151106_f0040-f0103.xlsx",
+      "sha256": "d0fab6c1f8478fdf80f9580b47c8ec5000346cbdb47b9a44eb51a79df80d4407",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E015_front_touch_tactile_96points_20260829_151106_f0168-f0231.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E015_front_touch_tactile_96points_20260829_151106_f0168-f0231.xlsx",
+      "sha256": "87fa7f535d7e128cfadb8f476afcdd6fd622450d9717ec6f8a5d865de8f5c59e",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E016_grasp_tactile_96points_20260829_151106_f0335-f0370.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E016_grasp_tactile_96points_20260829_151106_f0335-f0370.xlsx",
+      "sha256": "4b89f0676c3220c234cd986d7f0260161a062a4ca27772ae496ec421c8d6940c",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E017_grasp_tactile_96points_20260829_151106_f0405-f0468.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E017_grasp_tactile_96points_20260829_151106_f0405-f0468.xlsx",
+      "sha256": "9f60e55bb7db6fc43ac082afa312b35aeefd3f49be04ca73ec146e59cb6af7b5",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E018_front_touch_tactile_96points_20260829_151106_f0524-f0535.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E018_front_touch_tactile_96points_20260829_151106_f0524-f0535.xlsx",
+      "sha256": "1ed892d0714c538b26a0576c8568acf6352a8eff5cd3e72a1837aadd83fa21e8",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E019_grasp_tactile_96points_20260829_151106_f0550-f0613.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E019_grasp_tactile_96points_20260829_151106_f0550-f0613.xlsx",
+      "sha256": "5f76f5bf5998a5e8a30bd8ce12e9174d79a75bfd77640cd110f860ddab3f4c31",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E020_grasp_tactile_96points_20260829_155316_f0630-f0675.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E020_grasp_tactile_96points_20260829_155316_f0630-f0675.xlsx",
+      "sha256": "419ba0faf44527fc6b628ef6c5aa7bc1a048802a5e2976db3b69a9faccaba4c2",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E021_grasp_tactile_96points_20260829_155316_f0951-f1014.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E021_grasp_tactile_96points_20260829_155316_f0951-f1014.xlsx",
+      "sha256": "67c39e2424cd87f7a8928e2c00f93bc271a748fd889287d469fc54bd692b2b84",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E022_back_touch_tactile_96points_20260820_164334_f0002-f0003.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E022_back_touch_tactile_96points_20260820_164334_f0002-f0003.xlsx",
+      "sha256": "c7bc01d919ca647b8ccc2f96ab3e6e6615b0c163f412188e9c5f68ea5969fdf5",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E023_back_touch_tactile_96points_20260820_164334_f0009-f0010.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E023_back_touch_tactile_96points_20260820_164334_f0009-f0010.xlsx",
+      "sha256": "287e3248684cbc110787f6564c964b6dece6e988cfd4bf566b5a77fb5faf1996",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E024_grasp_tactile_96points_20260831_162810_f0036-f0099.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E024_grasp_tactile_96points_20260831_162810_f0036-f0099.xlsx",
+      "sha256": "e74d13dadb9a54895bb2144ee7be4e67001523fab811a7701364ede761879883",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E025_front_touch_tactile_96points_20260831_162810_f0167-f0230.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E025_front_touch_tactile_96points_20260831_162810_f0167-f0230.xlsx",
+      "sha256": "7fb26aa2f45969274b3a1dcfecd3f70d248a2148bc1d00ce8e16870d664c6762",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E026_grasp_tactile_96points_20260831_162937_f0029-f0091.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E026_grasp_tactile_96points_20260831_162937_f0029-f0091.xlsx",
+      "sha256": "02941ad16cceb87bfe7a4d0620bacc6e2b5ce20846a327544b78378d3999e8af",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E027_grasp_tactile_96points_20260831_162937_f0103-f0166.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E027_grasp_tactile_96points_20260831_162937_f0103-f0166.xlsx",
+      "sha256": "27691286a38e9def946a292e983754cea1c960bd70841996d76b00a6790804df",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E028_front_touch_tactile_96points_20260831_162937_f0247-f0283.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E028_front_touch_tactile_96points_20260831_162937_f0247-f0283.xlsx",
+      "sha256": "95ae7a74a3226b2630922cd4740dde52f8430397688334f3bd8df946b4c6c256",
+      "duplicate": false
+    },
+    {
+      "old": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E029_grasp_tactile_96points_20260908_165907_f0005-f0010.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E029_grasp_tactile_96points_20260908_165907_f0005-f0010.xlsx",
+      "sha256": "742751106fed444e41089ed47068051486095eece681d7863a4524d4666b777a",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/action_index.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/selection_20260910/action_index.xlsx",
+      "sha256": "d3b3970b8ca0cb14021fb4c49a54c1d48127cf59918c49f358179230253c340f",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/action_index_press_only_legacy_20260910.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/action_index_press_only_legacy_20260910.xlsx",
+      "sha256": "8a2e7298df13df11fc7568b75f9181d788d5d22e2f2d0aef40614b78a03b74b6",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/action_index_weak_signal_backup_20260910.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/selection_20260910/action_index_weak_signal_backup_20260910.xlsx",
+      "sha256": "6d9e164e4fae6a3281ac9dbb14d37da481fc4b8f8bd176487aa04a34b4cbe7e4",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments/E005_front_touch_tactile_48points_20260908_164148_f0013-f0018.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E005_front_touch_tactile_48points_20260908_164148_f0013-f0018.xlsx",
+      "sha256": "529c9fbdd7c4a0e3027a6abba6c070d5c2be095f940d529b45daac7009b658cb",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments/E008_back_touch_tactile_48points_20260908_164741_f0015-f0020.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E008_back_touch_tactile_48points_20260908_164741_f0015-f0020.xlsx",
+      "sha256": "1495891f22860be0703eaf0555ffa27afcf1f6057a8831444569e92e358463f2",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments/E012_grasp_tactile_48points_20260908_164741_f0037-f0044.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E012_grasp_tactile_48points_20260908_164741_f0037-f0044.xlsx",
+      "sha256": "c043799387c15417abf90d390ca8826d426e584110be89059f1adb1180010bff",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E001_grasp_tactile_48points_20260908_163756_f0005-f0009.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E001_grasp_tactile_48points_20260908_163756_f0005-f0009.xlsx",
+      "sha256": "f246332fefb0838406c5eafba8d0d2f3fd1479ee7770b2eda4e152295acfcf3a",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E002_grasp_tactile_48points_20260908_163756_f0017-f0021.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E002_grasp_tactile_48points_20260908_163756_f0017-f0021.xlsx",
+      "sha256": "4be6539bbaaffe213accc0a894469a4156c010133663f3558538f803e543aedc",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E003_back_touch_tactile_48points_20260908_164148_f0001-f0003.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E003_back_touch_tactile_48points_20260908_164148_f0001-f0003.xlsx",
+      "sha256": "7270132a120ab9b5a49b75b1bb256d4056846625c8cd037e775bdf197c762ab7",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E004_grasp_tactile_48points_20260908_164148_f0009-f0012.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E004_grasp_tactile_48points_20260908_164148_f0009-f0012.xlsx",
+      "sha256": "42775db8dd0491cbdd64632ce403e6622a640a07f6e413d7f8074e341f79f156",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E005_front_touch_tactile_48points_20260908_164148_f0014-f0018.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E005_front_touch_tactile_48points_20260908_164148_f0014-f0018.xlsx",
+      "sha256": "892ed33cd42f683a334071f4fa342232eb7c6d0c7e0cf53450716e90c5068384",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E006_front_touch_tactile_48points_20260908_164148_f0019-f0020.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E006_front_touch_tactile_48points_20260908_164148_f0019-f0020.xlsx",
+      "sha256": "1309fb3d8e43bf1e8d54269b599f5b725945e17712d8c359cd160bebe997744d",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E007_grasp_tactile_48points_20260908_164741_f0008-f0012.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E007_grasp_tactile_48points_20260908_164741_f0008-f0012.xlsx",
+      "sha256": "b80f8b42b1b430a62446ed4199d49a11dd254345d9afe809771a08eba0d3a2de",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E008_back_touch_tactile_48points_20260908_164741_f0017-f0018.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E008_back_touch_tactile_48points_20260908_164741_f0017-f0018.xlsx",
+      "sha256": "2bd7baa2c0ba40f653df9de5fefea56b6d4104fc1348a6bd79ca12bc0e50f0d9",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E009_grasp_tactile_48points_20260908_164741_f0022-f0025.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E009_grasp_tactile_48points_20260908_164741_f0022-f0025.xlsx",
+      "sha256": "3214770e4359e9cf9e6f98f4a1a6b5d162a17d3bd56a8305ee9ce2a86413a6a9",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E010_grasp_tactile_48points_20260908_164741_f0028-f0032.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E010_grasp_tactile_48points_20260908_164741_f0028-f0032.xlsx",
+      "sha256": "e75415221198f8db15a0f5acb8c13a8c8f599f569c21bfbb9f3e0744731a1c76",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E011_grasp_tactile_48points_20260908_164741_f0035-f0036.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E011_grasp_tactile_48points_20260908_164741_f0035-f0036.xlsx",
+      "sha256": "16bc90d748f501e4ae2bf461a2c9f5d4c163bf0b3c7bf87431bec9caf67e2a46",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E012_grasp_tactile_48points_20260908_164741_f0038-f0042.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E012_grasp_tactile_48points_20260908_164741_f0038-f0042.xlsx",
+      "sha256": "94f6cd8a3fee6d577abe92c748031c77d8307c6b9b215bc1523da6da2a785b3c",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E013_back_touch_tactile_48points_20260908_164741_f0045-f0047.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E013_back_touch_tactile_48points_20260908_164741_f0045-f0047.xlsx",
+      "sha256": "881041985a8d9ceb6518cf0b03cb3aeca8947c940918ac5b32a8e9695af276dd",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E014_grasp_tactile_48points_20260908_164741_f0050-f0054.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E014_grasp_tactile_48points_20260908_164741_f0050-f0054.xlsx",
+      "sha256": "d01cc3df8f26f534a9501a2fbab2d5b300757b3f1dec5cab56bd09ea2087ef52",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E015_front_touch_tactile_48points_20260908_164741_f0058-f0061.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E015_front_touch_tactile_48points_20260908_164741_f0058-f0061.xlsx",
+      "sha256": "246e4838e2571bee001091a912a343db060801518dec63ef9693d26be48b8329",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E016_back_touch_tactile_48points_20260908_164741_f0064-f0065.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/archive/segments_press_only_legacy_20260910/E016_back_touch_tactile_48points_20260908_164741_f0064-f0065.xlsx",
+      "sha256": "cf34387902e1b54b47b4c2f348b0c9b07df9a563f216893f0f519f45d4cdebfb",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_weak_signal_backup_20260910/E001_grasp_tactile_48points_20260908_163756_f0001-f0012.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E001_grasp_tactile_48points_20260908_163756_f0001-f0012.xlsx",
+      "sha256": "ac950c0dfa37e1fcbd6cf737dac0e4645d3e86cbb5a9dcceb771620e4c190e55",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_weak_signal_backup_20260910/E002_grasp_tactile_48points_20260908_163756_f0015-f0023.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E002_grasp_tactile_48points_20260908_163756_f0015-f0023.xlsx",
+      "sha256": "0b0ad8fdc5cf2cd0e78d8bb27d308646041e33fb00d3c7291a10ddb5ec261845",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_weak_signal_backup_20260910/E003_back_touch_tactile_48points_20260908_164148_f0000-f0005.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E003_back_touch_tactile_48points_20260908_164148_f0000-f0005.xlsx",
+      "sha256": "cfd8f60567e958f237a5478a3387a3c15a97649f82f38510adb672c0daac6922",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_weak_signal_backup_20260910/E004_grasp_tactile_48points_20260908_164148_f0007-f0013.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E004_grasp_tactile_48points_20260908_164148_f0007-f0013.xlsx",
+      "sha256": "e5808f4c881c1a1935b606cdf7b4e612fb5f299bee22f9d050846b10a4a10e0b",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_weak_signal_backup_20260910/E006_front_touch_tactile_48points_20260908_164148_f0019-f0022.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E006_front_touch_tactile_48points_20260908_164148_f0019-f0022.xlsx",
+      "sha256": "8e11c11186f43fc1bd6bf50bb32105bcdad76fc9ab8905e2c2951b886611ee94",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_weak_signal_backup_20260910/E007_grasp_tactile_48points_20260908_164741_f0006-f0014.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E007_grasp_tactile_48points_20260908_164741_f0006-f0014.xlsx",
+      "sha256": "184d312e18b459d482ddb8870be8d70949337ce26ef0d0ed152293383b5dfd7b",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_weak_signal_backup_20260910/E009_grasp_tactile_48points_20260908_164741_f0020-f0027.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E009_grasp_tactile_48points_20260908_164741_f0020-f0027.xlsx",
+      "sha256": "d6bf97b0fd163924a3d64e014938f15818de77a2cbbd7034db2b7baa215dc4cb",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_weak_signal_backup_20260910/E010_grasp_tactile_48points_20260908_164741_f0026-f0033.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E010_grasp_tactile_48points_20260908_164741_f0026-f0033.xlsx",
+      "sha256": "e6220dd789e9b8c888ba9a988a80ecb20bd3d5e6e21b0c060dc333bbe8961f2c",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_weak_signal_backup_20260910/E011_grasp_tactile_48points_20260908_164741_f0033-f0037.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E011_grasp_tactile_48points_20260908_164741_f0033-f0037.xlsx",
+      "sha256": "3773cc9d370a828ed36192fa81869ba394b6ed0c7305ebe95ff998659b4f804d",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_weak_signal_backup_20260910/E013_back_touch_tactile_48points_20260908_164741_f0043-f0049.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E013_back_touch_tactile_48points_20260908_164741_f0043-f0049.xlsx",
+      "sha256": "fdfb83dd104a63ed24ff303b8543479d34b1d07f13c3bacc01a92a372682498c",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_weak_signal_backup_20260910/E014_grasp_tactile_48points_20260908_164741_f0049-f0056.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E014_grasp_tactile_48points_20260908_164741_f0049-f0056.xlsx",
+      "sha256": "5f04595ee0e82899fce827714f47fe925856a41e72a8b7f495e987a14b516c5a",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_weak_signal_backup_20260910/E015_front_touch_tactile_48points_20260908_164741_f0055-f0063.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E015_front_touch_tactile_48points_20260908_164741_f0055-f0063.xlsx",
+      "sha256": "4ca52fc86e4e32ccab2c52c6d93a9f7a18b1135eb25cb5a586f422298b7efeb3",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/18point_6x6_sparse/segments_weak_signal_backup_20260910/E016_back_touch_tactile_48points_20260908_164741_f0062-f0067.xlsx",
+      "new": "finger/action_library/18point_6x6_sparse/segments/E016_back_touch_tactile_48points_20260908_164741_f0062-f0067.xlsx",
+      "sha256": "436dcb8e49f8ea0bb210bcfa28267c90b1fc50d5995d139d5326f6d85218198b",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/30point_recordings_18node_sparse/finger_actions_18node_6x6_sparse.xlsx",
+      "new": "finger/action_library/30point_recordings_18node_sparse/archive/selection_20260910/finger_actions_18node_6x6_sparse.xlsx",
+      "sha256": "95a29dc2a4d494dde3dc1d5b2122a9672b6181e157ed43eb6e9b2fc34474681e",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library 2/30point_recordings_18node_sparse/finger_actions_18node_6x6_sparse_weak_signal_backup_20260910.xlsx",
+      "new": "finger/action_library/30point_recordings_18node_sparse/archive/selection_20260910/finger_actions_18node_6x6_sparse_weak_signal_backup_20260910.xlsx",
+      "sha256": "5c979686f0047f95d6d961b14c27a0d8181159df7586e615e2515cb8b6d51797",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library 2/30point_recordings_18node_sparse/legacy_compressed_mapping/DO_NOT_USE_legacy_wrong_3row_mapping.xlsx",
+      "new": "finger/action_library/30point_recordings_18node_sparse/archive/legacy_compressed_mapping/DO_NOT_USE_legacy_wrong_3row_mapping.xlsx",
+      "sha256": "fad71943c414370c8e42b427d40875b6446240e36c2740a9cb5fe7783a6aff71",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/30point_recordings_18node_sparse/legacy_press_only/finger_actions_18node_6x6_sparse_press_only_legacy_20260910.xlsx",
+      "new": "finger/action_library/30point_recordings_18node_sparse/archive/legacy_press_only/finger_actions_18node_6x6_sparse_press_only_legacy_20260910.xlsx",
+      "sha256": "88ea3479e55baa40ba2990090a7c767e1cc08f28701d193ceac7c488fad86e93",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/action_index.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/selection_20260910/action_index.xlsx",
+      "sha256": "37396a889fa38515102e0726c010b5d6366986e375ec6a61b5feb3a4512d73a1",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/action_index_press_only_legacy_20260910.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/action_index_press_only_legacy_20260910.xlsx",
+      "sha256": "4f127d9de24d8106af24b37f3b70fba0ba22610ff544c025df8b40c35a04890d",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/action_index_weak_signal_backup_20260910.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/selection_20260910/action_index_weak_signal_backup_20260910.xlsx",
+      "sha256": "a4359cc934886309c4aa70b5e34d50483cbd511b01cd95fb6b4ed986dc4a2829",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments/E009_grasp_tactile_96points_20260827_115909_f0155-f0281.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E009_grasp_tactile_96points_20260827_115909_f0155-f0281.xlsx",
+      "sha256": "d91c25a87a735741347833c99a3793cc3e4fa5efdb393d0ed9fd706876c70514",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments/E015_front_touch_tactile_96points_20260829_151106_f0160-f0253.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E015_front_touch_tactile_96points_20260829_151106_f0160-f0253.xlsx",
+      "sha256": "22d0babe5751a5de9b06b53e6282c550b50b58e4e3372b99f4156fede5994b89",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments/E022_back_touch_tactile_96points_20260820_164334_f0000-f0005.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E022_back_touch_tactile_96points_20260820_164334_f0000-f0005.xlsx",
+      "sha256": "7d920214fd31985720db8b12a77564e3063436884679540862a5c2e5c180ffb2",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E001_grasp_tactile_96points_20260817_194852_f0002-f0003.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E001_grasp_tactile_96points_20260817_194852_f0002-f0003.xlsx",
+      "sha256": "99726b2b35025dff6e93321d8cf75d83389ce88cb7a1d130643c2357697dc853",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E002_grasp_tactile_96points_20260817_200426_f0004-f0034.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E002_grasp_tactile_96points_20260817_200426_f0004-f0034.xlsx",
+      "sha256": "369f5b28eb735953dbfaee9e897a25a33f2827d4608e59845b13c1bd1c84e15b",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E003_grasp_tactile_96points_20260817_200426_f0075-f0126.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E003_grasp_tactile_96points_20260817_200426_f0075-f0126.xlsx",
+      "sha256": "23690cc080bf35f1a067f710bf59cdeab128a96221cb3b7543acb53016b8c6d9",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E004_front_touch_tactile_96points_20260817_200426_f0138-f0173.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E004_front_touch_tactile_96points_20260817_200426_f0138-f0173.xlsx",
+      "sha256": "c36263d5cbea894d3cd49d563264c2919e08b87bf0700662be011bac47434134",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E005_front_touch_tactile_96points_20260817_200426_f0182-f0245.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E005_front_touch_tactile_96points_20260817_200426_f0182-f0245.xlsx",
+      "sha256": "9989d7eefa11fe0322f7c644f7f90b95ba3c94490a4b1f214fcf23a434173138",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E006_grasp_tactile_96points_20260825_144129_f0063-f0126.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E006_grasp_tactile_96points_20260825_144129_f0063-f0126.xlsx",
+      "sha256": "20383c56ff232a21ffc38134fd275f8a4d19c1085dde54391dab05524c997d6f",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E007_grasp_tactile_96points_20260825_144214_f0066-f0129.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E007_grasp_tactile_96points_20260825_144214_f0066-f0129.xlsx",
+      "sha256": "9ef3fec04f70a0a09ea0eb584f86faacce1c1195b4c5b3ed018d6c8d76a6758b",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E008_back_touch_tactile_96points_20260825_144214_f0364-f0392.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E008_back_touch_tactile_96points_20260825_144214_f0364-f0392.xlsx",
+      "sha256": "d673e9d40a968dcef7f9b3d5cfa117cec91045c1d991c9690edca8a265988c0d",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E009_grasp_tactile_96points_20260827_115909_f0165-f0228.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E009_grasp_tactile_96points_20260827_115909_f0165-f0228.xlsx",
+      "sha256": "4d43431f2f666ef96cab5173e8bb8c12c885742110498c191691de4849c363df",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E010_grasp_tactile_96points_20260827_115909_f0337-f0400.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E010_grasp_tactile_96points_20260827_115909_f0337-f0400.xlsx",
+      "sha256": "83fa6f4ec8e6698d1a0adcd0f149af61dea8b1fc68685536bfe0905dd539d9db",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E011_grasp_tactile_96points_20260827_115909_f0487-f0550.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E011_grasp_tactile_96points_20260827_115909_f0487-f0550.xlsx",
+      "sha256": "0ea4b1b70dd4af808903bfdac8f4bea862a0b2145ff0a3636d3d085417b8c0af",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E012_grasp_tactile_96points_20260827_115909_f0769-f0832.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E012_grasp_tactile_96points_20260827_115909_f0769-f0832.xlsx",
+      "sha256": "4156813310e7b13e00593265345126198299d77878471e413ea68d6d89432c8b",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E013_grasp_tactile_96points_20260827_115909_f1000-f1063.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E013_grasp_tactile_96points_20260827_115909_f1000-f1063.xlsx",
+      "sha256": "0dd5f1d4cc82aa116cb831c7a1a5e247247fae680bc05f837387431fea53c03a",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E014_grasp_tactile_96points_20260829_151106_f0040-f0103.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E014_grasp_tactile_96points_20260829_151106_f0040-f0103.xlsx",
+      "sha256": "d0fab6c1f8478fdf80f9580b47c8ec5000346cbdb47b9a44eb51a79df80d4407",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E015_front_touch_tactile_96points_20260829_151106_f0168-f0231.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E015_front_touch_tactile_96points_20260829_151106_f0168-f0231.xlsx",
+      "sha256": "87fa7f535d7e128cfadb8f476afcdd6fd622450d9717ec6f8a5d865de8f5c59e",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E016_grasp_tactile_96points_20260829_151106_f0335-f0370.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E016_grasp_tactile_96points_20260829_151106_f0335-f0370.xlsx",
+      "sha256": "4b89f0676c3220c234cd986d7f0260161a062a4ca27772ae496ec421c8d6940c",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E017_grasp_tactile_96points_20260829_151106_f0405-f0468.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E017_grasp_tactile_96points_20260829_151106_f0405-f0468.xlsx",
+      "sha256": "9f60e55bb7db6fc43ac082afa312b35aeefd3f49be04ca73ec146e59cb6af7b5",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E018_front_touch_tactile_96points_20260829_151106_f0524-f0535.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E018_front_touch_tactile_96points_20260829_151106_f0524-f0535.xlsx",
+      "sha256": "1ed892d0714c538b26a0576c8568acf6352a8eff5cd3e72a1837aadd83fa21e8",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E019_grasp_tactile_96points_20260829_151106_f0550-f0613.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E019_grasp_tactile_96points_20260829_151106_f0550-f0613.xlsx",
+      "sha256": "5f76f5bf5998a5e8a30bd8ce12e9174d79a75bfd77640cd110f860ddab3f4c31",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E020_grasp_tactile_96points_20260829_155316_f0630-f0675.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E020_grasp_tactile_96points_20260829_155316_f0630-f0675.xlsx",
+      "sha256": "419ba0faf44527fc6b628ef6c5aa7bc1a048802a5e2976db3b69a9faccaba4c2",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E021_grasp_tactile_96points_20260829_155316_f0951-f1014.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E021_grasp_tactile_96points_20260829_155316_f0951-f1014.xlsx",
+      "sha256": "67c39e2424cd87f7a8928e2c00f93bc271a748fd889287d469fc54bd692b2b84",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E022_back_touch_tactile_96points_20260820_164334_f0002-f0003.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E022_back_touch_tactile_96points_20260820_164334_f0002-f0003.xlsx",
+      "sha256": "c7bc01d919ca647b8ccc2f96ab3e6e6615b0c163f412188e9c5f68ea5969fdf5",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E023_back_touch_tactile_96points_20260820_164334_f0009-f0010.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E023_back_touch_tactile_96points_20260820_164334_f0009-f0010.xlsx",
+      "sha256": "287e3248684cbc110787f6564c964b6dece6e988cfd4bf566b5a77fb5faf1996",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E024_grasp_tactile_96points_20260831_162810_f0036-f0099.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E024_grasp_tactile_96points_20260831_162810_f0036-f0099.xlsx",
+      "sha256": "e74d13dadb9a54895bb2144ee7be4e67001523fab811a7701364ede761879883",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E025_front_touch_tactile_96points_20260831_162810_f0167-f0230.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E025_front_touch_tactile_96points_20260831_162810_f0167-f0230.xlsx",
+      "sha256": "7fb26aa2f45969274b3a1dcfecd3f70d248a2148bc1d00ce8e16870d664c6762",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E026_grasp_tactile_96points_20260831_162937_f0029-f0091.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E026_grasp_tactile_96points_20260831_162937_f0029-f0091.xlsx",
+      "sha256": "02941ad16cceb87bfe7a4d0620bacc6e2b5ce20846a327544b78378d3999e8af",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E027_grasp_tactile_96points_20260831_162937_f0103-f0166.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E027_grasp_tactile_96points_20260831_162937_f0103-f0166.xlsx",
+      "sha256": "27691286a38e9def946a292e983754cea1c960bd70841996d76b00a6790804df",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E028_front_touch_tactile_96points_20260831_162937_f0247-f0283.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E028_front_touch_tactile_96points_20260831_162937_f0247-f0283.xlsx",
+      "sha256": "95ae7a74a3226b2630922cd4740dde52f8430397688334f3bd8df946b4c6c256",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E029_grasp_tactile_96points_20260908_165907_f0005-f0010.xlsx",
+      "new": "human_arm/action_library/96point_12x8/archive/segments_press_only_legacy_20260910/E029_grasp_tactile_96points_20260908_165907_f0005-f0010.xlsx",
+      "sha256": "742751106fed444e41089ed47068051486095eece681d7863a4524d4666b777a",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E001_grasp_tactile_96points_20260817_194852_f0000-f0007.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E001_grasp_tactile_96points_20260817_194852_f0000-f0007.xlsx",
+      "sha256": "d9d77e78866c7508471401590929ed482f2fcdeb178ffea745ef25c6a3590b9b",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E002_grasp_tactile_96points_20260817_200426_f0000-f0042.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E002_grasp_tactile_96points_20260817_200426_f0000-f0042.xlsx",
+      "sha256": "c05dd31afb58f31005337db24e4cbc318168279bdb4155e7f676499c450354cd",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E003_grasp_tactile_96points_20260817_200426_f0067-f0134.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E003_grasp_tactile_96points_20260817_200426_f0067-f0134.xlsx",
+      "sha256": "7d899caac4eea9feb55d553cfbb9d2f947ca4cc11e6e51353ca44edf6d152cfd",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E004_front_touch_tactile_96points_20260817_200426_f0130-f0181.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E004_front_touch_tactile_96points_20260817_200426_f0130-f0181.xlsx",
+      "sha256": "462963dffae9fe1c0fc03dae3d6564025de5c76ce25d8f0fbd2a36407283bead",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E005_front_touch_tactile_96points_20260817_200426_f0174-f0259.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E005_front_touch_tactile_96points_20260817_200426_f0174-f0259.xlsx",
+      "sha256": "a941e4adb121e48e8ef49fad6d0b65926bafab9074ae672b22771615dff3126a",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E006_grasp_tactile_96points_20260825_144129_f0053-f0174.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E006_grasp_tactile_96points_20260825_144129_f0053-f0174.xlsx",
+      "sha256": "7ff6bc33bfcbc7adb88961ca8125275d91115a1e911ca0007f28bba5ad98b0b1",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E007_grasp_tactile_96points_20260825_144214_f0056-f0170.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E007_grasp_tactile_96points_20260825_144214_f0056-f0170.xlsx",
+      "sha256": "67764da4393f7219f8b853a86ea0466e699eca841aae8482cfb5b45f535a31a1",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E008_back_touch_tactile_96points_20260825_144214_f0354-f0402.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E008_back_touch_tactile_96points_20260825_144214_f0354-f0402.xlsx",
+      "sha256": "0b8081a9f0881cd7d097f8e64098f347927b3ff0bde44cc53bc2250c5414f1a0",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E010_grasp_tactile_96points_20260827_115909_f0327-f0486.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E010_grasp_tactile_96points_20260827_115909_f0327-f0486.xlsx",
+      "sha256": "801185ee8c9870a9247794b0c87e67791994db616d07741c390890780c5d8b60",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E011_grasp_tactile_96points_20260827_115909_f0477-f0582.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E011_grasp_tactile_96points_20260827_115909_f0477-f0582.xlsx",
+      "sha256": "64683abc8411aab0a4d51fc243d965ea277d4e375e0f2eb6ef09c3f1b8ce01a3",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E012_grasp_tactile_96points_20260827_115909_f0759-f0887.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E012_grasp_tactile_96points_20260827_115909_f0759-f0887.xlsx",
+      "sha256": "cac83b7c40b69b8b1a0755d6be6be43a18671934aa13317b1e80fa4282a651de",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E013_grasp_tactile_96points_20260827_115909_f0990-f1108.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E013_grasp_tactile_96points_20260827_115909_f0990-f1108.xlsx",
+      "sha256": "201836fbbb7f0a41d7f669e57f6af5eeef2b9d456f5cf975e71236acf7416b88",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E014_grasp_tactile_96points_20260829_151106_f0032-f0127.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E014_grasp_tactile_96points_20260829_151106_f0032-f0127.xlsx",
+      "sha256": "eb46974e6ea4a974b75d44a4dafbb205cbf3d941812a024024b4003cfc7d8cc0",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E016_grasp_tactile_96points_20260829_151106_f0327-f0377.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E016_grasp_tactile_96points_20260829_151106_f0327-f0377.xlsx",
+      "sha256": "eaa547d9c608b31c03e5fc76d8a6d2ddc071fa312ab5e3a2b8c77fe4e7a0c1f4",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E017_grasp_tactile_96points_20260829_151106_f0397-f0509.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E017_grasp_tactile_96points_20260829_151106_f0397-f0509.xlsx",
+      "sha256": "89db18a58b4c07bd6605fb2b7818a95be748d01017991283fdfed307cdad54e3",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E018_front_touch_tactile_96points_20260829_151106_f0516-f0543.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E018_front_touch_tactile_96points_20260829_151106_f0516-f0543.xlsx",
+      "sha256": "9a77120a874407a9bbf3c0d856de9dbc341b6e7718e19d7aee6f3a17d3356d56",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E019_grasp_tactile_96points_20260829_151106_f0542-f0620.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E019_grasp_tactile_96points_20260829_151106_f0542-f0620.xlsx",
+      "sha256": "0308e606692c81c665cba95d92c1bfdc73806cebaeca859df23519ad2536f779",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E020_grasp_tactile_96points_20260829_155316_f0622-f0683.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E020_grasp_tactile_96points_20260829_155316_f0622-f0683.xlsx",
+      "sha256": "73ffc695510c2d693f16d1d7c2cbe4aacbb1ff18e0eea3b483d23b9b48b85f99",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E021_grasp_tactile_96points_20260829_155316_f0943-f1037.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E021_grasp_tactile_96points_20260829_155316_f0943-f1037.xlsx",
+      "sha256": "e75a931514358b041464b2a6ab80676f4a174ae41c74020d0a20f74fe48c8c66",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E023_back_touch_tactile_96points_20260820_164334_f0006-f0018.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E023_back_touch_tactile_96points_20260820_164334_f0006-f0018.xlsx",
+      "sha256": "1bcec23db587a0b0c089b7aa6d9a3e8e7e209fae7415afc6777055554fbffc19",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E024_grasp_tactile_96points_20260831_162810_f0028-f0110.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E024_grasp_tactile_96points_20260831_162810_f0028-f0110.xlsx",
+      "sha256": "6320130adf10c72d7584b0ac868b87e94a0310066ca1b1ff5888141758a74591",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E025_front_touch_tactile_96points_20260831_162810_f0159-f0239.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E025_front_touch_tactile_96points_20260831_162810_f0159-f0239.xlsx",
+      "sha256": "03b5c9d000a0413a47eca9578b8179a8e8954ccb115d9b48f4476c3674c916ea",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E026_grasp_tactile_96points_20260831_162937_f0021-f0099.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E026_grasp_tactile_96points_20260831_162937_f0021-f0099.xlsx",
+      "sha256": "09a4940a2a7056ca359b9815c11ae9bf3cba8a7225ae393c4cb4de22cae31b71",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E027_grasp_tactile_96points_20260831_162937_f0095-f0174.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E027_grasp_tactile_96points_20260831_162937_f0095-f0174.xlsx",
+      "sha256": "063d3c78a033fc0281520b719f9e6ee8ac4a15681ac296264e50767ff24fd6f9",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E028_front_touch_tactile_96points_20260831_162937_f0239-f0291.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E028_front_touch_tactile_96points_20260831_162937_f0239-f0291.xlsx",
+      "sha256": "4ff86c1c32706ce4bda780c4968341172d3b37c2480e55f4c824b62ec0798b34",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/96point_12x8/segments_weak_signal_backup_20260910/E029_grasp_tactile_96points_20260908_165907_f0003-f0016.xlsx",
+      "new": "human_arm/action_library/96point_12x8/segments/E029_grasp_tactile_96points_20260908_165907_f0003-f0016.xlsx",
+      "sha256": "795e4827f357b2a3ea57c7cd390d8d1b6adf5f76387e2ebb894c11e5be1ccba5",
+      "duplicate": true
+    },
+    {
+      "old": "finger_action_library 2/README.md",
+      "new": "Archive/library_merge_sources/finger_action_library 2/README.md",
+      "sha256": "a613241a81b9abd9d8e2d3ab40c98aba28b004f270cf92d41dad85c16959eb5f",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library 2/__pycache__/view_all_heatmaps.cpython-314.pyc",
+      "new": "Archive/library_merge_sources/finger_action_library 2/__pycache__/view_all_heatmaps.cpython-314.pyc",
+      "sha256": "5b12fdff1971aff7c5edfaf845c8c04c238990e5357af19ce6a0bc83b5bec662",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library 2/__pycache__/vmod_tmp.cpython-314.pyc",
+      "new": "Archive/library_merge_sources/finger_action_library 2/__pycache__/vmod_tmp.cpython-314.pyc",
+      "sha256": "8cef5785bce3c41b593bdea5d60df83535a927e8a5ab71c5f499934b1994141b",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library 2/robot_arm_132node/README.md",
+      "new": "Archive/library_merge_sources/finger_action_library 2/robot_arm_132node/README.md",
+      "sha256": "d2caf5f18a152d3663dfb05624bd029c5fa3ddd04a6ae68624546f46dda88d68",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library 2/robot_arm_132node/action_index.xlsx",
+      "new": "robot_arm/action_library/robot_arm_132node/action_index.xlsx",
+      "sha256": "b2ef677331403ff3325b9621c029e7ab676520c6844654df9e749d440ea69dd1",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library 2/robot_arm_132node/segments/R001_back_touch_tactile_132points_20260912_192911_f0006-f0008.xlsx",
+      "new": "robot_arm/action_library/robot_arm_132node/segments/R001_back_touch_tactile_132points_20260912_192911_f0006-f0008.xlsx",
+      "sha256": "94d28e9df8346a7e1d3eac0d8e26c7008d985e6941cc9b56d89fc423a8171c9c",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library 2/robot_arm_132node/segments/R002_front_touch_tactile_132points_20260912_192911_f0009-f0013.xlsx",
+      "new": "robot_arm/action_library/robot_arm_132node/segments/R002_front_touch_tactile_132points_20260912_192911_f0009-f0013.xlsx",
+      "sha256": "1b7782aab8d17300569aee36c3d9a60cd3e194582c8c820dca257b8418addfad",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library 2/robot_arm_132node/segments/R003_grasp_tactile_132points_20260912_192911_f0014-f0018.xlsx",
+      "new": "robot_arm/action_library/robot_arm_132node/segments/R003_grasp_tactile_132points_20260912_192911_f0014-f0018.xlsx",
+      "sha256": "447e9e8c9ddaec244e749f0a7048329232035f59a268d4e931a72db946764148",
+      "duplicate": false
+    },
+    {
+      "old": "finger_action_library 2/view_all_heatmaps.py",
+      "new": "Archive/library_merge_sources/finger_action_library 2/view_all_heatmaps.py",
+      "sha256": "8bbcb8bf57c10d4b7a531943ecf5c110278e105b40f23861258f602d3777536c",
+      "duplicate": false
+    },
+    {
+      "old": "arm/plots/README.md",
+      "new": "human_arm/plots/README.md",
+      "sha256": "b599cf80ad75049baa8a6b13a936922c78b553d4131c96c67e1b1f3875db87c9",
+      "duplicate": false
+    },
+    {
+      "old": "arm/plots/arm_contact_comparison.png",
+      "new": "human_arm/plots/arm_contact_comparison.png",
+      "sha256": "8971e34ebce1973e36dcbe878f0ba8bb09f2f051f53086f571e6f79322e843b7",
+      "duplicate": false
+    },
+    {
+      "old": "arm/plots/back_touch_3d_heatmap.png",
+      "new": "human_arm/plots/back_touch_3d_heatmap.png",
+      "sha256": "f0d8b1bcbd234d8f986fadd32c58c6bb1354f5510c9f5d9c57899b332a5b576a",
+      "duplicate": false
+    },
+    {
+      "old": "arm/plots/front_touch_3d_heatmap.png",
+      "new": "human_arm/plots/front_touch_3d_heatmap.png",
+      "sha256": "6cb450c17670c6b506f12d8cf9efbf715ed9ff925a088498ad644b277327b713",
+      "duplicate": false
+    },
+    {
+      "old": "arm/plots/generate_heatmaps.py",
+      "new": "human_arm/plots/generate_heatmaps.py",
+      "sha256": "2deb38b3f086ca7033a5480e937aa842c49ef27fb6d3cf2a76870156ab626971",
+      "duplicate": false
+    },
+    {
+      "old": "arm/plots/grasp_3d_heatmap.png",
+      "new": "human_arm/plots/grasp_3d_heatmap.png",
+      "sha256": "0094a62bd5d4053fb16233bedb2b369c138fb60cbbaa25a4ffa21db6636e9636",
+      "duplicate": false
+    },
+    {
+      "old": "arm/plots/grasp_time_sequence.png",
+      "new": "human_arm/plots/grasp_time_sequence.png",
+      "sha256": "acc8806e215cf7cb9a840236cf965ac3ef09a1db6851b6e73bef5743309351f8",
+      "duplicate": false
+    },
+    {
+      "old": "arm/plots/selection.json",
+      "new": "human_arm/plots/selection.json",
+      "sha256": "00106f3dc7471d1fdd54f2b709d39b2e50dd3e92c957b10b6a7026274a824c83",
+      "duplicate": false
+    },
+    {
+      "old": "finger/recordings/96point/2026-08-31/tactile_96points_20260831_162810.xlsx",
+      "new": "human_arm/recordings/96point/2026-08-31/tactile_96points_20260831_162810.xlsx",
+      "sha256": "9ff05dbaa98eb92c4d76ccb903cc5e366181b9045437b229bce48ec96ca64324",
+      "duplicate": false
+    },
+    {
+      "old": "finger/recordings/96point/2026-08-31/tactile_96points_20260831_162937.xlsx",
+      "new": "human_arm/recordings/96point/2026-08-31/tactile_96points_20260831_162937.xlsx",
+      "sha256": "8371699ed93e0d6712e46370fbfbf095fc8ad21da7d9d08fa8b96faafdbec6c4",
+      "duplicate": false
+    },
+    {
+      "old": "finger/recordings/96point/tactile_96points_20260817_194852.csv",
+      "new": "human_arm/recordings/96point/tactile_96points_20260817_194852.csv",
+      "sha256": "34757573d71d1e9cc3630fb8d2a0ecab69ac37ec2ccc51df6c8f02e97d6c96d7",
+      "duplicate": false
+    },
+    {
+      "old": "finger/recordings/96point/tactile_96points_20260817_200426.csv",
+      "new": "human_arm/recordings/96point/tactile_96points_20260817_200426.csv",
+      "sha256": "9d0308612f8ec91ea423d63f859b6f5180c3532bd7877e8d6264a87febd1f5c5",
+      "duplicate": false
+    },
+    {
+      "old": "finger/recordings/96point/tactile_96points_20260820_154902.csv",
+      "new": "human_arm/recordings/96point/tactile_96points_20260820_154902.csv",
+      "sha256": "262167a6e3039cea1f55b80acf302272900d8887468bef910038ceee476522f8",
+      "duplicate": false
+    },
+    {
+      "old": "finger/recordings/96point/tactile_96points_20260825_144129.csv",
+      "new": "human_arm/recordings/96point/tactile_96points_20260825_144129.csv",
+      "sha256": "ed55b476067c8a1b769fa99e5340322439bcb2c6a907d5122a267351ae6d9894",
+      "duplicate": false
+    },
+    {
+      "old": "finger/recordings/96point/tactile_96points_20260825_144214.csv",
+      "new": "human_arm/recordings/96point/tactile_96points_20260825_144214.csv",
+      "sha256": "5962ed0d379ad7582bf6faafba2a1eb730f0409f8a7952f2b1b064c7834f9608",
+      "duplicate": false
+    },
+    {
+      "old": "finger/recordings/96point/tactile_96points_20260827_115909.csv",
+      "new": "human_arm/recordings/96point/tactile_96points_20260827_115909.csv",
+      "sha256": "15b1b146e0f9c2cd42ad8ff774116218770f6df5ec2776797e7c178e06f60264",
+      "duplicate": false
+    },
+    {
+      "old": "finger/recordings/96point/tactile_96points_20260829_151106.csv",
+      "new": "human_arm/recordings/96point/tactile_96points_20260829_151106.csv",
+      "sha256": "acca2e4ff6b1545f75dd722773fc3bbd7bef929bcdf343ab2d168b5f36454c09",
+      "duplicate": false
+    },
+    {
+      "old": "finger/recordings/96point/tactile_96points_20260829_155316.csv",
+      "new": "human_arm/recordings/96point/tactile_96points_20260829_155316.csv",
+      "sha256": "81b534a00e8c6ae297c9d1ddb2b98fa0208a216d03d996e1dd9d80cc682cc912",
+      "duplicate": false
+    },
+    {
+      "old": "finger/recordings/general/tactile_96points_20260820_164334.csv",
+      "new": "human_arm/recordings/general/tactile_96points_20260820_164334.csv",
+      "sha256": "d3de3d418086c224272c312c85b8585ee144b2bb9ce98c172996f5d29b66b1fd",
+      "duplicate": false
+    }
+  ]
+}

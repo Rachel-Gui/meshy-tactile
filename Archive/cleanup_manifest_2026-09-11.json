@@ -1,0 +1,856 @@
+[
+  {
+    "action": "move",
+    "from": "finger_action_library 2/30point_recordings_18node_sparse/legacy_compressed_mapping/DO_NOT_USE_legacy_wrong_3row_mapping.xlsx",
+    "to": "Archive/legacy_action_data/30point_recordings_18node_sparse/legacy_compressed_mapping/DO_NOT_USE_legacy_wrong_3row_mapping.xlsx",
+    "sha256": "fad71943c414370c8e42b427d40875b6446240e36c2740a9cb5fe7783a6aff71",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/30point_recordings_18node_sparse/legacy_press_only/finger_actions_18node_6x6_sparse_press_only_legacy_20260910.xlsx",
+    "to": "Archive/legacy_action_data/30point_recordings_18node_sparse/legacy_press_only/finger_actions_18node_6x6_sparse_press_only_legacy_20260910.xlsx",
+    "sha256": "88ea3479e55baa40ba2990090a7c767e1cc08f28701d193ceac7c488fad86e93",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E008_back_touch_tactile_48points_20260908_164741_f0017-f0018.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E008_back_touch_tactile_48points_20260908_164741_f0017-f0018.xlsx",
+    "sha256": "2bd7baa2c0ba40f653df9de5fefea56b6d4104fc1348a6bd79ca12bc0e50f0d9",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E005_front_touch_tactile_48points_20260908_164148_f0014-f0018.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E005_front_touch_tactile_48points_20260908_164148_f0014-f0018.xlsx",
+    "sha256": "892ed33cd42f683a334071f4fa342232eb7c6d0c7e0cf53450716e90c5068384",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E013_back_touch_tactile_48points_20260908_164741_f0045-f0047.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E013_back_touch_tactile_48points_20260908_164741_f0045-f0047.xlsx",
+    "sha256": "881041985a8d9ceb6518cf0b03cb3aeca8947c940918ac5b32a8e9695af276dd",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E010_grasp_tactile_48points_20260908_164741_f0028-f0032.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E010_grasp_tactile_48points_20260908_164741_f0028-f0032.xlsx",
+    "sha256": "e75415221198f8db15a0f5acb8c13a8c8f599f569c21bfbb9f3e0744731a1c76",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E007_grasp_tactile_48points_20260908_164741_f0008-f0012.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E007_grasp_tactile_48points_20260908_164741_f0008-f0012.xlsx",
+    "sha256": "b80f8b42b1b430a62446ed4199d49a11dd254345d9afe809771a08eba0d3a2de",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E002_grasp_tactile_48points_20260908_163756_f0017-f0021.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E002_grasp_tactile_48points_20260908_163756_f0017-f0021.xlsx",
+    "sha256": "4be6539bbaaffe213accc0a894469a4156c010133663f3558538f803e543aedc",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E006_front_touch_tactile_48points_20260908_164148_f0019-f0020.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E006_front_touch_tactile_48points_20260908_164148_f0019-f0020.xlsx",
+    "sha256": "1309fb3d8e43bf1e8d54269b599f5b725945e17712d8c359cd160bebe997744d",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E016_back_touch_tactile_48points_20260908_164741_f0064-f0065.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E016_back_touch_tactile_48points_20260908_164741_f0064-f0065.xlsx",
+    "sha256": "cf34387902e1b54b47b4c2f348b0c9b07df9a563f216893f0f519f45d4cdebfb",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E011_grasp_tactile_48points_20260908_164741_f0035-f0036.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E011_grasp_tactile_48points_20260908_164741_f0035-f0036.xlsx",
+    "sha256": "16bc90d748f501e4ae2bf461a2c9f5d4c163bf0b3c7bf87431bec9caf67e2a46",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E014_grasp_tactile_48points_20260908_164741_f0050-f0054.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E014_grasp_tactile_48points_20260908_164741_f0050-f0054.xlsx",
+    "sha256": "d01cc3df8f26f534a9501a2fbab2d5b300757b3f1dec5cab56bd09ea2087ef52",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E001_grasp_tactile_48points_20260908_163756_f0005-f0009.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E001_grasp_tactile_48points_20260908_163756_f0005-f0009.xlsx",
+    "sha256": "f246332fefb0838406c5eafba8d0d2f3fd1479ee7770b2eda4e152295acfcf3a",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E015_front_touch_tactile_48points_20260908_164741_f0058-f0061.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E015_front_touch_tactile_48points_20260908_164741_f0058-f0061.xlsx",
+    "sha256": "246e4838e2571bee001091a912a343db060801518dec63ef9693d26be48b8329",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E009_grasp_tactile_48points_20260908_164741_f0022-f0025.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E009_grasp_tactile_48points_20260908_164741_f0022-f0025.xlsx",
+    "sha256": "3214770e4359e9cf9e6f98f4a1a6b5d162a17d3bd56a8305ee9ce2a86413a6a9",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E012_grasp_tactile_48points_20260908_164741_f0038-f0042.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E012_grasp_tactile_48points_20260908_164741_f0038-f0042.xlsx",
+    "sha256": "94f6cd8a3fee6d577abe92c748031c77d8307c6b9b215bc1523da6da2a785b3c",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E004_grasp_tactile_48points_20260908_164148_f0009-f0012.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E004_grasp_tactile_48points_20260908_164148_f0009-f0012.xlsx",
+    "sha256": "42775db8dd0491cbdd64632ce403e6622a640a07f6e413d7f8074e341f79f156",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments_press_only_legacy_20260910/E003_back_touch_tactile_48points_20260908_164148_f0001-f0003.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/segments_press_only_legacy_20260910/E003_back_touch_tactile_48points_20260908_164148_f0001-f0003.xlsx",
+    "sha256": "7270132a120ab9b5a49b75b1bb256d4056846625c8cd037e775bdf197c762ab7",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/action_index_press_only_legacy_20260910.xlsx",
+    "to": "Archive/legacy_action_data/18point_6x6_sparse/action_index_press_only_legacy_20260910.xlsx",
+    "sha256": "8a2e7298df13df11fc7568b75f9181d788d5d22e2f2d0aef40614b78a03b74b6",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E001_grasp_tactile_96points_20260817_194852_f0002-f0003.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E001_grasp_tactile_96points_20260817_194852_f0002-f0003.xlsx",
+    "sha256": "99726b2b35025dff6e93321d8cf75d83389ce88cb7a1d130643c2357697dc853",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E022_back_touch_tactile_96points_20260820_164334_f0002-f0003.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E022_back_touch_tactile_96points_20260820_164334_f0002-f0003.xlsx",
+    "sha256": "c7bc01d919ca647b8ccc2f96ab3e6e6615b0c163f412188e9c5f68ea5969fdf5",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E004_front_touch_tactile_96points_20260817_200426_f0138-f0173.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E004_front_touch_tactile_96points_20260817_200426_f0138-f0173.xlsx",
+    "sha256": "c36263d5cbea894d3cd49d563264c2919e08b87bf0700662be011bac47434134",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E010_grasp_tactile_96points_20260827_115909_f0337-f0400.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E010_grasp_tactile_96points_20260827_115909_f0337-f0400.xlsx",
+    "sha256": "83fa6f4ec8e6698d1a0adcd0f149af61dea8b1fc68685536bfe0905dd539d9db",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E018_front_touch_tactile_96points_20260829_151106_f0524-f0535.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E018_front_touch_tactile_96points_20260829_151106_f0524-f0535.xlsx",
+    "sha256": "1ed892d0714c538b26a0576c8568acf6352a8eff5cd3e72a1837aadd83fa21e8",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E013_grasp_tactile_96points_20260827_115909_f1000-f1063.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E013_grasp_tactile_96points_20260827_115909_f1000-f1063.xlsx",
+    "sha256": "0dd5f1d4cc82aa116cb831c7a1a5e247247fae680bc05f837387431fea53c03a",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E021_grasp_tactile_96points_20260829_155316_f0951-f1014.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E021_grasp_tactile_96points_20260829_155316_f0951-f1014.xlsx",
+    "sha256": "67c39e2424cd87f7a8928e2c00f93bc271a748fd889287d469fc54bd692b2b84",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E008_back_touch_tactile_96points_20260825_144214_f0364-f0392.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E008_back_touch_tactile_96points_20260825_144214_f0364-f0392.xlsx",
+    "sha256": "d673e9d40a968dcef7f9b3d5cfa117cec91045c1d991c9690edca8a265988c0d",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E003_grasp_tactile_96points_20260817_200426_f0075-f0126.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E003_grasp_tactile_96points_20260817_200426_f0075-f0126.xlsx",
+    "sha256": "23690cc080bf35f1a067f710bf59cdeab128a96221cb3b7543acb53016b8c6d9",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E029_grasp_tactile_96points_20260908_165907_f0005-f0010.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E029_grasp_tactile_96points_20260908_165907_f0005-f0010.xlsx",
+    "sha256": "742751106fed444e41089ed47068051486095eece681d7863a4524d4666b777a",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E006_grasp_tactile_96points_20260825_144129_f0063-f0126.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E006_grasp_tactile_96points_20260825_144129_f0063-f0126.xlsx",
+    "sha256": "20383c56ff232a21ffc38134fd275f8a4d19c1085dde54391dab05524c997d6f",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E016_grasp_tactile_96points_20260829_151106_f0335-f0370.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E016_grasp_tactile_96points_20260829_151106_f0335-f0370.xlsx",
+    "sha256": "4b89f0676c3220c234cd986d7f0260161a062a4ca27772ae496ec421c8d6940c",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E005_front_touch_tactile_96points_20260817_200426_f0182-f0245.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E005_front_touch_tactile_96points_20260817_200426_f0182-f0245.xlsx",
+    "sha256": "9989d7eefa11fe0322f7c644f7f90b95ba3c94490a4b1f214fcf23a434173138",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E012_grasp_tactile_96points_20260827_115909_f0769-f0832.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E012_grasp_tactile_96points_20260827_115909_f0769-f0832.xlsx",
+    "sha256": "4156813310e7b13e00593265345126198299d77878471e413ea68d6d89432c8b",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E017_grasp_tactile_96points_20260829_151106_f0405-f0468.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E017_grasp_tactile_96points_20260829_151106_f0405-f0468.xlsx",
+    "sha256": "9f60e55bb7db6fc43ac082afa312b35aeefd3f49be04ca73ec146e59cb6af7b5",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E015_front_touch_tactile_96points_20260829_151106_f0168-f0231.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E015_front_touch_tactile_96points_20260829_151106_f0168-f0231.xlsx",
+    "sha256": "87fa7f535d7e128cfadb8f476afcdd6fd622450d9717ec6f8a5d865de8f5c59e",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E002_grasp_tactile_96points_20260817_200426_f0004-f0034.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E002_grasp_tactile_96points_20260817_200426_f0004-f0034.xlsx",
+    "sha256": "369f5b28eb735953dbfaee9e897a25a33f2827d4608e59845b13c1bd1c84e15b",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E027_grasp_tactile_96points_20260831_162937_f0103-f0166.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E027_grasp_tactile_96points_20260831_162937_f0103-f0166.xlsx",
+    "sha256": "27691286a38e9def946a292e983754cea1c960bd70841996d76b00a6790804df",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E011_grasp_tactile_96points_20260827_115909_f0487-f0550.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E011_grasp_tactile_96points_20260827_115909_f0487-f0550.xlsx",
+    "sha256": "0ea4b1b70dd4af808903bfdac8f4bea862a0b2145ff0a3636d3d085417b8c0af",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E020_grasp_tactile_96points_20260829_155316_f0630-f0675.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E020_grasp_tactile_96points_20260829_155316_f0630-f0675.xlsx",
+    "sha256": "419ba0faf44527fc6b628ef6c5aa7bc1a048802a5e2976db3b69a9faccaba4c2",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E014_grasp_tactile_96points_20260829_151106_f0040-f0103.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E014_grasp_tactile_96points_20260829_151106_f0040-f0103.xlsx",
+    "sha256": "d0fab6c1f8478fdf80f9580b47c8ec5000346cbdb47b9a44eb51a79df80d4407",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E026_grasp_tactile_96points_20260831_162937_f0029-f0091.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E026_grasp_tactile_96points_20260831_162937_f0029-f0091.xlsx",
+    "sha256": "02941ad16cceb87bfe7a4d0620bacc6e2b5ce20846a327544b78378d3999e8af",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E023_back_touch_tactile_96points_20260820_164334_f0009-f0010.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E023_back_touch_tactile_96points_20260820_164334_f0009-f0010.xlsx",
+    "sha256": "287e3248684cbc110787f6564c964b6dece6e988cfd4bf566b5a77fb5faf1996",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E019_grasp_tactile_96points_20260829_151106_f0550-f0613.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E019_grasp_tactile_96points_20260829_151106_f0550-f0613.xlsx",
+    "sha256": "5f76f5bf5998a5e8a30bd8ce12e9174d79a75bfd77640cd110f860ddab3f4c31",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E007_grasp_tactile_96points_20260825_144214_f0066-f0129.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E007_grasp_tactile_96points_20260825_144214_f0066-f0129.xlsx",
+    "sha256": "9ef3fec04f70a0a09ea0eb584f86faacce1c1195b4c5b3ed018d6c8d76a6758b",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E028_front_touch_tactile_96points_20260831_162937_f0247-f0283.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E028_front_touch_tactile_96points_20260831_162937_f0247-f0283.xlsx",
+    "sha256": "95ae7a74a3226b2630922cd4740dde52f8430397688334f3bd8df946b4c6c256",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E024_grasp_tactile_96points_20260831_162810_f0036-f0099.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E024_grasp_tactile_96points_20260831_162810_f0036-f0099.xlsx",
+    "sha256": "e74d13dadb9a54895bb2144ee7be4e67001523fab811a7701364ede761879883",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E025_front_touch_tactile_96points_20260831_162810_f0167-f0230.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E025_front_touch_tactile_96points_20260831_162810_f0167-f0230.xlsx",
+    "sha256": "7fb26aa2f45969274b3a1dcfecd3f70d248a2148bc1d00ce8e16870d664c6762",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments_press_only_legacy_20260910/E009_grasp_tactile_96points_20260827_115909_f0165-f0228.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/segments_press_only_legacy_20260910/E009_grasp_tactile_96points_20260827_115909_f0165-f0228.xlsx",
+    "sha256": "4d43431f2f666ef96cab5173e8bb8c12c885742110498c191691de4849c363df",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/action_index_press_only_legacy_20260910.xlsx",
+    "to": "Archive/legacy_action_data/96point_12x8/action_index_press_only_legacy_20260910.xlsx",
+    "sha256": "4f127d9de24d8106af24b37f3b70fba0ba22610ff544c025df8b40c35a04890d",
+    "reason": "已被当前完整动作片段/修正坐标替代"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/view_all_heatmaps.py",
+    "to": "finger_action_library/view_all_heatmaps.py",
+    "sha256": "c31f4e1fcec806ad570f363a291b6787984012dc6bae5a3fbd5517819593e643",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/README.md",
+    "to": "finger_action_library/README.md",
+    "sha256": "d62269880067e55c8564b517f30f5df5e7f175572e9571b45b6292dff977d158",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/__pycache__/view_all_heatmaps.cpython-314.pyc",
+    "to": "finger_action_library/__pycache__/view_all_heatmaps.cpython-314.pyc",
+    "sha256": "0b305ba5165e6d6bd5f54540eabd96a6e3fa547018d260945d67ca310acb9be7",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/__pycache__/vmod_tmp.cpython-314.pyc",
+    "to": "finger_action_library/__pycache__/vmod_tmp.cpython-314.pyc",
+    "sha256": "d8ba89de37be922b9243b8cf95072d11bc3000d59acabb1d5ee3651ee2e01fe6",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/30point_recordings_18node_sparse/finger_actions_18node_6x6_sparse.xlsx",
+    "to": "finger_action_library/30point_recordings_18node_sparse/finger_actions_18node_6x6_sparse.xlsx",
+    "sha256": "933b73fffbaf864a4ffa712183c0d3620aec60a3dd0b1e1d3a863144891e0fad",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/action_index.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/action_index.xlsx",
+    "sha256": "bf10e0197bbe6836edc31b9a936bbeea134c123977bb684fa4084570b6783730",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/action_index.xlsx",
+    "to": "finger_action_library/96point_12x8/action_index.xlsx",
+    "sha256": "936abd03c2e0f83862e0ddaef40fcf71fd339281f150eecfc4a48de58775809c",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E018_front_touch_tactile_96points_20260829_151106_f0516-f0543.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E018_front_touch_tactile_96points_20260829_151106_f0516-f0543.xlsx",
+    "sha256": "9a77120a874407a9bbf3c0d856de9dbc341b6e7718e19d7aee6f3a17d3356d56",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E022_back_touch_tactile_96points_20260820_164334_f0000-f0005.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E022_back_touch_tactile_96points_20260820_164334_f0000-f0005.xlsx",
+    "sha256": "7d920214fd31985720db8b12a77564e3063436884679540862a5c2e5c180ffb2",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E008_back_touch_tactile_96points_20260825_144214_f0354-f0402.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E008_back_touch_tactile_96points_20260825_144214_f0354-f0402.xlsx",
+    "sha256": "0b8081a9f0881cd7d097f8e64098f347927b3ff0bde44cc53bc2250c5414f1a0",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E002_grasp_tactile_96points_20260817_200426_f0000-f0042.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E002_grasp_tactile_96points_20260817_200426_f0000-f0042.xlsx",
+    "sha256": "c05dd31afb58f31005337db24e4cbc318168279bdb4155e7f676499c450354cd",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E021_grasp_tactile_96points_20260829_155316_f0943-f1037.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E021_grasp_tactile_96points_20260829_155316_f0943-f1037.xlsx",
+    "sha256": "e75a931514358b041464b2a6ab80676f4a174ae41c74020d0a20f74fe48c8c66",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E003_grasp_tactile_96points_20260817_200426_f0067-f0134.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E003_grasp_tactile_96points_20260817_200426_f0067-f0134.xlsx",
+    "sha256": "7d899caac4eea9feb55d553cfbb9d2f947ca4cc11e6e51353ca44edf6d152cfd",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E023_back_touch_tactile_96points_20260820_164334_f0006-f0018.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E023_back_touch_tactile_96points_20260820_164334_f0006-f0018.xlsx",
+    "sha256": "1bcec23db587a0b0c089b7aa6d9a3e8e7e209fae7415afc6777055554fbffc19",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E010_grasp_tactile_96points_20260827_115909_f0327-f0486.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E010_grasp_tactile_96points_20260827_115909_f0327-f0486.xlsx",
+    "sha256": "801185ee8c9870a9247794b0c87e67791994db616d07741c390890780c5d8b60",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E005_front_touch_tactile_96points_20260817_200426_f0174-f0259.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E005_front_touch_tactile_96points_20260817_200426_f0174-f0259.xlsx",
+    "sha256": "a941e4adb121e48e8ef49fad6d0b65926bafab9074ae672b22771615dff3126a",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E024_grasp_tactile_96points_20260831_162810_f0028-f0110.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E024_grasp_tactile_96points_20260831_162810_f0028-f0110.xlsx",
+    "sha256": "6320130adf10c72d7584b0ac868b87e94a0310066ca1b1ff5888141758a74591",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E007_grasp_tactile_96points_20260825_144214_f0056-f0170.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E007_grasp_tactile_96points_20260825_144214_f0056-f0170.xlsx",
+    "sha256": "67764da4393f7219f8b853a86ea0466e699eca841aae8482cfb5b45f535a31a1",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E017_grasp_tactile_96points_20260829_151106_f0397-f0509.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E017_grasp_tactile_96points_20260829_151106_f0397-f0509.xlsx",
+    "sha256": "89db18a58b4c07bd6605fb2b7818a95be748d01017991283fdfed307cdad54e3",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E004_front_touch_tactile_96points_20260817_200426_f0130-f0181.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E004_front_touch_tactile_96points_20260817_200426_f0130-f0181.xlsx",
+    "sha256": "462963dffae9fe1c0fc03dae3d6564025de5c76ce25d8f0fbd2a36407283bead",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E015_front_touch_tactile_96points_20260829_151106_f0160-f0253.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E015_front_touch_tactile_96points_20260829_151106_f0160-f0253.xlsx",
+    "sha256": "22d0babe5751a5de9b06b53e6282c550b50b58e4e3372b99f4156fede5994b89",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E028_front_touch_tactile_96points_20260831_162937_f0239-f0291.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E028_front_touch_tactile_96points_20260831_162937_f0239-f0291.xlsx",
+    "sha256": "4ff86c1c32706ce4bda780c4968341172d3b37c2480e55f4c824b62ec0798b34",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E026_grasp_tactile_96points_20260831_162937_f0021-f0099.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E026_grasp_tactile_96points_20260831_162937_f0021-f0099.xlsx",
+    "sha256": "09a4940a2a7056ca359b9815c11ae9bf3cba8a7225ae393c4cb4de22cae31b71",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E006_grasp_tactile_96points_20260825_144129_f0053-f0174.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E006_grasp_tactile_96points_20260825_144129_f0053-f0174.xlsx",
+    "sha256": "7ff6bc33bfcbc7adb88961ca8125275d91115a1e911ca0007f28bba5ad98b0b1",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E011_grasp_tactile_96points_20260827_115909_f0477-f0582.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E011_grasp_tactile_96points_20260827_115909_f0477-f0582.xlsx",
+    "sha256": "64683abc8411aab0a4d51fc243d965ea277d4e375e0f2eb6ef09c3f1b8ce01a3",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E013_grasp_tactile_96points_20260827_115909_f0990-f1108.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E013_grasp_tactile_96points_20260827_115909_f0990-f1108.xlsx",
+    "sha256": "201836fbbb7f0a41d7f669e57f6af5eeef2b9d456f5cf975e71236acf7416b88",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E019_grasp_tactile_96points_20260829_151106_f0542-f0620.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E019_grasp_tactile_96points_20260829_151106_f0542-f0620.xlsx",
+    "sha256": "0308e606692c81c665cba95d92c1bfdc73806cebaeca859df23519ad2536f779",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E020_grasp_tactile_96points_20260829_155316_f0622-f0683.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E020_grasp_tactile_96points_20260829_155316_f0622-f0683.xlsx",
+    "sha256": "73ffc695510c2d693f16d1d7c2cbe4aacbb1ff18e0eea3b483d23b9b48b85f99",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E025_front_touch_tactile_96points_20260831_162810_f0159-f0239.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E025_front_touch_tactile_96points_20260831_162810_f0159-f0239.xlsx",
+    "sha256": "03b5c9d000a0413a47eca9578b8179a8e8954ccb115d9b48f4476c3674c916ea",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E029_grasp_tactile_96points_20260908_165907_f0003-f0016.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E029_grasp_tactile_96points_20260908_165907_f0003-f0016.xlsx",
+    "sha256": "795e4827f357b2a3ea57c7cd390d8d1b6adf5f76387e2ebb894c11e5be1ccba5",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E001_grasp_tactile_96points_20260817_194852_f0000-f0007.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E001_grasp_tactile_96points_20260817_194852_f0000-f0007.xlsx",
+    "sha256": "d9d77e78866c7508471401590929ed482f2fcdeb178ffea745ef25c6a3590b9b",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E012_grasp_tactile_96points_20260827_115909_f0759-f0887.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E012_grasp_tactile_96points_20260827_115909_f0759-f0887.xlsx",
+    "sha256": "cac83b7c40b69b8b1a0755d6be6be43a18671934aa13317b1e80fa4282a651de",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E027_grasp_tactile_96points_20260831_162937_f0095-f0174.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E027_grasp_tactile_96points_20260831_162937_f0095-f0174.xlsx",
+    "sha256": "063d3c78a033fc0281520b719f9e6ee8ac4a15681ac296264e50767ff24fd6f9",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E016_grasp_tactile_96points_20260829_151106_f0327-f0377.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E016_grasp_tactile_96points_20260829_151106_f0327-f0377.xlsx",
+    "sha256": "eaa547d9c608b31c03e5fc76d8a6d2ddc071fa312ab5e3a2b8c77fe4e7a0c1f4",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E014_grasp_tactile_96points_20260829_151106_f0032-f0127.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E014_grasp_tactile_96points_20260829_151106_f0032-f0127.xlsx",
+    "sha256": "eb46974e6ea4a974b75d44a4dafbb205cbf3d941812a024024b4003cfc7d8cc0",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/96point_12x8/segments/E009_grasp_tactile_96points_20260827_115909_f0155-f0281.xlsx",
+    "to": "finger_action_library/96point_12x8/segments/E009_grasp_tactile_96points_20260827_115909_f0155-f0281.xlsx",
+    "sha256": "d91c25a87a735741347833c99a3793cc3e4fa5efdb393d0ed9fd706876c70514",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments/E003_back_touch_tactile_48points_20260908_164148_f0000-f0005.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/segments/E003_back_touch_tactile_48points_20260908_164148_f0000-f0005.xlsx",
+    "sha256": "cfd8f60567e958f237a5478a3387a3c15a97649f82f38510adb672c0daac6922",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments/E015_front_touch_tactile_48points_20260908_164741_f0055-f0063.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/segments/E015_front_touch_tactile_48points_20260908_164741_f0055-f0063.xlsx",
+    "sha256": "4ca52fc86e4e32ccab2c52c6d93a9f7a18b1135eb25cb5a586f422298b7efeb3",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments/E013_back_touch_tactile_48points_20260908_164741_f0043-f0049.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/segments/E013_back_touch_tactile_48points_20260908_164741_f0043-f0049.xlsx",
+    "sha256": "fdfb83dd104a63ed24ff303b8543479d34b1d07f13c3bacc01a92a372682498c",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments/E004_grasp_tactile_48points_20260908_164148_f0007-f0013.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/segments/E004_grasp_tactile_48points_20260908_164148_f0007-f0013.xlsx",
+    "sha256": "e5808f4c881c1a1935b606cdf7b4e612fb5f299bee22f9d050846b10a4a10e0b",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments/E014_grasp_tactile_48points_20260908_164741_f0049-f0056.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/segments/E014_grasp_tactile_48points_20260908_164741_f0049-f0056.xlsx",
+    "sha256": "5f04595ee0e82899fce827714f47fe925856a41e72a8b7f495e987a14b516c5a",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments/E009_grasp_tactile_48points_20260908_164741_f0020-f0027.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/segments/E009_grasp_tactile_48points_20260908_164741_f0020-f0027.xlsx",
+    "sha256": "d6bf97b0fd163924a3d64e014938f15818de77a2cbbd7034db2b7baa215dc4cb",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments/E016_back_touch_tactile_48points_20260908_164741_f0062-f0067.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/segments/E016_back_touch_tactile_48points_20260908_164741_f0062-f0067.xlsx",
+    "sha256": "436dcb8e49f8ea0bb210bcfa28267c90b1fc50d5995d139d5326f6d85218198b",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments/E011_grasp_tactile_48points_20260908_164741_f0033-f0037.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/segments/E011_grasp_tactile_48points_20260908_164741_f0033-f0037.xlsx",
+    "sha256": "3773cc9d370a828ed36192fa81869ba394b6ed0c7305ebe95ff998659b4f804d",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments/E005_front_touch_tactile_48points_20260908_164148_f0013-f0018.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/segments/E005_front_touch_tactile_48points_20260908_164148_f0013-f0018.xlsx",
+    "sha256": "529c9fbdd7c4a0e3027a6abba6c070d5c2be095f940d529b45daac7009b658cb",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments/E001_grasp_tactile_48points_20260908_163756_f0001-f0012.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/segments/E001_grasp_tactile_48points_20260908_163756_f0001-f0012.xlsx",
+    "sha256": "ac950c0dfa37e1fcbd6cf737dac0e4645d3e86cbb5a9dcceb771620e4c190e55",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments/E008_back_touch_tactile_48points_20260908_164741_f0015-f0020.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/segments/E008_back_touch_tactile_48points_20260908_164741_f0015-f0020.xlsx",
+    "sha256": "1495891f22860be0703eaf0555ffa27afcf1f6057a8831444569e92e358463f2",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments/E007_grasp_tactile_48points_20260908_164741_f0006-f0014.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/segments/E007_grasp_tactile_48points_20260908_164741_f0006-f0014.xlsx",
+    "sha256": "184d312e18b459d482ddb8870be8d70949337ce26ef0d0ed152293383b5dfd7b",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments/E006_front_touch_tactile_48points_20260908_164148_f0019-f0022.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/segments/E006_front_touch_tactile_48points_20260908_164148_f0019-f0022.xlsx",
+    "sha256": "8e11c11186f43fc1bd6bf50bb32105bcdad76fc9ab8905e2c2951b886611ee94",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments/E002_grasp_tactile_48points_20260908_163756_f0015-f0023.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/segments/E002_grasp_tactile_48points_20260908_163756_f0015-f0023.xlsx",
+    "sha256": "0b0ad8fdc5cf2cd0e78d8bb27d308646041e33fb00d3c7291a10ddb5ec261845",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments/E012_grasp_tactile_48points_20260908_164741_f0037-f0044.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/segments/E012_grasp_tactile_48points_20260908_164741_f0037-f0044.xlsx",
+    "sha256": "c043799387c15417abf90d390ca8826d426e584110be89059f1adb1180010bff",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "finger_action_library 2/18point_6x6_sparse/segments/E010_grasp_tactile_48points_20260908_164741_f0026-f0033.xlsx",
+    "to": "finger_action_library/18point_6x6_sparse/segments/E010_grasp_tactile_48points_20260908_164741_f0026-f0033.xlsx",
+    "sha256": "e6220dd789e9b8c888ba9a988a80ecb20bd3d5e6e21b0c060dc333bbe8961f2c",
+    "reason": "统一当前动作库名称，移除副本后缀"
+  },
+  {
+    "action": "move",
+    "from": "1.before-width4.gh",
+    "to": "Archive/model_backups/1.before-width4.gh",
+    "sha256": "170b97f3cb421be67238ee15fdc10ba3b42cbe9d520afd5a65459a70ba3188a8",
+    "reason": "修复前模型备份"
+  },
+  {
+    "action": "move",
+    "from": "ring.before-fix.gh",
+    "to": "Archive/model_backups/ring.before-fix.gh",
+    "sha256": "cec2262608886377f73db9468bfbd758b04ecbc66f3c2bec0b46df788eaa690b",
+    "reason": "修复前模型备份"
+  },
+  {
+    "action": "move",
+    "from": "ring_model.py",
+    "to": "Archive/legacy_scripts/ring_model.py",
+    "sha256": "8c3ed88b2493682eb68f36ba56ad7e784c12dee32dddf7fff3a339398aabadc0",
+    "reason": "旧简化模型或已完成的修复/旧Windows验证脚本"
+  },
+  {
+    "action": "move",
+    "from": "sync_strip_widths.py",
+    "to": "Archive/legacy_scripts/sync_strip_widths.py",
+    "sha256": "4094d347e885833bb33d5a8efc704392059b12ad0ad97e4d6beaab91eaea6a0d",
+    "reason": "旧简化模型或已完成的修复/旧Windows验证脚本"
+  },
+  {
+    "action": "move",
+    "from": "verify_ring.py",
+    "to": "Archive/legacy_scripts/verify_ring.py",
+    "sha256": "b8e305b78633ff37886c2500d26edb8bf6c4cccc7a24a6377b02c24c5ce9d9a0",
+    "reason": "旧简化模型或已完成的修复/旧Windows验证脚本"
+  },
+  {
+    "action": "move",
+    "from": "ring-fix-notes.md",
+    "to": "Archive/validation_reports/ring-fix-notes.md",
+    "sha256": "69897f0d8797095ea5170036df505577379e9454709cd2905eb247a6f8ed742e",
+    "reason": "历史修复验证记录及预览"
+  },
+  {
+    "action": "move",
+    "from": "ring-inspection.txt",
+    "to": "Archive/validation_reports/ring-inspection.txt",
+    "sha256": "bab8547f6f490133c1bb7acfb55844dd189d52682a288cec82d83059f74c58ff",
+    "reason": "历史修复验证记录及预览"
+  },
+  {
+    "action": "move",
+    "from": "ring-validation.txt",
+    "to": "Archive/validation_reports/ring-validation.txt",
+    "sha256": "790a5d191a9bd4db75170aec4beca10842bc86c64540d7c293ecd82317731c0c",
+    "reason": "历史修复验证记录及预览"
+  },
+  {
+    "action": "move",
+    "from": "strip-width-validation.json",
+    "to": "Archive/validation_reports/strip-width-validation.json",
+    "sha256": "22f171a5cd94a0a399bbc77e9195ace19754fe6163934862145baf513af7305a",
+    "reason": "历史修复验证记录及预览"
+  },
+  {
+    "action": "move",
+    "from": "ring-heatmap-preview.png",
+    "to": "Archive/validation_reports/ring-heatmap-preview.png",
+    "sha256": "6fe5259bda07d15a4c7803e31c75d2e5b40693c2d2c08423939d12c389c612d7",
+    "reason": "历史修复验证记录及预览"
+  },
+  {
+    "action": "move",
+    "from": "arm-wearing-preview.png",
+    "to": "Archive/validation_reports/arm-wearing-preview.png",
+    "sha256": "5999c21d29eee8cf008573b45e3eac1a7f88a4fd89b4e0ce9960953ffa2bec4e",
+    "reason": "历史修复验证记录及预览"
+  },
+  {
+    "action": "move",
+    "from": "tactile_96points_20260820_154902.csv",
+    "to": "finger/recordings/96point/tactile_96points_20260820_154902.csv",
+    "sha256": "262167a6e3039cea1f55b80acf302272900d8887468bef910038ceee476522f8",
+    "reason": "唯一原始采集文件，归入原始数据目录"
+  },
+  {
+    "action": "delete_duplicate",
+    "from": "tactile_96points_20260825_144214.csv",
+    "kept": "finger/recordings/96point/tactile_96points_20260825_144214.csv",
+    "sha256": "5962ed0d379ad7582bf6faafba2a1eb730f0409f8a7952f2b1b064c7834f9608",
+    "bytes": 4613332
+  },
+  {
+    "action": "delete_duplicate",
+    "from": "tactile_96points_20260827_115909.csv",
+    "kept": "finger/recordings/96point/tactile_96points_20260827_115909.csv",
+    "sha256": "15b1b146e0f9c2cd42ad8ff774116218770f6df5ec2776797e7c178e06f60264",
+    "bytes": 12178726
+  },
+  {
+    "action": "delete_duplicate",
+    "from": "tactile_96points_20260825_144129.csv",
+    "kept": "finger/recordings/96point/tactile_96points_20260825_144129.csv",
+    "sha256": "ed55b476067c8a1b769fa99e5340322439bcb2c6a907d5122a267351ae6d9894",
+    "bytes": 2556780
+  },
+  {
+    "action": "delete_duplicate",
+    "from": "tactile_96points_20260817_194852.csv",
+    "kept": "finger/recordings/96point/tactile_96points_20260817_194852.csv",
+    "sha256": "34757573d71d1e9cc3630fb8d2a0ecab69ac37ec2ccc51df6c8f02e97d6c96d7",
+    "bytes": 228773
+  },
+  {
+    "action": "delete_duplicate",
+    "from": "tactile_96points_20260817_200426.csv",
+    "kept": "finger/recordings/96point/tactile_96points_20260817_200426.csv",
+    "sha256": "9d0308612f8ec91ea423d63f859b6f5180c3532bd7877e8d6264a87febd1f5c5",
+    "bytes": 6095541
+  },
+  {
+    "action": "delete_duplicate",
+    "from": "tactile_data_for_colleague_20260819/tactile_96points_20260825_144214.csv",
+    "kept": "finger/recordings/96point/tactile_96points_20260825_144214.csv",
+    "sha256": "5962ed0d379ad7582bf6faafba2a1eb730f0409f8a7952f2b1b064c7834f9608",
+    "bytes": 4613332
+  },
+  {
+    "action": "delete_duplicate",
+    "from": "tactile_data_for_colleague_20260819/tactile_96points_20260825_144129.csv",
+    "kept": "finger/recordings/96point/tactile_96points_20260825_144129.csv",
+    "sha256": "ed55b476067c8a1b769fa99e5340322439bcb2c6a907d5122a267351ae6d9894",
+    "bytes": 2556780
+  },
+  {
+    "action": "delete_duplicate",
+    "from": "tactile_data_for_colleague_20260819/tactile_96points_20260817_194852.csv",
+    "kept": "finger/recordings/96point/tactile_96points_20260817_194852.csv",
+    "sha256": "34757573d71d1e9cc3630fb8d2a0ecab69ac37ec2ccc51df6c8f02e97d6c96d7",
+    "bytes": 228773
+  },
+  {
+    "action": "delete_duplicate",
+    "from": "tactile_data_for_colleague_20260819/tactile_96points_20260817_200426.csv",
+    "kept": "finger/recordings/96point/tactile_96points_20260817_200426.csv",
+    "sha256": "9d0308612f8ec91ea423d63f859b6f5180c3532bd7877e8d6264a87febd1f5c5",
+    "bytes": 6095541
+  }
+]

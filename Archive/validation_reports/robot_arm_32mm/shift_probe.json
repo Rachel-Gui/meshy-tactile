@@ -1,0 +1,31 @@
+[
+  {
+    "shifts": [
+      4,
+      -4
+    ],
+    "sensors": 96,
+    "mesh": 1,
+    "errors": []
+  },
+  {
+    "shifts": [
+      5,
+      -5
+    ],
+    "sensors": 120,
+    "mesh": 1,
+    "errors": []
+  },
+  {
+    "shifts": [
+      5,
+      -6
+    ],
+    "sensors": 146,
+    "mesh": 1,
+    "errors": [
+      "Data conversion failed from Brep to Surface"
+    ]
+  }
+]
