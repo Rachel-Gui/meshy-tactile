@@ -151,11 +151,18 @@ controls.screenSpacePanning = true;
 controls.minDistance = 45;
 controls.maxDistance = 1200;
 
-scene.add(new THREE.HemisphereLight(0xa8c8ff, 0x101421, 1.65));
-const keyLight = new THREE.DirectionalLight(0xffffff, 2.0);
+// Neutral studio lighting in the model's Z-up coordinate system.
+// A bright lower hemisphere and dedicated underside fill keep both faces readable.
+const ambientLight = new THREE.HemisphereLight(0xf4f7ff, 0xc9d1df, 2.15);
+ambientLight.position.set(0, 0, 1);
+scene.add(ambientLight);
+const keyLight = new THREE.DirectionalLight(0xffffff, 2.1);
 keyLight.position.set(-120, -160, 220);
 scene.add(keyLight);
-const rimLight = new THREE.DirectionalLight(0x55bbff, 1.7);
+const undersideLight = new THREE.DirectionalLight(0xf1f5ff, 1.85);
+undersideLight.position.set(60, -90, -220);
+scene.add(undersideLight);
+const rimLight = new THREE.DirectionalLight(0xffffff, 1.25);
 rimLight.position.set(260, 120, 80);
 scene.add(rimLight);
 
