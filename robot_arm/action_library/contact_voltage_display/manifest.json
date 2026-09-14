@@ -1,0 +1,25 @@
+{
+  "actions": [
+    {
+      "path": "robot_arm/action_library/contact_voltage_display/RB004_axial_column_contact_voltage_display.csv",
+      "sha256": "6711f069dbce1cd3b80525945999adb67148d93adc7c22e92001d17008ecec47",
+      "frames": 281
+    },
+    {
+      "path": "robot_arm/action_library/contact_voltage_display/RB003_pinch_end_contact_voltage_display.csv",
+      "sha256": "b937759b5a2f38e85d195df2951c6fb18413f0d2ae8e13351e3e6e71b94b6fc3",
+      "frames": 535
+    },
+    {
+      "path": "robot_arm/action_library/contact_voltage_display/RB001_palm_grab_contact_voltage_display.csv",
+      "sha256": "b21751c5e5eb2069326e6cf2592834fb5f21693c6c39dfb442c2e65b8349edbe",
+      "frames": 122
+    }
+  ],
+  "combinedIsDuplicate": true,
+  "combinedOrder": [
+    "RB004",
+    "RB003",
+    "RB001"
+  ]
+}

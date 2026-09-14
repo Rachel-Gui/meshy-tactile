@@ -4,7 +4,7 @@ const number = value => finite(value) ? value.toFixed(4) : '—';
 export function currentFrameDetails(clip, frame, index) {
   const time=clip.times?.[index] ?? index/(clip.fps || 15);
   const measured=clip.measuredTimes;
-  let sampling=clip.interpolated ? 'Interpolated playback' : 'Playback frame';
+  let sampling=clip.dataKind === 'contact-voltage' ? 'Imported display frame · 20 FPS' : clip.interpolated ? 'Interpolated playback' : 'Playback frame';
   if(measured?.length){
     let left=0;
     while(left+1<measured.length && measured[left+1]<=time+1e-8)left++;
@@ -13,10 +13,10 @@ export function currentFrameDetails(clip, frame, index) {
     else if(left===measured.length-1) sampling=`Hold of measured frame ${source(left)}`;
     else sampling=`Interpolated: measured ${source(left)} → ${source(left+1)}`;
   }
-  const values=clip.signal?.[index] ?? Array.from(frame.values);
+  const values=clip.dataKind === 'contact-voltage' ? clip.raw[index] : clip.signal?.[index] ?? Array.from(frame.values);
   const valid=values.filter(finite);
   const maximum=valid.length?Math.max(...valid):null;
-  return {time,sampling,maximum,active:valid.filter(v=>v>.1).length,values,
+  return {time,sampling,maximum,active:clip.dataKind === 'contact-voltage' ? valid.length : valid.filter(v=>v>.1).length,values,
     raw:clip.raw?.[index] ?? frame.rawVolts,baseline:clip.baseline?.[index] ?? frame.baseline};
 }
 
@@ -28,6 +28,8 @@ export function createPlaybackDataPreview(root,onSelect) {
     const details=currentFrameDetails(clip,frame,index);
     if(previousClip!==clip){
       previousClip=clip;body.replaceChildren();cells=[];
+      const headers = root.querySelectorAll('thead th');
+      if (headers.length === 4) { headers[1].textContent = clip.dataKind === 'contact-voltage' ? 'Contact V' : 'Signal 0–1'; headers[2].textContent = clip.dataKind === 'contact-voltage' ? 'Color 0–1' : 'Raw V'; }
       details.values.forEach((_,i)=>{
         const row=document.createElement('tr');const header=document.createElement('th');header.scope='row';
         const button=document.createElement('button');button.type='button';
@@ -39,10 +41,10 @@ export function createPlaybackDataPreview(root,onSelect) {
       });
     }
     status.textContent=`${playing?'Playing':'Paused'} · Frame ${index+1} / ${clip.frames.length} · ${details.time.toFixed(3)} s`;
-    summary.textContent=`${details.sampling}\nPeak ${number(details.maximum)} · ${details.active} / ${details.values.length} nodes > 0.1`;
+    summary.textContent=clip.dataKind === 'contact-voltage' ? `${details.sampling}\n${details.active} / 132 contact nodes · lower V = stronger contact\nColor scale: 2.10 V → 0.00 V · blank = masked` : `${details.sampling}\nPeak ${number(details.maximum)} · ${details.active} / ${details.values.length} nodes > 0.1`;
     cells.forEach(({row,values},i)=>{
-      values[0].textContent=number(details.values[i]);values[1].textContent=number(details.raw?.[i]);values[2].textContent=number(details.baseline?.[i]);
-      row.classList.toggle('active-response',finite(details.values[i])&&details.values[i]>.1);
+      values[0].textContent=number(details.values[i]);values[1].textContent=number(clip.dataKind === 'contact-voltage' ? clip.signal[index][i] : details.raw?.[i]);values[2].textContent=number(details.baseline?.[i]);
+      row.classList.toggle('active-response',finite(details.values[i])&&(clip.dataKind === 'contact-voltage'||details.values[i]>.1));
       row.classList.toggle('selected-node',(mapping?.[i] ?? i)===selected);
     });
   }};

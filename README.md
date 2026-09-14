@@ -4,12 +4,12 @@ Interactive 3D tactile heatmaps for Human arm, Robot arm and Finger sensors.
 
 Live dashboard: https://meshy-tactile.vercel.app
 
-The current built-in library contains **9 Direct actions**: front touch, back touch and grab for each model. See [Current dataset](CURRENT_DATASET.md) for source paths, checksums and update instructions.
+The current built-in library contains **12 actions**: 9 Direct actions and 3 Robot arm contact-voltage recordings. Direct actions include: front touch, back touch and grab for each model. See [Current dataset](CURRENT_DATASET.md) for source paths, checksums and update instructions.
 
 | Directory | Purpose |
 |---|---|
 | `human_arm/action_library/` | Current Human arm data: 96 nodes, 3 actions |
-| `robot_arm/action_library/` | Current Robot arm data: 132 nodes, 3 actions |
+| `robot_arm/action_library/` | Current Robot arm data: 132 nodes, 6 actions |
 | `finger/action_library/` | Current Finger data: 18 nodes, 3 actions |
 | `web/` | Dashboard, local service and export tools; see [setup](web/README.md) |
 | `models/` | Rhino, Grasshopper and CAD models |

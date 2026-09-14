@@ -308,7 +308,7 @@ function updateSelectedCard() {
     const column = (index % COLUMNS) + 1;
     elements.selectedIndex.textContent = `A${String(row).padStart(2, '0')} · ${String(column).padStart(2, '0')}`;
   }
-  elements.selectedValue.textContent = `${Math.round(state.values[index] * 100)}%`;
+  elements.selectedValue.textContent = state.actionClip?.dataKind === 'contact-voltage' ? (Number.isFinite(state.rawVolts[index]) ? `Color ${(state.values[index]).toFixed(3)}` : 'Masked') : `${Math.round(state.values[index] * 100)}%`;
   elements.selectedVoltage.textContent = Number.isFinite(state.rawVolts[index]) ? `${state.rawVolts[index].toFixed(3)} V` : '—';
   const angle = state.sensorAngles[index];
   elements.selectedAngle.textContent = `Strip angle ${angle > 0 ? `${angle.toFixed(1)}°` : '—'}`;
@@ -607,6 +607,7 @@ function updateHeatmap() {
       strongest = Math.max(strongest, adjusted * falloff);
     }
     colorAt(strongest, state.palette, workingColor);
+    if (state.actionClip?.dataKind === 'contact-voltage' && state.sourceMode === 'playback' && strongest <= .001) workingColor.set('#080a0e');
     colors[vertexIndex * 3] = workingColor.r;
     colors[vertexIndex * 3 + 1] = workingColor.g;
     colors[vertexIndex * 3 + 2] = workingColor.b;
@@ -621,6 +622,7 @@ function updateMatrix() {
   document.querySelectorAll('.sensor-cell').forEach((cell, index) => {
     const value = state.values[index];
     colorAt(value, state.palette, workingColor);
+    if (state.actionClip?.dataKind === 'contact-voltage' && state.sourceMode === 'playback' && !Number.isFinite(state.rawVolts[index])) workingColor.set('#080a0e');
     cell.style.backgroundColor = `#${workingColor.getHexString()}`;
   });
   updateSelectedCard();
@@ -1162,7 +1164,8 @@ async function previewPlaybackDataset(dataset) {
   if (payload.recordedAt) elements.playbackPreviewSample.textContent += `\nRecorded ${payload.recordedAt}`;
   if (payload.timingSource) elements.playbackPreviewSample.textContent += `\nTime: ${payload.timingSource}`;
   if (payload.signalLayer) elements.playbackPreviewSample.textContent += `\n${payload.signalLayer}`;
-  if (payload.sensorCount === 132) elements.playbackPreviewSample.textContent += '\nReconstructed signal · front/back labels provisional';
+  if (payload.dataKind === 'contact-voltage') elements.playbackPreviewSample.textContent = `${payload.frames.length} imported display frames · 20 FPS\n${payload.processing}\n${payload.sourceProcessing}`;
+  if (payload.sensorCount === 132 && payload.dataKind !== 'contact-voltage') elements.playbackPreviewSample.textContent += '\nReconstructed signal · front/back labels provisional';
   updatePlaybackTimeline(0, payload.frames.length, false);
   applyHostedPlaybackFrame();
 }

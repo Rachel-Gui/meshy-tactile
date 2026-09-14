@@ -1,6 +1,6 @@
 # Current dataset
 
-Version: **2026-09-13 Direct**, containing 9 actions. Each category has front_touch, back_touch and grab.
+Version: **2026-09-13 Direct**, containing 9 Direct actions plus 3 Robot arm contact-voltage actions (12 total). Each category has front_touch, back_touch and grab.
 
 | Category | Nodes | Canonical XLSX directory | IDs: front / back / grab |
 |---|---:|---|---|
@@ -30,3 +30,14 @@ Deploy to update the public dashboard. User-uploaded datasets are separate from 
 - `Archive/data_consolidation_2026-09-13/{human_arm,finger}/recordings/`: previous raw recordings.
 - Figure directories within that archive contain historical plots, not plots of the current 9 actions.
 - `moves.json` records each original path, archive path and SHA-256 checksum. No source data was deleted.
+
+## Robot arm contact-voltage addition
+
+Canonical source: `robot_arm/action_library/contact_voltage_display/`.
+RB004 axial_column (281 display frames), RB003 pinch_end (535), RB001 palm_grab (122).
+The combined CSV repeats those 938 rows and is not a fourth catalog entry.
+These files contain volts with masked cells, not normalized Signal Combined.
+The frontend preserves voltage and nulls, uses a shared 0–2.10 V inverse color scale,
+and does not repeat the source display flips/shifts or interpolate again.
+Original Direct workbooks and action_index.xlsx remain unchanged; the additional CSV
+source checksums are in that directory's manifest.json. arm/ retains the import copy.

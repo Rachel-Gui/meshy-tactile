@@ -27,3 +27,6 @@ for category,directory,count,shape in [('finger','18point_6x6_sparse',18,(3,6)),
 assert len(manifest)==9
 (OUT/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
 print('Exported 9 latest direct actions: 3 Finger, 3 Human arm, 3 Robot arm.')
+# Include additional voltage-display recordings without re-interpolating them.
+import runpy
+runpy.run_path(str(ROOT/'web/tools/export_contact_voltage.py'))
