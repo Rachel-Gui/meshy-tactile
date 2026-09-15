@@ -1,0 +1,116 @@
+{
+  "selection": "Maximum sum of all 96 signals per scene",
+  "cameraDirection": [
+    0.19,
+    -0.975,
+    0.115
+  ],
+  "radius": 25,
+  "gain": 1,
+  "threshold": 0,
+  "size": [
+    2400,
+    2400
+  ],
+  "frames": [
+    {
+      "file": "scene_01_LMP005_peak.png",
+      "label": "01 palm grab middle LMP005",
+      "frameIndex": 291,
+      "sourceTimeSeconds": 14.55,
+      "sceneTimeSeconds": 14.55,
+      "sourceFrame": "87",
+      "totalSignal": 7.8977650000000015,
+      "maximum": 0.833333,
+      "sourceSha256": "f60629f4223388987a08171faf3e95f7de4ed60502819dc909d1e8926650b4f8"
+    },
+    {
+      "file": "scene_02_LMP006_peak.png",
+      "label": "02 palm grab middle LMP006",
+      "frameIndex": 669,
+      "sourceTimeSeconds": 76.95,
+      "sceneTimeSeconds": 33.45,
+      "sourceFrame": "213",
+      "totalSignal": 6.908078999999999,
+      "maximum": 0.831588,
+      "sourceSha256": "f60629f4223388987a08171faf3e95f7de4ed60502819dc909d1e8926650b4f8"
+    },
+    {
+      "file": "scene_03_LMP007_peak.png",
+      "label": "03 palm grab middle LMP007",
+      "frameIndex": 411,
+      "sourceTimeSeconds": 109.35,
+      "sceneTimeSeconds": 20.55,
+      "sourceFrame": "127",
+      "totalSignal": 6.433371000000002,
+      "maximum": 0.833333,
+      "sourceSha256": "f60629f4223388987a08171faf3e95f7de4ed60502819dc909d1e8926650b4f8"
+    },
+    {
+      "file": "scene_04_V221-01_peak.png",
+      "label": "04 finger press 2-2-1 V221-01",
+      "frameIndex": 294,
+      "sourceTimeSeconds": 138,
+      "sceneTimeSeconds": 14.7,
+      "sourceFrame": "88",
+      "totalSignal": 1.932472,
+      "maximum": 0.966236,
+      "sourceSha256": "f60629f4223388987a08171faf3e95f7de4ed60502819dc909d1e8926650b4f8"
+    },
+    {
+      "file": "scene_05_V221-02_peak.png",
+      "label": "05 finger press 2-2-1 V221-02",
+      "frameIndex": 114,
+      "sourceTimeSeconds": 163.65,
+      "sceneTimeSeconds": 5.7,
+      "sourceFrame": "28",
+      "totalSignal": 0.819713,
+      "maximum": 0.418702,
+      "sourceSha256": "f60629f4223388987a08171faf3e95f7de4ed60502819dc909d1e8926650b4f8"
+    },
+    {
+      "file": "scene_06_V221-03_peak.png",
+      "label": "06 finger press 2-2-1 V221-03",
+      "frameIndex": 114,
+      "sourceTimeSeconds": 198.3,
+      "sceneTimeSeconds": 5.7,
+      "sourceFrame": "28",
+      "totalSignal": 1.7199,
+      "maximum": 0.966236,
+      "sourceSha256": "f60629f4223388987a08171faf3e95f7de4ed60502819dc909d1e8926650b4f8"
+    },
+    {
+      "file": "scene_07_TBL002_peak.png",
+      "label": "07 table contact TBL002",
+      "frameIndex": 306,
+      "sourceTimeSeconds": 242.55,
+      "sceneTimeSeconds": 15.3,
+      "sourceFrame": "92",
+      "totalSignal": 16.12903,
+      "maximum": 0.624265,
+      "sourceSha256": "f60629f4223388987a08171faf3e95f7de4ed60502819dc909d1e8926650b4f8"
+    },
+    {
+      "file": "scene_08_TBL003_peak.png",
+      "label": "08 table contact TBL003",
+      "frameIndex": 471,
+      "sourceTimeSeconds": 277.65,
+      "sceneTimeSeconds": 23.55,
+      "sourceFrame": "147",
+      "totalSignal": 11.4415,
+      "maximum": 0.649449,
+      "sourceSha256": "f60629f4223388987a08171faf3e95f7de4ed60502819dc909d1e8926650b4f8"
+    },
+    {
+      "file": "scene_09_TBL004_peak.png",
+      "label": "09 table contact TBL004",
+      "frameIndex": 429,
+      "sourceTimeSeconds": 316.35,
+      "sceneTimeSeconds": 21.45,
+      "sourceFrame": "133",
+      "totalSignal": 9.026195000000001,
+      "maximum": 0.574359,
+      "sourceSha256": "f60629f4223388987a08171faf3e95f7de4ed60502819dc909d1e8926650b4f8"
+    }
+  ]
+}

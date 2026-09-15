@@ -1,4 +1,0 @@
-﻿action_id,action_type,segment_start_frame_0based,segment_end_frame_0based,key_frame_0based,key_frame_1based,combined_time_s,action_local_frame_0based,action_local_time_s,total_signal,active_nodes,keyframe_csv,note
-RB004,axial_column,0,280,257,258,12.850000,257,12.850000,4.779680,7,RB004_keyframe_0257_12.85s.csv,Earliest frame on the maximum-brightness plateau; plateau continues through frame 280 / 14.00 s.
-RB003,pinch_end,281,815,538,539,26.900000,257,12.850000,3.040173,4,RB003_keyframe_0538_26.90s.csv,Unique maximum total-signal frame.
-RB001,palm_grab,816,937,887,888,44.350000,71,3.550000,10.743898,18,RB001_keyframe_0887_44.35s.csv,Unique maximum total-signal frame.

@@ -1,0 +1,17 @@
+<!doctype html><html><head><style>html,body{margin:0;background:transparent}canvas{display:block}</style></head><body><script type="module">
+import * as THREE from '/web/node_modules/three/build/three.module.js';
+const model=await (await fetch('/web/public/assets/model.json')).json();
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(30,1,0.1,4000);camera.up.set(1,0,0);
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});renderer.setSize(2400,2400);renderer.setClearColor(0,0);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.12;document.body.append(renderer.domElement);
+const hemi=new THREE.HemisphereLight(0xf4f7ff,0xc9d1df,2.15);hemi.position.set(0,0,1);scene.add(hemi);
+for(const [color,intensity,xyz] of [[0xffffff,2.1,[-120,-160,220]],[0xf1f5ff,1.85,[60,-90,-220]],[0xffffff,1.25,[260,120,80]]]){const l=new THREE.DirectionalLight(color,intensity);l.position.set(...xyz);scene.add(l);}
+const g=new THREE.BufferGeometry();for(const key of ['position','normal'])g.setAttribute(key,new THREE.Float32BufferAttribute(model.geometry[key==='position'?'positions':'normals'],3));g.setIndex(model.geometry.indices);g.setAttribute('color',new THREE.Float32BufferAttribute(new Float32Array(model.geometry.positions.length),3));g.computeBoundingBox();
+const mesh=new THREE.Mesh(g,new THREE.MeshStandardMaterial({vertexColors:true,side:THREE.DoubleSide,metalness:.02,roughness:.62}));scene.add(mesh);
+const center=g.boundingBox.getCenter(new THREE.Vector3());const direction=new THREE.Vector3(.19,-.975,.115).normalize();camera.position.copy(center).addScaledVector(direction,570);camera.lookAt(center);
+const sensors=Array.from({length:96},(_,i)=>model.sensors[Math.floor(i/8)*8+7-i%8].position);const vertices=model.geometry.positions;const count=vertices.length/3;const weights=new Float32Array(count*96);
+for(let j=0;j<count;j++)for(let i=0;i<96;i++){const s=sensors[i];const dist=Math.hypot(vertices[j*3]-s[0],vertices[j*3+1]-s[1],vertices[j*3+2]-s[2]);const a=Math.max(0,1-dist/25);weights[j*96+i]=a*a*(3-2*a);}
+const stops=[[0,'#141e6e'],[.25,'#00aaff'],[.5,'#1edc78'],[.75,'#ffdc00'],[1,'#e61e14']];const lookup=[];
+for(let k=0;k<256;k++){const v=k/255;const i=Math.min(3,Math.floor(v*4));lookup.push(new THREE.Color(stops[i][1]).lerp(new THREE.Color(stops[i+1][1]),(v-stops[i][0])/.25));}
+window.capture=async(id,index)=>{const clip=await(await fetch('/web/public/action-library/'+id+'.json')).json();const values=clip.signal[index], colors=g.attributes.color.array;for(let j=0;j<count;j++){let peak=0;for(let i=0;i<96;i++)peak=Math.max(peak,values[i]*weights[j*96+i]);const c=lookup[Math.round(Math.min(1,peak)*255)];colors[j*3]=c.r;colors[j*3+1]=c.g;colors[j*3+2]=c.b;}g.attributes.color.needsUpdate=true;renderer.render(scene,camera);return renderer.domElement.toDataURL('image/png');};window.ready=true;
+</script></body></html>

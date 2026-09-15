@@ -1,0 +1,8 @@
+import {chromium} from '/Users/a0000/.npm/_npx/420ff84f11983ee5/node_modules/playwright/index.mjs';
+import fs from 'node:fs';
+const root=process.cwd();const out=root+'/outputs/human-arm-heatmaps';
+const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+const page=await browser.newPage();page.on('pageerror',e=>console.error(e));await page.goto('http://127.0.0.1:8766/outputs/human-arm-heatmaps/capture.html');await page.waitForFunction(()=>window.ready,{timeout:60000});
+const manifest=JSON.parse(fs.readFileSync(root+'/web/public/action-library/manifest.json'));const audit=[];
+for(const entry of manifest.filter(x=>/^latest_human_arm_\d\d$/.test(x.id))){const clip=JSON.parse(fs.readFileSync(root+'/web/public'+entry.url));const sums=clip.signal.map(row=>row.reduce((a,b)=>a+b,0));const index=sums.indexOf(Math.max(...sums));const url=await page.evaluate(async({id,index})=>window.capture(id,index),{id:entry.id,index});const name=entry.id.replace('latest_human_arm_','scene_')+'_'+clip.action+'_peak.png';fs.writeFileSync(out+'/'+name,Buffer.from(url.split(',')[1],'base64'));audit.push({file:name,label:entry.label,frameIndex:index,sourceTimeSeconds:clip.sourceTimes[index],sceneTimeSeconds:clip.times[index],sourceFrame:clip.sourceFrames[index],totalSignal:sums[index],maximum:Math.max(...clip.signal[index]),sourceSha256:clip.sourceSha256});console.log(name,index);}
+fs.writeFileSync(out+'/frames.json',JSON.stringify({selection:'Maximum sum of all 96 signals per scene',cameraDirection:[.19,-.975,.115],radius:25,gain:1,threshold:0,size:[2400,2400],frames:audit},null,2));await browser.close();

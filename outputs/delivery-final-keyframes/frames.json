@@ -1,0 +1,185 @@
+{
+  "robot": [
+    {
+      "index": 257,
+      "action": "RB004",
+      "sourceIndex": 257
+    },
+    {
+      "index": 538,
+      "action": "RB003",
+      "sourceIndex": 538
+    },
+    {
+      "index": 887,
+      "action": "RB001",
+      "sourceIndex": 887
+    }
+  ],
+  "finger": [
+    {
+      "id": "all8",
+      "keyframes": [
+        {
+          "index": 25,
+          "time": 1.25,
+          "label": "1 · palm · 1.25 s",
+          "orientation": "palm",
+          "position": 1,
+          "actionA": "R1G-023",
+          "actionB": "R1G-024"
+        },
+        {
+          "index": 86,
+          "time": 4.3,
+          "label": "2 · palm · 4.30 s",
+          "orientation": "palm",
+          "position": 2,
+          "actionA": "R1G-024",
+          "actionB": "R1G-023"
+        },
+        {
+          "index": 148,
+          "time": 7.4,
+          "label": "3 · palm · 7.40 s",
+          "orientation": "palm",
+          "position": 3,
+          "actionA": "R1G-025",
+          "actionB": "R1G-026"
+        },
+        {
+          "index": 203,
+          "time": 10.15,
+          "label": "4 · palm · 10.15 s",
+          "orientation": "palm",
+          "position": 4,
+          "actionA": "R1G-026",
+          "actionB": "R1G-025"
+        },
+        {
+          "index": 257,
+          "time": 12.85,
+          "label": "5 · palm · 12.85 s",
+          "orientation": "palm",
+          "position": 5,
+          "actionA": "R1G-027",
+          "actionB": "R1G-020"
+        },
+        {
+          "index": 316,
+          "time": 15.8,
+          "label": "6 · palm · 15.80 s",
+          "orientation": "palm",
+          "position": 6,
+          "actionA": "R1G-020",
+          "actionB": "R1G-027"
+        },
+        {
+          "index": 375,
+          "time": 18.75,
+          "label": "7 · palm · 18.75 s",
+          "orientation": "palm",
+          "position": 7,
+          "actionA": "R1G-017",
+          "actionB": "R1G-018"
+        },
+        {
+          "index": 429,
+          "time": 21.45,
+          "label": "8 · palm · 21.45 s",
+          "orientation": "palm",
+          "position": 8,
+          "actionA": "R1G-018",
+          "actionB": "R1G-017"
+        }
+      ]
+    },
+    {
+      "id": "group1",
+      "keyframes": [
+        {
+          "index": 25,
+          "time": 1.25,
+          "label": "1 · palm · 1.25 s",
+          "orientation": "palm",
+          "position": 1,
+          "actionA": "R1G-023",
+          "actionB": "R1G-024"
+        },
+        {
+          "index": 86,
+          "time": 4.3,
+          "label": "2 · back · 4.30 s",
+          "orientation": "back",
+          "position": 2,
+          "actionA": "R1G-024",
+          "actionB": "R1G-023"
+        },
+        {
+          "index": 148,
+          "time": 7.4,
+          "label": "3 · back · 7.40 s",
+          "orientation": "back",
+          "position": 3,
+          "actionA": "R1G-025",
+          "actionB": "R1G-026"
+        },
+        {
+          "index": 203,
+          "time": 10.15,
+          "label": "4 · palm · 10.15 s",
+          "orientation": "palm",
+          "position": 4,
+          "actionA": "R1G-026",
+          "actionB": "R1G-025"
+        }
+      ]
+    },
+    {
+      "id": "group2",
+      "keyframes": [
+        {
+          "index": 25,
+          "time": 1.25,
+          "label": "1 · palm · 1.25 s",
+          "orientation": "palm",
+          "position": 1,
+          "actionA": "R1G-027",
+          "actionB": "R1G-020"
+        },
+        {
+          "index": 84,
+          "time": 4.2,
+          "label": "2 · back · 4.20 s",
+          "orientation": "back",
+          "position": 2,
+          "actionA": "R1G-020",
+          "actionB": "R1G-027"
+        },
+        {
+          "index": 143,
+          "time": 7.15,
+          "label": "3 · back · 7.15 s",
+          "orientation": "back",
+          "position": 3,
+          "actionA": "R1G-017",
+          "actionB": "R1G-018"
+        },
+        {
+          "index": 197,
+          "time": 9.85,
+          "label": "4 · palm · 9.85 s",
+          "orientation": "palm",
+          "position": 4,
+          "actionA": "R1G-018",
+          "actionB": "R1G-017"
+        }
+      ]
+    }
+  ],
+  "resolution": [
+    2400,
+    2400
+  ],
+  "mapping": "Exact frontend modules; source direction transforms already applied; sleeve angles 0 degrees"
+}

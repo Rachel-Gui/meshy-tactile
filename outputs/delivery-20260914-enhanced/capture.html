@@ -1,0 +1,59 @@
+<!doctype html><html><head><style>html,body{margin:0;background:transparent}canvas{display:block}</style></head><body><script type="importmap">{"imports":{"three":"/web/node_modules/three/build/three.module.js"}}</script><div id="pair-panel" hidden><input data-angle><output data-angle-output></output><button data-select></button><button data-select></button><span data-selected></span><button data-reset></button><button data-play></button><button data-restart></button><input data-file><input data-file><span data-file-status="0"></span><span data-file-status="1"></span><select data-library></select><select data-keyframe></select><span data-library-status></span></div><script type="module">
+import * as THREE from '/web/node_modules/three/build/three.module.js';
+import {createFingerPair} from '/web/src/finger-pair.js';
+const nativeFetch=window.fetch.bind(window);window.fetch=(url,...args)=>nativeFetch(typeof url==='string'&&url.startsWith('/delivery-final/')?'/web/public'+url:url,...args);
+const modelKind=new URLSearchParams(location.search).get('model');const isFinger=modelKind==='finger';const isHuman=modelKind==='human';
+const model=await (await fetch('/web/public/assets/'+(isFinger?'ring-model.json':isHuman?'model.json':'robot-arm-model.json'))).json();
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(30,1,0.1,4000);camera.up.set(1,0,0);
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});renderer.setSize(3200,3200);renderer.setClearColor(0,0);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.12;document.body.append(renderer.domElement);
+const hemi=new THREE.HemisphereLight(0xf4f7ff,0xc9d1df,2.15);hemi.position.set(0,0,1);scene.add(hemi);
+for(const [color,intensity,xyz] of [[0xffffff,2.1,[-120,-160,220]],[0xf1f5ff,1.85,[60,-90,-220]],[0xffffff,1.25,[260,120,80]]]){const l=new THREE.DirectionalLight(color,intensity);l.position.set(...xyz);scene.add(l);}
+const g=new THREE.BufferGeometry();for(const key of ['position','normal'])g.setAttribute(key,new THREE.Float32BufferAttribute(model.geometry[key==='position'?'positions':'normals'],3));g.setIndex(model.geometry.indices);g.setAttribute('color',new THREE.Float32BufferAttribute(new Float32Array(model.geometry.positions.length),3));g.computeBoundingBox();
+const mesh=new THREE.Mesh(g,new THREE.MeshStandardMaterial({vertexColors:true,side:THREE.DoubleSide,metalness:.02,roughness:.62}));scene.add(mesh);
+const center=g.boundingBox.getCenter(new THREE.Vector3());const direction=new THREE.Vector3(.19,-.975,.115).normalize();camera.position.copy(center).addScaledVector(direction,570);camera.lookAt(center);
+const sensorCount=isFinger?30:isHuman?96:132;const radius=isFinger?3:isHuman?25:10;
+const sensors=Array.from({length:sensorCount},(_,i)=>model.sensors[isHuman?Math.floor(i/8)*8+7-i%8:i].position);const vertices=model.geometry.positions;const count=vertices.length/3;const weights=new Float32Array(count*sensorCount);
+for(let j=0;j<count;j++)for(let i=0;i<sensorCount;i++){const s=sensors[i];const dist=Math.hypot(vertices[j*3]-s[0],vertices[j*3+1]-s[1],vertices[j*3+2]-s[2]);const a=Math.max(0,1-dist/radius);weights[j*sensorCount+i]=a*a*(3-2*a);}
+const stops=[[0,'#141e6e'],[.25,'#00aaff'],[.5,'#1edc78'],[.75,'#ffdc00'],[1,'#e61e14']];const lookup=[];
+for(let k=0;k<256;k++){const v=k/255;const i=Math.min(3,Math.floor(v*4));lookup.push(new THREE.Color(stops[i][1]).lerp(new THREE.Color(stops[i+1][1]),(v-stops[i][0])/.25));}
+window.capture=async(id,index)=>{const clip=await(await fetch('/web/public/action-library/'+id+'.json')).json();const values=clip.signal[index], colors=g.attributes.color.array;for(let j=0;j<count;j++){let peak=0;for(let i=0;i<sensorCount;i++)peak=Math.max(peak,Math.min(1,values[i]*1.8)*weights[j*sensorCount+i]);const c=lookup[Math.round(Math.min(1,peak)*255)];colors[j*3]=c.r;colors[j*3+1]=c.g;colors[j*3+2]=c.b;}g.attributes.color.needsUpdate=true;renderer.render(scene,camera);return renderer.domElement.toDataURL('image/png');};
+let pair;
+if(isFinger){
+ scene.remove(mesh);
+ const points=new THREE.Points(g.clone(),new THREE.PointsMaterial());
+ const distances=new Float32Array(count*sensorCount);
+ for(let j=0;j<count;j++)for(let i=0;i<sensorCount;i++){const s=sensors[i];distances[j*sensorCount+i]=Math.hypot(vertices[j*3]-s[0],vertices[j*3+1]-s[1],vertices[j*3+2]-s[2]);}
+ pair=createFingerPair(document.querySelector('#pair-panel'),(v,p,c)=>c.copy(lookup[Math.round(Math.max(0,Math.min(1,v))*255)]));
+ pair.prepare(mesh,points,distances,sensors.map(s=>new THREE.Vector3(...s)));pair.group.visible=true;scene.add(pair.group);await pair.loadLibrary();
+ if(!document.querySelector('[data-file-status="0"]').textContent.includes("frames"))throw new Error("Finger library did not load");
+ window.capturePair=async(sequence,index,part)=>{
+ 
+  for(const pivot of pair.group.children.filter(o=>o.isGroup))for(const layer of [...pivot.children].filter(o=>o.userData.captureLayer)){pivot.remove(layer);layer.geometry.dispose();layer.material.dispose();}
+  await pair.loadSequence(sequence);pair.seekFrame(index);pair.update(0,{radius:3,threshold:0,gain:1.8,palette:'thermal',opacity:1,sensorPoints:{visible:false}});
+  const pivots=pair.group.children.filter(o=>o.isGroup);
+  pair.group.children.forEach(o=>{if(!o.isGroup)o.visible=false;});pivots.forEach((o,i)=>o.visible=part==='pair'||part===String(i));
+  const target=part==='pair'?new THREE.Vector3():pivots[Number(part)].position.clone();
+  camera.up.set(0,0,1);camera.position.copy(target).addScaledVector(new THREE.Vector3(-.65,-.85,.72).normalize(),part==='pair'?145:90);camera.lookAt(target);
+  scene.updateMatrixWorld(true);camera.updateMatrixWorld(true);
+  // Opaque rear surfaces + pressure-weighted translucent front surfaces.
+  for(const pivot of pivots){
+   const source=pivot.children.find(o=>o.isMesh&&!o.userData.captureLayer);source.visible=false;
+   const position=source.geometry.attributes.position,index=source.geometry.index.array;
+   const localCamera=source.worldToLocal(camera.position.clone()),front=[],rear=[];
+   for(let i=0;i<index.length;i+=3){let x=0,y=0,z=0;for(let k=0;k<3;k++){x+=position.getX(index[i+k])/3;y+=position.getY(index[i+k])/3;z+=position.getZ(index[i+k])/3;}
+    const target=y*(localCamera.y-y)+z*(localCamera.z-z)>=0?front:rear;target.push(index[i],index[i+1],index[i+2]);
+   }
+   for(const [indices,isFront] of [[rear,false],[front,true]]){
+    const geo=source.geometry.clone();geo.setIndex(indices);const mat=source.material.clone();mat.transparent=isFront;mat.opacity=1;mat.depthWrite=!isFront;
+    if(isFront){const colors=geo.attributes.color;const alpha=new Float32Array(colors.count);for(let i=0;i<alpha.length;i++)alpha[i]=.18+.82*Math.min(1,Math.max(0,colors.getY(i)-.01)/.25);geo.setAttribute('captureAlpha',new THREE.BufferAttribute(alpha,1));
+     mat.onBeforeCompile=shader=>{shader.vertexShader='attribute float captureAlpha; varying float vCaptureAlpha;\n'+shader.vertexShader;shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvCaptureAlpha=captureAlpha;');shader.fragmentShader='varying float vCaptureAlpha;\n'+shader.fragmentShader;shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>','#include <color_fragment>\ndiffuseColor.a *= vCaptureAlpha;');};
+    }
+    const layer=new THREE.Mesh(geo,mat);layer.position.copy(source.position);layer.quaternion.copy(source.quaternion);layer.scale.copy(source.scale);layer.userData.captureLayer=true;layer.renderOrder=isFront?2:0;pivot.add(layer);
+   }
+  }
+  renderer.render(scene,camera);return renderer.domElement.toDataURL('image/png');
+ };
+}
+window.ready=true;
+</script></body></html>

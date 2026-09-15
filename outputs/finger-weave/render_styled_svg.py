@@ -1,4 +1,4 @@
-"""Vector illustration of the actual woven Arm mesh, matching the reference palette."""
+"""Vector illustration of the woven Finger mesh, viewed from below by default."""
 import json, math, argparse
 from pathlib import Path
 import numpy as np
@@ -7,12 +7,38 @@ ROOT=Path(__file__).resolve().parent
 v=np.array(json.loads((ROOT/'finger-woven-model.json').read_text())['geometry']['positions']).reshape(-1,3)
 parser=argparse.ArgumentParser()
 parser.add_argument('--view',choices=['original','oblique','reverse','top-oblique','bottom-oblique'],default='original')
+parser.add_argument('--flat', action='store_true', help='Render ribbons without thickness or shaded side faces')
+parser.add_argument('--smooth', action='store_true', help='Smooth ribbon trajectories for illustration; use with --flat')
 args=parser.parse_args()
-poses={'original':([.26,-.96,.115],0),'oblique':([.48,-.81,.34],-32),'reverse':([.28,.87,-.40],25),'top-oblique':([.82,-.54,.19],-18),'bottom-oblique':([-.68,-.69,.25],30)}
+if args.smooth and not args.flat: parser.error('--smooth requires --flat')
+# Negative axial camera position looks upward while keeping the finger upright.
+poses={'original':([-.26,-.96,.115],0),'oblique':([.48,-.81,.34],-32),'reverse':([.28,.87,-.40],25),'top-oblique':([.82,-.54,.19],-18),'bottom-oblique':([-.68,-.69,.25],30)}
+if args.flat:
+ # Collapse each rectangular ribbon section to its middle surface.
+ count, stations = (20, 301) if 'finger' in ROOT.name else (24, 751)
+ ribbon = v[:count*stations*4].reshape(count, stations, 4, 3)
+ left = (ribbon[:,:,0] + ribbon[:,:,2]) / 2
+ right_edge = (ribbon[:,:,1] + ribbon[:,:,3]) / 2
+ ribbon[:,:,0] = ribbon[:,:,2] = left
+ ribbon[:,:,1] = ribbon[:,:,3] = right_edge
+depth_vertices = v.copy()
+if args.smooth:
+ # Remove local weave bumps from the drawing, retaining their depth for crossings.
+ # Low-degree fits keep the overall taper and helix but eliminate wavy shoulders.
+ for strand in ribbon:
+  t = np.linspace(-1, 1, len(strand))
+  for edge in range(4):
+   q = strand[:,edge]
+   axial = np.polynomial.polynomial.polyval(t, np.polynomial.polynomial.polyfit(t, q[:,0], 1))
+   theta = np.unwrap(np.arctan2(q[:,2], q[:,1]))
+   theta = np.polynomial.polynomial.polyval(t, np.polynomial.polynomial.polyfit(t, theta, 3))
+   radius = np.linalg.norm(q[:,1:], axis=1)
+   radius = np.polynomial.polynomial.polyval(t, np.polynomial.polynomial.polyfit(t, radius, 1))
+   q[:] = np.column_stack((axial, radius*np.cos(theta), radius*np.sin(theta)))
 direction,roll=poses[args.view]
 view=np.array(direction);view/=np.linalg.norm(view)
 up=np.array([1.,0,0]);right=np.cross(up,view);right/=np.linalg.norm(right);up=np.cross(view,right)
-p=np.column_stack((v@right,-v@up,v@view))
+p=np.column_stack((v@right,-v@up,depth_vertices@view))
 angle=math.radians(roll)
 x=p[:,0].copy();y=p[:,1].copy()
 p[:,0]=x*math.cos(angle)-y*math.sin(angle)
@@ -57,11 +83,11 @@ for strand in range(20):
   edge=hexcolor(blend([197,211,218],base,t))
   side=hexcolor(blend([224,233,236],blend(base,[255,255,255],.25),t))
   fill=hexcolor(blend([255,255,255],[251,253,252],t))
-  width=.65+.55*t
+  width=.8 if args.flat else .65+.55*t
   add([a,a+1,b+1,b],fill,[[a,b],[a+1,b+1]],edge,width)
-  add([a+2,b+2,b+3,a+3],fill,[[a+2,b+2],[a+3,b+3]],edge,width)
-  add([a,b,b+2,a+2],side)
-  add([a+1,a+3,b+3,b+1],side)
+  if not args.flat: add([a+2,b+2,b+3,a+3],fill,[[a+2,b+2],[a+3,b+3]],edge,width)
+  if not args.flat: add([a,b,b+2,a+2],side)
+  if not args.flat: add([a+1,a+3,b+3,b+1],side)
  for a in [offset+11*4,offset+289*4]:add([a,a+1,a+3,a+2],hexcolor(base))
 
 for band in range(2):
@@ -74,6 +100,7 @@ for band in range(2):
   outer=hexcolor(blend([133,153,160],[49,76,86],front))
   inner=hexcolor(blend([148,166,172],[95,120,129],front))
   rim=hexcolor(blend([142,162,169],[64,94,104],front))
+  if args.flat: outer=inner=rim='#45616b'
   add([o+i,o+j,o+s+j,o+s+i],inner)
   add([o+2*s+i,o+3*s+i,o+3*s+j,o+2*s+j],outer)
   add([o+i,o+2*s+i,o+2*s+j,o+j],rim)
@@ -93,6 +120,8 @@ for depth,points,fill,edges,stroke,width in polys:
 svg+=['</g>','</svg>']
 out=Path(__file__).parent
 stem='finger-front-blue-green'+('' if args.view=='original' else '-'+args.view)
+if args.flat: stem += '-flat'
+if args.smooth: stem += '-smooth'
 text='\n'.join(svg)
 (out/f'{stem}.svg').write_text(text)
 (out/f'{stem}-transparent.svg').write_text(text.replace(f'<rect id="background" width="{W}" height="{H}" fill="white"/>',''))
