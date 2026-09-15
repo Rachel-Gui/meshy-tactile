@@ -1,0 +1,10 @@
+﻿action_id,action_label,segment_start_frame_0based,segment_end_frame_0based,key_frame_0based,key_frame_1based,combined_time_s,source_frame_0based,source_local_time_s,slow_action_local_time_s,rotation_rows,total_signal,active_nodes,keyframe_csv
+LMP005,01_palm_grab_middle_LMP005_96nodes_MAPPING_FIXED,30,807,291,292,14.55,87,4.35,13.05,3,7.897765,24,LMP005_keyframe_0291_14.55s.csv
+LMP006,02_palm_grab_middle_LMP006_96nodes_MAPPING_FIXED,900,1713,1539,1540,76.95,213,10.65,31.95,-5,6.908079,23,LMP006_keyframe_1539_76.95s.csv
+LMP007,03_palm_grab_middle_LMP007_96nodes_MAPPING_FIXED,1806,2403,2187,2188,109.35,127,6.35,19.05,2,6.433371,18,LMP007_keyframe_2187_109.35s.csv
+V221-01,04_finger_press_2-2-1_V221-01_96nodes_MAPPING_FIXED,2496,3096,2760,2761,138.0,88,4.4,13.2,4,1.932472,2,V221_01_keyframe_2760_138.00s.csv
+V221-02,05_finger_press_2-2-1_V221-02_96nodes_MAPPING_FIXED,3189,3789,3273,3274,163.65,28,1.4,4.2,4,0.819713,2,V221_02_keyframe_3273_163.65s.csv
+V221-03,06_finger_press_2-2-1_V221-03_96nodes_MAPPING_FIXED,3882,4482,3966,3967,198.3,28,1.4,4.2,4,1.7199,2,V221_03_keyframe_3966_198.30s.csv
+TBL002,07_table_contact_TBL002_96nodes_CONTINUOUS_CORE_MAPPING_FIXED,4575,5019,4851,4852,242.55,92,4.6,13.8,-1,16.12903,30,TBL002_keyframe_4851_242.55s.csv
+TBL003,08_table_contact_TBL003_96nodes_CONTINUOUS_CORE_MAPPING_FIXED,5112,5835,5553,5554,277.65,147,7.35,22.05,1,11.4415,31,TBL003_keyframe_5553_277.65s.csv
+TBL004,09_table_contact_TBL004_96nodes_CONTINUOUS_CORE_MAPPING_FIXED,5928,6570,6327,6328,316.35,133,6.65,19.95,3,9.026195,29,TBL004_keyframe_6327_316.35s.csv

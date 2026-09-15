@@ -1,5 +1,5 @@
 {
-  "source": "human_arm/00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv",
+  "source": "meshy_arm_finger_delivery_20260914/human_arm/uploads/00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv",
   "sha256": "f60629f4223388987a08171faf3e95f7de4ed60502819dc909d1e8926650b4f8",
   "frames": 6631,
   "durationSeconds": 331.5,

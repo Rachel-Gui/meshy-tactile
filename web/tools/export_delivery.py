@@ -1,7 +1,7 @@
 """Publish the final Robot arm and independently mapped Finger A/B delivery."""
 from pathlib import Path
 import csv,json,hashlib,shutil,math
-ROOT=Path(__file__).resolve().parents[2];SRC=ROOT/'meshy_arm_finger_delivery_Final';OUT=ROOT/'web/public/delivery-final';OUT.mkdir(exist_ok=True)
+ROOT=Path(__file__).resolve().parents[2];SRC=ROOT/'meshy_arm_finger_delivery_20260914';OUT=ROOT/'web/public/delivery-final';OUT.mkdir(exist_ok=True)
 def read(path,count):
  rows=list(csv.DictReader(path.open(encoding='utf-8-sig')));labels=[f'N{i:03}' for i in range(1,count+1)]
  assert [k for k in rows[0] if k.startswith('N')]==labels
@@ -26,14 +26,14 @@ for sequence,label in [('all8','All 8 · Palm/front'),('group1','Group 1 · Palm
   pair['keyframes'].append({'index':index,'time':times[index],'label':f"{k['position']} · {k['orientation']} · {times[index]:.2f} s",'orientation':k['orientation'],'position':int(k['position']),'actionA':k['sleeve_A_action'],'actionB':k['sleeve_B_action']})
  pairs.append(pair)
 (OUT/'finger-pairs.json').write_text(json.dumps(pairs,indent=2)+'\n')
-p=SRC/'arm/robot_arm_RB004_RB003_RB001_front_facing_combined_upload.csv';rows,values,times,labels=read(p,132)
-keys=list(csv.DictReader((SRC/'arm/keyframes/arm_keyframes.csv').open(encoding='utf-8-sig')))
+p=SRC/'robot_arm/robot_arm_RB004_RB003_RB001_front_facing_combined_upload.csv';rows,values,times,labels=read(p,132)
+keys=list(csv.DictReader((SRC/'robot_arm/keyframes/arm_keyframes.csv').open(encoding='utf-8-sig')))
 records=[('all','All 3 · Front-facing',0,len(rows)-1)]
 for key in keys:
  a,b,index=[int(key[n]) for n in ['segment_start_frame_0based','segment_end_frame_0based','key_frame_0based']]
  sums=[sum(r) for r in values[a:b+1]];assert sums.index(max(sums))+a==index
  assert abs(times[index]-float(key['combined_time_s']))<1e-6
- single=next(csv.DictReader((SRC/'arm/keyframes'/key['keyframe_csv']).open(encoding='utf-8-sig')))
+ single=next(csv.DictReader((SRC/'robot_arm/keyframes'/key['keyframe_csv']).open(encoding='utf-8-sig')))
  assert [float(single[n]) for n in labels]==values[index]
  records.append((key['action_id'],key['action_id']+' · '+key['action_type'],a,b))
 catalog=ROOT/'web/public/action-library';manifest=[m for m in json.loads((catalog/'manifest.json').read_text()) if m['sensorCount']!=132];entries=[]

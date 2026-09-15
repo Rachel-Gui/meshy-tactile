@@ -1,5 +1,13 @@
 # Current dataset
 
+## Consolidated delivery — 20260914
+
+Current sources for all three models are under `meshy_arm_finger_delivery_20260914/`. Human arm includes nine documented keyframes (combined source indices 291, 1539, 2187, 2760, 3273, 3966, 4851, 5553, 6327); Robot arm includes three; Finger includes 16 synchronized A/B keyframe pairs. All signal values and encoded mappings are retained exactly.
+
+Frontend display gain defaults to 1.8× (adjustable); this is a visualization setting, not a change to normalized sensor measurements. Enhanced PNG exports use the same gain and a transparent foreground for Finger to reveal rear contact regions.
+
+Earlier delivery notes below describe superseded source locations.
+
 ## Final Robot arm and Finger delivery
 
 `meshy_arm_finger_delivery_Final/` is authoritative for the new Robot arm front-facing recordings and independent Finger A/B sequences. Robot playback contains the 938-frame combined recording plus RB004/RB003/RB001 clips; prior Robot Direct/voltage clips are retained on disk but removed from the active catalog. Human arm remains unchanged.

@@ -34,7 +34,7 @@ const state = {
   values: new Float32Array(ROBOT_SENSOR_COUNT),
   rawVolts: new Float32Array(ROBOT_SENSOR_COUNT),
   radius: 25,
-  gain: 1,
+  gain: 1.8,
   threshold: 0,
   opacity: 1,
   palette: 'thermal',

@@ -17,7 +17,11 @@ cd /Users/a0000/Desktop/tactile
 /Users/a0000/anaconda3/bin/python -m uvicorn web.server.app:app --host 127.0.0.1 --port 8001
 ```
 
-## Final delivery
+## Consolidated delivery 20260914
+
+All three models now use `meshy_arm_finger_delivery_20260914/`. Human arm key-frame indices are included in the clip JSON alongside the existing Robot keys and Finger A/B selectors. Default Gain is 1.80× to make contact points clearer; the original data remains unchanged, and users can adjust Gain.
+
+## Earlier final delivery
 
 Robot arm playback now loads the final front-facing Signal Combined sequence (938 frames) and its three actions. In Finger → Sleeve only, the Delivered sequence selector loads both 18-node sleeves together; the Key frame selector pauses both at the documented frame. Both angles reset to 0 degrees when loading a delivered pair. Manual uploads remain independent local previews.
 

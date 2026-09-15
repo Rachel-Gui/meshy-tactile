@@ -1,6 +1,6 @@
 # Human arm
 
-Current source: [00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv](00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv), supplied 2026-09-14.
+Current source: `meshy_arm_finger_delivery_20260914/human_arm/uploads/00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv`. Use the nine documented keyframes from the same delivery. Frontend display gain defaults to 1.8×; raw signal values are unchanged.
 
 96 nodes, 6,631 display frames at 20 FPS, 331.5 seconds, 9 scenes. Front-facing mapping, smooth interpolation and 3× slow playback are already applied in the source. Preserve N001–N096 values and order; do not rotate, normalize or interpolate again.
 
