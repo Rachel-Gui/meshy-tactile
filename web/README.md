@@ -19,7 +19,9 @@ cd /Users/a0000/Desktop/tactile
 
 ## Data modes
 
-- **Action library** loads the current 12 actions: 3 additional Robot arm contact-voltage clips plus 9 Direct actions: 3 Human arm (96 nodes), 3 Finger (18 nodes), and 3 Robot arm (132 nodes). Each category has front touch, back touch and grab. See [the current data guide](../CURRENT_DATASET.md) for canonical XLSX paths and checksums.
+- **Human arm latest** uses the 2026-09-14 mapping-fixed CSV: 6,631 supplied frames at 20 FPS, with combined playback and nine scene entries. Values, node order and 3× slow timing are preserved. See `human_arm/latest-data-manifest.json`.
+- **Other action libraries** retain three Finger, three Robot Direct and three Robot contact-voltage clips.
+- **Previous library (historical)** contained 12 actions: 3 additional Robot arm contact-voltage clips plus 9 Direct actions: 3 Human arm (96 nodes), 3 Finger (18 nodes), and 3 Robot arm (132 nodes). Each category has front touch, back touch and grab. See [the current data guide](../CURRENT_DATASET.md) for canonical XLSX paths and checksums.
 - The frontend reads `public/action-library/manifest.json` and the corresponding JSON files. Signal Combined is interpolated to 20 FPS; original measurement timing, Raw and Baseline are retained.
 - Finger's 18 measured nodes map to 18 of the model's 30 crossings; unused crossings are not additional measurements.
 - **Live sensor** uses USB serial at 1,000,000 baud. Hosted Chrome/Edge uses Web Serial; local mode uses FastAPI.

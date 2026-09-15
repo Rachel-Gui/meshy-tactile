@@ -1,5 +1,15 @@
 # Current dataset
 
+## Latest Human arm override — 2026-09-14
+
+The authoritative Human arm source is now `human_arm/00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv`: 96 nodes, 6,631 display frames, 9 scenes, 331.5 seconds at 20 FPS. Preserve the supplied front-facing mapping, smoothing and 3× slow timing. No extra interpolation or rotation is applied. Checksums and scene boundaries are in `human_arm/latest-data-manifest.json`.
+
+The frontend has 19 entries: the combined Human arm recording, its nine scenes, three Finger Direct actions, three Robot Direct actions and three Robot contact-voltage actions. Earlier Human arm XLSX files and the workbook index remain historical; the desktop XLSX viewer is unchanged.
+
+Regenerate with `python3 web/tools/export_action_library.py`, build with `npm --prefix web run build`, then run `node web/verify-action-library.mjs`, `node web/verify-playback-data-preview.mjs` and `python3 web/tools/verify_human_arm_latest.py`.
+
+## Previous Direct baseline
+
 Version: **2026-09-13 Direct**, containing 9 Direct actions plus 3 Robot arm contact-voltage actions (12 total). Each category has front_touch, back_touch and grab.
 
 | Category | Nodes | Canonical XLSX directory | IDs: front / back / grab |

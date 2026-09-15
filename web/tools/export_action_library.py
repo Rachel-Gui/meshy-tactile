@@ -30,3 +30,5 @@ print('Exported 9 latest direct actions: 3 Finger, 3 Human arm, 3 Robot arm.')
 # Include additional voltage-display recordings without re-interpolating them.
 import runpy
 runpy.run_path(str(ROOT/'web/tools/export_contact_voltage.py'))
+
+runpy.run_path(str(ROOT/'web/tools/export_human_arm_latest.py'), run_name='__main__')

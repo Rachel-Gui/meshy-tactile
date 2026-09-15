@@ -4,7 +4,7 @@ const number = value => finite(value) ? value.toFixed(4) : '—';
 export function currentFrameDetails(clip, frame, index) {
   const time=clip.times?.[index] ?? index/(clip.fps || 15);
   const measured=clip.measuredTimes;
-  let sampling=clip.dataKind === 'contact-voltage' ? 'Imported display frame · 20 FPS' : clip.interpolated ? 'Interpolated playback' : 'Playback frame';
+  let sampling=['contact-voltage', 'processed-signal'].includes(clip.dataKind) ? 'Imported display frame · 20 FPS' : clip.interpolated ? 'Interpolated playback' : 'Playback frame';
   if(measured?.length){
     let left=0;
     while(left+1<measured.length && measured[left+1]<=time+1e-8)left++;
