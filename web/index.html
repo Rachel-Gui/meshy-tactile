@@ -50,9 +50,29 @@
               <button data-model="robot" type="button">Robot arm</button>
             </div>
             <label id="finger-scene-control" class="finger-scene-control" hidden>
-              <input id="finger-hand-toggle" type="checkbox" checked />
-              <span>Show hand · sleeve on index finger</span>
+              <span>Finger scene</span>
+              <select id="finger-scene-select" aria-label="Finger scene" aria-describedby="finger-scene-note">
+                <option value="sleeve">Sleeve only</option>
+                <option value="hand">1. On hand - Single sleeve</option>
+                <option value="index-three">2. Index finger - All three segments</option>
+                <option value="three-distal">3. Two fingers - Distal segments</option>
+                <option value="three-staggered">4. Two fingers - Staggered segments</option>
+              </select>
+              <small id="finger-scene-note"></small>
             </label>
+            <div id="finger-pair-controls" hidden>
+              <div class="segmented"><button type="button" data-select="0">Sleeve A</button><button type="button" data-select="1">Sleeve B</button></div>
+              <label><span data-selected>Rotate sleeve A around its axis</span>
+                <input data-angle type="range" min="-180" max="180" step="1" value="0" aria-label="Selected sleeve axial rotation" />
+              </label>
+              <div class="pair-actions"><output data-angle-output>0 deg</output><button class="quiet-button" type="button" data-reset>Reset rotation</button></div>
+              <label>Data for sleeve A<input type="file" data-file="0" accept=".csv,.xlsx" /></label>
+              <small data-file-status="0">No data loaded</small>
+              <label>Data for sleeve B<input type="file" data-file="1" accept=".csv,.xlsx" /></label>
+              <small data-file-status="1">No data loaded</small>
+              <div class="pair-actions"><button class="quiet-button" type="button" data-play>Pause both</button><button class="quiet-button" type="button" data-restart>Restart both</button></div>
+              <small>Independent Finger CSV / Excel data. Local preview only. Both clips start together; the shorter clip holds its last frame.</small>
+            </div>
             <div class="fixed-view-control">
               <select id="fixed-view-select" aria-label="Fixed view">
                 <option value="front">Front view</option>

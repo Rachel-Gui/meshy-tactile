@@ -1,3 +1,5 @@
+import { createFingerPair } from './finger-pair.js';
+import { createSleeveLayout, FINGER_LAYOUTS, MULTI_SLEEVE_LENGTH } from './finger-sleeve-layouts.js';
 import { createFingerHandScene } from './finger-hand-scene.js';
 import { zipSync, strToU8 } from 'fflate';
 import { createCameraCapture, recordStream, nearestFrame } from './camera-capture.js';
@@ -193,23 +195,70 @@ applyTheme(localStorage.getItem('tactile-theme') ?? 'dark');
 
 const modelGroup = new THREE.Group();
 scene.add(modelGroup);
-const fingerHand = createFingerHandScene();
-fingerHand.visible = false;
-scene.add(fingerHand);
+const fingerSleeves = new THREE.Group();
+scene.add(fingerSleeves);
+const fingerPairPanel = document.querySelector('#finger-pair-controls');
+const fingerPair = createFingerPair(fingerPairPanel, colorAt);
+scene.add(fingerPair.group);
+let fingerHand = null;
+let presentationRequest = 0;
 const fingerSceneControl = document.querySelector('#finger-scene-control');
-const fingerHandToggle = document.querySelector('#finger-hand-toggle');
-fingerHandToggle.addEventListener('change', () => applyPresentation());
+const fingerSceneSelect = document.querySelector('#finger-scene-select');
+fingerSceneSelect.addEventListener('change', () => {
+  applyPresentation().catch(error => {
+    fingerSceneSelect.value = 'sleeve';
+    if (fingerHand) scene.remove(fingerHand);
+    fingerHand = null;
+    applyPresentation();
+    elements.modelMessage.textContent = error.message;
+  });
+});
 async function applyPresentation() {
-  await fingerHand.userData.ready;
-  fingerSceneControl.hidden = state.modelMode !== 'ring';
-  fingerHand.visible = state.modelMode === 'ring' && fingerHandToggle.checked;
+  const request = ++presentationRequest;
+  const ring = state.modelMode === 'ring';
+  fingerSceneControl.hidden = !ring;
+  const mode = fingerSceneSelect.value;
+  const pair = ring && mode === 'sleeve';
+  fingerPairPanel.hidden = !pair;
+  fingerPair.group.visible = pair;
+  const multi = ring && Boolean(FINGER_LAYOUTS[mode]);
+  const showHand = ring && mode !== 'sleeve';
+  fingerSleeves.clear();
+  modelGroup.visible = true;
+  const sleeveBounds = ring ? state.geometry.boundingBox : null;
+  modelGroup.scale.set(ring ? MULTI_SLEEVE_LENGTH / (sleeveBounds.max.x - sleeveBounds.min.x) : 1, 1, 1);
+  if (fingerHand) fingerHand.visible = false;
+  if (showHand) {
+    if (!fingerHand) {
+      fingerHand = createFingerHandScene();
+      fingerHand.visible = false;
+      scene.add(fingerHand);
+    }
+    await fingerHand.userData.ready;
+    if (request !== presentationRequest) return;
+    fingerHand.visible = true;
+    if (multi) {
+      fingerSleeves.add(createSleeveLayout(mode, state.model, state.sensorPoints, fingerHand));
+      modelGroup.visible = false;
+    }
+  }
+  if (pair) {
+    fingerPair.prepare(state.model, state.sensorPoints, state.distanceMatrix, state.sensorPositions);
+    modelGroup.visible = false;
+  }
+  document.querySelector('#finger-scene-note').textContent = pair ? 'Sleeve A + Sleeve B / 18 mm each / Click to select' : multi
+    ? `${FINGER_LAYOUTS[mode].length} sleeves / ${MULTI_SLEEVE_LENGTH} mm each / Shared heatmap preview`
+    : '';
+  if (ring) elements.modelLength.textContent = MULTI_SLEEVE_LENGTH.toFixed(1);
   const bounds = new THREE.Box3().setFromObject(modelGroup);
-  if (fingerHand.visible) bounds.union(new THREE.Box3().setFromObject(fingerHand));
+  if (pair) bounds.setFromObject(fingerPair.group);
+  if (multi) bounds.setFromObject(fingerSleeves);
+  if (showHand) bounds.union(new THREE.Box3().setFromObject(fingerHand));
   bounds.getCenter(state.modelCenter);
   bounds.getSize(state.modelSize);
   grid.position.z = -72;
   grid.scale.setScalar(1);
-  controls.maxDistance = state.modelMode === 'ring' ? (fingerHand.visible ? 650 : 250) : 1200;
+  controls.maxDistance = ring ? (showHand ? 650 : 250) : 1200;
   if (state.sensorPoints) state.sensorPoints.material.depthTest = false;
   fitCamera('perspective', false);
 }
@@ -399,6 +448,15 @@ function modelSensorIndex(channelIndex) {
 async function loadModel() {
   const buttons = [...elements.modelControl.querySelectorAll('button')];
   buttons.forEach((button) => { button.disabled = true; });
+  ++presentationRequest;
+  fingerPair.group.visible = false;
+  fingerPairPanel.hidden = true;
+  fingerSleeves.clear();
+  modelGroup.visible = true;
+  modelGroup.scale.set(1, 1, 1);
+  if (fingerHand) fingerHand.visible = false;
+  fingerSceneSelect.value = 'sleeve';
+  fingerSceneControl.hidden = state.modelMode !== 'ring';
   state.distanceMatrix = null;
   state.model = null;
   state.geometry = null;
@@ -819,7 +877,7 @@ function cameraPose(view) {
   const diagonal = state.modelSize.length();
   const distance = Math.max(state.modelMode === 'ring' ? 35 : 170, diagonal * 1.45);
   const poses = {
-    perspective: new THREE.Vector3(center.x - distance * 0.65, center.y + distance * (fingerHand.visible ? 0.85 : -0.85), center.z + distance * 0.72),
+    perspective: new THREE.Vector3(center.x - distance * 0.65, center.y + distance * (fingerHand?.visible ? 0.85 : -0.85), center.z + distance * 0.72),
     front: new THREE.Vector3(center.x - distance, center.y, center.z),
     back: new THREE.Vector3(center.x + distance, center.y, center.z),
     left: new THREE.Vector3(center.x, center.y - distance, center.z),
@@ -885,16 +943,21 @@ function animate(now) {
   if (HOSTED_MODE || state.sourceMode === 'playback') updateHostedRuntime(now);
   if (state.heatDirty) updateHeatmap();
   if (!cameraTween) controls.update();
+  fingerPair.update(now, state);
   renderer.render(scene, camera);
 }
 
 renderer.domElement.addEventListener('pointerdown', (event) => {
-  if (!state.sensorPoints?.visible) return;
+  if (!fingerPair.group.visible && !state.sensorPoints?.visible) return;
   const rect = renderer.domElement.getBoundingClientRect();
   mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
   mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
   raycaster.setFromCamera(mouse, camera);
-  const hit = raycaster.intersectObject(state.sensorPoints)[0];
+  if (fingerPair.group.visible) { fingerPair.pick(raycaster); return; }
+  const targets = [];
+  if (modelGroup.visible) targets.push(state.sensorPoints);
+  else fingerSleeves.traverse(object => { if (object.isPoints && object.visible) targets.push(object); });
+  const hit = raycaster.intersectObjects(targets, false)[0];
   if (hit) selectSensor(hit.index);
 });
 
@@ -939,6 +1002,7 @@ document.querySelector('#palette').addEventListener('change', (event) => {
 
 document.querySelector('#show-sensors').addEventListener('change', (event) => {
   if (state.sensorPoints) state.sensorPoints.visible = event.target.checked;
+  fingerSleeves.traverse(object => { if (object.isPoints) object.visible = event.target.checked; });
 });
 document.querySelector('#show-grid').addEventListener('change', (event) => {
   grid.visible = event.target.checked;

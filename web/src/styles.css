@@ -286,5 +286,17 @@ input[type='range']::-webkit-slider-thumb { appearance: none; width: 13px; heigh
 .camera-capture video { width: 100%; border-radius: 8px; margin-bottom: 8px; background: #111; }
 .camera-capture label { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 11px; }
 
-.finger-scene-control { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 11px; }
+.finger-scene-control { display: block; margin-top: 12px; font-size: 11px; }
 .finger-scene-control[hidden] { display: none; }
+.finger-scene-control select { margin-top: 8px; }
+
+#finger-scene-note { display: block; margin-top: 8px; font-size: 10px; line-height: 1.5; color: var(--muted); }
+#finger-scene-note:empty { display: none; }
+
+#finger-pair-controls { margin-top: 14px; }
+#finger-pair-controls[hidden] { display: none; }
+#finger-pair-controls label { display: block; margin-top: 12px; font-size: 11px; }
+#finger-pair-controls small { display: block; margin-top: 6px; font-size: 10px; line-height: 1.5; overflow-wrap: anywhere; }
+#finger-pair-controls input[type=file] { width: 100%; margin-top: 6px; font-size: 10px; }
+#finger-pair-controls input[type=range] { width: 100%; margin-top: 10px; }
+.pair-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
