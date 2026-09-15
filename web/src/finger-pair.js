@@ -62,6 +62,53 @@ export function createFingerPair(panel, colorAt) {
       finally { input.disabled = false; input.value = ''; }
     });
   });
+  let library = null, loadRequest = 0, libraryPromise = null;
+  const librarySelect = panel.querySelector('[data-library]');
+  const keySelect = panel.querySelector('[data-keyframe]');
+  function seekFrame(index) {
+    elapsed = index / 20; playing = false; lastTime = null;
+    slots.forEach(s => { s.frame = -1; });
+    panel.querySelector('[data-play]').textContent = 'Play both';
+  }
+  async function loadSequence(id) {
+    const entry = library?.find(e => e.id === id);
+    if (!entry || slots.length !== 2) return;
+    const request = ++loadRequest;
+    librarySelect.disabled = true;
+    panel.querySelector('[data-library-status]').textContent = 'Loading both sleeves…';
+    try {
+      const clips = await Promise.all(['A','B'].map(async key => {
+        const response = await fetch(entry[key]);
+        if (!response.ok) throw new Error(`Recording download failed: ${response.status}`);
+        const clip = parsePlaybackCsv(await response.text(), 18);
+        if (clip.sensorCount !== 18) throw new Error('Expected 18 nodes per sleeve');
+        return {clip, mapping:createRingActionMapping(clip.coordinates, sensors)};
+      }));
+      if (request !== loadRequest) return;
+      clips.forEach((data,i) => {
+        Object.assign(slots[i],data,{frame:-1,angle:0});slots[i].pivot.rotation.x=0;slots[i].outline.update();
+        panel.querySelector(`[data-file-status="${i}"]`).textContent = `${entry.label} / Sleeve ${i===0?'A':'B'} / ${data.clip.frames.length} frames`;
+      });
+      librarySelect.value=id;
+      keySelect.replaceChildren(new Option('Choose a key frame',''),...entry.keyframes.map(k=>new Option(k.label,String(k.index))));
+      elapsed=0;lastTime=null;playing=true;panel.querySelector('[data-play]').textContent='Pause both';select(selected);
+      panel.querySelector('[data-library-status]').textContent='Source mapping applied / Both sleeve angles: 0 deg';
+    } catch(error) { panel.querySelector('[data-library-status]').textContent=error.message; throw error; }
+    finally { if(request===loadRequest)librarySelect.disabled=false; }
+  }
+  function loadLibrary() {
+    if (libraryPromise) return libraryPromise;
+    libraryPromise=(async()=>{
+      const response=await fetch('/delivery-final/finger-pairs.json');
+      if(!response.ok)throw new Error(`Sequence catalog failed: ${response.status}`);
+      library=await response.json();
+      librarySelect.replaceChildren(...library.map(e=>new Option(e.label,e.id)));
+      if(!slots.some(s=>s.clip))await loadSequence(library[0].id);
+    })().catch(error=>{libraryPromise=null;panel.querySelector('[data-library-status]').textContent=error.message;});
+    return libraryPromise;
+  }
+  librarySelect.addEventListener('change',()=>loadSequence(librarySelect.value).catch(()=>{}));
+  keySelect.addEventListener('change',()=>{if(keySelect.value!=='')seekFrame(Number(keySelect.value));});
   function prepare(model, points, matrix, positions) {
     distances = matrix;
     sensors = positions.map((p, index) => ({index, position:p.toArray()}));
@@ -130,5 +177,5 @@ export function createFingerPair(panel, colorAt) {
     if(hit) {select(hit.object.userData.sleeveIndex);return true;}return false;
   }
   group.visible=false;
-  return {group,prepare,update,pick};
+  return {group,prepare,update,pick,loadLibrary,loadSequence,seekFrame};
 }

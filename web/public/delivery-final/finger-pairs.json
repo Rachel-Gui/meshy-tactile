@@ -1,0 +1,179 @@
+[
+  {
+    "id": "all8",
+    "label": "All 8 \u00b7 Palm/front",
+    "keyframes": [
+      {
+        "index": 25,
+        "time": 1.25,
+        "label": "1 \u00b7 palm \u00b7 1.25 s",
+        "orientation": "palm",
+        "position": 1,
+        "actionA": "R1G-023",
+        "actionB": "R1G-024"
+      },
+      {
+        "index": 86,
+        "time": 4.3,
+        "label": "2 \u00b7 palm \u00b7 4.30 s",
+        "orientation": "palm",
+        "position": 2,
+        "actionA": "R1G-024",
+        "actionB": "R1G-023"
+      },
+      {
+        "index": 148,
+        "time": 7.4,
+        "label": "3 \u00b7 palm \u00b7 7.40 s",
+        "orientation": "palm",
+        "position": 3,
+        "actionA": "R1G-025",
+        "actionB": "R1G-026"
+      },
+      {
+        "index": 203,
+        "time": 10.15,
+        "label": "4 \u00b7 palm \u00b7 10.15 s",
+        "orientation": "palm",
+        "position": 4,
+        "actionA": "R1G-026",
+        "actionB": "R1G-025"
+      },
+      {
+        "index": 257,
+        "time": 12.85,
+        "label": "5 \u00b7 palm \u00b7 12.85 s",
+        "orientation": "palm",
+        "position": 5,
+        "actionA": "R1G-027",
+        "actionB": "R1G-020"
+      },
+      {
+        "index": 316,
+        "time": 15.8,
+        "label": "6 \u00b7 palm \u00b7 15.80 s",
+        "orientation": "palm",
+        "position": 6,
+        "actionA": "R1G-020",
+        "actionB": "R1G-027"
+      },
+      {
+        "index": 375,
+        "time": 18.75,
+        "label": "7 \u00b7 palm \u00b7 18.75 s",
+        "orientation": "palm",
+        "position": 7,
+        "actionA": "R1G-017",
+        "actionB": "R1G-018"
+      },
+      {
+        "index": 429,
+        "time": 21.45,
+        "label": "8 \u00b7 palm \u00b7 21.45 s",
+        "orientation": "palm",
+        "position": 8,
+        "actionA": "R1G-018",
+        "actionB": "R1G-017"
+      }
+    ],
+    "A": "/delivery-final/finger_all8_palm_front_A_18node.csv",
+    "ASha256": "081b70a4c01c07094945ea4cfe6dec868ddccc534e016b20127974840bd5fb70",
+    "frames": 448,
+    "B": "/delivery-final/finger_all8_palm_front_B_18node.csv",
+    "BSha256": "843ebdd5088a2dcbe319b17689ec54e5ae26c39ebd63fda5468100f99303c197"
+  },
+  {
+    "id": "group1",
+    "label": "Group 1 \u00b7 Palm/back/back/palm",
+    "keyframes": [
+      {
+        "index": 25,
+        "time": 1.25,
+        "label": "1 \u00b7 palm \u00b7 1.25 s",
+        "orientation": "palm",
+        "position": 1,
+        "actionA": "R1G-023",
+        "actionB": "R1G-024"
+      },
+      {
+        "index": 86,
+        "time": 4.3,
+        "label": "2 \u00b7 back \u00b7 4.30 s",
+        "orientation": "back",
+        "position": 2,
+        "actionA": "R1G-024",
+        "actionB": "R1G-023"
+      },
+      {
+        "index": 148,
+        "time": 7.4,
+        "label": "3 \u00b7 back \u00b7 7.40 s",
+        "orientation": "back",
+        "position": 3,
+        "actionA": "R1G-025",
+        "actionB": "R1G-026"
+      },
+      {
+        "index": 203,
+        "time": 10.15,
+        "label": "4 \u00b7 palm \u00b7 10.15 s",
+        "orientation": "palm",
+        "position": 4,
+        "actionA": "R1G-026",
+        "actionB": "R1G-025"
+      }
+    ],
+    "A": "/delivery-final/finger_group1_palm_back_back_palm_A_18node.csv",
+    "ASha256": "71ad3bb0dcc8b7a6f51781173bf2769e2a21edd0aebae80032dc646263057129",
+    "frames": 222,
+    "B": "/delivery-final/finger_group1_palm_back_back_palm_B_18node.csv",
+    "BSha256": "a348f44f6aed1c27f4c22039825bf3102a7d5b89fa7b5c30b7cde604a52816be"
+  },
+  {
+    "id": "group2",
+    "label": "Group 2 \u00b7 Palm/back/back/palm",
+    "keyframes": [
+      {
+        "index": 25,
+        "time": 1.25,
+        "label": "1 \u00b7 palm \u00b7 1.25 s",
+        "orientation": "palm",
+        "position": 1,
+        "actionA": "R1G-027",
+        "actionB": "R1G-020"
+      },
+      {
+        "index": 84,
+        "time": 4.2,
+        "label": "2 \u00b7 back \u00b7 4.20 s",
+        "orientation": "back",
+        "position": 2,
+        "actionA": "R1G-020",
+        "actionB": "R1G-027"
+      },
+      {
+        "index": 143,
+        "time": 7.15,
+        "label": "3 \u00b7 back \u00b7 7.15 s",
+        "orientation": "back",
+        "position": 3,
+        "actionA": "R1G-017",
+        "actionB": "R1G-018"
+      },
+      {
+        "index": 197,
+        "time": 9.85,
+        "label": "4 \u00b7 palm \u00b7 9.85 s",
+        "orientation": "palm",
+        "position": 4,
+        "actionA": "R1G-018",
+        "actionB": "R1G-017"
+      }
+    ],
+    "A": "/delivery-final/finger_group2_palm_back_back_palm_A_18node.csv",
+    "ASha256": "a2545e6f6594753dd9bc78d7cc58e525c0c51668c0b27905f78abaa3126ad58d",
+    "frames": 216,
+    "B": "/delivery-final/finger_group2_palm_back_back_palm_B_18node.csv",
+    "BSha256": "ccbacd6995ac4291ceb376fceeb1cfb794e8ccc3758d021b76a8705c7e6464dd"
+  }
+]

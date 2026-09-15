@@ -1,8 +1,52 @@
 [
   {
+    "id": "delivery_robot_all",
+    "label": "All 3 \u00b7 Front-facing",
+    "group": "Robot arm \u00b7 Final delivery",
+    "action": "all",
+    "sensorCount": 132,
+    "source": "meshy_arm_finger_delivery_Final/arm/robot_arm_RB004_RB003_RB001_front_facing_combined_upload.csv",
+    "dataKind": "processed-signal",
+    "url": "/action-library/delivery_robot_all.json",
+    "frames": 938
+  },
+  {
+    "id": "delivery_robot_RB004",
+    "label": "RB004 \u00b7 axial_column",
+    "group": "Robot arm \u00b7 Final delivery",
+    "action": "RB004",
+    "sensorCount": 132,
+    "source": "meshy_arm_finger_delivery_Final/arm/robot_arm_RB004_RB003_RB001_front_facing_combined_upload.csv",
+    "dataKind": "processed-signal",
+    "url": "/action-library/delivery_robot_RB004.json",
+    "frames": 281
+  },
+  {
+    "id": "delivery_robot_RB003",
+    "label": "RB003 \u00b7 pinch_end",
+    "group": "Robot arm \u00b7 Final delivery",
+    "action": "RB003",
+    "sensorCount": 132,
+    "source": "meshy_arm_finger_delivery_Final/arm/robot_arm_RB004_RB003_RB001_front_facing_combined_upload.csv",
+    "dataKind": "processed-signal",
+    "url": "/action-library/delivery_robot_RB003.json",
+    "frames": 535
+  },
+  {
+    "id": "delivery_robot_RB001",
+    "label": "RB001 \u00b7 palm_grab",
+    "group": "Robot arm \u00b7 Final delivery",
+    "action": "RB001",
+    "sensorCount": 132,
+    "source": "meshy_arm_finger_delivery_Final/arm/robot_arm_RB004_RB003_RB001_front_facing_combined_upload.csv",
+    "dataKind": "processed-signal",
+    "url": "/action-library/delivery_robot_RB001.json",
+    "frames": 122
+  },
+  {
     "id": "latest_human_arm_all_9_scenes",
-    "label": "All 9 scenes · 3× slow",
-    "group": "Human arm · Latest · 2026-09-14",
+    "label": "All 9 scenes \u00b7 3\u00d7 slow",
+    "group": "Human arm \u00b7 Latest \u00b7 2026-09-14",
     "action": "all_scenes",
     "sensorCount": 96,
     "source": "human_arm/00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv",
@@ -13,7 +57,7 @@
   {
     "id": "latest_human_arm_01",
     "label": "01 palm grab middle LMP005",
-    "group": "Human arm · Latest · 2026-09-14",
+    "group": "Human arm \u00b7 Latest \u00b7 2026-09-14",
     "action": "LMP005",
     "sensorCount": 96,
     "source": "human_arm/00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv",
@@ -24,7 +68,7 @@
   {
     "id": "latest_human_arm_02",
     "label": "02 palm grab middle LMP006",
-    "group": "Human arm · Latest · 2026-09-14",
+    "group": "Human arm \u00b7 Latest \u00b7 2026-09-14",
     "action": "LMP006",
     "sensorCount": 96,
     "source": "human_arm/00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv",
@@ -35,7 +79,7 @@
   {
     "id": "latest_human_arm_03",
     "label": "03 palm grab middle LMP007",
-    "group": "Human arm · Latest · 2026-09-14",
+    "group": "Human arm \u00b7 Latest \u00b7 2026-09-14",
     "action": "LMP007",
     "sensorCount": 96,
     "source": "human_arm/00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv",
@@ -46,7 +90,7 @@
   {
     "id": "latest_human_arm_04",
     "label": "04 finger press 2-2-1 V221-01",
-    "group": "Human arm · Latest · 2026-09-14",
+    "group": "Human arm \u00b7 Latest \u00b7 2026-09-14",
     "action": "V221-01",
     "sensorCount": 96,
     "source": "human_arm/00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv",
@@ -57,7 +101,7 @@
   {
     "id": "latest_human_arm_05",
     "label": "05 finger press 2-2-1 V221-02",
-    "group": "Human arm · Latest · 2026-09-14",
+    "group": "Human arm \u00b7 Latest \u00b7 2026-09-14",
     "action": "V221-02",
     "sensorCount": 96,
     "source": "human_arm/00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv",
@@ -68,7 +112,7 @@
   {
     "id": "latest_human_arm_06",
     "label": "06 finger press 2-2-1 V221-03",
-    "group": "Human arm · Latest · 2026-09-14",
+    "group": "Human arm \u00b7 Latest \u00b7 2026-09-14",
     "action": "V221-03",
     "sensorCount": 96,
     "source": "human_arm/00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv",
@@ -79,7 +123,7 @@
   {
     "id": "latest_human_arm_07",
     "label": "07 table contact TBL002",
-    "group": "Human arm · Latest · 2026-09-14",
+    "group": "Human arm \u00b7 Latest \u00b7 2026-09-14",
     "action": "TBL002",
     "sensorCount": 96,
     "source": "human_arm/00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv",
@@ -90,7 +134,7 @@
   {
     "id": "latest_human_arm_08",
     "label": "08 table contact TBL003",
-    "group": "Human arm · Latest · 2026-09-14",
+    "group": "Human arm \u00b7 Latest \u00b7 2026-09-14",
     "action": "TBL003",
     "sensorCount": 96,
     "source": "human_arm/00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv",
@@ -101,7 +145,7 @@
   {
     "id": "latest_human_arm_09",
     "label": "09 table contact TBL004",
-    "group": "Human arm · Latest · 2026-09-14",
+    "group": "Human arm \u00b7 Latest \u00b7 2026-09-14",
     "action": "TBL004",
     "sensorCount": 96,
     "source": "human_arm/00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv",
@@ -111,8 +155,8 @@
   },
   {
     "id": "direct_finger_E007",
-    "label": "E007 · grab",
-    "group": "Finger · 18 nodes · latest",
+    "label": "E007 \u00b7 grab",
+    "group": "Finger \u00b7 18 nodes \u00b7 latest",
     "action": "grab",
     "sensorCount": 18,
     "source": "finger/action_library/18point_6x6_sparse/segments/E007_grab_finger_3x6_direct.xlsx",
@@ -122,8 +166,8 @@
   },
   {
     "id": "direct_finger_E008",
-    "label": "E008 · back_touch",
-    "group": "Finger · 18 nodes · latest",
+    "label": "E008 \u00b7 back_touch",
+    "group": "Finger \u00b7 18 nodes \u00b7 latest",
     "action": "back_touch",
     "sensorCount": 18,
     "source": "finger/action_library/18point_6x6_sparse/segments/E008_back_touch_finger_3x6_direct.xlsx",
@@ -133,79 +177,13 @@
   },
   {
     "id": "direct_finger_E015",
-    "label": "E015 · front_touch",
-    "group": "Finger · 18 nodes · latest",
+    "label": "E015 \u00b7 front_touch",
+    "group": "Finger \u00b7 18 nodes \u00b7 latest",
     "action": "front_touch",
     "sensorCount": 18,
     "source": "finger/action_library/18point_6x6_sparse/segments/E015_front_touch_finger_3x6_direct.xlsx",
     "originalFrames": 9,
     "url": "/action-library/direct_finger_E015.json",
     "frames": 88
-  },
-  {
-    "id": "direct_robot_arm_R003",
-    "label": "R003 · front_touch",
-    "group": "Robot arm · 132 nodes · latest",
-    "action": "front_touch",
-    "sensorCount": 132,
-    "source": "robot_arm/action_library/robot_arm_132node/segments/R003_front_touch_robot_arm_11x12_direct.xlsx",
-    "originalFrames": 3,
-    "url": "/action-library/direct_robot_arm_R003.json",
-    "frames": 107
-  },
-  {
-    "id": "direct_robot_arm_R004",
-    "label": "R004 · grab",
-    "group": "Robot arm · 132 nodes · latest",
-    "action": "grab",
-    "sensorCount": 132,
-    "source": "robot_arm/action_library/robot_arm_132node/segments/R004_grab_robot_arm_11x12_direct.xlsx",
-    "originalFrames": 4,
-    "url": "/action-library/direct_robot_arm_R004.json",
-    "frames": 160
-  },
-  {
-    "id": "direct_robot_arm_R007",
-    "label": "R007 · back_touch",
-    "group": "Robot arm · 132 nodes · latest",
-    "action": "back_touch",
-    "sensorCount": 132,
-    "source": "robot_arm/action_library/robot_arm_132node/segments/R007_back_touch_robot_arm_11x12_direct.xlsx",
-    "originalFrames": 4,
-    "url": "/action-library/direct_robot_arm_R007.json",
-    "frames": 160
-  },
-  {
-    "id": "contact_robot_RB004",
-    "label": "RB004 · axial_column · Contact voltage",
-    "group": "Robot arm · Contact voltage",
-    "action": "axial_column",
-    "sensorCount": 132,
-    "source": "robot_arm/action_library/contact_voltage_display/RB004_axial_column_contact_voltage_display.csv",
-    "dataKind": "contact-voltage",
-    "url": "/action-library/contact_robot_RB004.json",
-    "frames": 281
-  },
-  {
-    "id": "contact_robot_RB003",
-    "label": "RB003 · pinch_end · Contact voltage",
-    "group": "Robot arm · Contact voltage",
-    "action": "pinch_end",
-    "sensorCount": 132,
-    "source": "robot_arm/action_library/contact_voltage_display/RB003_pinch_end_contact_voltage_display.csv",
-    "dataKind": "contact-voltage",
-    "url": "/action-library/contact_robot_RB003.json",
-    "frames": 535
-  },
-  {
-    "id": "contact_robot_RB001",
-    "label": "RB001 · palm_grab · Contact voltage",
-    "group": "Robot arm · Contact voltage",
-    "action": "palm_grab",
-    "sensorCount": 132,
-    "source": "robot_arm/action_library/contact_voltage_display/RB001_palm_grab_contact_voltage_display.csv",
-    "dataKind": "contact-voltage",
-    "url": "/action-library/contact_robot_RB001.json",
-    "frames": 122
   }
 ]

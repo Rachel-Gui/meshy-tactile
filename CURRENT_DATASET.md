@@ -1,5 +1,13 @@
 # Current dataset
 
+## Final Robot arm and Finger delivery
+
+`meshy_arm_finger_delivery_Final/` is authoritative for the new Robot arm front-facing recordings and independent Finger A/B sequences. Robot playback contains the 938-frame combined recording plus RB004/RB003/RB001 clips; prior Robot Direct/voltage clips are retained on disk but removed from the active catalog. Human arm remains unchanged.
+
+Finger Sleeve mode has three delivered A/B pairs (all8, group1, group2), available without manual upload, with 16 synchronized key-frame selections. Use the six 18-node files; the 36-node files are reference only. Keep sleeve rotations at 0 degrees. The catalog contains 17 single-model playback entries; the three Finger pairs use a separate catalog at `web/public/delivery-final/finger-pairs.json`.
+
+Regenerate with `python3 web/tools/export_action_library.py`; verify with `node web/verify-delivery.mjs`. Key-frame screenshot provenance is in `outputs/delivery-final-keyframes/frames.json`.
+
 ## Latest Human arm override — 2026-09-14
 
 The authoritative Human arm source is now `human_arm/00_ALL_9_SCENES_FRONT_FACING_3X_SLOW_SMOOTH_MAPPING_FIXED_UPLOAD.csv`: 96 nodes, 6,631 display frames, 9 scenes, 331.5 seconds at 20 FPS. Preserve the supplied front-facing mapping, smoothing and 3× slow timing. No extra interpolation or rotation is applied. Checksums and scene boundaries are in `human_arm/latest-data-manifest.json`.

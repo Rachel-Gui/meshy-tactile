@@ -61,6 +61,9 @@
               <small id="finger-scene-note"></small>
             </label>
             <div id="finger-pair-controls" hidden>
+              <label>Delivered sequence<select data-library aria-label="Delivered Finger sequence"></select></label>
+              <label>Key frame<select data-keyframe aria-label="Finger key frame"><option value="">Choose a key frame</option></select></label>
+              <small data-library-status></small>
               <div class="segmented"><button type="button" data-select="0">Sleeve A</button><button type="button" data-select="1">Sleeve B</button></div>
               <label><span data-selected>Rotate sleeve A around its axis</span>
                 <input data-angle type="range" min="-180" max="180" step="1" value="0" aria-label="Selected sleeve axial rotation" />
@@ -71,7 +74,7 @@
               <label>Data for sleeve B<input type="file" data-file="1" accept=".csv,.xlsx" /></label>
               <small data-file-status="1">No data loaded</small>
               <div class="pair-actions"><button class="quiet-button" type="button" data-play>Pause both</button><button class="quiet-button" type="button" data-restart>Restart both</button></div>
-              <small>Independent Finger CSV / Excel data. Local preview only. Both clips start together; the shorter clip holds its last frame.</small>
+              <small>Delivered sequences are available to everyone. Manual CSV / Excel uploads are local previews. Both clips start together; the shorter clip holds its last frame.</small>
             </div>
             <div class="fixed-view-control">
               <select id="fixed-view-select" aria-label="Fixed view">

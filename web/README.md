@@ -17,6 +17,12 @@ cd /Users/a0000/Desktop/tactile
 /Users/a0000/anaconda3/bin/python -m uvicorn web.server.app:app --host 127.0.0.1 --port 8001
 ```
 
+## Final delivery
+
+Robot arm playback now loads the final front-facing Signal Combined sequence (938 frames) and its three actions. In Finger → Sleeve only, the Delivered sequence selector loads both 18-node sleeves together; the Key frame selector pauses both at the documented frame. Both angles reset to 0 degrees when loading a delivered pair. Manual uploads remain independent local previews.
+
+Source: `meshy_arm_finger_delivery_Final/`. Verify with `node web/verify-delivery.mjs` and `node web/verify-finger-pair.mjs`.
+
 ## Data modes
 
 - **Human arm latest** uses the 2026-09-14 mapping-fixed CSV: 6,631 supplied frames at 20 FPS, with combined playback and nine scene entries. Values, node order and 3× slow timing are preserved. See `human_arm/latest-data-manifest.json`.

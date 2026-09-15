@@ -1,0 +1,47 @@
+[
+  {
+    "action_id": "RB004",
+    "action_type": "axial_column",
+    "segment_start_frame_0based": "0",
+    "segment_end_frame_0based": "280",
+    "key_frame_0based": "257",
+    "key_frame_1based": "258",
+    "combined_time_s": "12.850000",
+    "action_local_frame_0based": "257",
+    "action_local_time_s": "12.850000",
+    "total_signal": "4.779680",
+    "active_nodes": "7",
+    "keyframe_csv": "RB004_keyframe_0257_12.85s.csv",
+    "note": "Earliest frame on the maximum-brightness plateau; plateau continues through frame 280 / 14.00 s."
+  },
+  {
+    "action_id": "RB003",
+    "action_type": "pinch_end",
+    "segment_start_frame_0based": "281",
+    "segment_end_frame_0based": "815",
+    "key_frame_0based": "538",
+    "key_frame_1based": "539",
+    "combined_time_s": "26.900000",
+    "action_local_frame_0based": "257",
+    "action_local_time_s": "12.850000",
+    "total_signal": "3.040173",
+    "active_nodes": "4",
+    "keyframe_csv": "RB003_keyframe_0538_26.90s.csv",
+    "note": "Unique maximum total-signal frame."
+  },
+  {
+    "action_id": "RB001",
+    "action_type": "palm_grab",
+    "segment_start_frame_0based": "816",
+    "segment_end_frame_0based": "937",
+    "key_frame_0based": "887",
+    "key_frame_1based": "888",
+    "combined_time_s": "44.350000",
+    "action_local_frame_0based": "71",
+    "action_local_time_s": "3.550000",
+    "total_signal": "10.743898",
+    "active_nodes": "18",
+    "keyframe_csv": "RB001_keyframe_0887_44.35s.csv",
+    "note": "Unique maximum total-signal frame."
+  }
+]

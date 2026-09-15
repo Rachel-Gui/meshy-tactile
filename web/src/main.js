@@ -244,6 +244,8 @@ async function applyPresentation() {
   }
   if (pair) {
     fingerPair.prepare(state.model, state.sensorPoints, state.distanceMatrix, state.sensorPositions);
+    await fingerPair.loadLibrary();
+    if (request !== presentationRequest) return;
     modelGroup.visible = false;
   }
   document.querySelector('#finger-scene-note').textContent = pair ? 'Sleeve A + Sleeve B / 18 mm each / Click to select' : multi

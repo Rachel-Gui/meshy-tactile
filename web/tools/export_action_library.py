@@ -32,3 +32,5 @@ import runpy
 runpy.run_path(str(ROOT/'web/tools/export_contact_voltage.py'))
 
 runpy.run_path(str(ROOT/'web/tools/export_human_arm_latest.py'), run_name='__main__')
+
+runpy.run_path(str(ROOT/'web/tools/export_delivery.py'), run_name='__main__')
