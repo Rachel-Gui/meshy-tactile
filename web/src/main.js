@@ -474,7 +474,7 @@ async function loadRingModel() {
   state.sensorPositions = sensorPositions;
   state.sensorAngles = Float32Array.from(payload.sensors, (sensor) => sensor.crossingAngle);
   elements.pointCount.textContent = String(RING_SENSOR_COUNT);
-  elements.modelMeta.textContent = `${payload.metadata.vertexCount.toLocaleString()} vertices`;
+  elements.modelMeta.textContent = `${payload.metadata.vertexCount.toLocaleString('en-US')} vertices`;
   elements.modelStatus.textContent = 'Ring mesh';
   elements.modelLength.textContent = String(payload.metadata.length);
   elements.modelFrontDiameter.textContent = String(payload.metadata.frontDiameter);
@@ -554,7 +554,7 @@ async function loadArmModel() {
   state.sensorAngles = robot ? new Float32Array(payload.sensors.map(s => s.crossingAngle || 0)) : computeSensorAngles(sensorPositions);
 
   elements.pointCount.textContent = String(payload.metadata.sensorCount);
-  elements.modelMeta.textContent = `${payload.metadata.vertexCount.toLocaleString()} vertices`;
+  elements.modelMeta.textContent = `${payload.metadata.vertexCount.toLocaleString('en-US')} vertices`;
   elements.modelStatus.textContent = robot ? 'Robot arm · GH mesh' : 'GH live mesh';
   elements.modelMessage.textContent = `${state.activeSensorCount} sensor crossings · ${payload.metadata.stripWidth} mm strips`;
   elements.modelLength.textContent = (payload.metadata.length ?? state.modelSize.x).toFixed(1);
@@ -986,7 +986,7 @@ function renderHostedPlaybackOptions(selectedDataset = null) {
       const group = document.createElement('optgroup'); group.label = name;
       groups.set(name, group); elements.playbackSelect.append(group);
     }
-    groups.get(name).append(new Option(dataset.uploadedAt ? `NEW · ${dataset.label} · ${new Date(dataset.uploadedAt).toLocaleString()}` : dataset.label, dataset.id));
+    groups.get(name).append(new Option(dataset.uploadedAt ? `NEW · ${dataset.label} · ${new Date(dataset.uploadedAt).toLocaleString('en-US')}` : dataset.label, dataset.id));
   });
   if (selectedDataset && state.hostedDatasets.has(selectedDataset)) elements.playbackSelect.value = selectedDataset;
 }
@@ -1160,7 +1160,7 @@ elements.playbackFile.addEventListener('change', async () => {
       renderHostedPlaybackOptions(id);
       await previewPlaybackDataset(id);
       await setSourceMode('playback');
-      elements.playbackUploadStatus.textContent = `${parsed.frames.length.toLocaleString()} frames ready`;
+      elements.playbackUploadStatus.textContent = `${parsed.frames.length.toLocaleString('en-US')} frames ready`;
       return;
     }
   } catch (error) {
@@ -1222,10 +1222,10 @@ async function previewPlaybackDataset(dataset) {
   document.querySelector('#playback-new-badge').hidden = !hostedDataset.uploadedAt;
   const uploadTime = document.querySelector('#playback-upload-time');
   uploadTime.hidden = !hostedDataset.uploadedAt;
-  uploadTime.textContent = hostedDataset.uploadedAt ? `Uploaded ${new Date(hostedDataset.uploadedAt).toLocaleString()}` : '';
+  uploadTime.textContent = hostedDataset.uploadedAt ? `Uploaded ${new Date(hostedDataset.uploadedAt).toLocaleString('en-US')}` : '';
   if (hostedDataset.uploadedAt) uploadTime.dateTime = hostedDataset.uploadedAt;
   updateUploadActions(hostedDataset);
-  elements.playbackPreviewMeta.textContent = `${payload.frames.length.toLocaleString()} playback frames · ${payload.sensorCount || 96} sensors`;
+  elements.playbackPreviewMeta.textContent = `${payload.frames.length.toLocaleString('en-US')} playback frames · ${payload.sensorCount || 96} sensors`;
   elements.playbackPreviewSample.textContent = payload.source
     ? `${payload.originalFrames} measured frames · ${payload.interpolated ? 'interpolated to 20 FPS' : '20 FPS'}\n${payload.raw ? 'Raw / baseline / signal available' : 'Processed signal only'}${payload.missingSamples ? `\n${payload.missingSamples} missing measurements shown as —` : ''}`
     : payload.sample.map(row => `#${row.scanIndex} ${row.sensor}  ${row.voltage} V  signal ${row.signal}`).join('\n');
@@ -1253,7 +1253,7 @@ function updatePlaybackTimeline(frameIndex, totalFrames, playing = state.playbac
   elements.playbackScrubber.style.setProperty('--fill', `${total > 1 ? (index / (total - 1)) * 100 : 0}%`);
   elements.playbackCurrentTime.textContent = formatPlaybackTime(index);
   elements.playbackTotalTime.textContent = formatPlaybackTime(total - 1);
-  elements.playbackFrameLabel.textContent = `Frame ${(index + 1).toLocaleString()} / ${total.toLocaleString()}`;
+  elements.playbackFrameLabel.textContent = `Frame ${(index + 1).toLocaleString('en-US')} / ${total.toLocaleString('en-US')}`;
   elements.playbackToggle.textContent = playing ? 'Ⅱ' : '▶';
   elements.playbackToggle.setAttribute('aria-label', playing ? 'Pause playback' : 'Play recording');
   elements.playbackToggle.title = playing ? 'Pause playback' : 'Play recording';
